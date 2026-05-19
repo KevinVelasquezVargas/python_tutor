@@ -1,0 +1,23 @@
+# Archivos específicos
+instrucciones.txt
+traducir.py
+po_traductor.py
+msgfmt.exe
+
+# Directorios y patrones de directorio
+addon/doc/*.css
+addon/doc/en/
+*_docHandler.py
+
+# Extensiones de archivo y patrones de archivo
+*.html
+manifest.ini
+*.mo
+*.pot
+*.pyc
+*.pyo
+*.nvda-addon
+.sconsign.dblite
+
+# Patrones de archivo JSON con versiones
+/[0-9]*.[0-9]*.[0-9]*.json

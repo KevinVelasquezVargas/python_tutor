@@ -21,17 +21,26 @@ A través de una metodología *Action-First* (aprender haciendo), cada paso pres
 
 ## 3. Atajos de teclado principales
 * `Control + Enter` (o `Control + E`): Ejecutar código y evaluar la solución.
+* `F3` (o `Control + I`): Leer la instrucción del paso actual sin mover el cursor del editor.
+* `F6`: Alternar el foco entre el editor de código y la consola de resultados.
 * `Control + Flecha Derecha`: Avanzar al siguiente paso.
 * `Control + Flecha Izquierda`: Retroceder al paso anterior.
-* `Control + P`: Pedir una pista escalonada.
+* `Control + P`: Pedir una pista escalonada de asistencia.
 * `F1` (o `Control + H`): **Traductor a Lenguaje Humano** (explica la línea actual en español claro).
-* `F2`: Ver lista de atajos de teclado.
-* `Control + J`: Abrir el Laboratorio Rápido (REPL).
-* `Control + G`: Consultar el Glosario de términos y funciones.
-* `Control + 1`: Selector de Capítulos.
+* `F2`: Ver lista completa de atajos de teclado.
+* `F7`: Verificar sintaxis en busca de errores sin ejecutar el script.
+* `Control + /`: Comentar o descomentar la línea actual.
+* `Control + D`: Duplicar la línea actual hacia abajo.
+* `Control + Shift + K`: Eliminar la línea actual.
+* `Alt + Flecha Arriba / Abajo`: Desplazar la línea actual verticalmente.
+* `Control + L`: Anunciar por voz la línea y columna actual del cursor.
+* `Control + Espacio`: Asistente de autocompletado de palabras clave de Python.
+* `Control + J`: Abrir la Consola de Pruebas Rápidas (REPL).
+* `Control + G`: Consultar el Diccionario de términos y funciones de Python.
+* `Control + 1`: Selector de Capítulos del temario.
 * `Control + R`: Reiniciar el código del ejercicio actual.
-* `Control + O` / `Control + S`: Abrir y guardar archivos Python (.py).
-* `Escape`: Cerrar la ventana del complemento.
+* `Control + O` / `Control + S`: Abrir y guardar scripts de Python (.py).
+* `Escape`: Cerrar la ventana del complemento desde cualquier control.
 
 ## 4. Opciones y Configuración
 Las opciones del complemento se encuentran en el menú de Preferencias de NVDA:

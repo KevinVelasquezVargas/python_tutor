@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/executor.py
-# Propósito: Ejecución segura con watchdog y diagnóstico pedagógico de errores.
+# Propósito: Ejecución segura con watchdog y diagnóstico pedagógico accesible.
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 
@@ -9,11 +9,12 @@ import sys
 import io
 import threading
 import traceback
+import re
 
 
 class ExecutionResult:
     """Contenedor de los resultados de ejecución y análisis pedagógico."""
-    def __init__(self, output="", success=True, error_line=None, error_type="", error_msg="", friendly_explanation="", timed_out=False, local_ns=None):
+    def __init__(self, output="", success=True, error_line=None, error_type="", error_msg="", friendly_explanation="", timed_out=False, local_ns=None, keyboard_warning=""):
         self.output = output
         self.success = success
         self.error_line = error_line
@@ -22,13 +23,70 @@ class ExecutionResult:
         self.friendly_explanation = friendly_explanation
         self.timed_out = timed_out
         self.local_ns = local_ns or {}
+        self.keyboard_warning = keyboard_warning
 
 
-def explain_error(error_type, error_msg, linea=1):
+def detectar_errores_teclado_comunes(src):
+    """
+    Detecta confusiones mecánicas frecuentes en teclados en español
+    para orientar al estudiante antes de que se frustre con SyntaxError.
+    """
+    # 1. Comillas curvas / acentos tipográficos
+    if "´" in src or "`" in src:
+        return "Aviso de teclado: Se detectó el uso de un acento (´) o tilde invertida en lugar de una comilla simple ('). En Python los textos se encierran con comillas simples (') o dobles (\")."
+    
+    if any(q in src for q in ["“", "”", "‘", "’"]):
+        return "Aviso de tipografía: El código contiene comillas curvas o estilizadas (“ ”). Python requiere comillas rectas de programación (' o \")."
+
+    # 2. Punto y coma al final de declaraciones de bloques
+    for linea in src.splitlines():
+        limpia = linea.strip()
+        palabras_bloque = ("def ", "if ", "elif ", "while ", "for ", "class ", "try:", "except")
+        if any(limpia.startswith(p) for p in palabras_bloque) and limpia.endswith(";"):
+            return "Aviso de sintaxis: Has colocado punto y coma (;) al final de una estructura. En Python, las funciones, condiciones y bucles deben finalizar con dos puntos (:)."
+
+    # 3. Guion tipográfico largo en lugar del signo menos
+    if "–" in src or "—" in src:
+        return "Aviso de caracteres: Se detectó un guion largo (– o —). Para restas matemáticas y números negativos debes utilizar el guion simple (-)."
+
+    return ""
+
+
+def generar_comparacion_salida(esperado, obtenido):
+    """
+    Genera una explicación comparativa accesible entre la salida esperada y la real.
+    """
+    esp_clean = esperado.strip()
+    obt_clean = obtenido.strip()
+
+    lineas = [
+        "=== COMPARACIÓN DE SALIDA ===",
+        f"Salida esperada: {esp_clean}",
+        f"Salida de tu programa: {obt_clean if obt_clean else '(sin salida impresa)'}"
+    ]
+
+    if esp_clean.lower() == obt_clean.lower() and esp_clean != obt_clean:
+        lineas.append("Pista pedagógica: Tu salida coincide en las palabras, pero difiere en mayúsculas o minúsculas. Recuerda que Python distingue mayúsculas con exactitud.")
+    elif esp_clean.replace(" ", "") == obt_clean.replace(" ", ""):
+        lineas.append("Pista pedagógica: Las palabras coinciden, pero la separación de espacios no es exactamente igual a la esperada.")
+    elif esp_clean.replace(",", "").replace(".", "") == obt_clean.replace(",", "").replace(".", ""):
+        lineas.append("Pista pedagógica: Revisa los signos de puntuación (comas o puntos); faltan o sobran algunos respecto al ejercicio.")
+    else:
+        lineas.append("Pista pedagógica: Revisa el texto y variables solicitadas en la consigna de la misión.")
+
+    return "\n".join(lineas)
+
+
+def explain_error(error_type, error_msg, linea=1, src=""):
     """
     Traduce excepciones estándar de Python en explicaciones pedagógicas claras,
     respetuosas y orientadas al aprendizaje accesible.
     """
+    # Verificación previa de confusiones de teclado
+    aviso_teclado = detectar_errores_teclado_comunes(src)
+    if aviso_teclado:
+        return f"En la línea {linea}: {aviso_teclado}"
+
     if error_type == "NameError":
         return f"En la línea {linea}: Has utilizado un nombre o función que Python no reconoce todavía. Comprueba si está bien escrito o si olvidaste definir la variable previamente."
     elif error_type == "TypeError":
@@ -48,7 +106,7 @@ def explain_error(error_type, error_msg, linea=1):
     elif error_type == "TimeoutError":
         return f"Seguridad activa: La ejecución tardó más de 3 segundos y se detuvo para proteger tu lector de pantalla. Es posible que un bucle 'while' o 'for' no tenga una condición de salida."
     else:
-        return f"En la línea {linea}: Se produjo un error de tipo {error_type}: {error_msg}."
+        return f"En la línea {linea}: Se produjo un aviso de tipo {error_type}: {error_msg}."
 
 
 def ejecutar_codigo_seguro(src, timeout=3.0):
@@ -56,6 +114,9 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
     Ejecuta el código en un hilo secundario aislado, vigilado por un temporizador.
     Garantiza la captura limpia de sys.stdout y protege la estabilidad de NVDA.
     """
+    # 1. Comprobación temprana de caracteres de teclado incompatibles
+    teclado_aviso = detectar_errores_teclado_comunes(src)
+
     result_holder = {}
     buf = io.StringIO()
     old_stdout = sys.stdout
@@ -74,7 +135,8 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
             result_holder['res'] = ExecutionResult(
                 output=output,
                 success=True,
-                local_ns=local_ns
+                local_ns=local_ns,
+                keyboard_warning=teclado_aviso
             )
         except Exception as e:
             tb = traceback.extract_tb(sys.exc_info()[2])
@@ -88,7 +150,7 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
 
             err_type = type(e).__name__
             err_msg = str(e)
-            friendly = explain_error(err_type, err_msg, linea_error)
+            friendly = explain_error(err_type, err_msg, linea_error, src)
 
             result_holder['res'] = ExecutionResult(
                 output=f"Error en línea {linea_error} ({err_type}): {err_msg}",
@@ -97,7 +159,8 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
                 error_type=err_type,
                 error_msg=err_msg,
                 friendly_explanation=friendly,
-                local_ns=local_ns
+                local_ns=local_ns,
+                keyboard_warning=teclado_aviso
             )
         finally:
             try:
@@ -110,12 +173,11 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
     hilo.start()
     hilo.join(timeout=timeout)
 
-    # Restauración mandataria inmediata en el hilo principal
     sys.stdout = old_stdout
     sys.stderr = old_stderr
 
     if hilo.is_alive():
-        timeout_explanation = explain_error("TimeoutError", "Límite de tiempo excedido", 1)
+        timeout_explanation = explain_error("TimeoutError", "Límite de tiempo excedido", 1, src)
         return ExecutionResult(
             output="Error de Seguridad: La ejecución excedió el límite de 3.0 segundos.\nPosible bucle infinito detectado.",
             success=False,

@@ -211,6 +211,14 @@
             <td>Ejecutar el código del editor y evaluar la solución.</td>
           </tr>
           <tr>
+            <td><kbd>F3</kbd> (o <kbd>Control + I</kbd>)</td>
+            <td>Leer la instrucción activa por voz y braille sin retirar el foco del editor de código.</td>
+          </tr>
+          <tr>
+            <td><kbd>F6</kbd></td>
+            <td>Alternar el foco rápidamente entre el editor de código y la consola de resultados.</td>
+          </tr>
+          <tr>
             <td><kbd>Control + Flecha Derecha</kbd></td>
             <td>Avanzar al siguiente paso del capítulo.</td>
           </tr>
@@ -223,7 +231,7 @@
             <td>Solicitar una pista escalonada de asistencia.</td>
           </tr>
           <tr>
-            <td><kbd>F1</kbd> (o <kbd>Control + H</kbd>)</td>
+            <td><kbd>F1</kbd></td>
             <td><strong>Traductor a Lenguaje Humano:</strong> Explica en español claro la línea de código donde está el cursor.</td>
           </tr>
           <tr>
@@ -231,12 +239,40 @@
             <td>Mostrar la guía rápida de atajos de teclado.</td>
           </tr>
           <tr>
+            <td><kbd>F7</kbd></td>
+            <td><strong>Verificación de Sintaxis (Linter):</strong> Comprueba si el código contiene errores sin ejecutarlo.</td>
+          </tr>
+          <tr>
+            <td><kbd>Control + /</kbd></td>
+            <td>Comentar o descomentar la línea actual con <code>#</code>.</td>
+          </tr>
+          <tr>
+            <td><kbd>Control + D</kbd></td>
+            <td>Duplicar la línea actual hacia abajo.</td>
+          </tr>
+          <tr>
+            <td><kbd>Control + Shift + K</kbd></td>
+            <td>Eliminar por completo la línea actual.</td>
+          </tr>
+          <tr>
+            <td><kbd>Alt + Flecha Arriba / Abajo</kbd></td>
+            <td>Mover verticalmente la línea actual en el editor.</td>
+          </tr>
+          <tr>
+            <td><kbd>Control + L</kbd></td>
+            <td>Anunciar por voz la línea y columna actual del cursor.</td>
+          </tr>
+          <tr>
+            <td><kbd>Control + Espacio</kbd></td>
+            <td>Autocompletar la palabra actual con palabras reservadas de Python.</td>
+          </tr>
+          <tr>
             <td><kbd>Control + J</kbd></td>
             <td>Abrir el <strong>Laboratorio Rápido (REPL)</strong> para pruebas de una línea.</td>
           </tr>
           <tr>
             <td><kbd>Control + G</kbd></td>
-            <td>Abrir el <strong>Glosario de Términos</strong> y funciones de Python.</td>
+            <td>Abrir el <strong>Diccionario de Términos</strong> y funciones de Python.</td>
           </tr>
           <tr>
             <td><kbd>Control + 1</kbd></td>
@@ -360,24 +396,21 @@
 
       <h3>Versión 2.0.0</h3>
       <ul>
-        <li><strong>Reestructuración pedagógica completa del Capítulo 1:</strong> Explicaciones claras para personas sin ningún conocimiento previo de programación; inicio directo con <code>print('Hola mundo')</code> sin tareas complejas de reordenamiento de código.</li>
-        <li><strong>Traductor a Lenguaje Humano (<kbd>F1</kbd> / <kbd>Control + H</kbd>):</strong> Analiza la línea activa y explica su función en lenguaje cotidiano.</li>
+        <li><strong>Estructura oficial AddonTemplate 2026:</strong> Adaptación integral a la plantilla oficial de complementos de NVDA con herramientas SCons, pre-commit, workflows y linters de calidad.</li>
+        <li><strong>Arquitectura modular desacoplada:</strong> División del código en módulos independientes (ejecutor seguro, audio, currículo, progreso, interfaz y traductor).</li>
+        <li><strong>Reestructuración pedagógica accesible:</strong> Explicaciones claras para personas sin ningún conocimiento previo de programación; inicio directo con <code>print('¡Hola mundo!')</code> sin tareas complejas de reordenamiento de código.</li>
+        <li><strong>Herramientas avanzadas de edición:</strong> Comentar/descomentar (<kbd>Control + /</kbd>), duplicar línea (<kbd>Control + D</kbd>), eliminar línea (<kbd>Control + Shift + K</kbd>), mover líneas (<kbd>Alt + Arriba/Abajo</kbd>), comprobación sintáctica (<kbd>F7</kbd>), anuncio de línea y columna (<kbd>Control + L</kbd>) y autocompletado (<kbd>Control + Espacio</kbd>).</li>
+        <li><strong>Lectura y navegación contextual sin perder el foco:</strong> Leer la consigna activa con <kbd>F3</kbd> o <kbd>Control + I</kbd> directamente desde el editor, y alternar el foco entre el editor y la consola con <kbd>F6</kbd>.</li>
+        <li><strong>Detección preventiva de escritura:</strong> Alerta inmediata ante caracteres comunes de teclado conflictivos (tildes agudas, comillas tipográficas, punto y coma erróneo).</li>
+        <li><strong>Comparación formativa de salidas:</strong> Análisis detallado y accesible de las diferencias entre la salida esperada y la generada.</li>
+        <li><strong>Traductor a Lenguaje Humano (<kbd>F1</kbd>):</strong> Analiza la línea activa y explica su función en lenguaje cotidiano.</li>
+        <li><strong>Linter acústico PEP 8 y efectos auditivos:</strong> Detección sonora de niveles de sangría y avisos discretos en bloques sintácticos.</li>
+        <li><strong>Consola de Pruebas Rápidas (REPL - <kbd>Control + J</kbd>):</strong> Entorno ágil para experimentar con expresiones de una línea.</li>
+        <li><strong>Diccionario de Términos (<kbd>Control + G</kbd>):</strong> Buscador interactivo de conceptos del lenguaje con definiciones claras.</li>
         <li><strong>Manual accesible en formato HTML:</strong> Apertura directa en el navegador web predeterminado del sistema con estructura semántica y navegación por encabezados.</li>
         <li><strong>Menú en Herramientas de NVDA:</strong> Nuevo submenú con accesos a la ventana principal, soporte por correo y página de donaciones.</li>
         <li><strong>Cierre inmediato con tecla Escape:</strong> Al presionar <kbd>Escape</kbd> en cualquier elemento de la ventana del tutor, esta se cierra limpiamente.</li>
-        <li><strong>Simplificación del Editor:</strong> Etiqueta accesible simplificada a <em>"Editor de código"</em>, eliminando avisos redundantes en el nombre del control.</li>
-        <li><strong>Diálogo de bienvenida interactivo:</strong> Guía de inicio rápido con opción para recordar la preferencia del usuario.</li>
-        <li><strong>Panel de opciones en Preferencias de NVDA:</strong> Traslado de las opciones de configuración a la ventana nativa de NVDA.</li>
-        <li><strong>Generación de audio síncrona optimizada:</strong> Las señales acústicas se generan instantáneamente al iniciar el complemento, garantizando la reproducción inmediata del tono de apertura.</li>
         <li><strong>Compatibilidad extendida:</strong> Compatibilidad validada desde NVDA 2022.1.0 hasta la versión 2026.3.0.</li>
-      </ul>
-
-      <h3>Versión 1.5.0</h3>
-      <ul>
-        <li>Modularización de la arquitectura interna en submódulos especializados.</li>
-        <li>Incorporación del Laboratorio Rápido (REPL).</li>
-        <li>Ampliación del temario hasta el Capítulo 15.</li>
-        <li>Linter acústico para detección de sangría y dos puntos.</li>
       </ul>
 
       <h3>Versión 1.0.0</h3>

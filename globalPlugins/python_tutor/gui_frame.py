@@ -18,7 +18,7 @@ except ImportError:
     speech = None
 
 from .audio_manager import SoundManager
-from .executor import ejecutar_codigo_seguro
+from .executor import ejecutar_codigo_seguro, generar_comparacion_salida, detectar_errores_teclado_comunes
 from .curriculum import CURRICULUM, GLOSARIO
 from .progress import ProgressManager
 from .repl_dialog import ReplDialog
@@ -120,6 +120,8 @@ class WelcomeDialog(wx.Dialog):
             "desde cero, mediante la práctica directa en el editor de código.\n\n"
             "Atajos de teclado esenciales:\n"
             "• Control + Enter: Ejecutar el código y comprobar la solución.\n"
+            "• F3 o Control + I: Leer la instrucción activa sin mover el cursor del editor.\n"
+            "• F6: Alternar el foco entre el editor de código y la consola.\n"
             "• Control + Flecha Derecha: Ir al paso siguiente.\n"
             "• Control + Flecha Izquierda: Ir al paso anterior.\n"
             "• Control + P: Pedir una pista de asistencia.\n"
@@ -176,6 +178,8 @@ class ShortcutsDialog(wx.Dialog):
             "Guía Completa de Atajos de Teclado:\n\n"
             "Acciones de Aprendizaje:\n"
             "• Control + Enter (o Control + E): Ejecutar código y validar ejercicio.\n"
+            "• F3 (o Control + I): Leer la instrucción activa sin mover el foco del editor.\n"
+            "• F6: Alternar el foco entre el editor de código y la consola de resultados.\n"
             "• Control + Flecha Derecha: Ir al paso siguiente.\n"
             "• Control + Flecha Izquierda: Ir al paso anterior.\n"
             "• Control + P: Pedir una pista escalonada.\n"
@@ -453,12 +457,17 @@ class TutorFrame(wx.Frame):
 
         # 3. Menú Herramientas
         m_herramientas = wx.Menu()
+        item_leer_inst = m_herramientas.Append(wx.ID_ANY, "Leer instrucción del paso activo\tF3", "Lee la consigna actual sin retirar el cursor del editor")
+        item_alternar = m_herramientas.Append(wx.ID_ANY, "Alternar foco entre editor y consola\tF6", "Cambia el foco entre el editor de código y la salida")
+        m_herramientas.AppendSeparator()
         item_traductor = m_herramientas.Append(wx.ID_ANY, "Explicar línea de código\tF1", "Traduce la línea de código actual a palabras cotidianas")
         item_repl = m_herramientas.Append(wx.ID_ANY, "Consola de pruebas rápidas (REPL)\tCtrl+J", "Ventana de pruebas inmediatas de una línea")
         item_glosario = m_herramientas.Append(wx.ID_ANY, "Diccionario de términos de Python\tCtrl+G", "Buscador de términos y funciones del lenguaje")
         item_temario = m_herramientas.Append(wx.ID_ANY, "Ir a un capítulo del temario...\tCtrl+1", "Ver el listado completo de capítulos")
         item_reiniciar = m_herramientas.Append(wx.ID_ANY, "Restablecer código del ejercicio\tCtrl+R", "Restaura el código original del paso")
 
+        self.Bind(wx.EVT_MENU, self.on_leer_instruccion_actual, id=item_leer_inst.GetId())
+        self.Bind(wx.EVT_MENU, self.on_alternar_foco, id=item_alternar.GetId())
         self.Bind(wx.EVT_MENU, self.on_traducir_linea, id=item_traductor.GetId())
         self.Bind(wx.EVT_MENU, self.on_abrir_repl, id=item_repl.GetId())
         self.Bind(wx.EVT_MENU, self.on_abrir_glosario, id=item_glosario.GetId())
@@ -597,6 +606,11 @@ class TutorFrame(wx.Frame):
                 aprobado = False
 
         lineas_reporte = []
+        if tipo_paso != "quiz" and getattr(res, 'keyboard_warning', None):
+            lineas_reporte.append("=== AVISO DE ESCRITURA ===")
+            lineas_reporte.append(res.keyboard_warning)
+            lineas_reporte.append("")
+
         lineas_reporte.append("=== SALIDA DE CONSOLA ===")
         lineas_reporte.append(res_output)
         lineas_reporte.append("")
@@ -618,6 +632,12 @@ class TutorFrame(wx.Frame):
             if ui:
                 ui.message("¡Misión superada! Pulsa Control + Flecha Derecha para avanzar.")
         else:
+            if paso.get("salida_esperada"):
+                comp = generar_comparacion_salida(paso["salida_esperada"], res_output)
+                lineas_reporte.append("=== COMPARACIÓN FORMATIVA ===")
+                lineas_reporte.append(comp)
+                lineas_reporte.append("")
+
             if friendly_err:
                 lineas_reporte.append(f"Aviso de ejecución: {friendly_err}")
             else:
@@ -629,7 +649,9 @@ class TutorFrame(wx.Frame):
             if self.sonidos_activos:
                 SoundManager.play('error')
             if ui:
-                if friendly_err:
+                if tipo_paso != "quiz" and getattr(res, 'keyboard_warning', None):
+                    ui.message(res.keyboard_warning)
+                elif friendly_err:
                     ui.message(friendly_err)
                 else:
                     ui.message("Solución incompleta. Pulsa Control + P para recibir una pista.")
@@ -1019,6 +1041,16 @@ class TutorFrame(wx.Frame):
             self.on_mostrar_atajos()
             return
 
+        # F3: Leer instrucción activa sin mover foco
+        if keycode == wx.WXK_F3:
+            self.on_leer_instruccion_actual()
+            return
+
+        # F6: Alternar foco entre editor y consola
+        if keycode == wx.WXK_F6:
+            self.on_alternar_foco()
+            return
+
         # F7: Verificar sintaxis
         if keycode == wx.WXK_F7:
             self.on_verificar_sintaxis()
@@ -1036,6 +1068,9 @@ class TutorFrame(wx.Frame):
 
             if keycode in (wx.WXK_RETURN, ord('E')):
                 self.on_ejecutar(None)
+                return
+            elif keycode == ord('I'):
+                self.on_leer_instruccion_actual()
                 return
             elif keycode == ord('P'):
                 self.on_pista(None)
@@ -1096,6 +1131,36 @@ class TutorFrame(wx.Frame):
             if keycode == ord(':') and self.sonidos_activos:
                 SoundManager.play('bloque')
             event.Skip()
+
+    def on_leer_instruccion_actual(self, event=None):
+        """Lee la consigna del paso actual por voz y braille sin retirar el foco del editor de código."""
+        try:
+            cap = CURRICULUM[self.cap_idx]
+            paso = cap["pasos"][self.paso_idx]
+            num_paso = self.paso_idx + 1
+            total_pasos = len(cap["pasos"])
+            instruccion = paso.get("instruccion", "")
+            if not instruccion:
+                instruccion = self.mision_ctrl.GetValue().strip()
+            msg = f"Paso {num_paso} de {total_pasos}: {instruccion}"
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+        except Exception:
+            pass
+
+    def on_alternar_foco(self, event=None):
+        """Alterna el foco entre el editor de código y la consola de resultados (F6)."""
+        foco_actual = wx.Window.FindFocus()
+        if foco_actual == self.salida:
+            self.edicion.SetFocus()
+            if ui:
+                ui.message("Foco en el editor de código")
+        else:
+            self.salida.SetFocus()
+            if ui:
+                ui.message("Foco en la consola de resultados")
 
     def leer_ultima_salida(self):
         txt = self.salida.GetValue().strip()

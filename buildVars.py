@@ -10,7 +10,10 @@ addon_info = AddonInfo(
 	addon_description=_("""Entorno accesible para el aprendizaje práctico del lenguaje de programación Python mediante el lector de pantalla NVDA. Incorpora metodología guiada por micro-pasos, traductor a lenguaje humano, señales acústicas pedagógicas, linter de sangría PEP 8, laboratorio interactivo y temario estructurado."""),
 	addon_version="2.0.0",
 	addon_changelog=_("""Registro de cambios versión 2.0.0:
-- Rediseño pedagógico completo del Capítulo 1 para principiantes absolutos.
+- Estructura canónica oficial AddonTemplate 2026 y arquitectura modular desacoplada.
+- Rediseño pedagógico paso a paso para personas sin conocimientos previos de programación.
+- Herramientas avanzadas de edición (comentar, duplicar, mover líneas, verificar sintaxis F7, lectura de instrucción activa F3 / Ctrl+I, alternar foco F6).
+- Detección preventiva de escritura y comparación formativa de salidas esperadas vs. obtenidas.
 - Traductor a Lenguaje Humano (F1) para explicar cualquier línea de código.
 - Acceso directo en el menú Herramientas de NVDA (Tutor, Soporte y Donaciones).
 - Cierre inmediato con la tecla Escape desde cualquier control.

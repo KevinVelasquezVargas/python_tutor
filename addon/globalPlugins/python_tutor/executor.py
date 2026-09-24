@@ -196,3 +196,99 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
             friendly_explanation="No fue posible completar la ejecución del script."
         )
     )
+
+
+def comprobar_balanceo_delimitadores(src):
+    """
+    Analiza el código en busca de paréntesis, corchetes, llaves y comillas desbalanceadas.
+    Devuelve un mensaje accesible si encuentra una discrepancia, o None si está equilibrado.
+    """
+    pila = []
+    mapa_cierre = {')': '(', ']': '[', '}': '{'}
+    nombres_delimitadores = {'(': 'paréntesis', '[': 'corchete', '{': 'llave'}
+
+    en_cadena = None  # "'" o '"'
+    es_triple = False
+    escape = False
+
+    lineas = src.splitlines()
+    for num_linea, linea in enumerate(lineas, start=1):
+        idx = 0
+        longitud = len(linea)
+        while idx < longitud:
+            c = linea[idx]
+
+            # Manejo de caracteres escapados dentro de cadenas
+            if escape:
+                escape = False
+                idx += 1
+                continue
+
+            if c == '\\' and en_cadena:
+                escape = True
+                idx += 1
+                continue
+
+            # Verificación de comillas
+            if c in ("'", '"'):
+                # Comprobar comillas triples
+                if idx + 2 < longitud and linea[idx:idx+3] == c * 3:
+                    if en_cadena == c and es_triple:
+                        en_cadena = None
+                        es_triple = False
+                        idx += 3
+                        continue
+                    elif not en_cadena:
+                        en_cadena = c
+                        es_triple = True
+                        idx += 3
+                        continue
+
+                # Comillas simples / normales
+                if not es_triple:
+                    if en_cadena == c:
+                        en_cadena = None
+                    elif not en_cadena:
+                        en_cadena = c
+                idx += 1
+                continue
+
+            # Si estamos dentro de una cadena de texto, ignoramos los delimitadores de sintaxis
+            if en_cadena:
+                idx += 1
+                continue
+
+            # Comentario: ignorar el resto de la línea
+            if c == '#':
+                break
+
+            # Delimitadores de apertura
+            if c in ('(', '[', '{'):
+                pila.append((c, num_linea, idx + 1))
+            # Delimitadores de cierre
+            elif c in (')', ']', '}'):
+                esperado = mapa_cierre[c]
+                if not pila:
+                    nombre = nombres_delimitadores.get(esperado, "delimitador")
+                    return f"Línea {num_linea}, col {idx + 1}: Se encontró '{c}' de cierre sin un {nombre} de apertura correspondiente."
+                ultimo, lin_apertura, col_apertura = pila.pop()
+                if ultimo != esperado:
+                    nom_esp = nombres_delimitadores.get(ultimo, ultimo)
+                    return f"Línea {num_linea}, col {idx + 1}: Se cerró con '{c}', pero se esperaba cerrar el {nom_esp} '{ultimo}' abierto en la línea {lin_apertura}."
+
+            idx += 1
+
+        # Si había una cadena simple no cerrada al final de la línea
+        if en_cadena and not es_triple:
+            return f"Línea {num_linea}: Comilla {en_cadena} de texto sin cerrar al final de la línea."
+
+    if en_cadena and es_triple:
+        return f"Aviso de sintaxis: Bloque de comillas triples {en_cadena * 3} abierto sin cerrar al final del archivo."
+
+    if pila:
+        ultimo, lin_apertura, col_apertura = pila[-1]
+        nom = nombres_delimitadores.get(ultimo, ultimo)
+        return f"Línea {lin_apertura}, col {col_apertura}: El {nom} '{ultimo}' quedó abierto y no fue cerrado."
+
+    return None
+

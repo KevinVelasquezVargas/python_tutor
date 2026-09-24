@@ -7,18 +7,19 @@ from site_scons.site_tools.NVDATool.utils import _
 addon_info = AddonInfo(
 	addon_name="python_tutor",
 	addon_summary=_("Aprendizaje de Python con NVDA"),
-	addon_description=_("""Entorno accesible para el aprendizaje práctico del lenguaje de programación Python mediante el lector de pantalla NVDA. Incorpora metodología guiada por micro-pasos, traductor a lenguaje humano, señales acústicas pedagógicas, linter de sangría PEP 8, laboratorio interactivo y temario estructurado."""),
+	addon_description=_("""Entorno integral accesible para el aprendizaje práctico de Python y editor tiflotécnico de alto rendimiento con NVDA. Incorpora dualidad de uso (Modo Aprendizaje guiado y Modo Solo Editor profesional), navegación estructural de funciones y clases, salto automático a errores de Traceback, verificador de delimitadores, linter acústico PEP 8, traductor a lenguaje humano y currículo completo de 32 capítulos desde pensamiento computacional hasta bases de datos y pruebas unitarias."""),
 	addon_version="2.0.0",
 	addon_changelog=_("""Registro de cambios versión 2.0.0:
-- Estructura canónica oficial AddonTemplate 2026 y arquitectura modular desacoplada.
-- Rediseño pedagógico paso a paso para personas sin conocimientos previos de programación.
-- Herramientas avanzadas de edición (comentar, duplicar, mover líneas, verificar sintaxis F7, lectura de instrucción activa F3 / Ctrl+I, alternar foco F6).
-- Detección preventiva de escritura y comparación formativa de salidas esperadas vs. obtenidas.
-- Traductor a Lenguaje Humano (F1) para explicar cualquier línea de código.
-- Acceso directo en el menú Herramientas de NVDA (Tutor, Soporte y Donaciones).
-- Cierre inmediato con la tecla Escape desde cualquier control.
-- Manual del usuario en formato HTML accesible en navegador web.
-- Señales sonoras instantáneas y panel de configuración en Preferencias de NVDA."""),
+- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).
+- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y diálogo de símbolos Control + Shift + O).
+- Salto automático a la línea del error del Traceback con lectura diagnóstica (F4).
+- Verificador en tiempo real de delimitadores y comillas sin cerrar (F7).
+- Lectura de consola no invasiva sin perder el foco del editor (Control + Shift + C y Control + 6).
+- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software profesional).
+- Glosario ampliado a 43 términos técnicos con buscador interactivo.
+- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).
+- Adaptación canónica a la plantilla oficial AddonTemplate 2026.
+- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."""),
 	addon_author="Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>",
 	addon_url="https://github.com/KevinVelasquezVargas/python_tutor",
 	addon_sourceURL="https://github.com/KevinVelasquezVargas/python_tutor",

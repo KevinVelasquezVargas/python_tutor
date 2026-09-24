@@ -48,7 +48,8 @@ class ProgressManager:
             "exercises_passed": 0,
             "sound_enabled": True,
             "linter_enabled": True,
-            "show_welcome": True
+            "show_welcome": True,
+            "editor_mode": "learning"
         }
         if not os.path.exists(path):
             return default_data
@@ -109,3 +110,14 @@ class ProgressManager:
         prog = cls.load_progress()
         prog[key] = value
         cls.save_progress(prog)
+
+    @classmethod
+    def get_editor_mode(cls):
+        """Devuelve el modo de trabajo activo ('learning' o 'editor')."""
+        return cls.get_setting("editor_mode", "learning")
+
+    @classmethod
+    def set_editor_mode(cls, mode):
+        """Establece el modo de trabajo activo ('learning' o 'editor')."""
+        val = mode if mode in ("learning", "editor") else "learning"
+        cls.set_setting("editor_mode", val)

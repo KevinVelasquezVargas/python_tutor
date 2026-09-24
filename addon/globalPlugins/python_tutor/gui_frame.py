@@ -18,7 +18,12 @@ except ImportError:
     speech = None
 
 from .audio_manager import SoundManager
-from .executor import ejecutar_codigo_seguro, generar_comparacion_salida, detectar_errores_teclado_comunes
+from .executor import (
+    ejecutar_codigo_seguro,
+    generar_comparacion_salida,
+    detectar_errores_teclado_comunes,
+    comprobar_balanceo_delimitadores
+)
 from .curriculum import CURRICULUM, GLOSARIO
 from .progress import ProgressManager
 from .repl_dialog import ReplDialog
@@ -120,14 +125,19 @@ class WelcomeDialog(wx.Dialog):
             "desde cero, mediante la práctica directa en el editor de código.\n\n"
             "Atajos de teclado esenciales:\n"
             "• Control + Enter: Ejecutar el código y comprobar la solución.\n"
+            "• Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
             "• F3 o Control + I: Leer la instrucción activa sin mover el cursor del editor.\n"
+            "• F4: Situar el cursor directamente en la línea del error del Traceback.\n"
             "• F6: Alternar el foco entre el editor de código y la consola.\n"
+            "• F7: Verificar sintaxis y balanceo de delimitadores/comillas.\n"
+            "• Control + Shift + O: Lista accesible de funciones y clases del script.\n"
+            "• Alt + N / Alt + P: Salto a la siguiente / anterior función o clase.\n"
+            "• Control + Shift + C: Verbalizar toda la salida de consola sin salir del editor.\n"
             "• Control + Flecha Derecha: Ir al paso siguiente.\n"
             "• Control + Flecha Izquierda: Ir al paso anterior.\n"
             "• Control + P: Pedir una pista de asistencia.\n"
             "• F1: Explicar la línea de código donde está el cursor con palabras sencillas.\n"
             "• F2: Ver todos los atajos de teclado.\n"
-            "• F7: Verificar sintaxis del código sin ejecutarlo.\n"
             "• Control + /: Comentar o descomentar la línea actual.\n"
             "• Control + L: Anunciar la línea y columna actual.\n"
             "• Control + J: Abrir la consola de pruebas rápidas (REPL).\n"
@@ -176,9 +186,11 @@ class ShortcutsDialog(wx.Dialog):
 
         texto_atajos = (
             "Guía Completa de Atajos de Teclado:\n\n"
-            "Acciones de Aprendizaje:\n"
+            "Modos y Aprendizaje:\n"
+            "• Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
             "• Control + Enter (o Control + E): Ejecutar código y validar ejercicio.\n"
             "• F3 (o Control + I): Leer la instrucción activa sin mover el foco del editor.\n"
+            "• F4: Situar el cursor en la línea exacta del error del Traceback.\n"
             "• F6: Alternar el foco entre el editor de código y la consola de resultados.\n"
             "• Control + Flecha Derecha: Ir al paso siguiente.\n"
             "• Control + Flecha Izquierda: Ir al paso anterior.\n"
@@ -188,18 +200,20 @@ class ShortcutsDialog(wx.Dialog):
             "• Control + 1: Abrir el Selector de Capítulos del temario.\n"
             "• Control + J: Abrir la consola de pruebas rápidas (REPL).\n"
             "• Control + G: Abrir el diccionario de términos de Python.\n\n"
-            "Herramientas de Edición tipo Visual Studio:\n"
+            "Navegación Estructural y Edición tipo Visual Studio:\n"
+            "• Control + Shift + O: Lista accesible de funciones y clases del script.\n"
+            "• Alt + N: Salto rápido a la cabecera de la siguiente función o clase.\n"
+            "• Alt + P: Salto rápido a la cabecera de la función o clase anterior.\n"
             "• Control + / (o Control + K): Comentar o descomentar la línea actual con '# '.\n"
             "• Control + D: Duplicar la línea actual hacia abajo.\n"
             "• Control + Shift + K: Eliminar la línea actual.\n"
-            "• Alt + Flecha Arriba: Mover la línea actual hacia arriba.\n"
-            "• Alt + Flecha Abajo: Mover la línea actual hacia abajo.\n"
-            "• F7: Verificar sintaxis del código en busca de errores sin ejecutar.\n"
+            "• F7: Verificar sintaxis, comillas y balanceo de delimitadores () [] {}.\n"
             "• Control + L: Anunciar la línea y columna actual del cursor.\n"
             "• Control + Espacio: Autocompletar la palabra actual con palabras clave de Python.\n"
             "• Control + 4: Llevar el foco directamente al Editor de código.\n"
             "• Control + 5: Llevar el foco directamente a la Consola de resultados.\n"
-            "• Control + 6: Leer por voz la última línea de la consola.\n\n"
+            "• Control + 6: Leer por voz la última línea de la consola.\n"
+            "• Control + Shift + C: Leer por voz todo el contenido de la consola.\n\n"
             "Archivos y Sistema:\n"
             "• Control + O: Abrir script de Python (.py) externo.\n"
             "• Control + S: Guardar script actual en disco.\n"
@@ -296,6 +310,63 @@ class GlossaryDialog(wx.Dialog):
                 ui.message(sel)
 
 
+class SymbolsDialog(wx.Dialog):
+    """Diálogo accesible que enumera todas las funciones y clases del script para navegación directa."""
+    def __init__(self, parent, code_text):
+        super(SymbolsDialog, self).__init__(parent, title="Estructura del Código: Funciones y Clases", size=(680, 480))
+        panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+
+        self.simbolos = []
+        lineas = code_text.splitlines(True)
+        pos_acum = 0
+        for num_linea, linea in enumerate(lineas, start=1):
+            m = re.match(r'^(?:[ \t]*)(def|class)\s+([a-zA-Z_0-9]+)', linea)
+            if m:
+                tipo = "Clase" if m.group(1) == "class" else "Función"
+                nombre = m.group(2)
+                self.simbolos.append((tipo, nombre, num_linea, pos_acum))
+            pos_acum += len(linea)
+
+        lbl = wx.StaticText(panel, label="Selecciona una función o clase para desplazar el cursor directamente a su cabecera:")
+        vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
+
+        opciones = [f"[{tipo}] {nombre} (Línea {lin})" for tipo, nombre, lin, _ in self.simbolos]
+        if not opciones:
+            opciones = ["(No se encontraron funciones ni clases en el código actual)"]
+
+        self.list_box = wx.ListBox(panel, choices=opciones)
+        self.list_box.SetName("Lista de funciones y clases. Presione Enter para ir al elemento.")
+        if self.simbolos:
+            self.list_box.SetSelection(0)
+        vbox.Add(self.list_box, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
+
+        hbox = wx.BoxSizer(wx.HORIZONTAL)
+        btn_ir = wx.Button(panel, wx.ID_OK, label="Ir al elemento")
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        hbox.Add(btn_ir, flag=wx.RIGHT, border=8)
+        hbox.Add(btn_cancel)
+        vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
+
+        panel.SetSizer(vbox)
+        self.Bind(wx.EVT_CHAR_HOOK, self.on_char_hook)
+        self.list_box.Bind(wx.EVT_LISTBOX_DCLICK, lambda e: self.EndModal(wx.ID_OK))
+        self.CenterOnParent()
+        self.list_box.SetFocus()
+
+    def on_char_hook(self, event):
+        if event.GetKeyCode() == wx.WXK_ESCAPE:
+            self.EndModal(wx.ID_CANCEL)
+        else:
+            event.Skip()
+
+    def get_selected_symbol(self):
+        sel = self.list_box.GetSelection()
+        if 0 <= sel < len(self.simbolos):
+            return self.simbolos[sel]
+        return None
+
+
 class TutorFrame(wx.Frame):
     """
     Ventana principal del entorno interactivo Aprendizaje de Python con NVDA.
@@ -317,77 +388,80 @@ class TutorFrame(wx.Frame):
         self.nivel_pista = 0
         self.linter_activo = prog.get("linter_enabled", True)
         self.sonidos_activos = prog.get("sound_enabled", True)
+        self.modo_editor = ProgressManager.get_editor_mode() == "editor"
+        self.ultimo_error_linea = None
+        self.ultimo_error_msg = ""
         self._last_linter_line = -1
         self._last_linter_indent = -1
         self.archivo_abierto = None
 
         self.crear_barra_menus()
 
-        panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
-        vbox = wx.BoxSizer(wx.VERTICAL)
+        self.panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
+        self.vbox = wx.BoxSizer(wx.VERTICAL)
 
         # 1. Estado del paso
-        self.lbl_estado = wx.StaticText(panel, label="")
+        self.lbl_estado = wx.StaticText(self.panel, label="")
         font_estado = self.lbl_estado.GetFont()
         font_estado.SetWeight(wx.FONTWEIGHT_BOLD)
         self.lbl_estado.SetFont(font_estado)
-        vbox.Add(self.lbl_estado, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
+        self.vbox.Add(self.lbl_estado, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         # 2. Instrucción del paso
-        self.mision_ctrl = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2, size=(-1, 85))
+        self.mision_ctrl = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2, size=(-1, 85))
         self.mision_ctrl.SetName("Instrucción del paso activo.")
-        vbox.Add(self.mision_ctrl, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
+        self.vbox.Add(self.mision_ctrl, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 3. Editor de código
-        lbl_ed = wx.StaticText(panel, label="Editor de código:")
-        vbox.Add(lbl_ed, flag=wx.LEFT | wx.TOP, border=12)
+        self.lbl_ed = wx.StaticText(self.panel, label="Editor de código:")
+        self.vbox.Add(self.lbl_ed, flag=wx.LEFT | wx.TOP, border=12)
 
-        self.edicion = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_PROCESS_TAB)
+        self.edicion = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_PROCESS_TAB)
         self.edicion.SetName("Editor de código")
-        vbox.Add(self.edicion, proportion=3, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
+        self.vbox.Add(self.edicion, proportion=3, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 4. Consola de resultados
-        lbl_sal = wx.StaticText(panel, label="Consola de resultados y diagnóstico:")
-        vbox.Add(lbl_sal, flag=wx.LEFT | wx.TOP, border=12)
+        self.lbl_sal = wx.StaticText(self.panel, label="Consola de resultados y diagnóstico:")
+        self.vbox.Add(self.lbl_sal, flag=wx.LEFT | wx.TOP, border=12)
 
-        self.salida = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
+        self.salida = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         self.salida.SetName("Consola de resultados.")
-        vbox.Add(self.salida, proportion=2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
+        self.vbox.Add(self.salida, proportion=2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 5. Barra de botones
-        hbox = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.btn_ejecutar = wx.Button(panel, label="Ejecutar (Ctrl+Enter)")
+        self.btn_ejecutar = wx.Button(self.panel, label="Ejecutar (Ctrl+Enter)")
         self.btn_ejecutar.SetName("Botón Ejecutar Código")
 
-        self.btn_pista = wx.Button(panel, label="Pedir pista (Ctrl+P)")
+        self.btn_pista = wx.Button(self.panel, label="Pedir pista (Ctrl+P)")
         self.btn_pista.SetName("Botón Pedir Pista")
 
-        self.btn_traductor = wx.Button(panel, label="Explicar línea (F1)")
+        self.btn_traductor = wx.Button(self.panel, label="Explicar línea (F1)")
         self.btn_traductor.SetName("Botón Explicar Línea")
 
-        self.btn_anterior = wx.Button(panel, label="Paso anterior (Ctrl+Izquierda)")
+        self.btn_anterior = wx.Button(self.panel, label="Paso anterior (Ctrl+Izquierda)")
         self.btn_anterior.SetName("Botón Paso Anterior")
 
-        self.btn_siguiente = wx.Button(panel, label="Paso siguiente (Ctrl+Derecha)")
+        self.btn_siguiente = wx.Button(self.panel, label="Paso siguiente (Ctrl+Derecha)")
         self.btn_siguiente.SetName("Botón Paso Siguiente")
 
-        self.btn_temario = wx.Button(panel, label="Temario (Ctrl+1)")
+        self.btn_temario = wx.Button(self.panel, label="Temario (Ctrl+1)")
         self.btn_temario.SetName("Botón Selector de Capítulos")
 
-        self.btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label="Cerrar (Escape)")
+        self.btn_cerrar = wx.Button(self.panel, wx.ID_CANCEL, label="Cerrar (Escape)")
         self.btn_cerrar.SetName("Botón Cerrar")
 
-        hbox.Add(self.btn_ejecutar, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_pista, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_traductor, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_anterior, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_siguiente, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_temario, flag=wx.RIGHT, border=6)
-        hbox.Add(self.btn_cerrar)
+        self.hbox.Add(self.btn_ejecutar, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_pista, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_traductor, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_anterior, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_siguiente, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_temario, flag=wx.RIGHT, border=6)
+        self.hbox.Add(self.btn_cerrar)
 
-        vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
-        panel.SetSizer(vbox)
+        self.vbox.Add(self.hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
+        self.panel.SetSizer(self.vbox)
 
         # Eventos
         self.btn_ejecutar.Bind(wx.EVT_BUTTON, self.on_ejecutar)
@@ -405,6 +479,7 @@ class TutorFrame(wx.Frame):
 
         # Cargar paso actual con protección total
         self.cargar_paso_actual(anunciar_voz=False)
+        self.aplicar_modo_trabajo(anunciar=False)
 
         # Reproducir señal de inicio de forma confiable
         SoundManager.initialize()
@@ -442,13 +517,20 @@ class TutorFrame(wx.Frame):
 
         # 2. Menú Edición (Productividad tipo Visual Studio)
         m_edicion = wx.Menu()
+        item_simbolos = m_edicion.Append(wx.ID_ANY, "Lista de funciones y clases...\tCtrl+Shift+O", "Abre la lista de funciones y clases del archivo")
+        item_sig_def = m_edicion.Append(wx.ID_ANY, "Ir a siguiente función o clase\tAlt+N", "Salta a la cabecera de la siguiente función o clase")
+        item_ant_def = m_edicion.Append(wx.ID_ANY, "Ir a anterior función o clase\tAlt+P", "Salta a la cabecera de la función o clase anterior")
+        m_edicion.AppendSeparator()
         item_comentar = m_edicion.Append(wx.ID_ANY, "Comentar o descomentar línea\tCtrl+/", "Alterna el comentario '#' al inicio de la línea")
         item_duplicar = m_edicion.Append(wx.ID_ANY, "Duplicar línea abajo\tCtrl+D", "Duplica la línea actual en la siguiente")
         item_eliminar = m_edicion.Append(wx.ID_ANY, "Eliminar línea actual\tCtrl+Shift+K", "Elimina por completo la línea donde está el cursor")
         m_edicion.AppendSeparator()
-        item_verificar = m_edicion.Append(wx.ID_ANY, "Verificar sintaxis (Linter)\tF7", "Comprueba si el código tiene errores de sintaxis sin ejecutarlo")
+        item_verificar = m_edicion.Append(wx.ID_ANY, "Verificar sintaxis y delimitadores\tF7", "Comprueba paréntesis, comillas y errores de sintaxis")
         item_posicion = m_edicion.Append(wx.ID_ANY, "Anunciar posición (Línea y columna)\tCtrl+L", "Informa en qué línea y columna se encuentra el cursor")
 
+        self.Bind(wx.EVT_MENU, self.on_mostrar_simbolos, id=item_simbolos.GetId())
+        self.Bind(wx.EVT_MENU, self.on_siguiente_definicion, id=item_sig_def.GetId())
+        self.Bind(wx.EVT_MENU, self.on_anterior_definicion, id=item_ant_def.GetId())
         self.Bind(wx.EVT_MENU, self.on_comentar_descomentar, id=item_comentar.GetId())
         self.Bind(wx.EVT_MENU, self.on_duplicar_linea, id=item_duplicar.GetId())
         self.Bind(wx.EVT_MENU, self.on_eliminar_linea, id=item_eliminar.GetId())
@@ -457,8 +539,11 @@ class TutorFrame(wx.Frame):
 
         # 3. Menú Herramientas
         m_herramientas = wx.Menu()
+        item_modo = m_herramientas.Append(wx.ID_ANY, "Alternar Modo Aprendizaje / Solo Editor\tCtrl+M", "Conmuta entre el entorno con lecciones y el editor limpio")
+        item_error = m_herramientas.Append(wx.ID_ANY, "Ir a la línea del error del Traceback\tF4", "Mueve el cursor exactamente a la línea del fallo")
         item_leer_inst = m_herramientas.Append(wx.ID_ANY, "Leer instrucción del paso activo\tF3", "Lee la consigna actual sin retirar el cursor del editor")
         item_alternar = m_herramientas.Append(wx.ID_ANY, "Alternar foco entre editor y consola\tF6", "Cambia el foco entre el editor de código y la salida")
+        item_leer_salida = m_herramientas.Append(wx.ID_ANY, "Leer toda la salida de consola\tCtrl+Shift+C", "Verbaliza todo el texto de la consola sin perder el foco")
         m_herramientas.AppendSeparator()
         item_traductor = m_herramientas.Append(wx.ID_ANY, "Explicar línea de código\tF1", "Traduce la línea de código actual a palabras cotidianas")
         item_repl = m_herramientas.Append(wx.ID_ANY, "Consola de pruebas rápidas (REPL)\tCtrl+J", "Ventana de pruebas inmediatas de una línea")
@@ -466,8 +551,11 @@ class TutorFrame(wx.Frame):
         item_temario = m_herramientas.Append(wx.ID_ANY, "Ir a un capítulo del temario...\tCtrl+1", "Ver el listado completo de capítulos")
         item_reiniciar = m_herramientas.Append(wx.ID_ANY, "Restablecer código del ejercicio\tCtrl+R", "Restaura el código original del paso")
 
+        self.Bind(wx.EVT_MENU, self.on_alternar_modo_trabajo, id=item_modo.GetId())
+        self.Bind(wx.EVT_MENU, self.on_ir_al_error, id=item_error.GetId())
         self.Bind(wx.EVT_MENU, self.on_leer_instruccion_actual, id=item_leer_inst.GetId())
         self.Bind(wx.EVT_MENU, self.on_alternar_foco, id=item_alternar.GetId())
+        self.Bind(wx.EVT_MENU, self.on_leer_toda_la_salida, id=item_leer_salida.GetId())
         self.Bind(wx.EVT_MENU, self.on_traducir_linea, id=item_traductor.GetId())
         self.Bind(wx.EVT_MENU, self.on_abrir_repl, id=item_repl.GetId())
         self.Bind(wx.EVT_MENU, self.on_abrir_glosario, id=item_glosario.GetId())
@@ -476,11 +564,14 @@ class TutorFrame(wx.Frame):
 
         # 4. Menú Configuración
         m_config = wx.Menu()
+        self.item_modo_editor = m_config.AppendCheckItem(wx.ID_ANY, "Modo Solo Editor profesional (ocultar misiones)", "Entorno de edición limpio sin secciones didácticas")
         self.item_linter = m_config.AppendCheckItem(wx.ID_ANY, "Señales sonoras al escribir espacios de sangría", "Emite tonos al cambiar de nivel de sangría PEP 8")
         self.item_sonidos = m_config.AppendCheckItem(wx.ID_ANY, "Sonidos de confirmación, pistas y errores", "Efectos auditivos durante el aprendizaje")
+        self.item_modo_editor.Check(self.modo_editor)
         self.item_linter.Check(self.linter_activo)
         self.item_sonidos.Check(self.sonidos_activos)
 
+        self.Bind(wx.EVT_MENU, self.on_toggle_modo_editor_menu, id=self.item_modo_editor.GetId())
         self.Bind(wx.EVT_MENU, self.on_toggle_linter, id=self.item_linter.GetId())
         self.Bind(wx.EVT_MENU, self.on_toggle_sonidos, id=self.item_sonidos.GetId())
 
@@ -508,6 +599,64 @@ class TutorFrame(wx.Frame):
         menu_bar.Append(m_config, "&Configuración")
         menu_bar.Append(m_ayuda, "A&yuda")
         self.SetMenuBar(menu_bar)
+
+    def aplicar_modo_trabajo(self, anunciar=False):
+        """Aplica la configuración visual según el modo de trabajo (Aprendizaje o Solo Editor)."""
+        if self.modo_editor:
+            self.lbl_estado.Hide()
+            self.mision_ctrl.Hide()
+            self.btn_pista.Hide()
+            self.btn_traductor.Hide()
+            self.btn_anterior.Hide()
+            self.btn_siguiente.Hide()
+            self.btn_temario.Hide()
+            if hasattr(self, 'item_modo_editor'):
+                self.item_modo_editor.Check(True)
+            self.SetTitle("Aprendizaje de Python con NVDA - [Modo Solo Editor Profesional]")
+            self.panel.Layout()
+            self.Layout()
+            if anunciar:
+                msg = "Modo Solo Editor activado. Entorno limpio de edición sin misiones didácticas."
+                if speech and hasattr(speech, 'speakMessage'):
+                    speech.speakMessage(msg)
+                if ui:
+                    ui.message(msg)
+        else:
+            self.lbl_estado.Show()
+            self.mision_ctrl.Show()
+            self.btn_pista.Show()
+            self.btn_traductor.Show()
+            self.btn_anterior.Show()
+            self.btn_siguiente.Show()
+            self.btn_temario.Show()
+            if hasattr(self, 'item_modo_editor'):
+                self.item_modo_editor.Check(False)
+            self.SetTitle("Aprendizaje de Python con NVDA - Entorno Interactivo")
+            self.panel.Layout()
+            self.Layout()
+            if anunciar:
+                msg = "Modo Aprendizaje guiado activado. Misiones y temario visibles."
+                if speech and hasattr(speech, 'speakMessage'):
+                    speech.speakMessage(msg)
+                if ui:
+                    ui.message(msg)
+
+    def on_alternar_modo_trabajo(self, event=None):
+        """Alterna entre el Modo Aprendizaje y el Modo Solo Editor (Ctrl+M)."""
+        self.modo_editor = not self.modo_editor
+        ProgressManager.set_editor_mode("editor" if self.modo_editor else "learning")
+        self.aplicar_modo_trabajo(anunciar=True)
+        self.edicion.SetFocus()
+
+    def on_toggle_modo_editor_menu(self, event=None):
+        """Manejador para la opción del menú de configuración."""
+        if hasattr(self, 'item_modo_editor'):
+            self.modo_editor = self.item_modo_editor.IsChecked()
+        else:
+            self.modo_editor = not self.modo_editor
+        ProgressManager.set_editor_mode("editor" if self.modo_editor else "learning")
+        self.aplicar_modo_trabajo(anunciar=True)
+        self.edicion.SetFocus()
 
     def cargar_paso_actual(self, anunciar_voz=True):
         """Carga el paso activo asegurando que no ocurran excepciones por claves ausentes."""
@@ -555,9 +704,58 @@ class TutorFrame(wx.Frame):
             ui.message(f"{titulo_paso}. {instruccion}")
 
     def on_ejecutar(self, event=None):
+        src = self.edicion.GetValue()
+
+        # Si estamos en Modo Solo Editor profesional: ejecución libre sin misiones
+        if self.modo_editor:
+            bal_err = comprobar_balanceo_delimitadores(src)
+            if bal_err:
+                self.ultimo_error_linea = bal_err.get("linea")
+                self.ultimo_error_msg = bal_err.get("mensaje")
+                self.salida.SetValue(f"=== AVISO DE SINTAXIS ===\n{bal_err['mensaje']}\n\nPresione F4 para ir a la línea del error.")
+                if self.sonidos_activos:
+                    SoundManager.play('sintaxis_aviso')
+                if ui:
+                    ui.message(f"Error de delimitador: {bal_err['mensaje']}. Presione F4 para ir a la línea.")
+                return
+
+            res = ejecutar_codigo_seguro(src, timeout=5.0)
+            salida_txt = []
+            if getattr(res, 'keyboard_warning', None):
+                salida_txt.append("=== AVISO DE ESCRITURA ===")
+                salida_txt.append(res.keyboard_warning)
+                salida_txt.append("")
+
+            salida_txt.append("=== SALIDA DE EJECUCIÓN ===")
+            salida_txt.append(res.output if res.output else "(Sin salida de consola)")
+
+            if not res.success:
+                self.ultimo_error_linea = res.error_line
+                self.ultimo_error_msg = res.error_msg
+                if res.friendly_explanation:
+                    salida_txt.append("")
+                    salida_txt.append(f"Aviso de ejecución: {res.friendly_explanation}")
+                    salida_txt.append("Presione F4 para posicionar el cursor en la línea del fallo.")
+                if self.sonidos_activos:
+                    SoundManager.play('error')
+                if ui:
+                    msg_err = res.friendly_explanation or res.error_msg or "Error durante la ejecución"
+                    ui.message(f"Error: {msg_err}. Pulse F4 para ir al error.")
+            else:
+                self.ultimo_error_linea = None
+                self.ultimo_error_msg = None
+                if self.sonidos_activos:
+                    SoundManager.play('exito')
+                if ui:
+                    ui.message("Ejecución finalizada con éxito.")
+
+            self.salida.SetValue("\n".join(salida_txt))
+            self.salida.SetFocus()
+            return
+
+        # Modo Aprendizaje Guiado
         cap = CURRICULUM[self.cap_idx]
         paso = cap["pasos"][self.paso_idx]
-        src = self.edicion.GetValue()
 
         tipo_paso = paso.get("tipo", "observar")
         reporte_pruebas = []
@@ -576,12 +774,26 @@ class TutorFrame(wx.Frame):
 
             res_output = f"Opción enviada: {res_val if res_val else '(vacía)'}"
             friendly_err = ""
+            self.ultimo_error_linea = None
+            self.ultimo_error_msg = None
         else:
+            # Comprobar delimitadores antes de ejecutar
+            bal_err = comprobar_balanceo_delimitadores(src)
+            if bal_err:
+                self.ultimo_error_linea = bal_err.get("linea")
+                self.ultimo_error_msg = bal_err.get("mensaje")
+
             res = ejecutar_codigo_seguro(src, timeout=3.0)
             res_output = res.output
             friendly_err = res.friendly_explanation
 
+            if not res.success:
+                self.ultimo_error_linea = res.error_line
+                self.ultimo_error_msg = res.error_msg or friendly_err
+
             if res.success:
+                self.ultimo_error_linea = None
+                self.ultimo_error_msg = None
                 if "pruebas" in paso:
                     todas_ok = True
                     for p in paso["pruebas"]:
@@ -640,6 +852,7 @@ class TutorFrame(wx.Frame):
 
             if friendly_err:
                 lineas_reporte.append(f"Aviso de ejecución: {friendly_err}")
+                lineas_reporte.append("Pulsa F4 para posicionar el cursor en la línea del fallo.")
             else:
                 lineas_reporte.append("La solución aún no cumple el objetivo del ejercicio. Pulsa Control + P para solicitar una pista.")
 
@@ -652,7 +865,7 @@ class TutorFrame(wx.Frame):
                 if tipo_paso != "quiz" and getattr(res, 'keyboard_warning', None):
                     ui.message(res.keyboard_warning)
                 elif friendly_err:
-                    ui.message(friendly_err)
+                    ui.message(f"{friendly_err}. Pulsa F4 para ir al error.")
                 else:
                     ui.message("Solución incompleta. Pulsa Control + P para recibir una pista.")
 
@@ -775,19 +988,45 @@ class TutorFrame(wx.Frame):
             pass
 
     def on_verificar_sintaxis(self, event=None):
-        """Analiza la sintaxis del código sin ejecutarlo (F7)."""
+        """Analiza la sintaxis y el balanceo de delimitadores del código sin ejecutarlo (F7)."""
         src = self.edicion.GetValue()
+
+        # 1. Comprobación de delimitadores (paréntesis, corchetes, llaves y comillas)
+        bal_err = comprobar_balanceo_delimitadores(src)
+        if bal_err:
+            linea_err = bal_err.get("linea", 1)
+            msg = f"Aviso de delimitador en línea {linea_err}: {bal_err['mensaje']}"
+            self.ultimo_error_linea = linea_err
+            self.ultimo_error_msg = bal_err['mensaje']
+            if self.sonidos_activos:
+                SoundManager.play('sintaxis_aviso')
+            try:
+                lineas = src.split('\n')
+                pt = len('\n'.join(lineas[:linea_err - 1])) + 1 if linea_err > 1 else 0
+                self.edicion.SetInsertionPoint(min(pt, len(src)))
+            except Exception:
+                pass
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+            return
+
+        # 2. Compilación en memoria para sintaxis general de Python
         try:
             compile(src, "<string>", "exec")
-            msg = "Sintaxis correcta. No se detectaron errores de estructura en el código."
+            self.ultimo_error_linea = None
+            self.ultimo_error_msg = None
+            msg = "Sintaxis y delimitadores correctos. No se detectaron errores de estructura en el código."
             if self.sonidos_activos:
                 SoundManager.play('exito')
         except SyntaxError as e:
             linea_err = e.lineno or 1
+            self.ultimo_error_linea = linea_err
+            self.ultimo_error_msg = e.msg
             msg = f"Error de sintaxis en la línea {linea_err}: {e.msg}."
             if self.sonidos_activos:
                 SoundManager.play('sintaxis_aviso')
-            # Mover cursor a la línea del error
             try:
                 lineas = src.split('\n')
                 pt = len('\n'.join(lineas[:linea_err - 1])) + 1 if linea_err > 1 else 0
@@ -801,6 +1040,129 @@ class TutorFrame(wx.Frame):
             speech.speakMessage(msg)
         if ui:
             ui.message(msg)
+
+    def on_ir_al_error(self, event=None):
+        """Mueve el cursor exactamente a la línea del último error detectado (F4)."""
+        if self.ultimo_error_linea is None:
+            msg = "No hay registro de errores recientes de ejecución o sintaxis."
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+            return
+
+        src = self.edicion.GetValue()
+        lineas = src.split('\n')
+        linea_num = max(1, min(self.ultimo_error_linea, len(lineas)))
+        pt = len('\n'.join(lineas[:linea_num - 1])) + 1 if linea_num > 1 else 0
+        self.edicion.SetInsertionPoint(min(pt, len(src)))
+        self.edicion.SetFocus()
+
+        detalle = self.ultimo_error_msg or "error detectado"
+        msg = f"Cursor en línea {linea_num}: {detalle}"
+        if speech and hasattr(speech, 'speakMessage'):
+            speech.speakMessage(msg)
+        if ui:
+            ui.message(msg)
+
+    def on_mostrar_simbolos(self, event=None):
+        """Abre el diálogo accesible de navegación estructural por funciones y clases (Ctrl+Shift+O)."""
+        dlg = SymbolsDialog(self, self.edicion.GetValue())
+        if dlg.ShowModal() == wx.ID_OK:
+            simbolo = dlg.get_selected_symbol()
+            if simbolo:
+                tipo, nombre, num_linea, pos_char = simbolo
+                self.edicion.SetInsertionPoint(min(pos_char, len(self.edicion.GetValue())))
+                self.edicion.SetFocus()
+                msg = f"Cursor en {tipo.lower()} {nombre}, línea {num_linea}"
+                if speech and hasattr(speech, 'speakMessage'):
+                    speech.speakMessage(msg)
+                if ui:
+                    ui.message(msg)
+        dlg.Destroy()
+
+    def on_siguiente_definicion(self, event=None):
+        """Salta a la cabecera de la siguiente función o clase en el código (Alt+N)."""
+        src = self.edicion.GetValue()
+        pt = self.edicion.GetInsertionPoint()
+        lineas = src.splitlines(True)
+        pos_acum = 0
+        linea_actual = src[:pt].count('\n') + 1
+        siguiente = None
+
+        for num_linea, linea in enumerate(lineas, start=1):
+            if num_linea > linea_actual:
+                m = re.match(r'^(?:[ \t]*)(def|class)\s+([a-zA-Z_0-9]+)', linea)
+                if m:
+                    siguiente = (m.group(1), m.group(2), num_linea, pos_acum)
+                    break
+            pos_acum += len(linea)
+
+        if siguiente:
+            tipo, nombre, num_linea, pos_char = siguiente
+            self.edicion.SetInsertionPoint(min(pos_char, len(src)))
+            self.edicion.SetFocus()
+            desc = "Clase" if tipo == "class" else "Función"
+            msg = f"{desc} {nombre}, línea {num_linea}"
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+        else:
+            msg = "No hay más definiciones adelante."
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+
+    def on_anterior_definicion(self, event=None):
+        """Salta a la cabecera de la función o clase anterior en el código (Alt+P)."""
+        src = self.edicion.GetValue()
+        pt = self.edicion.GetInsertionPoint()
+        lineas = src.splitlines(True)
+        linea_actual = src[:pt].count('\n') + 1
+        anterior = None
+
+        pos_acum = 0
+        for num_linea, linea in enumerate(lineas, start=1):
+            if num_linea < linea_actual:
+                m = re.match(r'^(?:[ \t]*)(def|class)\s+([a-zA-Z_0-9]+)', linea)
+                if m:
+                    anterior = (m.group(1), m.group(2), num_linea, pos_acum)
+            pos_acum += len(linea)
+
+        if anterior:
+            tipo, nombre, num_linea, pos_char = anterior
+            self.edicion.SetInsertionPoint(min(pos_char, len(src)))
+            self.edicion.SetFocus()
+            desc = "Clase" if tipo == "class" else "Función"
+            msg = f"{desc} {nombre}, línea {num_linea}"
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+        else:
+            msg = "No hay definiciones anteriores."
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+
+    def on_leer_toda_la_salida(self, event=None):
+        """Verbaliza por voz todo el contenido de la consola sin retirar el foco del editor (Ctrl+Shift+C)."""
+        txt = self.salida.GetValue().strip()
+        if not txt:
+            msg = "Consola vacía."
+            if speech and hasattr(speech, 'speakMessage'):
+                speech.speakMessage(msg)
+            if ui:
+                ui.message(msg)
+            return
+
+        if speech and hasattr(speech, 'speakMessage'):
+            speech.speakMessage(txt)
+        if ui:
+            ui.message(txt)
 
     def on_anunciar_posicion(self, event=None):
         """Informa verbalmente la línea y columna actual del cursor (Ctrl+L)."""
@@ -1046,12 +1408,17 @@ class TutorFrame(wx.Frame):
             self.on_leer_instruccion_actual()
             return
 
+        # F4: Ir a la línea del error del Traceback
+        if keycode == wx.WXK_F4:
+            self.on_ir_al_error()
+            return
+
         # F6: Alternar foco entre editor y consola
         if keycode == wx.WXK_F6:
             self.on_alternar_foco()
             return
 
-        # F7: Verificar sintaxis
+        # F7: Verificar sintaxis y delimitadores
         if keycode == wx.WXK_F7:
             self.on_verificar_sintaxis()
             return
@@ -1061,6 +1428,15 @@ class TutorFrame(wx.Frame):
             self.on_abrir_doc()
             return
 
+        # Atajos con Alt (Navegación estructural)
+        if event.AltDown() and not event.ControlDown() and not event.ShiftDown():
+            if keycode in (ord('N'), ord('n')):
+                self.on_siguiente_definicion()
+                return
+            elif keycode in (ord('P'), ord('p')):
+                self.on_anterior_definicion()
+                return
+
         if modifiers == wx.MOD_CONTROL:
             if keycode in (ord('C'), ord('V'), ord('X'), ord('Z'), ord('Y'), ord('A')):
                 event.Skip()
@@ -1068,6 +1444,9 @@ class TutorFrame(wx.Frame):
 
             if keycode in (wx.WXK_RETURN, ord('E')):
                 self.on_ejecutar(None)
+                return
+            elif keycode == ord('M'):
+                self.on_alternar_modo_trabajo()
                 return
             elif keycode == ord('I'):
                 self.on_leer_instruccion_actual()
@@ -1125,6 +1504,12 @@ class TutorFrame(wx.Frame):
         elif modifiers == (wx.MOD_CONTROL | wx.MOD_SHIFT):
             if keycode == ord('K'):
                 self.on_eliminar_linea(None)
+                return
+            elif keycode == ord('O'):
+                self.on_mostrar_simbolos()
+                return
+            elif keycode == ord('C'):
+                self.on_leer_toda_la_salida()
                 return
             event.Skip()
         else:

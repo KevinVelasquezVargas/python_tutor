@@ -48,6 +48,10 @@ class PythonTutorSettingsPanel(SettingsPanel):
     def makeSettings(self, settingsSizer):
         prog = ProgressManager.load_progress()
 
+        self.chk_modo_editor = wx.CheckBox(self, label="Iniciar directamente en Modo Solo Editor profesional (ocultar misiones didácticas)")
+        self.chk_modo_editor.SetValue(ProgressManager.get_editor_mode() == "editor")
+        settingsSizer.Add(self.chk_modo_editor, flag=wx.ALL, border=6)
+
         self.chk_sonidos = wx.CheckBox(self, label="Activar señales sonoras y efectos auditivos")
         self.chk_sonidos.SetValue(prog.get("sound_enabled", True))
         settingsSizer.Add(self.chk_sonidos, flag=wx.ALL, border=6)
@@ -61,6 +65,7 @@ class PythonTutorSettingsPanel(SettingsPanel):
         settingsSizer.Add(self.chk_bienvenida, flag=wx.ALL, border=6)
 
     def onSave(self):
+        ProgressManager.set_editor_mode("editor" if self.chk_modo_editor.GetValue() else "learning")
         ProgressManager.set_setting("sound_enabled", self.chk_sonidos.GetValue())
         ProgressManager.set_setting("linter_enabled", self.chk_linter.GetValue())
         ProgressManager.set_setting("show_welcome", self.chk_bienvenida.GetValue())

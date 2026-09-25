@@ -1,9 +1,9 @@
 # Aprendizaje de Python con NVDA
 
-Entorno accesible de aprendizaje de programación y editor tiflotécnico de alto rendimiento para el lector de pantalla NVDA.
+Herramienta formativa y editor de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 lecciones conceptuales y prácticas, complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo. Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error.
 
 * **Versión:** 2.0.0
-* **Autor:** Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>
+* **Autor:** Kevin Andrés Velasquez Vargas
 * **Compatibilidad:** NVDA 2022.1.0 hasta 2026.3.0
 * **Licencia:** GNU General Public License v3.0 (GPLv3)
 * **Repositorio:** https://github.com/KevinVelasquezVargas/python_tutor
@@ -20,23 +20,36 @@ Combina una pedagogía activa no visual (*«Conceptos Primero»*, micro-retos, p
 - **Menú de NVDA:** Menú NVDA (`NVDA + N`) > *Herramientas* > *Aprendizaje de Python con NVDA* > *Aprendizaje de Python con NVDA...*
 
 ## 3. Dualidad de Uso
-Pulsando `Control + M` (o desde el menú *Herramientas* / *Configuración*) puede alternar en cualquier instante entre:
+Pulsando `Control + M` (o desde el menú *Herramientas*) puede alternar en cualquier instante entre:
 - **Modo Aprendizaje:** Entorno guiado paso a paso con consignas didácticas, pistas escalonadas y evaluación automatizada de ejercicios.
-- **Modo Solo Editor:** Entorno limpio de edición profesional sin secciones pedagógicas. Maximiza el área de trabajo para escribir, depurar y ejecutar scripts propios con todas las herramientas tiflotécnicas activas.
+- **Modo Editor autónomo:** Entorno limpio de edición profesional sin secciones pedagógicas. Maximiza el área de trabajo para escribir, depurar y ejecutar scripts propios con todas las herramientas tiflotécnicas activas y navegación fluida por tabulación.
 
-## 4. Herramientas Tiflotécnicas de Edición
+## 4. Navegación y Herramientas del Editor
+* **Navegación de Lecciones:**
+  - `Alt + Flecha Derecha`: Ir al siguiente paso de la lección.
+  - `Alt + Flecha Izquierda`: Ir al paso anterior de la lección.
+  - *(Nota: Las combinaciones `Control + Flechas` quedan totalmente libres para permitir la lectura palabra por palabra nativa de NVDA).*
 * **Navegación Estructural Directa:**
   - `Alt + N` / `Alt + P`: Saltar a la cabecera de la siguiente o anterior función (`def`) o clase (`class`).
   - `Control + Shift + O`: Diálogo accesible de símbolos para listar todas las funciones y clases y saltar a ellas al instante.
-* **Salto al Error del Traceback (`F4`):** Desplaza el cursor de inmediato a la línea exacta del fallo de ejecución o error de sintaxis y anuncia el diagnóstico.
-* **Verificador de Delimitadores y Sintaxis (`F7`):** Comprueba paréntesis `()`, corchetes `[]`, llaves `{}` y comillas sin cerrar antes de ejecutar.
+* **Búsqueda y Desplazamiento:**
+  - `Control + F`: Diálogo accesible para buscar texto en el editor.
+  - `Control + G`: Diálogo accesible para ir directamente a un número de línea.
+* **Gestión de Archivos:**
+  - `Control + N`: Crear un nuevo script limpio en el editor.
+  - `Control + O`: Abrir un archivo Python (`.py`) existente.
+  - `Control + S`: Guardar el script actual.
+  - `Control + Shift + S`: Guardar script con un nuevo nombre o ubicación.
+* **Diagnóstico y Corrección:**
+  - `F4`: Salto inmediato a la línea exacta del fallo del Traceback o error de sintaxis con lectura accesible del problema.
+  - `F7`: Verificación en tiempo real de balanceo de delimitadores `()`, `[]`, `{}` y comillas sin cerrar.
 * **Lectura No Invasiva de Consola:**
   - `Control + Shift + C`: Lee por voz toda la salida de consola sin mover el cursor del editor.
   - `Control + 6`: Lee la última línea emitida en la consola.
-  - `F6`: Alterna el foco físico entre el editor y la consola.
-* **Traductor a Lenguaje Humano (`F1`):** Explica la línea de código donde se encuentra el cursor en lenguaje cotidiano.
-* **Linter Acústico PEP 8:** Emite señales sonoras en tiempo real para indicar niveles de sangría (0, 4, 8, 12 espacios) y apertura de bloques sintácticos con `:`.
-* **Edición Rápida:**
+  - `F6`: Alterna el foco físico entre el editor y la consola de resultados.
+* **Traductor a Lenguaje Cotidiano (`F1`):** Explica la línea de código donde se encuentra el cursor en palabras humanas y sencillas.
+* **Señales Sonoras y Sangría PEP 8:** Emite señales sonoras en tiempo real para indicar niveles de sangría (0, 4, 8, 12 espacios) y apertura de bloques sintácticos con `:`.
+* **Edición Eficiente:**
   - `Control + /` (o `Control + K`): Comentar o descomentar línea.
   - `Control + D`: Duplicar línea actual hacia abajo.
   - `Control + Shift + K`: Eliminar línea actual.
@@ -44,13 +57,13 @@ Pulsando `Control + M` (o desde el menú *Herramientas* / *Configuración*) pued
   - `Control + Espacio`: Autocompletar palabras clave de Python.
 * **Herramientas de Apoyo:**
   - `Control + J`: Consola de pruebas rápidas (REPL).
-  - `Control + G`: Diccionario técnico interactivo (43 términos).
-  - `Control + 1`: Selector de capítulos del temario.
+  - `Control + 1`: Selector de capítulos del temario (con control de desbloqueo progresivo).
   - `Control + R`: Restablecer código inicial del ejercicio.
+  - `F2`: Guía completa de atajos de teclado.
   - `F12`: Abrir manual accesible en el navegador web.
-  - `Escape`: Cerrar el tutor inmediatamente desde cualquier control.
+  - `Escape`: Cerrar la ventana del tutor inmediatamente desde cualquier control.
 
-## 5. Plan Formativo (32 Capítulos / 128 Micro-pasos)
+## 5. Plan Formativo (32 Capítulos / 128 Lecciones Prácticas)
 * **Fase 0: Fundamentos Conceptuales:** Pensamiento computacional, algoritmos cotidianos, memoria y procesador, lógica booleana elemental (Capítulos 1 a 3).
 * **Fase 1: Sintaxis Básica y Tipos Elementales:** Primer `print`, variables, números enteros/flotantes, cadenas (`str`), entrada del usuario con `input` (Capítulos 4 a 8).
 * **Fase 2: Control de Flujo y Colecciones:** Condiciones relacionales, `if` y sangría PEP 8, `elif`/`else`, listas, métodos mutables, bucles `for`/`range`, `while`, diccionarios clave-valor (Capítulos 9 a 16).
@@ -60,11 +73,11 @@ Pulsando `Control + M` (o desde el menú *Herramientas* / *Configuración*) pued
 
 ## 6. Opciones y Configuración en NVDA
 En `Menú NVDA > Preferencias > Opciones > Aprendizaje de Python con NVDA`:
-* Iniciar directamente en Modo Solo Editor profesional (ocultar misiones).
-* Activar o desactivar efectos auditivos y sonidos de inicio/éxito.
-* Activar o desactivar el linter acústico de sangría PEP 8.
-* Mostrar u ocultar el diálogo de bienvenida al iniciar.
+* Iniciar en Modo Editor autónomo (ocultar lecciones del tutor).
+* Efectos sonoros de confirmación y eventos.
+* Avisos sonoros de sangría y estructura.
+* Mostrar diálogo de bienvenida al iniciar el complemento.
 
 ## 7. Soporte y Donaciones
-* **Contacto y Soporte:** kevinvelasquezvargas@gmail.com
+* **Consultas e incidencias:** [Repositorio GitHub del proyecto](https://github.com/KevinVelasquezVargas/python_tutor/issues)
 * **Colaboraciones voluntarias:** Disponibles en el menú *Herramientas > Aprendizaje de Python con NVDA > Realizar una donación...* o a través de [PayPal](https://www.paypal.me/kevinvelasquezvargas).

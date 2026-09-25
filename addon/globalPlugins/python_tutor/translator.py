@@ -2,7 +2,7 @@
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/translator.py
 # Propósito: Traductor de sintaxis Python a Lenguaje Humano para accesibilidad.
-# Autor: Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>
+# Autor: Kevin Andrés Velasquez Vargas
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

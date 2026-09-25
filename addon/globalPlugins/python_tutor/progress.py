@@ -99,6 +99,25 @@ class ProgressManager:
         return step_idx in progress.get("completed_steps", {}).get(cap_key, [])
 
     @classmethod
+    def is_chapter_completed(cls, chapter_idx, total_steps_in_chapter):
+        """Indica si todos los pasos de un capítulo han sido completados."""
+        progress = cls.load_progress()
+        cap_key = f"cap_{chapter_idx}"
+        completed = progress.get("completed_steps", {}).get(cap_key, [])
+        return all(s in completed for s in range(total_steps_in_chapter))
+
+    @classmethod
+    def is_chapter_unlocked(cls, chapter_idx):
+        """El capítulo 0 siempre está disponible; el capítulo N requiere haber completado el N-1."""
+        if chapter_idx <= 0:
+            return True
+        from .curriculum import CURRICULUM
+        if chapter_idx >= len(CURRICULUM):
+            return False
+        prev_cap = CURRICULUM[chapter_idx - 1]
+        return cls.is_chapter_completed(chapter_idx - 1, len(prev_cap.get("pasos", [])))
+
+    @classmethod
     def get_setting(cls, key, default_value=True):
         """Obtiene una preferencia de configuración específica."""
         prog = cls.load_progress()

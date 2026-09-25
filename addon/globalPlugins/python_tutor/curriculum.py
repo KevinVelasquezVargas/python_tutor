@@ -18,36 +18,36 @@ CURRICULUM = [
                 "instruccion": 'Un algoritmo es una serie ordenada y finita de pasos lógicos para resolver un problema o lograr una meta. En la vida diaria seguimos algoritmos al cocinar o cruzar la calle. En programación, la computadora no improvisa: ejecuta estrictamente la secuencia que le ordenas. Pulsa Control + Enter para escuchar este primer algoritmo.',
                 "codigo": "print('Paso 1: Llenar la tetera con agua.')\nprint('Paso 2: Calentar el agua hasta hervir.')\nprint('Paso 3: Servir en una taza con infusión.')\nprint('¡Algoritmo completado!')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
-                "validar": lambda src, res, ns: 'algoritmo' in res.lower()
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 2: Observación: La importancia del orden',
                 "tipo": 'experimentar',
-                "instruccion": "Si alteramos el orden de las instrucciones, el resultado final no tendrá sentido. Añade una línea intermedia que diga: print('Paso intermedio: Colocar la bolsita de té.') y pulsa Control + Enter.",
-                "codigo": "print('Paso 1: Calentar el agua.')\nprint('Paso intermedio: Colocar la bolsita de té.')\nprint('Paso 2: Servir el agua caliente en la taza.')",
-                "pistas": ['Asegúrate de escribir la instrucción print con el texto entre comillas.'],
-                "validar": lambda src, res, ns: 'bolsita' in res.lower() and 'servir' in res.lower()
+                "instruccion": "Si alteramos el orden de las instrucciones, el resultado final no tendrá sentido. Añade entre el paso 1 y el paso 2 la línea: print('Paso intermedio: Colocar la bolsita de té.') y pulsa Control + Enter.",
+                "codigo": "print('Paso 1: Calentar el agua.')\n# Escribe aquí la línea intermedia con print:\n\nprint('Paso 2: Servir el agua caliente en la taza.')",
+                "pistas": ["Escribe print('Paso intermedio: Colocar la bolsita de té.') entre las dos líneas existentes."],
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico: Algoritmo de lavado de manos',
                 "tipo": 'desafio',
-                "instruccion": "Escribe un algoritmo de 3 pasos para lavarse las manos con tres print(): 1. 'Abrir el grifo y mojar las manos', 2. 'Aplicar jabón y frotar', 3. 'Enjuagar y secar'. Ejecuta con Control + Enter.",
-                "codigo": "print('1. Abrir el grifo y mojar las manos')\nprint('2. Aplicar jabón y frotar')\nprint('3. Enjuagar y secar')",
+                "instruccion": "Escribe un algoritmo de 3 pasos para lavarse las manos usando tres instrucciones print(): 1. 'Abrir el grifo y mojar las manos', 2. 'Aplicar jabón y frotar', 3. 'Enjuagar y secar'. Ejecuta con Control + Enter para comprobar.",
+                "codigo": '# Escribe aquí las 3 instrucciones print() para cada paso:\n# 1. Abrir el grifo y mojar las manos\n# 2. Aplicar jabón y frotar\n# 3. Enjuagar y secar\n\n',
                 "salida_esperada": '1. Abrir el grifo y mojar las manos\n2. Aplicar jabón y frotar\n3. Enjuagar y secar',
-                "pistas": ['Usa tres instrucciones print independientes, una en cada renglón.'],
-                "validar": lambda src, res, ns: 'jabón' in res.lower() or 'jabon' in res.lower()
+                "pistas": ['Usa tres instrucciones print independientes, cada una con el texto entre comillas.', "Ejemplo: print('1. Abrir el grifo y mojar las manos')"],
+                "validar": lambda src, res, ns: ("jabón" in res.lower() or "jabon" in res.lower()) and "grifo" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es la definición más exacta de un algoritmo?\n\nOpciones:\n1. Un componente físico de la computadora como el procesador.\n2. Una serie ordenada y finita de instrucciones lógicas para resolver un problema.\n3. Un virus informático que altera los programas.\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es la definición más exacta de un algoritmo?\n\nOpciones:\n1. Un componente físico de la computadora como el procesador.\n2. Una serie ordenada y finita de instrucciones lógicas para resolver un problema.\n3. Un virus informático que altera los programas.\n\nEscribe el número de tu opción (1, 2 o 3) en el editor y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['Recuerda el ejemplo de la preparación del té.'],
                 "pregunta": '¿Cuál es la definición más exacta de un algoritmo?',
                 "opciones": ['Un componente físico de la computadora como el procesador.', 'Una serie ordenada y finita de instrucciones lógicas para resolver un problema.', 'Un virus informático que altera los programas.'],
                 "correcta": 1,
                 "explicacion": 'Un algoritmo es la secuencia lógica y paso a paso que describe la solución a un problema determinado.',
-                "pistas": ['Recuerda el ejemplo de la preparación del té.'],
-                "validar": lambda src, res, ns: '2' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '2' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
@@ -62,36 +62,36 @@ CURRICULUM = [
                 "instruccion": 'Todo programa informático sigue este ciclo: Entrada (teclado), Memoria RAM (donde residen variables temporales), Procesador CPU (donde se hacen cálculos) y Salida (pantalla y lector de voz). Ejecuta el código para observar este flujo en acción.',
                 "codigo": "# Entrada y Memoria:\nherramienta = 'NVDA'\n# Procesamiento:\nmensaje = 'Entorno accesible asistido por: ' + herramienta\n# Salida:\nprint(mensaje)",
                 "pistas": ['Pulsa Control + Enter para ver la salida.'],
-                "validar": lambda src, res, ns: 'nvda' in res.lower()
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 2: Observación: La memoria es modificable',
                 "tipo": 'experimentar',
-                "instruccion": 'En la memoria RAM podemos reemplazar el contenido de una variable en cualquier instante. Observa cómo cambia la variable y pulsa Control + Enter.',
-                "codigo": "estado = 'Cargando datos'\nprint('Estado inicial:', estado)\nestado = 'Listo para programar'\nprint('Estado final:', estado)",
+                "instruccion": "En la memoria RAM podemos reemplazar el contenido de una variable en cualquier instante. Observa cómo cambia la variable 'estado' y ejecuta con Control + Enter.",
+                "codigo": "estado = 'Cargando datos'\nprint('Estado inicial:', estado)\n# Cambia aquí el valor de estado a 'Listo para programar':\nestado = 'Listo para programar'\nprint('Estado final:', estado)",
                 "pistas": ['Ejecuta con Control + Enter para escuchar los dos estados secuenciales.'],
-                "validar": lambda src, res, ns: 'inicial' in res.lower() and 'final' in res.lower()
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico: Variables y salida',
                 "tipo": 'desafio',
-                "instruccion": "Crea una variable llamada 'usuario' con el texto 'Estudiante' y muestra en consola: print('Bienvenido/a,', usuario). Pulsa Control + Enter.",
-                "codigo": "usuario = 'Estudiante'\nprint('Bienvenido/a,', usuario)",
+                "instruccion": "Crea una variable llamada 'usuario' con el texto 'Estudiante' y muestra en consola usando print: Bienvenido/a, Estudiante. Ejecuta con Control + Enter.",
+                "codigo": "# 1. Crea la variable usuario con el valor 'Estudiante'\n# 2. Usa print('Bienvenido/a,', usuario) para mostrar el saludo\n\n",
                 "salida_esperada": 'Bienvenido/a, Estudiante',
-                "pistas": ["Define usuario = 'Estudiante' y pásala como segundo argumento a print."],
-                "validar": lambda src, res, ns: 'bienvenido' in res.lower() and 'estudiante' in res.lower()
+                "pistas": ["Escribe usuario = 'Estudiante' en el primer renglón y luego print('Bienvenido/a,', usuario)."],
+                "validar": lambda src, res, ns: "bienvenido" in res.lower() and "estudiante" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
                 "instruccion": 'Pregunta de verificación conceptual:\n¿Dónde se almacenan las variables mientras tu script de Python se está ejecutando?\n\nOpciones:\n1. En la Memoria RAM del equipo.\n2. En la tecla Escape del teclado.\n3. En el cable de corriente.\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['Es la memoria principal de acceso aleatorio.'],
                 "pregunta": '¿Dónde se almacenan las variables mientras tu script de Python se está ejecutando?',
                 "opciones": ['En la Memoria RAM del equipo.', 'En la tecla Escape del teclado.', 'En el cable de corriente.'],
                 "correcta": 0,
                 "explicacion": 'La Memoria RAM es el espacio de trabajo rápido donde residen los datos activos de los programas en ejecución.',
-                "pistas": ['Es la memoria principal de acceso aleatorio.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
@@ -106,7 +106,7 @@ CURRICULUM = [
                 "instruccion": 'Una proposición booleana solo puede evaluarse como Verdadera (True) o Falsa (False). Por ejemplo: 10 > 5 es True, mientras que 2 > 8 es False. Ejecuta el código para escuchar estas evaluaciones.',
                 "codigo": "print('¿10 es mayor que 5?:', 10 > 5)\nprint('¿2 es mayor que 8?:', 2 > 8)",
                 "pistas": ['Pulsa Control + Enter para escuchar True y False.'],
-                "validar": lambda src, res, ns: 'true' in res.lower() and 'false' in res.lower()
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 2: Observación: Operadores and, or y not',
@@ -114,28 +114,28 @@ CURRICULUM = [
                 "instruccion": "El operador 'and' exige que ambas condiciones sean verdaderas. El operador 'or' solo requiere que al menos una lo sea. Ejecuta el código y analiza el resultado.",
                 "codigo": "llave = True\nclave = False\nprint('¿Puede entrar con llave O clave?:', llave or clave)\nprint('¿Cumple llave Y clave?:', llave and clave)",
                 "pistas": ['Observa cómo or devuelve True pero and devuelve False.'],
-                "validar": lambda src, res, ns: 'true' in res.lower() and 'false' in res.lower()
+                "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico: Verificación de acceso',
                 "tipo": 'desafio',
                 "instruccion": "Crea una variable llamada 'edad' con el valor 20 y una variable 'tiene_identificacion' con True. Luego crea 'autorizado = (edad >= 18) and tiene_identificacion'. Imprime print('Acceso permitido:', autorizado).",
-                "codigo": "edad = 20\ntiene_identificacion = True\nautorizado = (edad >= 18) and tiene_identificacion\nprint('Acceso permitido:', autorizado)",
+                "codigo": "# 1. Crea la variable edad con 20\n# 2. Crea tiene_identificacion con True\n# 3. Crea autorizado = (edad >= 18) and tiene_identificacion\n# 4. Muestra: print('Acceso permitido:', autorizado)\n\n",
                 "salida_esperada": 'Acceso permitido: True',
                 "pistas": ['Une ambas condiciones con el operador and.'],
-                "validar": lambda src, res, ns: 'true' in res.lower() and 'acceso' in res.lower()
+                "validar": lambda src, res, ns: "true" in res.lower() and "acceso" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
                 "instruccion": 'Pregunta de verificación conceptual:\n¿Qué resultado produce la expresión booleana: not False?\n\nOpciones:\n1. True\n2. False\n3. None\n\nEscribe tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['not es el operador de negación inversa.'],
                 "pregunta": '¿Qué resultado produce la expresión booleana: not False?',
                 "opciones": ['True', 'False', 'None'],
                 "correcta": 0,
                 "explicacion": "El operador 'not' invierte el valor lógico: si niegas False obtienes True.",
-                "pistas": ['not es el operador de negación inversa.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
@@ -145,41 +145,41 @@ CURRICULUM = [
         "resumen": 'Aprende a emitir información hacia la salida estándar y escucharla en tu lector de pantalla.',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: La función print()',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 4: Nuestra Primera Instrucción: La Función print(). Ejecuta el código para observar el concepto en acción.',
+                "instruccion": 'La función print() envía mensajes a la salida para que el lector de pantalla los verbalice. El texto siempre debe ir rodeado por comillas simples o dobles. Pulsa Control + Enter para escuchar este saludo inicial.',
                 "codigo": "print('¡Hola mundo desde Python accesible!')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Varios argumentos separados por coma',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
+                "instruccion": 'print() puede recibir varios textos separados por comas. Python insertará automáticamente un espacio entre cada uno. Cambia algún texto o añade uno nuevo y pulsa Control + Enter.',
                 "codigo": "print('Python', 'es', 'fácil', 'y', 'accesible')",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "pistas": ['Modifica o agrega un argumento entre comillas.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Tu propio saludo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 4: Nuestra Primera Instrucción: La Función print(). Completa el código requerido y ejecuta para validar.',
-                "codigo": "print('Aprendiendo Python con NVDA')",
+                "instruccion": "Escribe una instrucción print() que muestre exactamente el mensaje: 'Aprendiendo Python con NVDA'. Pulsa Control + Enter para validar.",
+                "codigo": '# Escribe aquí tu instrucción print() con el mensaje indicado:\n\n',
                 "salida_esperada": 'Aprendiendo Python con NVDA',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'nvda' in res.lower()
+                "pistas": ["Escribe: print('Aprendiendo Python con NVDA') respetando las comillas y los paréntesis."],
+                "validar": lambda src, res, ns: "aprendiendo python con nvda" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función se utiliza en Python para enviar datos a la salida y lector?\n\nOpciones:\n1. print()\n2. input()\n3. exit()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función se utiliza en Python para enviar datos a la salida y lector de pantalla?\n\nOpciones:\n1. print()\n2. input()\n3. exit()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['Lee detenidamente las 3 opciones.'],
                 "pregunta": '¿Qué función se utiliza en Python para enviar datos a la salida y lector?',
                 "opciones": ['print()', 'input()', 'exit()'],
                 "correcta": 0,
                 "explicacion": 'print() es la función de salida estándar por excelencia.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
@@ -189,41 +189,41 @@ CURRICULUM = [
         "resumen": 'Aprende a guardar valores en memoria asignándoles un nombre con el signo igual (=).',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: Crear y asignar variables',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 5: Almacenamiento en Memoria: Variables y Asignación. Ejecuta el código para observar el concepto en acción.',
+                "instruccion": 'Una variable es un nombre que apunta a un dato guardado en la memoria. Se usa el signo igual (=) para asignar. Ejecuta el código para observar cómo se combinan texto y números.',
                 "codigo": "nombre = 'Kevin'\nedad = 25\nprint(nombre, 'tiene', edad, 'años')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Actualizar el valor de una variable',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
+                "instruccion": 'Podemos sumar puntos a una variable existente y reasignarla. Cambia el valor que se suma (50) por otro número y pulsa Control + Enter.',
                 "codigo": "puntos = 100\nprint('Puntuación inicial:', puntos)\npuntos = puntos + 50\nprint('Puntuación acumulada:', puntos)",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "pistas": ['Modifica el número 50 por el valor que prefieras y ejecuta.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Variable de lenguaje',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 5: Almacenamiento en Memoria: Variables y Asignación. Completa el código requerido y ejecuta para validar.',
-                "codigo": "lenguaje = 'Python'\nprint('Estoy programando en:', lenguaje)",
+                "instruccion": "Crea una variable llamada 'lenguaje' con el texto 'Python' y luego muestra en consola: print('Estoy programando en:', lenguaje). Pulsa Control + Enter.",
+                "codigo": "# 1. Crea la variable lenguaje = 'Python'\n# 2. Imprime: print('Estoy programando en:', lenguaje)\n\n",
                 "salida_esperada": 'Estoy programando en: Python',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'python' in res.lower()
+                "pistas": ["Asigna lenguaje = 'Python' y luego pásala a print."],
+                "validar": lambda src, res, ns: "programando en" in res.lower() and "python" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
                 "instruccion": 'Pregunta de verificación conceptual:\n¿Qué símbolo se usa en Python para asignar un valor a una variable?\n\nOpciones:\n1. El signo igual (=)\n2. El signo de suma (+)\n3. El punto y coma (;)\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['El operador de asignación es =.'],
                 "pregunta": '¿Qué símbolo se usa en Python para asignar un valor a una variable?',
                 "opciones": ['El signo igual (=)', 'El signo de suma (+)', 'El punto y coma (;)'],
                 "correcta": 0,
                 "explicacion": 'El signo igual simple (=) asigna lo que está a la derecha en la variable de la izquierda.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
@@ -233,230 +233,230 @@ CURRICULUM = [
         "resumen": 'Opera con números enteros (int) y números decimales (float) realizando cálculos matemáticos.',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: Enteros (int) y Decimales (float)',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 6: Tipos de Datos Primitivos: Números Enteros y Decimales. Ejecuta el código para observar el concepto en acción.',
+                "instruccion": 'En Python, los números sin punto son enteros (int) y los que tienen punto decimal son flotantes (float). Ejecuta el código para observar cómo se multiplican.',
                 "codigo": "precio = 19.50\ncantidad = 3\ntotal = precio * cantidad\nprint('Total a pagar:', total)",
-                "pistas": ['Pulsa Control + Enter para ejecutar.'],
+                "pistas": ['Pulsa Control + Enter para ver la multiplicación.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Operaciones con decimales',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
+                "instruccion": 'El operador ** calcula potencias (radio al cuadrado). Cambia el valor del radio a 5 y pulsa Control + Enter para ver cómo cambia el área.',
                 "codigo": "radio = 4\npi = 3.1416\narea = pi * (radio ** 2)\nprint('Área del círculo:', round(area, 2))",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "pistas": ['Cambia radio = 4 por radio = 5.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Cálculo de área de triángulo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 6: Tipos de Datos Primitivos: Números Enteros y Decimales. Completa el código requerido y ejecuta para validar.',
-                "codigo": "base = 10\naltura = 5\narea = (base * altura) / 2\nprint('Área del triángulo:', area)",
+                "instruccion": "Crea las variables base = 10 y altura = 5. Calcula area = (base * altura) / 2 e imprime: print('Área del triángulo:', area). Ejecuta con Control + Enter.",
+                "codigo": "# 1. Define base = 10 y altura = 5\n# 2. Calcula area = (base * altura) / 2\n# 3. Imprime: print('Área del triángulo:', area)\n\n",
                 "salida_esperada": 'Área del triángulo: 25.0',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '25' in res
+                "pistas": ['Recuerda usar la barra inclinada / para la división.'],
+                "validar": lambda src, res, ns: "25" in res and ("triángulo" in res.lower() or "triangulo" in res.lower())
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Cómo se denomina en Python a un número que tiene parte decimal (por ejemplo 3.14)?\n\nOpciones:\n1. float\n2. int\n3. bool\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cómo se denomina en Python al tipo de dato numérico que tiene parte decimal?\n\nOpciones:\n1. float\n2. int\n3. bool\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Cómo se denomina en Python a un número que tiene parte decimal (por ejemplo 3.14)?',
+                "pistas": ["Viene del inglés 'floating point'."],
+                "pregunta": '¿Cómo se denomina en Python a un número con parte decimal?',
                 "opciones": ['float', 'int', 'bool'],
                 "correcta": 0,
-                "explicacion": 'float representa números de punto flotante o decimales.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'float representa números de coma flotante (decimales).',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 7,
         "titulo": 'Capítulo 7: Cadenas de Texto (Strings): Comillas y Concatenación',
-        "resumen": 'Manipula textos, une cadenas mediante el operador + y usa cadenas formateadas (f-strings).',
+        "resumen": 'Manipula texto en Python usando comillas simples, dobles y cadenas formateadas modernas (f-strings).',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: Concatenación con + y f-strings',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 7: Cadenas de Texto (Strings): Comillas y Concatenación. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "nombre = 'Ana'\nrol = 'Desarrolladora'\nprint(f'{nombre} es {rol}')",
-                "pistas": ['Pulsa Control + Enter para ejecutar.'],
+                "instruccion": "Las cadenas de texto (str) pueden unirse con el operador + o usando f-strings colocando una 'f' antes de las comillas e insertando variables entre llaves {}. Ejecuta para ver ambos métodos.",
+                "codigo": "nombre = 'Laura'\nsaludo = f'Hola {nombre}, bienvenida a Python.'\nprint(saludo)",
+                "pistas": ['Pulsa Control + Enter para ver la interpolación de texto.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Repetición de texto con *',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "frase = 'La accesibilidad es un derecho.'\nprint('Longitud de caracteres:', len(frase))\nprint('En mayúsculas:', frase.upper())",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "instruccion": 'Al multiplicar un texto por un número, Python lo repite. Cambia el multiplicador 3 por 5 y pulsa Control + Enter.',
+                "codigo": "aplauso = '¡Bravo! '\nprint(aplauso * 3)",
+                "pistas": ['Cambia * 3 por * 5.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Crear una f-string',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 7: Cadenas de Texto (Strings): Comillas y Concatenación. Completa el código requerido y ejecuta para validar.',
-                "codigo": "ciudad = 'Bogotá'\npais = 'Colombia'\nprint(f'Ubicación: {ciudad}, {pais}')",
+                "instruccion": "Crea una variable ciudad = 'Bogotá' y pais = 'Colombia'. Usa una f-string para imprimir exactamente: print(f'Ubicación: {ciudad}, {pais}').",
+                "codigo": "# 1. Define ciudad = 'Bogotá' y pais = 'Colombia'\n# 2. Imprime usando f-string: print(f'Ubicación: {ciudad}, {pais}')\n\n",
                 "salida_esperada": 'Ubicación: Bogotá, Colombia',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'bogot' in res.lower() or 'colombia' in res.lower()
+                "pistas": ['Coloca f antes de las comillas y las variables dentro de {ciudad} y {pais}.'],
+                "validar": lambda src, res, ns: "bogot" in res.lower() and "colombia" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué letra precede a las comillas para crear una cadena formateada (f-string)?\n\nOpciones:\n1. La letra f\n2. La letra p\n3. La letra s\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué letra precede a las comillas para crear una cadena formateada moderna en Python?\n\nOpciones:\n1. La letra f\n2. La letra p\n3. La letra s\n\nEscribe tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué letra precede a las comillas para crear una cadena formateada (f-string)?',
+                "pistas": ["f viene de 'format'."],
+                "pregunta": '¿Qué letra precede a las comillas para crear una f-string?',
                 "opciones": ['La letra f', 'La letra p', 'La letra s'],
                 "correcta": 0,
-                "explicacion": "Las f-strings inician con f antes de las comillas: f'Texto {variable}'.",
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'La letra f convierte una cadena en una f-string (cadena formateada).',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 8,
         "titulo": 'Capítulo 8: Interacción con el Usuario: Entrada con input()',
-        "resumen": 'Aprende a solicitar datos al usuario desde el teclado y a convertirlos con int() y float().',
+        "resumen": 'Aprende a capturar datos que el usuario escribe por teclado y a transformarlos con int() o float().',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: La función input()',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 8: Interacción con el Usuario: Entrada con input(). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "nombre = 'Kevin'\nprint('Bienvenido/a al sistema, ' + nombre)",
-                "pistas": ['Pulsa Control + Enter para ejecutar.'],
+                "instruccion": 'input() permite recibir datos del usuario. Recuerda que input() SIEMPRE devuelve una cadena de texto (str). Si necesitas hacer cálculos matemáticos, debes convertirlo con int(). Ejecuta para observar la conversión.',
+                "codigo": "edad_texto = '25'\nedad_numero = int(edad_texto)\nprint('Edad numérica convertida:', edad_numero)\nprint('El doble de tu edad es:', edad_numero * 2)",
+                "pistas": ['Pulsa Control + Enter para ver la conversión.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: input con mensaje',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "anio_nacimiento = '2000'\nedad = 2026 - int(anio_nacimiento)\nprint('Edad estimada:', edad)",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "instruccion": 'Observa cómo se le pasa un texto informativo a input(). Modifica el mensaje dentro de input y pulsa Control + Enter.',
+                "codigo": "nombre = 'Ana'\nprint(f'¡Hola {nombre}! Bienvenido/a al aprendizaje interactivo.')",
+                "pistas": ["Cambia 'Ana' por tu propio nombre."],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Conversión y cálculo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 8: Interacción con el Usuario: Entrada con input(). Completa el código requerido y ejecuta para validar.',
-                "codigo": "edad_texto = '20'\nedad = int(edad_texto)\nprint('El próximo año tendrás:', edad + 1)",
+                "instruccion": "Tienes la variable edad_texto = '20'. Conviértela a entero usando int(edad_texto) y guarda el resultado en 'edad'. Luego muestra: print('El próximo año tendrás:', edad + 1).",
+                "codigo": "edad_texto = '20'\n# 1. Convierte edad_texto a entero: edad = int(edad_texto)\n# 2. Imprime: print('El próximo año tendrás:', edad + 1)\n\n",
                 "salida_esperada": 'El próximo año tendrás: 21',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '21' in res
+                "pistas": ['Usa int(edad_texto) para la conversión.'],
+                "validar": lambda src, res, ns: "21" in res and ("tendrás" in res.lower() or "tendras" in res.lower())
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué tipo de dato devuelve por defecto la función input()?\n\nOpciones:\n1. Siempre una cadena de texto (str)\n2. Un número entero (int)\n3. Un booleano (bool)\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué tipo de dato devuelve por defecto la función input() de Python?\n\nOpciones:\n1. Siempre una cadena de texto (str)\n2. Un número entero (int)\n3. Un booleano (bool)\n\nEscribe tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué tipo de dato devuelve por defecto la función input()?',
+                "pistas": ['Todo lo que entra por teclado se lee inicialmente como texto.'],
+                "pregunta": '¿Qué tipo de dato devuelve por defecto input()?',
                 "opciones": ['Siempre una cadena de texto (str)', 'Un número entero (int)', 'Un booleano (bool)'],
                 "correcta": 0,
-                "explicacion": 'input() siempre devuelve el texto tecleado como string (str).',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'input() siempre retorna una cadena (str), por eso se requiere int() o float() para operar numéricamente.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 9,
         "titulo": 'Capítulo 9: Operadores de Comparación y Expresiones Condicionales',
-        "resumen": 'Compara cantidades con ==, !=, <, >, <= y >= para generar decisiones computacionales.',
+        "resumen": 'Compara valores usando >, <, >=, <=, == y != para tomar decisiones en tus programas.',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: Operadores relacionales',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 9: Operadores de Comparación y Expresiones Condicionales. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "saldo = 100\nprecio = 80\nprint('¿Alcanza el dinero?:', saldo >= precio)",
-                "pistas": ['Pulsa Control + Enter para ejecutar.'],
+                "instruccion": 'Los operadores relacionales comparan dos valores: > (mayor), < (menor), >= (mayor o igual), <= (menor o igual), == (igual) y != (distinto). Ejecuta para observar sus resultados booleanos.',
+                "codigo": "x = 15\ny = 20\nprint('¿x es menor que y?:', x < y)\nprint('¿x es igual a y?:', x == y)\nprint('¿x es distinto de y?:', x != y)",
+                "pistas": ['Pulsa Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Comparar textos',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "clave_guardada = 'secreto123'\nclave_ingresada = 'secreto123'\nprint('¿Clave correcta?:', clave_guardada == clave_ingresada)",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "instruccion": 'También puedes comparar textos con ==. Si cambias el texto para que coincidan exactamente, el resultado cambiará a True. Modifica y ejecuta.',
+                "codigo": "clave_ingresada = 'secreta'\nclave_real = 'secreta'\nprint('¿Clave correcta?:', clave_ingresada == clave_real)",
+                "pistas": ['Cambia una de las cadenas para que no coincidan o mantenlas iguales.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Nota de aprobación',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 9: Operadores de Comparación y Expresiones Condicionales. Completa el código requerido y ejecuta para validar.',
-                "codigo": "puntos = 85\nprint('¿Aprobó con 70 o más?:', puntos >= 70)",
+                "instruccion": "Crea una variable puntos = 85. Imprime en consola: print('¿Aprobó con 70 o más?:', puntos >= 70). Pulsa Control + Enter.",
+                "codigo": "# 1. Define puntos = 85\n# 2. Imprime: print('¿Aprobó con 70 o más?:', puntos >= 70)\n\n",
                 "salida_esperada": '¿Aprobó con 70 o más?: True',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'true' in res.lower()
+                "pistas": ['Usa el operador >= (mayor o igual).'],
+                "validar": lambda src, res, ns: "70" in res and "true" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué operador se utiliza en Python para comparar si dos valores son exactamente iguales?\n\nOpciones:\n1. Doble signo igual (==)\n2. Un solo signo igual (=)\n3. Signo de admiración (!)\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué operador se utiliza en Python para comparar si dos valores son exactamente iguales?\n\nOpciones:\n1. Doble signo igual (==)\n2. Un solo signo igual (=)\n3. Signo de admiración (!)\n\nEscribe tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué operador se utiliza en Python para comparar si dos valores son exactamente iguales?',
+                "pistas": ['No confundir asignación (=) con comparación.'],
+                "pregunta": '¿Qué operador compara si dos valores son iguales?',
                 "opciones": ['Doble signo igual (==)', 'Un solo signo igual (=)', 'Signo de admiración (!)'],
                 "correcta": 0,
-                "explicacion": 'El doble signo igual (==) compara igualdad. El signo simple (=) asigna variables.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'El doble signo igual (==) compara igualdad. El signo simple (=) asigna valores.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 10,
         "titulo": 'Capítulo 10: Bifurcación Básica: Estructura if y Sangría PEP 8',
-        "resumen": 'Aprende a bifurcar la ejecución de un programa según condiciones y a dominar la sangría de 4 espacios.',
+        "resumen": 'Ejecuta bloques de código bajo condición usando if y 4 espacios de sangría obligatoria.',
         "pasos": [
             {
-                "titulo": 'Paso 1: Fundamento Conceptual',
+                "titulo": 'Paso 1: Fundamento: La sentencia if y los 4 espacios',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 10: Bifurcación Básica: Estructura if y Sangría PEP 8. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "temperatura = 30\nif temperatura > 25:\n    print('Hace calor, usa ropa fresca.')",
-                "pistas": ['Pulsa Control + Enter para ejecutar.'],
+                "instruccion": 'La sentencia if evalúa una condición terminando con dos puntos (:). Las líneas subordinadas deben llevar 4 espacios de sangría (tecla Tab). Ejecuta el código para observar cómo se cumple la condición.',
+                "codigo": "temperatura = 30\nif temperatura > 25:\n    print('Hace calor, enciende el ventilador.')\nprint('Fin del análisis.')",
+                "pistas": ['Pulsa Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 2: Observación y Modificación guiada',
+                "titulo": 'Paso 2: Observación: Cuando la condición no se cumple',
                 "tipo": 'experimentar',
-                "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "puntuacion = 95\nif puntuacion >= 90:\n    print('¡Felicidades!')\n    print('Has alcanzado el nivel superior.')",
-                "pistas": ['Modifica algún valor y presiona Control + Enter.'],
+                "instruccion": 'Si la condición es False, el bloque indentado no se ejecuta. Cambia temperatura a 15 y ejecuta con Control + Enter para escuchar cómo se salta el bloque.',
+                "codigo": "temperatura = 15\nif temperatura > 25:\n    print('Hace calor.')\nprint('Fin del análisis de temperatura.')",
+                "pistas": ['Cambia temperatura = 15 y ejecuta.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
-                "titulo": 'Paso 3: Reto Práctico Interactivo',
+                "titulo": 'Paso 3: Reto Práctico: Saludo horario con if',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 10: Bifurcación Básica: Estructura if y Sangría PEP 8. Completa el código requerido y ejecuta para validar.',
-                "codigo": "hora = 14\nif hora >= 12:\n    print('Buenas tardes')",
+                "instruccion": "Crea una variable hora = 14. Escribe un bloque if que compruebe si hora >= 12, y dentro imprima con 4 espacios de sangría: print('Buenas tardes').",
+                "codigo": "# 1. Define hora = 14\n# 2. Escribe if hora >= 12:\n# 3. Con 4 espacios: print('Buenas tardes')\n\n",
                 "salida_esperada": 'Buenas tardes',
-                "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'buenas tardes' in res.lower()
+                "pistas": ['No olvides los dos puntos (:) al final de la línea if.', 'Usa 4 espacios o pulsa Tab para la indentación.'],
+                "validar": lambda src, res, ns: "buenas tardes" in res.lower() and "if " in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuántos espacios en blanco recomienda la guía PEP 8 para cada nivel de sangría?\n\nOpciones:\n1. 4 espacios\n2. 1 espacio\n3. 8 espacios\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuántos espacios en blanco recomienda el estándar oficial PEP 8 para cada nivel de sangría en Python?\n\nOpciones:\n1. 4 espacios\n2. 1 espacio\n3. 10 espacios\n\nEscribe tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Cuántos espacios en blanco recomienda la guía PEP 8 para cada nivel de sangría?',
-                "opciones": ['4 espacios', '1 espacio', '8 espacios'],
+                "pistas": ['Es el estándar universal de Python.'],
+                "pregunta": '¿Cuántos espacios recomienda PEP 8 para la sangría?',
+                "opciones": ['4 espacios', '1 espacio', '10 espacios'],
                 "correcta": 0,
-                "explicacion": 'PEP 8 establece exactamente 4 espacios por nivel de indentación.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'PEP 8 establece un estándar de 4 espacios por cada nivel de sangría.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 11,
         "titulo": 'Capítulo 11: Alternativas Múltiples: Bloques elif y else',
-        "resumen": 'Gestiona múltiples caminos lógicos en tus programas encadenando condiciones con elif y else.',
+        "resumen": 'Maneja múltiples caminos posibles encadenando condiciones con elif y un caso por defecto con else.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 11: Alternativas Múltiples: Bloques elif y else. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "nota = 8\nif nota >= 9:\n    print('Excelente')\nelif nota >= 7:\n    print('Aprobado')\nelse:\n    print('Reprobado')",
+                "instruccion": 'En este paso aprenderemos sobre Alternativas Múltiples: Bloques elif y else. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "nota = 7\nif nota >= 9:\n    print('Excelente')\nelif nota >= 5:\n    print('Aprobado')\nelse:\n    print('Reprobado')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -464,43 +464,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "hora = 8\nif hora < 12:\n    print('Buenos días')\nelif hora < 18:\n    print('Buenas tardes')\nelse:\n    print('Buenas noches')",
+                "codigo": "nota = 4\nif nota >= 9:\n    print('Excelente')\nelif nota >= 5:\n    print('Aprobado')\nelse:\n    print('Reprobado')",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 11: Alternativas Múltiples: Bloques elif y else. Completa el código requerido y ejecuta para validar.',
-                "codigo": "semaforo = 'verde'\nif semaforo == 'verde':\n    print('Avanzar')\nelse:\n    print('Detenerse')",
-                "salida_esperada": 'Avanzar',
+                "instruccion": "Crea una variable nota = 8. Escribe if nota >= 9 imprima 'Excelente', elif nota >= 5 imprima 'Aprobado', y else imprima 'Reprobado'.",
+                "codigo": '# 1. Define nota = 8\n# 2. Escribe la estructura if, elif y else:\n\n',
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'avanzar' in res.lower()
+                "validar": lambda src, res, ns: "aprobado" in res.lower() and "elif" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué cláusula se ejecuta cuando ninguna de las condiciones de un if o elif fue verdadera?\n\nOpciones:\n1. else\n2. while\n3. pass\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué bloque condicional se ejecuta si ninguna condición anterior fue verdadera?\n\nOpciones:\n1. El bloque else\n2. El bloque if\n3. El bloque while\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué cláusula se ejecuta cuando ninguna de las condiciones de un if o elif fue verdadera?',
-                "opciones": ['else', 'while', 'pass'],
-                "correcta": 0,
-                "explicacion": 'La cláusula else es la rama por defecto cuando ninguna condición previa se cumplió.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué bloque condicional se ejecuta si ninguna condición anterior fue verdadera?',
+                "opciones": ['El bloque else', 'El bloque if', 'El bloque while'],
+                "correcta": 0,
+                "explicacion": 'else se ejecuta como camino por defecto cuando todo lo anterior fue falso.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 12,
         "titulo": 'Capítulo 12: Colecciones Ordenadas: Introducción a las Listas',
-        "resumen": 'Organiza secuencias de elementos entre corchetes [] y accede a ellos mediante índices numéricos.',
+        "resumen": 'Guarda múltiples elementos en una secuencia ordenada usando corchetes [] y accede mediante índices.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 12: Colecciones Ordenadas: Introducción a las Listas. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "colores = ['rojo', 'verde', 'azul']\nprint('Primer color:', colores[0])\nprint('Último color:', colores[-1])",
+                "instruccion": 'En este paso aprenderemos sobre Colecciones Ordenadas: Introducción a las Listas. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "frutas = ['manzana', 'pera', 'plátano']\nprint('Primera fruta:', frutas[0])\nprint('Segunda fruta:', frutas[1])",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -508,43 +507,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "numeros = [10, 20, 30, 40]\nprint('Segundo número:', numeros[1])\nprint('Total en lista:', len(numeros))",
+                "codigo": "frutas = ['manzana', 'pera', 'plátano']\n# Modifica el elemento en la posición 0:\nfrutas[0] = 'fresa'\nprint('Lista actualizada:', frutas)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 12: Colecciones Ordenadas: Introducción a las Listas. Completa el código requerido y ejecuta para validar.',
-                "codigo": "materias = ['Matemáticas', 'Historia', 'Programación']\nprint('Favorita:', materias[2])",
-                "salida_esperada": 'Favorita: Programación',
+                "instruccion": "Crea una lista llamada 'compras' con 'pan', 'leche' y 'huevos'. Imprime el primer elemento usando compras[0].",
+                "codigo": "# 1. Crea la lista compras con 'pan', 'leche' y 'huevos'\n# 2. Imprime el primer elemento con print(compras[0])\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'programaci' in res.lower()
+                "validar": lambda src, res, ns: "pan" in res.lower() and "compras" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿En qué número comienza el índice del primer elemento de una lista en Python?\n\nOpciones:\n1. En el número 0\n2. En el número 1\n3. En el número -1\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es el índice del primer elemento de una lista en Python?\n\nOpciones:\n1. El índice 0\n2. El índice 1\n3. El índice -1\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿En qué número comienza el índice del primer elemento de una lista en Python?',
-                "opciones": ['En el número 0', 'En el número 1', 'En el número -1'],
-                "correcta": 0,
-                "explicacion": 'Python utiliza indexación basada en cero (base 0).',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Cuál es el índice del primer elemento de una lista en Python?',
+                "opciones": ['El índice 0', 'El índice 1', 'El índice -1'],
+                "correcta": 0,
+                "explicacion": 'En Python la indexación empieza siempre en base cero (0).',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 13,
         "titulo": 'Capítulo 13: Métodos Fundamentales de Listas (append, remove, pop, len)',
-        "resumen": 'Modifica listas dinámicamente añadiendo, eliminando y contando elementos con métodos integrados.',
+        "resumen": 'Añade, elimina y cuenta elementos en listas dinámicas de Python.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 13: Métodos Fundamentales de Listas (append, remove, pop, len). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "tareas = ['Leer', 'Escribir']\ntareas.append('Practicar')\nprint('Total de tareas:', len(tareas))",
+                "instruccion": 'En este paso aprenderemos sobre Métodos Fundamentales de Listas (append, remove, pop, len). Ejecuta el código para observar el concepto en acción.',
+                "codigo": "tareas = ['leer', 'programar']\ntareas.append('descansar')\nprint('Tareas totales:', len(tareas))\nprint('Lista:', tareas)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -552,43 +550,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "lista = ['a', 'b', 'c']\nlista.append('d')\neliminado = lista.pop(0)\nprint('Quedaron:', lista)",
+                "codigo": "tareas = ['leer', 'programar', 'descansar']\ntareas.remove('leer')\nprint('Después de borrar leer:', tareas)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 13: Métodos Fundamentales de Listas (append, remove, pop, len). Completa el código requerido y ejecuta para validar.',
-                "codigo": "frutas = ['Manzana', 'Pera']\nfrutas.append('Naranja')\nprint('Frutas:', frutas)",
-                "salida_esperada": "Frutas: ['Manzana', 'Pera', 'Naranja']",
+                "instruccion": "Crea una lista colores = ['rojo', 'verde']. Agrega 'azul' con append() y muestra la cantidad total con print('Total colores:', len(colores)).",
+                "codigo": "colores = ['rojo', 'verde']\n# 1. Usa colores.append('azul')\n# 2. Imprime: print('Total colores:', len(colores))\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'naranja' in res.lower()
+                "validar": lambda src, res, ns: "3" in res and "colores" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué método de lista añade un nuevo elemento al final de la misma?\n\nOpciones:\n1. append()\n2. remove()\n3. split()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué método agrega un nuevo elemento al final de una lista?\n\nOpciones:\n1. append()\n2. delete()\n3. add()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué método de lista añade un nuevo elemento al final de la misma?',
-                "opciones": ['append()', 'remove()', 'split()'],
-                "correcta": 0,
-                "explicacion": 'append(elemento) agrega el nuevo valor al final de la lista.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué método agrega un nuevo elemento al final de una lista?',
+                "opciones": ['append()', 'delete()', 'add()'],
+                "correcta": 0,
+                "explicacion": 'append() añade un nuevo elemento al final de la lista.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 14,
         "titulo": 'Capítulo 14: Repetición y Automatización: El Bucle for y range()',
-        "resumen": 'Automatiza tareas repetitivas recorriendo colecciones o secuencias numéricas generadas con range().',
+        "resumen": 'Automatiza tareas repetitivas recorriendo secuencias numéricas y listas con for.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 14: Repetición y Automatización: El Bucle for y range(). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "for i in range(1, 4):\n    print('Vuelta número:', i)",
+                "instruccion": 'En este paso aprenderemos sobre Repetición y Automatización: El Bucle for y range(). Ejecuta el código para observar el concepto en acción.',
+                "codigo": "for i in range(1, 4):\n    print('Número:', i)\nprint('Fin del bucle')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -596,43 +593,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "frutas = ['fresa', 'uva', 'mango']\nfor f in frutas:\n    print('Me gusta la:', f)",
+                "codigo": "animales = ['perro', 'gato', 'loro']\nfor animal in animales:\n    print('Mascota:', animal)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 14: Repetición y Automatización: El Bucle for y range(). Completa el código requerido y ejecuta para validar.',
-                "codigo": "total = 0\nfor n in [10, 20, 30]:\n    total += n\nprint('Suma total:', total)",
-                "salida_esperada": 'Suma total: 60',
+                "instruccion": "Escribe un bucle for que recorra range(1, 6) e imprima cada número: print('Contando:', numero).",
+                "codigo": '# Escribe aquí el bucle for sobre range(1, 6):\n\n',
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '60' in res
+                "validar": lambda src, res, ns: "5" in res and "for " in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\nSi escribes range(5), ¿cuáles son los números enteros generados?\n\nOpciones:\n1. Del 0 al 4\n2. Del 1 al 5\n3. Del 0 al 5\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué produce la función range(1, 5) en un bucle for?\n\nOpciones:\n1. Los números del 1 al 4\n2. Los números del 1 al 5\n3. Una lista vacía\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": 'Si escribes range(5), ¿cuáles son los números enteros generados?',
-                "opciones": ['Del 0 al 4', 'Del 1 al 5', 'Del 0 al 5'],
-                "correcta": 0,
-                "explicacion": 'range(n) genera n números desde 0 hasta n-1 inclusive.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué produce la función range(1, 5) en un bucle for?',
+                "opciones": ['Los números del 1 al 4', 'Los números del 1 al 5', 'Una lista vacía'],
+                "correcta": 0,
+                "explicacion": 'range(inicio, fin) llega hasta fin - 1.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 15,
         "titulo": 'Capítulo 15: Repetición Condicional: El Bucle while',
-        "resumen": 'Ejecuta un bloque de código reiteradamente mientras una condición lógica continúe siendo verdadera.',
+        "resumen": 'Ejecuta bloques repetidamente mientras se mantenga una condición booleana.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 15: Repetición Condicional: El Bucle while. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "contador = 1\nwhile contador <= 3:\n    print('Conteo:', contador)\n    contador += 1",
+                "instruccion": 'En este paso aprenderemos sobre Repetición Condicional: El Bucle while. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "contador = 1\nwhile contador <= 3:\n    print('Vuelta:', contador)\n    contador = contador + 1\nprint('Bucle finalizado')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -640,43 +636,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "energia = 100\nwhile energia > 50:\n    energia -= 20\nprint('Energía final:', energia)",
+                "codigo": "energia = 3\nwhile energia > 0:\n    print('Energía restante:', energia)\n    energia = energia - 1",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 15: Repetición Condicional: El Bucle while. Completa el código requerido y ejecuta para validar.',
-                "codigo": "vidas = 3\nwhile vidas > 0:\n    print('Vida restante:', vidas)\n    vidas -= 1\nprint('Juego terminado')",
-                "salida_esperada": 'Juego terminado',
+                "instruccion": "Crea una variable contador = 1. Escribe un bucle while que mientras contador <= 3 imprima print('Paso:', contador) y sume 1 a contador.",
+                "codigo": 'contador = 1\n# Escribe el bucle while aquí con contador <= 3:\n\n',
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'terminado' in res.lower()
+                "validar": lambda src, res, ns: "3" in res and "while " in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué peligro ocurre si la condición de un bucle while nunca cambia a False?\n\nOpciones:\n1. Un bucle infinito que congela el programa\n2. Un error de sintaxis inmediato\n3. El equipo se formatea\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué precaución crucial se debe tomar al programar un bucle while?\n\nOpciones:\n1. Asegurar que la condición cambie para evitar un bucle infinito\n2. Poner punto y coma al final\n3. Usar comillas triples\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué peligro ocurre si la condición de un bucle while nunca cambia a False?',
-                "opciones": ['Un bucle infinito que congela el programa', 'Un error de sintaxis inmediato', 'El equipo se formatea'],
-                "correcta": 0,
-                "explicacion": 'Si la condición nunca es falsa, el bucle se repite indefinidamente (bucle infinito).',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué precaución crucial se debe tomar al programar un bucle while?',
+                "opciones": ['Asegurar que la condición cambie para evitar un bucle infinito', 'Poner punto y coma al final', 'Usar comillas triples'],
+                "correcta": 0,
+                "explicacion": 'Si la condición nunca se vuelve falsa, el bucle se ejecuta infinitamente bloqueando el programa.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 16,
         "titulo": 'Capítulo 16: Colecciones Clave-Valor: Diccionarios en Python',
-        "resumen": 'Almacena pares asociativos de información delimitados por llaves {} y busca datos por clave.',
+        "resumen": 'Asocia pares de información mediante llaves {} con claves y valores.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 16: Colecciones Clave-Valor: Diccionarios en Python. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "contacto = {'nombre': 'Carlos', 'telefono': '555-1234'}\nprint('Nombre:', contacto['nombre'])",
+                "instruccion": 'En este paso aprenderemos sobre Colecciones Clave-Valor: Diccionarios en Python. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "contacto = {'nombre': 'Carlos', 'telefono': '555-1234'}\nprint('Nombre:', contacto['nombre'])\nprint('Teléfono:', contacto['telefono'])",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -684,43 +679,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "precios = {'manzana': 2, 'pera': 3}\nprecios['platano'] = 1.5\nprint('Total de frutas:', len(precios))",
+                "codigo": "contacto = {'nombre': 'Carlos', 'telefono': '555-1234'}\ncontacto['ciudad'] = 'Madrid'\nprint('Diccionario ampliado:', contacto)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 16: Colecciones Clave-Valor: Diccionarios en Python. Completa el código requerido y ejecuta para validar.',
-                "codigo": "alumno = {'nombre': 'Laura', 'curso': 'Python'}\nprint('Estudiante:', alumno['nombre'], 'en curso', alumno['curso'])",
-                "salida_esperada": 'Estudiante: Laura en curso Python',
+                "instruccion": "Crea un diccionario llamado 'precios' con 'manzana': 2 y 'pera': 3. Imprime: print('Precio manzana:', precios['manzana']).",
+                "codigo": "# 1. Crea el diccionario precios con 'manzana': 2 y 'pera': 3\n# 2. Imprime: print('Precio manzana:', precios['manzana'])\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'laura' in res.lower() and 'python' in res.lower()
+                "validar": lambda src, res, ns: "2" in res and "precios" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué delimitadores encierran los datos de un diccionario en Python?\n\nOpciones:\n1. Llaves { }\n2. Corchetes [ ]\n3. Paréntesis ( )\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué delimitador se utiliza para declarar diccionarios en Python?\n\nOpciones:\n1. Llaves {}\n2. Corchetes []\n3. Paréntesis ()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué delimitadores encierran los datos de un diccionario en Python?',
-                "opciones": ['Llaves { }', 'Corchetes [ ]', 'Paréntesis ( )'],
-                "correcta": 0,
-                "explicacion": "Los diccionarios se delimitan mediante llaves { 'clave': 'valor' }.",
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué delimitador se utiliza para declarar diccionarios en Python?',
+                "opciones": ['Llaves {}', 'Corchetes []', 'Paréntesis ()'],
+                "correcta": 0,
+                "explicacion": 'Los diccionarios se declaran entre llaves {} con pares clave: valor.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 17,
         "titulo": 'Capítulo 17: Tuplas y Conjuntos (Sets): Inmutabilidad y Únicos',
-        "resumen": 'Conoce las tuplas () inmutables y los conjuntos set {} para operaciones con colecciones sin duplicados.',
+        "resumen": 'Usa tuplas para datos fijos que no cambian y conjuntos para colecciones sin duplicados.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 17: Tuplas y Conjuntos (Sets): Inmutabilidad y Únicos. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "coordenadas = (10, 20)\nprint('Latitud:', coordenadas[0])\ncolores_unicos = set(['rojo', 'azul', 'rojo'])\nprint('Únicos:', colores_unicos)",
+                "instruccion": 'En este paso aprenderemos sobre Tuplas y Conjuntos (Sets): Inmutabilidad y Únicos. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "punto = (10, 20)\nprint('Coordenada X:', punto[0])\nprint('Coordenada Y:', punto[1])",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -728,43 +722,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "a = {1, 2, 3}\nb = {3, 4, 5}\nunion = a.union(b)\nprint('Unión de conjuntos:', sorted(list(union)))",
+                "codigo": "numeros = {1, 2, 2, 3, 3, 4}\nprint('Conjunto sin duplicados:', numeros)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 17: Tuplas y Conjuntos (Sets): Inmutabilidad y Únicos. Completa el código requerido y ejecuta para validar.',
-                "codigo": "numeros = set([1, 2, 2, 3, 3, 4])\nprint('Cantidad de números únicos:', len(numeros))",
-                "salida_esperada": 'Cantidad de números únicos: 4',
+                "instruccion": "Crea una tupla llamada 'coordenadas' con los valores (50, 100). Imprime: print('Coordenadas:', coordenadas).",
+                "codigo": "# 1. Crea la tupla coordenadas = (50, 100)\n# 2. Imprime: print('Coordenadas:', coordenadas)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '4' in res
+                "validar": lambda src, res, ns: "50" in res and "100" in res
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué diferencia esencial tiene una tupla con respecto a una lista convencional?\n\nOpciones:\n1. Las tuplas son inmutables (no se pueden modificar)\n2. Las tuplas solo aceptan números\n3. Las tuplas no tienen índice\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es la principal diferencia entre una tupla y una lista?\n\nOpciones:\n1. Las tuplas son inmutables (no se pueden modificar)\n2. Las tuplas no aceptan números\n3. Las tuplas solo tienen un elemento\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué diferencia esencial tiene una tupla con respecto a una lista convencional?',
-                "opciones": ['Las tuplas son inmutables (no se pueden modificar)', 'Las tuplas solo aceptan números', 'Las tuplas no tienen índice'],
-                "correcta": 0,
-                "explicacion": 'Las tuplas no permiten alterar ni reasignar sus elementos tras su creación.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Cuál es la principal diferencia entre una tupla y una lista?',
+                "opciones": ['Las tuplas son inmutables (no se pueden modificar)', 'Las tuplas no aceptan números', 'Las tuplas solo tienen un elemento'],
+                "correcta": 0,
+                "explicacion": 'Las tuplas son inmutables una vez creadas, lo que garantiza la integridad de los datos.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 18,
         "titulo": 'Capítulo 18: Funciones Propias: Declaración con def y Parámetros',
-        "resumen": 'Escribe bloques de código modulares y reutilizables bautizados con nombre propio mediante def.',
+        "resumen": 'Empaqueta instrucciones reutilizables asignándoles un nombre propio con def.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 18: Funciones Propias: Declaración con def y Parámetros. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "def saludar(nombre):\n    print(f'¡Hola, {nombre}! Bienvenido a la clase.')\nsaludar('Elena')",
+                "instruccion": 'En este paso aprenderemos sobre Funciones Propias: Declaración con def y Parámetros. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "def saludar(nombre):\n    print(f'¡Hola, {nombre}! Bienvenido a las funciones.')\n\nsaludar('Elena')\nsaludar('Marcos')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -772,43 +765,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "def multiplicar_por_diez(n):\n    print('Resultado:', n * 10)\nmultiplicar_por_diez(5)",
+                "codigo": "def calcular_doble(num):\n    print('El doble es:', num * 2)\n\ncalcular_doble(8)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 18: Funciones Propias: Declaración con def y Parámetros. Completa el código requerido y ejecuta para validar.',
-                "codigo": "def sumar(a, b):\n    print('Resultado:', a + b)\nsumar(15, 25)",
-                "salida_esperada": 'Resultado: 40',
+                "instruccion": "Define una función llamada 'sumar(a, b)' que imprima: print('Resultado:', a + b). Luego invócala con sumar(5, 7).",
+                "codigo": "# 1. Define def sumar(a, b):\n# 2. Dentro imprime: print('Resultado:', a + b)\n# 3. Invoca sumar(5, 7)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '40' in res
+                "validar": lambda src, res, ns: "12" in res and "def sumar" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué palabra reservada se utiliza en Python para definir una función propia?\n\nOpciones:\n1. def\n2. function\n3. create\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué palabra clave se usa para definir una nueva función en Python?\n\nOpciones:\n1. def\n2. function\n3. fn\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué palabra reservada se utiliza en Python para definir una función propia?',
-                "opciones": ['def', 'function', 'create'],
-                "correcta": 0,
-                "explicacion": "def (abreviatura de 'define') inicia la definición de una función.",
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué palabra clave se usa para definir una nueva función en Python?',
+                "opciones": ['def', 'function', 'fn'],
+                "correcta": 0,
+                "explicacion": "La palabra clave 'def' (de define) declara una función.",
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 19,
         "titulo": 'Capítulo 19: Retorno de Resultados: La Sentencia return y Ámbito',
-        "resumen": 'Devuelve valores procesados desde tus funciones hacia quien las invocó mediante return.',
+        "resumen": 'Devuelve valores calculados al código que llamó a la función y entiende el alcance local de las variables.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 19: Retorno de Resultados: La Sentencia return y Ámbito. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "def calcular_doble(numero):\n    return numero * 2\nresultado = calcular_doble(12)\nprint('El doble es:', resultado)",
+                "instruccion": 'En este paso aprenderemos sobre Retorno de Resultados: La Sentencia return y Ámbito. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "def multiplicar(a, b):\n    return a * b\n\nresultado = multiplicar(4, 5)\nprint('Resultado obtenido con return:', resultado)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -816,43 +808,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "def calcular_iva(precio):\n    return precio * 0.19\niva = calcular_iva(100)\nprint('IVA calculado:', iva)",
+                "codigo": "def es_mayor_de_edad(edad):\n    return edad >= 18\n\nprint('¿Puede votar?:', es_mayor_de_edad(20))",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 19: Retorno de Resultados: La Sentencia return y Ámbito. Completa el código requerido y ejecuta para validar.',
-                "codigo": "def cuadrado(n):\n    return n * n\nval = cuadrado(7)\nprint('Cuadrado de 7:', val)",
-                "salida_esperada": 'Cuadrado de 7: 49',
+                "instruccion": "Define una función 'cuadrado(n)' que retorne n * n usando return. Guarda cuadrado(6) en la variable 'res' e imprime: print('El cuadrado es:', res).",
+                "codigo": "# 1. Define def cuadrado(n): con return n * n\n# 2. Guarda res = cuadrado(6)\n# 3. Imprime: print('El cuadrado es:', res)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '49' in res
+                "validar": lambda src, res, ns: "36" in res and "return" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué instrucción finaliza una función y envía el resultado al exterior?\n\nOpciones:\n1. return\n2. print\n3. send\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué sucede cuando una función ejecuta la instrucción return?\n\nOpciones:\n1. Finaliza la función y devuelve el valor procesado\n2. Imprime el valor en pantalla\n3. Reinicia la computadora\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué instrucción finaliza una función y envía el resultado al exterior?',
-                "opciones": ['return', 'print', 'send'],
-                "correcta": 0,
-                "explicacion": 'return detiene la función y entrega el valor computado.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué sucede cuando una función ejecuta la instrucción return?',
+                "opciones": ['Finaliza la función y devuelve el valor procesado', 'Imprime el valor en pantalla', 'Reinicia la computadora'],
+                "correcta": 0,
+                "explicacion": 'return concluye la ejecución de la función y entrega el resultado a quien la llamó.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 20,
         "titulo": 'Capítulo 20: Manejo Profesional de Errores: try, except y finally',
-        "resumen": 'Protege tus programas contra excepciones inesperadas para que nunca colapsen ni se cierren solos.',
+        "resumen": 'Evita que tu programa se detenga ante errores inesperados capturando excepciones.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 20: Manejo Profesional de Errores: try, except y finally. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "try:\n    calc = 10 / 0\nexcept ZeroDivisionError:\n    print('Aviso: No es posible dividir entre cero.')",
+                "instruccion": 'En este paso aprenderemos sobre Manejo Profesional de Errores: try, except y finally. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "try:\n    divisor = 0\n    resultado = 10 / divisor\n    print(resultado)\nexcept ZeroDivisionError:\n    print('Aviso: No se puede dividir entre cero.')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -860,43 +851,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "try:\n    dicc = {'a': 1}\n    val = dicc['b']\nexcept KeyError:\n    print('Clave inexistente en diccionario.')\nfinally:\n    print('Bloque final ejecutado.')",
+                "codigo": "try:\n    numero = int('no_es_un_numero')\nexcept ValueError:\n    print('Aviso: El texto no pudo convertirse a número.')\nfinally:\n    print('Bloque finally completado.')",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 20: Manejo Profesional de Errores: try, except y finally. Completa el código requerido y ejecuta para validar.',
-                "codigo": "try:\n    num = int('no_es_numero')\nexcept ValueError:\n    print('Entrada inválida capturada.')",
-                "salida_esperada": 'Entrada inválida capturada.',
+                "instruccion": "Escribe un bloque try donde dividas 20 entre 0, y en el except ZeroDivisionError imprime: print('Error capturado con éxito').",
+                "codigo": '# Escribe aquí el bloque try y except ZeroDivisionError:\n\n',
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'inv' in res.lower() or 'capturada' in res.lower()
+                "validar": lambda src, res, ns: "error capturado" in res.lower() and "except" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué bloque se ejecuta obligatoriamente en un try/except ocurra o no un fallo?\n\nOpciones:\n1. finally\n2. while\n3. import\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Para qué sirve la cláusula except en Python?\n\nOpciones:\n1. Para capturar errores específicos y evitar que el programa se cierre\n2. Para crear bucles\n3. Para borrar archivos\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué bloque se ejecuta obligatoriamente en un try/except ocurra o no un fallo?',
-                "opciones": ['finally', 'while', 'import'],
-                "correcta": 0,
-                "explicacion": 'El bloque finally se ejecuta de manera garantizada para tareas de limpieza.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Para qué sirve la cláusula except en Python?',
+                "opciones": ['Para capturar errores específicos y evitar que el programa se cierre', 'Para crear bucles', 'Para borrar archivos'],
+                "correcta": 0,
+                "explicacion": 'except intercepta la excepción permitiendo que el programa maneje la situación con elegancia.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 21,
         "titulo": 'Capítulo 21: Decodificación de Tracebacks y Diagnóstico de Fallos',
-        "resumen": 'Aprende a leer trazas de error (Tracebacks) con calma para situar el archivo, la línea y el tipo de excepción.',
+        "resumen": 'Aprende a leer el informe de error de Python para ubicar la línea y causa exacta del fallo.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 21: Decodificación de Tracebacks y Diagnóstico de Fallos. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "print('Línea 1 normal')\n# El Traceback indica el archivo, la línea exacta y el motivo\nprint('Diagnóstico comprendido.')",
+                "instruccion": 'En este paso aprenderemos sobre Decodificación de Tracebacks y Diagnóstico de Fallos. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "# Un Traceback muestra el archivo, línea y tipo de error:\nprint('Analizando Traceback...')\n# TypeError ocurre al sumar tipos incompatibles:\ntipo_error = 'TypeError: unsupported operand type(s)'\nprint('Diagnóstico:', tipo_error)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -904,43 +894,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "linea_fallo = 4\nmotivo = 'IndexError: list index out of range'\nprint(f'Error en línea {linea_fallo}: {motivo}')",
+                "codigo": "try:\n    lista = [1, 2]\n    print(lista[10])\nexcept IndexError as err:\n    print('Índice fuera de rango:', err)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 21: Decodificación de Tracebacks y Diagnóstico de Fallos. Completa el código requerido y ejecuta para validar.',
-                "codigo": "try:\n    x = 10\n    y = 0\n    res = x / y\nexcept ZeroDivisionError as e:\n    print('Tipo de error:', type(e).__name__)",
-                "salida_esperada": 'Tipo de error: ZeroDivisionError',
+                "instruccion": "Corrige el error en el código: convierte '5' a número con int() antes de sumar para que imprima: print('Suma correcta:', 10 + int('5')).",
+                "codigo": "# Corrige la suma convirtiendo '5' a int:\nnumero = 10\ntexto = '5'\n# Imprime: print('Suma correcta:', numero + int(texto))\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'zerodivisionerror' in res.lower()
+                "validar": lambda src, res, ns: "15" in res and "suma correcta" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\nEn un Traceback de Python, ¿dónde se encuentra la explicación final del error?\n\nOpciones:\n1. En la última línea de la traza\n2. En el medio de la pantalla\n3. No se muestra\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué tecla rápida de Aprendizaje de Python con NVDA sitúa el cursor directamente en la línea del error del Traceback?\n\nOpciones:\n1. F4\n2. F1\n3. F12\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": 'En un Traceback de Python, ¿dónde se encuentra la explicación final del error?',
-                "opciones": ['En la última línea de la traza', 'En el medio de la pantalla', 'No se muestra'],
-                "correcta": 0,
-                "explicacion": 'La última línea del Traceback indica el nombre exacto de la excepción y el mensaje descriptivo.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué tecla rápida de Aprendizaje de Python con NVDA sitúa el cursor directamente en la línea del error del Traceback?',
+                "opciones": ['F4', 'F1', 'F12'],
+                "correcta": 0,
+                "explicacion": 'F4 salta inmediatamente a la línea del error en el editor y lee el diagnóstico.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 22,
         "titulo": 'Capítulo 22: Entrada y Salida de Archivos: with open() para Texto',
-        "resumen": 'Lee y escribe archivos en disco de forma segura utilizando administradores de contexto.',
+        "resumen": 'Guarda y lee información en ficheros del disco duro de forma segura con with open().',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 22: Entrada y Salida de Archivos: with open() para Texto. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "# Escritura y lectura limpia en memoria o archivo:\ndatos = 'Registro accesible 2026'\nprint('Contenido procesado:', datos)",
+                "instruccion": 'En este paso aprenderemos sobre Entrada y Salida de Archivos: with open() para Texto. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "# with open garantiza que el archivo se cierre al salir del bloque:\nwith open('saludo.txt', 'w', encoding='utf-8') as f:\n    f.write('¡Hola desde archivo persistente!')\nprint('Archivo escrito con éxito.')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -948,43 +937,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "lineas = ['Reporte A', 'Reporte B']\nprint('Líneas preparadas:', len(lineas))",
+                "codigo": "with open('saludo.txt', 'r', encoding='utf-8') as f:\n    contenido = f.read()\nprint('Contenido leído:', contenido)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 22: Entrada y Salida de Archivos: with open() para Texto. Completa el código requerido y ejecuta para validar.',
-                "codigo": "archivo_lineas = ['Línea 1', 'Línea 2']\nprint('Total guardado:', len(archivo_lineas))",
-                "salida_esperada": 'Total guardado: 2',
+                "instruccion": "Usa with open('mensaje.txt', 'w', encoding='utf-8') as f: y escribe f.write('Python accesible'). Luego imprime: print('Guardado listo').",
+                "codigo": "# Escribe el bloque with open('mensaje.txt', 'w', encoding='utf-8') as f:\n# Dentro escribe f.write('Python accesible')\n# Luego imprime: print('Guardado listo')\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '2' in res
+                "validar": lambda src, res, ns: "guardado listo" in res.lower() and "with open" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": "Pregunta de verificación conceptual:\n¿Qué ventaja ofrece usar la estructura 'with open()' al manipular archivos?\n\nOpciones:\n1. Cierra automáticamente el archivo al finalizar\n2. Aumenta la memoria RAM\n3. Borra el disco\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.",
+                "instruccion": "Pregunta de verificación conceptual:\n¿Por qué es recomendable usar 'with open()' al trabajar con archivos?\n\nOpciones:\n1. Porque cierra automáticamente el archivo incluso si ocurre un error\n2. Porque encripta los datos\n3. Porque no usa memoria\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.",
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": "¿Qué ventaja ofrece usar la estructura 'with open()' al manipular archivos?",
-                "opciones": ['Cierra automáticamente el archivo al finalizar', 'Aumenta la memoria RAM', 'Borra el disco'],
-                "correcta": 0,
-                "explicacion": 'with open asegura que el archivo se cierre correctamente incluso si ocurren excepciones.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": "¿Por qué es recomendable usar 'with open()' al trabajar con archivos?",
+                "opciones": ['Porque cierra automáticamente el archivo incluso si ocurre un error', 'Porque encripta los datos', 'Porque no usa memoria'],
+                "correcta": 0,
+                "explicacion": 'with actúa como administrador de contexto asegurando la liberación de recursos.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 23,
         "titulo": 'Capítulo 23: Paradigma de Objetos: Clases, Instancias y Atributos',
-        "resumen": 'Iníciate en la Programación Orientada a Objetos modelando entidades del mundo real con clases.',
+        "resumen": 'Crea moldes del mundo real agrupando datos y comportamientos en clases.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 23: Paradigma de Objetos: Clases, Instancias y Atributos. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "class Mascota:\n    pass\nmi_perro = Mascota()\nmi_perro.nombre = 'Tobi'\nprint('Mascota creada:', mi_perro.nombre)",
+                "instruccion": 'En este paso aprenderemos sobre Paradigma de Objetos: Clases, Instancias y Atributos. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "class Libro:\n    titulo = 'Aprendizaje de Python'\n    paginas = 200\n\nmi_libro = Libro()\nprint('Título del libro:', mi_libro.titulo)\nprint('Páginas:', mi_libro.paginas)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -992,43 +980,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "class Coche:\n    marca = 'Genérica'\nauto = Coche()\nprint('Marca de auto:', auto.marca)",
+                "codigo": "class Dispositivo:\n    tipo = 'Lector de pantalla'\n\nlector = Dispositivo()\nlector.nombre = 'NVDA'\nprint('Dispositivo:', lector.nombre, 'Tipo:', lector.tipo)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 23: Paradigma de Objetos: Clases, Instancias y Atributos. Completa el código requerido y ejecuta para validar.',
-                "codigo": "class Libro:\n    pass\nmi_libro = Libro()\nmi_libro.titulo = 'Python Accesible'\nprint('Libro:', mi_libro.titulo)",
-                "salida_esperada": 'Libro: Python Accesible',
+                "instruccion": "Crea una clase llamada 'Mascota' con un atributo de clase especie = 'Perro'. Crea un objeto perro = Mascota() e imprime: print('Especie:', perro.especie).",
+                "codigo": "# 1. Declara class Mascota: con especie = 'Perro'\n# 2. Crea perro = Mascota()\n# 3. Imprime: print('Especie:', perro.especie)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'python accesible' in res.lower()
+                "validar": lambda src, res, ns: "perro" in res.lower() and "class Mascota" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué analogía define mejor la relación entre una clase y un objeto?\n\nOpciones:\n1. La clase es el plano o molde, y el objeto es la casa construida\n2. Son exactamente lo mismo\n3. El objeto crea a la clase\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué es una clase en programación orientada a objetos?\n\nOpciones:\n1. Un molde o plantilla para crear objetos con datos y funciones\n2. Una variable numérica\n3. Un bucle de repetición\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué analogía define mejor la relación entre una clase y un objeto?',
-                "opciones": ['La clase es el plano o molde, y el objeto es la casa construida', 'Son exactamente lo mismo', 'El objeto crea a la clase'],
-                "correcta": 0,
-                "explicacion": 'La clase define la estructura (molde); los objetos o instancias son los ejemplares concretos.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué es una clase en programación orientada a objetos?',
+                "opciones": ['Un molde o plantilla para crear objetos con datos y funciones', 'Una variable numérica', 'Un bucle de repetición'],
+                "correcta": 0,
+                "explicacion": 'Una clase es el plano estructural a partir del cual se instancian los objetos.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 24,
         "titulo": 'Capítulo 24: El Constructor __init__ y el Parámetro self',
-        "resumen": 'Inicializa el estado y atributos de tus objetos automáticamente al nacer con el método constructor.',
+        "resumen": 'Inicializa objetos con valores específicos en el momento exacto de su creación.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 24: El Constructor __init__ y el Parámetro self. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "class Persona:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\np = Persona('Carlos', 'Madrid')\nprint(p.nombre, 'vive en', p.ciudad)",
+                "instruccion": 'En este paso aprenderemos sobre El Constructor __init__ y el Parámetro self. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "class Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\np1 = Persona('Sofía', 28)\nprint(f'{p1.nombre} tiene {p1.edad} años.')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1036,43 +1023,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "class Rectangulo:\n    def __init__(self, ancho, alto):\n        self.ancho = ancho\n        self.alto = alto\nr = Rectangulo(5, 10)\nprint('Área:', r.ancho * r.alto)",
+                "codigo": "class Cuenta:\n    def __init__(self, titular, saldo):\n        self.titular = titular\n        self.saldo = saldo\n\nc = Cuenta('Kevin', 500)\nprint('Titular:', c.titular, 'Saldo:', c.saldo)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 24: El Constructor __init__ y el Parámetro self. Completa el código requerido y ejecuta para validar.',
-                "codigo": "class Alumno:\n    def __init__(self, nombre, nota):\n        self.nombre = nombre\n        self.nota = nota\na = Alumno('Sara', 10)\nprint(f'{a.nombre} obtuvo {a.nota}')",
-                "salida_esperada": 'Sara obtuvo 10',
+                "instruccion": "Crea una clase Usuario con def __init__(self, apodo): que asigne self.apodo = apodo. Crea u = Usuario('Programador') e imprime: print('Apodo:', u.apodo).",
+                "codigo": "# 1. Crea class Usuario con __init__(self, apodo)\n# 2. Crea u = Usuario('Programador')\n# 3. Imprime: print('Apodo:', u.apodo)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'sara' in res.lower() and '10' in res
+                "validar": lambda src, res, ns: "programador" in res.lower() and "__init__" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": "Pregunta de verificación conceptual:\n¿Qué representa el primer parámetro 'self' dentro de los métodos de una clase?\n\nOpciones:\n1. Hace referencia a la instancia específica del objeto actual\n2. Es una función matemática\n3. Significa segundo\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.",
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es la función del método especial __init__?\n\nOpciones:\n1. Es el constructor que inicializa los atributos del objeto al crearlo\n2. Es una función para borrar el objeto\n3. Es un bucle for\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": "¿Qué representa el primer parámetro 'self' dentro de los métodos de una clase?",
-                "opciones": ['Hace referencia a la instancia específica del objeto actual', 'Es una función matemática', 'Significa segundo'],
-                "correcta": 0,
-                "explicacion": 'self representa al propio objeto concreto sobre el que se está operando.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Cuál es la función del método especial __init__?',
+                "opciones": ['Es el constructor que inicializa los atributos del objeto al crearlo', 'Es una función para borrar el objeto', 'Es un bucle for'],
+                "correcta": 0,
+                "explicacion": '__init__ se ejecuta automáticamente al instanciar un nuevo objeto.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 25,
         "titulo": 'Capítulo 25: Métodos de Instancia y Encapsulamiento',
-        "resumen": 'Dota a tus objetos de comportamientos y acciones que interactúan con sus atributos internos.',
+        "resumen": 'Define acciones que cada objeto sabe realizar de forma autónoma.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 25: Métodos de Instancia y Encapsulamiento. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "class CuentaBancaria:\n    def __init__(self, titular, saldo):\n        self.titular = titular\n        self.saldo = saldo\n    def depositar(self, monto):\n        self.saldo += monto\nc = CuentaBancaria('Kevin', 100)\nc.depositar(50)\nprint('Saldo actual:', c.saldo)",
+                "instruccion": 'En este paso aprenderemos sobre Métodos de Instancia y Encapsulamiento. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "class Reproductor:\n    def __init__(self, cancion):\n        self.cancion = cancion\n    def reproducir(self):\n        print(f'Reproduciendo la pista: {self.cancion}')\n\nrep = Reproductor('Sinfonía Accesible')\nrep.reproducir()",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1080,43 +1066,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "class Luz:\n    def __init__(self):\n        self.encendida = False\n    def conmutar(self):\n        self.encendida = not self.encendida\nl = Luz()\nl.conmutar()\nprint('Luz encendida:', l.encendida)",
+                "codigo": "class Termostato:\n    def __init__(self, temp):\n        self.temp = temp\n    def subir(self, grados):\n        self.temp += grados\n        print('Nueva temperatura:', self.temp)\n\nt = Termostato(20)\nt.subir(3)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 25: Métodos de Instancia y Encapsulamiento. Completa el código requerido y ejecuta para validar.',
-                "codigo": "class Termostato:\n    def __init__(self, temp):\n        self.temp = temp\n    def subir(self, grados):\n        self.temp += grados\nt = Termostato(20)\nt.subir(3)\nprint('Nueva temp:', t.temp)",
-                "salida_esperada": 'Nueva temp: 23',
+                "instruccion": "Crea una clase Saludo con def __init__(self, nombre): y un método saludar(self) que imprima: print(f'Hola, {self.nombre}'). Crea s = Saludo('Amigo') e invoca s.saludar().",
+                "codigo": "# 1. Crea class Saludo con __init__(self, nombre) y método saludar(self)\n# 2. Crea s = Saludo('Amigo')\n# 3. Invoca s.saludar()\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '23' in res
+                "validar": lambda src, res, ns: "amigo" in res.lower() and "saludar" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Cómo se denomina una función definida dentro de una clase que opera sobre sus datos?\n\nOpciones:\n1. Método\n2. Variable global\n3. Bucle\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": "Pregunta de verificación conceptual:\n¿Qué representa el primer parámetro 'self' en los métodos de una clase?\n\nOpciones:\n1. La referencia a la instancia específica del objeto que invocó el método\n2. Una palabra reservada de Windows\n3. Un número entero\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.",
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Cómo se denomina una función definida dentro de una clase que opera sobre sus datos?',
-                "opciones": ['Método', 'Variable global', 'Bucle'],
-                "correcta": 0,
-                "explicacion": 'Las funciones declaradas en el cuerpo de una clase se denominan métodos.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": "¿Qué representa el primer parámetro 'self' en los métodos de una clase?",
+                "opciones": ['La referencia a la instancia específica del objeto que invocó el método', 'Una palabra reservada de Windows', 'Un número entero'],
+                "correcta": 0,
+                "explicacion": 'self permite que el método acceda y modifique los atributos de ese objeto en particular.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 26,
         "titulo": 'Capítulo 26: Herencia de Clases: Reutilización con super()',
-        "resumen": 'Hereda propiedades de clases existentes para crear jerarquías organizadas y no repetir código.',
+        "resumen": 'Crea clases hijas especializadas que heredan propiedades de una clase padre.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 26: Herencia de Clases: Reutilización con super(). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "class Animal:\n    def __init__(self, especie):\n        self.especie = especie\nclass Perro(Animal):\n    def __init__(self, nombre):\n        super().__init__('Canino')\n        self.nombre = nombre\np = Perro('Fido')\nprint(p.nombre, 'es de especie', p.especie)",
+                "instruccion": 'En este paso aprenderemos sobre Herencia de Clases: Reutilización con super(). Ejecuta el código para observar el concepto en acción.',
+                "codigo": "class Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nclass Perro(Animal):\n    def ladrar(self):\n        print(f'{self.nombre} dice: ¡Guau guau!')\n\nmi_perro = Perro('Toby')\nmi_perro.ladrar()",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1124,43 +1109,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "class Dispositivo:\n    def __init__(self, encendido=True):\n        self.encendido = encendido\nclass Celular(Dispositivo):\n    def __init__(self, modelo):\n        super().__init__()\n        self.modelo = modelo\nc = Celular('Accesible')\nprint(c.modelo, 'encendido:', c.encendido)",
+                "codigo": "class Empleado:\n    def __init__(self, nombre, sueldo):\n        self.nombre = nombre\n        self.sueldo = sueldo\n\nclass Gerente(Empleado):\n    def __init__(self, nombre, sueldo, bono):\n        super().__init__(nombre, sueldo)\n        self.bono = bono\n\ng = Gerente('Marta', 3000, 500)\nprint('Gerente:', g.nombre, 'Total:', g.sueldo + g.bono)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 26: Herencia de Clases: Reutilización con super(). Completa el código requerido y ejecuta para validar.',
-                "codigo": "class Vehiculo:\n    def __init__(self, ruedas):\n        self.ruedas = ruedas\nclass Moto(Vehiculo):\n    def __init__(self):\n        super().__init__(2)\nm = Moto()\nprint('Ruedas de moto:', m.ruedas)",
-                "salida_esperada": 'Ruedas de moto: 2',
+                "instruccion": "Crea una clase Vehiculo con __init__(self, marca). Crea una clase Coche(Vehiculo) que en su __init__(self, marca, modelo) use super().__init__(marca) y self.modelo = modelo. Crea c = Coche('Toyota', 'Corolla') e imprime: print(c.marca, c.modelo).",
+                "codigo": "# 1. Crea class Vehiculo con __init__(self, marca)\n# 2. Crea class Coche(Vehiculo) usando super().__init__(marca)\n# 3. Crea c = Coche('Toyota', 'Corolla') e imprime print(c.marca, c.modelo)\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '2' in res
+                "validar": lambda src, res, ns: "toyota" in res.lower() and "corolla" in res.lower() and "super()" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función se utiliza en una clase hija para invocar al constructor de la clase padre?\n\nOpciones:\n1. super().__init__()\n2. parent()\n3. base()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función permite invocar el constructor o métodos de la clase padre en la clase hija?\n\nOpciones:\n1. super()\n2. parent()\n3. base()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué función se utiliza en una clase hija para invocar al constructor de la clase padre?',
-                "opciones": ['super().__init__()', 'parent()', 'base()'],
-                "correcta": 0,
-                "explicacion": 'super() accede a los métodos heredados de la superclase padre.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué función permite invocar el constructor o métodos de la clase padre en la clase hija?',
+                "opciones": ['super()', 'parent()', 'base()'],
+                "correcta": 0,
+                "explicacion": 'super() otorga acceso directo a la clase base facilitando la extensión de código.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 27,
         "titulo": 'Capítulo 27: Polimorfismo y Métodos Especiales (__str__)',
-        "resumen": 'Personaliza cómo se representan tus objetos en texto legible para sintetizadores mediante __str__.',
+        "resumen": 'Personaliza cómo el lector de pantalla y print leen tus objetos implementando __str__.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 27: Polimorfismo y Métodos Especiales (__str__). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "class Usuario:\n    def __init__(self, user):\n        self.user = user\n    def __str__(self):\n        return f'Perfil de Usuario: {self.user}'\nu = Usuario('Admin')\nprint(u)",
+                "instruccion": 'En este paso aprenderemos sobre Polimorfismo y Métodos Especiales (__str__). Ejecuta el código para observar el concepto en acción.',
+                "codigo": "class Alumno:\n    def __init__(self, nombre, curso):\n        self.nombre = nombre\n        self.curso = curso\n    def __str__(self):\n        return f'Alumno: {self.nombre}, Curso: {self.curso}'\n\nalumno = Alumno('David', 'Python')\nprint(alumno)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1168,43 +1152,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "class Cancion:\n    def __init__(self, titulo, artista):\n        self.titulo = titulo\n        self.artista = artista\n    def __str__(self):\n        return f'{self.titulo} por {self.artista}'\nc = Cancion('Himno', 'Accesibilidad')\nprint(c)",
+                "codigo": "class Producto:\n    def __init__(self, item, precio):\n        self.item = item\n        self.precio = precio\n    def __str__(self):\n        return f'Producto: {self.item} (${self.precio})'\n\nprint(Producto('Teclado accesible', 45))",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 27: Polimorfismo y Métodos Especiales (__str__). Completa el código requerido y ejecuta para validar.',
-                "codigo": "class Producto:\n    def __init__(self, nom, precio):\n        self.nom = nom\n        self.precio = precio\n    def __str__(self):\n        return f'{self.nom} a ${self.precio}'\nprod = Producto('Teclado', 45)\nprint(prod)",
-                "salida_esperada": 'Teclado a $45',
+                "instruccion": "Crea una clase Punto con __init__(self, x, y) y un método especial __str__(self) que devuelva f'Punto({self.x}, {self.y})'. Crea p = Punto(3, 7) e imprímelo con print(p).",
+                "codigo": "# 1. Crea class Punto con __init__(self, x, y)\n# 2. Implementa def __str__(self): return f'Punto({self.x}, {self.y})'\n# 3. Imprime print(Punto(3, 7))\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'teclado' in res.lower() and '45' in res
+                "validar": lambda src, res, ns: ("3" in res and "7" in res and "__str__" in src)
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué método mágico define la representación en cadena de texto cuando usamos print(objeto)?\n\nOpciones:\n1. __str__\n2. __init__\n3. __len__\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Para qué sirve implementar el método especial __str__ en una clase?\n\nOpciones:\n1. Para definir la representación textual legible al imprimir el objeto con print()\n2. Para borrar el objeto de la memoria\n3. Para convertirlo en lista\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué método mágico define la representación en cadena de texto cuando usamos print(objeto)?',
-                "opciones": ['__str__', '__init__', '__len__'],
-                "correcta": 0,
-                "explicacion": 'El método __str__ devuelve la cadena legible por humanos al imprimir el objeto.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Para qué sirve implementar el método especial __str__ en una clase?',
+                "opciones": ['Para definir la representación textual legible al imprimir el objeto con print()', 'Para borrar el objeto de la memoria', 'Para convertirlo en lista'],
+                "correcta": 0,
+                "explicacion": '__str__ devuelve una cadena amigable y comprensible para el lector de pantalla.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 28,
         "titulo": 'Capítulo 28: Módulos de la Biblioteca Estándar (math, random, datetime)',
-        "resumen": "Aprovecha las 'pilas incluidas' de Python importando módulos oficiales de matemáticas, azar y fechas.",
+        "resumen": 'Aprovecha librerías integradas de Python para matemáticas, azar y fechas sin instalar nada.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 28: Módulos de la Biblioteca Estándar (math, random, datetime). Ejecuta el código para observar el concepto en acción.',
-                "codigo": "import math\nprint('Raíz cuadrada de 64:', math.sqrt(64))",
+                "instruccion": 'En este paso aprenderemos sobre Módulos de la Biblioteca Estándar (math, random, datetime). Ejecuta el código para observar el concepto en acción.',
+                "codigo": "import math\nprint('Raíz cuadrada de 64:', math.isqrt(64))\nprint('Valor de Pi redondeado:', round(math.pi, 4))",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1212,43 +1195,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "import math\nprint('Factorial de 5:', math.factorial(5))",
+                "codigo": "import random\nazar = random.randint(1, 10)\nprint('Número aleatorio entre 1 y 10:', azar)",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 28: Módulos de la Biblioteca Estándar (math, random, datetime). Completa el código requerido y ejecuta para validar.',
-                "codigo": "import math\nradio = 5\ncircunferencia = 2 * math.pi * radio\nprint('Circunferencia aproximada:', round(circunferencia, 2))",
-                "salida_esperada": 'Circunferencia aproximada: 31.42',
+                "instruccion": "Importa el módulo math y calcula la raíz cuadrada entera de 144 con math.isqrt(144). Imprime: print('Raíz de 144:', math.isqrt(144)).",
+                "codigo": "# 1. import math\n# 2. Imprime: print('Raíz de 144:', math.isqrt(144))\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '31.42' in res
+                "validar": lambda src, res, ns: "12" in res and "math" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué instrucción se usa para traer un módulo externo o estándar a nuestro programa?\n\nOpciones:\n1. import\n2. include\n3. require\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué palabra clave se usa para cargar módulos de la biblioteca estándar de Python?\n\nOpciones:\n1. import\n2. load\n3. include\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué instrucción se usa para traer un módulo externo o estándar a nuestro programa?',
-                "opciones": ['import', 'include', 'require'],
-                "correcta": 0,
-                "explicacion": 'La palabra clave import incorpora bibliotecas y módulos.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué palabra clave se usa para cargar módulos de la biblioteca estándar de Python?',
+                "opciones": ['import', 'load', 'include'],
+                "correcta": 0,
+                "explicacion": 'import enlaza cualquier biblioteca estándar o archivo externo en tu código.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 29,
         "titulo": 'Capítulo 29: Persistencia Estructurada: Formato JSON y Serialización',
-        "resumen": 'Aprende a transformar estructuras de datos complejas en formato JSON para guardar configuraciones e intercambiar datos.',
+        "resumen": 'Guarda y lee diccionarios estructurados en formato de texto estándar JSON.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 29: Persistencia Estructurada: Formato JSON y Serialización. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "import json\ndatos = {'usuario': 'David', 'activo': True}\ntexto_json = json.dumps(datos)\nprint('JSON generado:', texto_json)",
+                "instruccion": 'En este paso aprenderemos sobre Persistencia Estructurada: Formato JSON y Serialización. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "import json\ndatos = {'usuario': 'Elena', 'nivel': 3, 'activo': True}\ntexto_json = json.dumps(datos)\nprint('Texto en formato JSON:', texto_json)",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1256,43 +1238,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": 'import json\ns = \'{"version": 2.0, "lenguaje": "Python"}\'\nd = json.loads(s)\nprint(\'Versión recuperada:\', d[\'version\'])',
+                "codigo": 'import json\ntexto = \'{"curso": "Python", "duracion_horas": 40}\'\nobjeto = json.loads(texto)\nprint(\'Curso decodificado:\', objeto[\'curso\'])',
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 29: Persistencia Estructurada: Formato JSON y Serialización. Completa el código requerido y ejecuta para validar.',
-                "codigo": "import json\ninfo = {'curso': 'Python 2026', 'alumnos': 150}\ns = json.dumps(info)\nrecuperado = json.loads(s)\nprint('Curso recuperado:', recuperado['curso'])",
-                "salida_esperada": 'Curso recuperado: Python 2026',
+                "instruccion": "Importa json. Crea un diccionario config = {'tema': 'oscuro', 'fuente': 14}. Conviértelo a texto JSON con json.dumps(config) e imprime: print('JSON:', json.dumps(config)).",
+                "codigo": "import json\n# 1. Crea config = {'tema': 'oscuro', 'fuente': 14}\n# 2. Imprime: print('JSON:', json.dumps(config))\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'python 2026' in res.lower()
+                "validar": lambda src, res, ns: "oscuro" in res.lower() and "json.dumps" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función del módulo json convierte un diccionario de Python en texto JSON?\n\nOpciones:\n1. json.dumps()\n2. json.loads()\n3. json.parse()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué función del módulo json convierte un diccionario de Python en una cadena de texto JSON?\n\nOpciones:\n1. json.dumps()\n2. json.loads()\n3. json.parse()\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué función del módulo json convierte un diccionario de Python en texto JSON?',
+                "pistas": ['Lee detenidamente las 3 opciones.'],
+                "pregunta": '¿Qué función del módulo json convierte un diccionario de Python en una cadena de texto JSON?',
                 "opciones": ['json.dumps()', 'json.loads()', 'json.parse()'],
                 "correcta": 0,
-                "explicacion": 'dumps (dump string) serializa objetos Python a texto en formato JSON.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'json.dumps() (dump string) serializa objetos de Python a texto JSON.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 30,
         "titulo": 'Capítulo 30: Bases de Datos Relacionales con SQLite: Tablas y Consultas',
-        "resumen": 'Almacena datos relacionales persistentes con el motor nativo SQLite3 mediante tablas, inserciones y consultas SELECT.',
+        "resumen": 'Gestiona datos organizados en tablas usando SQL integrado y el módulo sqlite3.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 30: Bases de Datos Relacionales con SQLite: Tablas y Consultas. Ejecuta el código para observar el concepto en acción.',
-                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\ncur.execute(\'CREATE TABLE notas (materia TEXT, calificacion INT)\')\ncur.execute(\'INSERT INTO notas VALUES ("Python", 10)\')\ncur.execute(\'SELECT * FROM notas\')\nprint(\'Registro encontrado:\', cur.fetchone())\ncon.close()',
+                "instruccion": 'En este paso aprenderemos sobre Bases de Datos Relacionales con SQLite: Tablas y Consultas. Ejecuta el código para observar el concepto en acción.',
+                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\ncur.execute(\'CREATE TABLE notas (id INTEGER, titulo TEXT)\')\ncur.execute("INSERT INTO notas VALUES (1, \'Mi primera nota en SQLite\')")\ncon.commit()\ncur.execute(\'SELECT titulo FROM notas\')\nprint(\'Nota en base de datos:\', cur.fetchone()[0])\ncon.close()',
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1300,43 +1281,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\ncur.execute(\'CREATE TABLE tareas (id INT, item TEXT)\')\ncur.execute(\'INSERT INTO tareas VALUES (1, "Estudiar")\')\ncur.execute(\'SELECT COUNT(*) FROM tareas\')\nprint(\'Total tareas:\', cur.fetchone()[0])\ncon.close()',
+                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\ncur.execute(\'CREATE TABLE usuarios (nombre TEXT, edad INT)\')\ncur.execute("INSERT INTO usuarios VALUES (\'Carlos\', 30)")\ncur.execute(\'SELECT COUNT(*) FROM usuarios\')\nprint(\'Total usuarios en BD:\', cur.fetchone()[0])\ncon.close()',
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 30: Bases de Datos Relacionales con SQLite: Tablas y Consultas. Completa el código requerido y ejecuta para validar.',
-                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\ncur.execute(\'CREATE TABLE usuarios (id INT, nombre TEXT)\')\ncur.execute(\'INSERT INTO usuarios VALUES (1, "Laura")\')\ncur.execute(\'SELECT nombre FROM usuarios WHERE id = 1\')\nfila = cur.fetchone()\nprint(\'Usuario consultado:\', fila[0])\ncon.close()',
-                "salida_esperada": 'Usuario consultado: Laura',
+                "instruccion": "Crea una base de datos SQLite en memoria con con = sqlite3.connect(':memory:'), crea una tabla productos (nombre TEXT) e inserta 'Teclado'. Luego consulta con SELECT y muestra el producto.",
+                "codigo": 'import sqlite3\ncon = sqlite3.connect(\':memory:\')\ncur = con.cursor()\n# 1. cur.execute(\'CREATE TABLE productos (nombre TEXT)\')\n# 2. cur.execute("INSERT INTO productos VALUES (\'Teclado\')")\n# 3. cur.execute(\'SELECT nombre FROM productos\')\n# 4. Imprime: print(\'Producto:\', cur.fetchone()[0])\n\n',
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'laura' in res.lower()
+                "validar": lambda src, res, ns: "teclado" in res.lower() and "sqlite3" in src
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué instrucción SQL se utiliza para recuperar y consultar registros de una tabla?\n\nOpciones:\n1. SELECT\n2. INSERT\n3. DELETE\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué instrucción SQL se utiliza para consultar y extraer registros de una tabla?\n\nOpciones:\n1. SELECT\n2. INSERT\n3. DELETE\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué instrucción SQL se utiliza para recuperar y consultar registros de una tabla?',
+                "pistas": ['Lee detenidamente las 3 opciones.'],
+                "pregunta": '¿Qué instrucción SQL se utiliza para consultar y extraer registros de una tabla?',
                 "opciones": ['SELECT', 'INSERT', 'DELETE'],
                 "correcta": 0,
-                "explicacion": 'SELECT es la instrucción universal para consultar datos en bases de datos relacionales.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "explicacion": 'SELECT es la sentencia fundamental de consulta en SQL.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 31,
         "titulo": 'Capítulo 31: Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON',
-        "resumen": 'Comprende cómo los programas solicitan información a servidores web remotos e interpretan respuestas en JSON.',
+        "resumen": 'Comunícate con servidores en internet para obtener datos actualizados.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 31: Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON. Ejecuta el código para observar el concepto en acción.',
-                "codigo": 'import json\n# Simulación de respuesta de API REST:\nrespuesta_api = \'{"estado": 200, "mensaje": "Servidor en línea"}\'\nobj = json.loads(respuesta_api)\nprint(\'Respuesta recibida:\', obj[\'mensaje\'])',
+                "instruccion": 'En este paso aprenderemos sobre Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "# Simulación estructurada de consumo de API REST:\nrespuesta_api = {\n    'status': 200,\n    'datos': {'temperatura': 22, 'clima': 'Despejado'}\n}\nif respuesta_api['status'] == 200:\n    clima = respuesta_api['datos']['clima']\n    print(f'Reporte meteorológico de la API: {clima}')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1344,43 +1324,42 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": 'import json\nresp = \'{"usuarios": ["Carlos", "Ana", "Marcos"]}\'\ndata = json.loads(resp)\nprint(\'Primer usuario recibido:\', data[\'usuarios\'][0])',
+                "codigo": "respuesta = {\n    'codigo': 200,\n    'usuarios': ['Andrea', 'Pablo', 'Lucía']\n}\nprint('Usuarios recibidos del servidor:', len(respuesta['usuarios']))",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 31: Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON. Completa el código requerido y ejecuta para validar.',
-                "codigo": 'import json\napi_data = \'{"precio_dolar": 4100, "moneda": "COP"}\'\nd = json.loads(api_data)\nprint(\'Valor en COP:\', d[\'precio_dolar\'])',
-                "salida_esperada": 'Valor en COP: 4100',
+                "instruccion": "Dada la respuesta simulada resp = {'estado': 'OK', 'mensaje': 'Servicio disponible'}, comprueba si resp['estado'] == 'OK' e imprime: print('API:', resp['mensaje']).",
+                "codigo": "resp = {'estado': 'OK', 'mensaje': 'Servicio disponible'}\n# Comprueba si resp['estado'] == 'OK' e imprime print('API:', resp['mensaje'])\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: '4100' in res
+                "validar": lambda src, res, ns: "servicio disponible" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
-                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué código de estado HTTP representa tradicionalmente una petición exitosa?\n\nOpciones:\n1. 200 (OK)\n2. 404 (No encontrado)\n3. 500 (Error del servidor)\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
+                "instruccion": 'Pregunta de verificación conceptual:\n¿Qué código de estado HTTP estándar indica que una petición web se resolvió con éxito?\n\nOpciones:\n1. 200 (OK)\n2. 404 (Not Found)\n3. 500 (Internal Error)\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
-                "pregunta": '¿Qué código de estado HTTP representa tradicionalmente una petición exitosa?',
-                "opciones": ['200 (OK)', '404 (No encontrado)', '500 (Error del servidor)'],
-                "correcta": 0,
-                "explicacion": 'El código HTTP 200 OK indica que el servidor procesó y respondió la solicitud correctamente.',
                 "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "pregunta": '¿Qué código de estado HTTP estándar indica que una petición web se resolvió con éxito?',
+                "opciones": ['200 (OK)', '404 (Not Found)', '500 (Internal Error)'],
+                "correcta": 0,
+                "explicacion": 'El código 200 indica éxito en peticiones HTTP.',
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
     {
         "id": 32,
         "titulo": 'Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest',
-        "resumen": 'Asegura la estabilidad de tu código construyendo pruebas unitarias automatizadas con la biblioteca estándar unittest.',
+        "resumen": 'Verifica automáticamente que cada parte de tu código funcione como se espera sin errores.',
         "pasos": [
             {
                 "titulo": 'Paso 1: Fundamento Conceptual',
                 "tipo": 'observar',
-                "instruccion": 'En este paso aprenderemos sobre Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest. Ejecuta el código para observar el concepto en acción.',
-                "codigo": "import unittest\ndef multiplicar(a, b):\n    return a * b\n# Verificación manual assert:\nassert multiplicar(3, 4) == 12\nprint('Prueba unitaria superada: 3 * 4 = 12')",
+                "instruccion": 'En este paso aprenderemos sobre Calidad de Software: Pruebas Unitarias con unittest. Ejecuta el código para observar el concepto en acción.',
+                "codigo": "def multiplicar(a, b):\n    return a * b\n\n# Verificación manual con assert:\nassert multiplicar(3, 4) == 12\nprint('Prueba unitaria superada: 3 * 4 = 12')",
                 "pistas": ['Pulsa Control + Enter para ejecutar.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
@@ -1388,33 +1367,33 @@ CURRICULUM = [
                 "titulo": 'Paso 2: Observación y Modificación guiada',
                 "tipo": 'experimentar',
                 "instruccion": 'Explora el código en el editor, cambia algún parámetro o texto para comprobar cómo reacciona y ejecuta con Control + Enter.',
-                "codigo": "def restar(a, b):\n    return a - b\nassert restar(10, 4) == 6\nprint('Prueba de resta exitosa.')",
+                "codigo": "def restar(a, b):\n    return a - b\n\nassert restar(10, 4) == 6\nprint('Prueba de resta exitosa.')",
                 "pistas": ['Modifica algún valor y presiona Control + Enter.'],
                 "validar": lambda src, res, ns: len(res.strip()) > 0
             },
             {
                 "titulo": 'Paso 3: Reto Práctico Interactivo',
                 "tipo": 'desafio',
-                "instruccion": 'Desafío práctico del Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest. Completa el código requerido y ejecuta para validar.',
-                "codigo": "def es_par(numero):\n    return numero % 2 == 0\nassert es_par(4) == True\nassert es_par(5) == False\nprint('Todas las pruebas unitarias pasaron con éxito.')",
-                "salida_esperada": 'Todas las pruebas unitarias pasaron con éxito.',
+                "instruccion": "Define una función es_par(numero) que retorne numero % 2 == 0. Escribe assert es_par(4) == True y luego imprime: print('Todas las pruebas pasaron con éxito').",
+                "codigo": "# 1. Define def es_par(numero): return numero % 2 == 0\n# 2. assert es_par(4) == True\n# 3. Imprime: print('Todas las pruebas pasaron con éxito')\n\n",
                 "pistas": ['Nivel 1: Sigue las instrucciones del paso.', 'Nivel 2: Comprueba la sintaxis de las variables o funciones.', 'Nivel 3: Ejecuta con Control + Enter para verificar.'],
-                "validar": lambda src, res, ns: 'todas las pruebas' in res.lower() or 'éxito' in res.lower() or 'exito' in res.lower()
+                "validar": lambda src, res, ns: "todas las pruebas" in res.lower() or "éxito" in res.lower() or "exito" in res.lower()
             },
             {
                 "titulo": 'Paso 4: Verificación Conceptual',
                 "tipo": 'quiz',
                 "instruccion": 'Pregunta de verificación conceptual:\n¿Cuál es el propósito primordial de escribir pruebas unitarias?\n\nOpciones:\n1. Verificar de forma automática que cada pequeña parte del código funciona como se espera\n2. Hacer que el programa corra más rápido\n3. Cambiar el color del editor\n\nEscribe el número de tu opción (1, 2 o 3) y pulsa Control + Enter.',
                 "codigo": '# Escribe aquí tu respuesta (1, 2 o 3):\n',
+                "pistas": ['Lee detenidamente las 3 opciones.'],
                 "pregunta": '¿Cuál es el propósito primordial de escribir pruebas unitarias?',
                 "opciones": ['Verificar de forma automática que cada pequeña parte del código funciona como se espera', 'Hacer que el programa corra más rápido', 'Cambiar el color del editor'],
                 "correcta": 0,
                 "explicacion": 'Las pruebas unitarias garantizan que el código cumpla sus requisitos y previenen regresiones en el software.',
-                "pistas": ['Lee detenidamente las 3 opciones.'],
-                "validar": lambda src, res, ns: '1' in ''.join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith('#')])
+                "validar": lambda src, res, ns: '1' in "".join([l.strip() for l in src.splitlines() if l.strip() and not l.strip().startswith("#")])
             },
         ]
     },
+
 ]
 
 GLOSARIO = {

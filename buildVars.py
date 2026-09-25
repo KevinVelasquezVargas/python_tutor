@@ -7,7 +7,7 @@ from site_scons.site_tools.NVDATool.utils import _
 addon_info = AddonInfo(
 	addon_name="python_tutor",
 	addon_summary=_("Aprendizaje de Python con NVDA"),
-	addon_description=_("""Entorno integral accesible para el aprendizaje práctico de Python y editor tiflotécnico de alto rendimiento con NVDA. Incorpora dualidad de uso (Modo Aprendizaje guiado y Modo Solo Editor profesional), navegación estructural de funciones y clases, salto automático a errores de Traceback, verificador de delimitadores, linter acústico PEP 8, traductor a lenguaje humano y currículo completo de 32 capítulos desde pensamiento computacional hasta bases de datos y pruebas unitarias."""),
+	addon_description=_("""Herramienta formativa y editor de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 lecciones conceptuales y prácticas, complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo. Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error."""),
 	addon_version="2.0.0",
 	addon_changelog=_("""Registro de cambios versión 2.0.0:
 - Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).
@@ -20,7 +20,7 @@ addon_info = AddonInfo(
 - Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).
 - Adaptación canónica a la plantilla oficial AddonTemplate 2026.
 - Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."""),
-	addon_author="Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>",
+	addon_author="Kevin Andrés Velasquez Vargas",
 	addon_url="https://github.com/KevinVelasquezVargas/python_tutor",
 	addon_sourceURL="https://github.com/KevinVelasquezVargas/python_tutor",
 	addon_docFileName="doc/es/readme.html",

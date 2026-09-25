@@ -3,7 +3,7 @@
 # Módulo: docHandler.py
 # Propósito: Localización y apertura accesible de la documentación HTML del complemento.
 # Plantilla: Adaptado al estándar canónico oficial AddonTemplate de NVDA.
-# Autor: Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>
+# Autor: Kevin Andrés Velasquez Vargas
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

@@ -60,7 +60,7 @@ def generar_comparacion_salida(esperado, obtenido):
     obt_clean = obtenido.strip()
 
     lineas = [
-        "=== COMPARACIÓN DE SALIDA ===",
+        "Comparación de salida:",
         f"Salida esperada: {esp_clean}",
         f"Salida de tu programa: {obt_clean if obt_clean else '(sin salida impresa)'}"
     ]

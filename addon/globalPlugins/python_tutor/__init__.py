@@ -3,7 +3,7 @@
 # Módulo: globalPlugins/python_tutor/__init__.py
 # Complemento: Aprendizaje de Python con NVDA
 # Versión: 2.0.0
-# Autor: Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>
+# Autor: Kevin Andrés Velasquez Vargas
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # Compatibilidad: NVDA 2022.1.0 hasta 2026.3.0
 # ============================================================================
@@ -48,15 +48,15 @@ class PythonTutorSettingsPanel(SettingsPanel):
     def makeSettings(self, settingsSizer):
         prog = ProgressManager.load_progress()
 
-        self.chk_modo_editor = wx.CheckBox(self, label="Iniciar directamente en Modo Solo Editor profesional (ocultar misiones didácticas)")
+        self.chk_modo_editor = wx.CheckBox(self, label="Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)")
         self.chk_modo_editor.SetValue(ProgressManager.get_editor_mode() == "editor")
         settingsSizer.Add(self.chk_modo_editor, flag=wx.ALL, border=6)
 
-        self.chk_sonidos = wx.CheckBox(self, label="Activar señales sonoras y efectos auditivos")
+        self.chk_sonidos = wx.CheckBox(self, label="Efectos sonoros de confirmación y eventos")
         self.chk_sonidos.SetValue(prog.get("sound_enabled", True))
         settingsSizer.Add(self.chk_sonidos, flag=wx.ALL, border=6)
 
-        self.chk_linter = wx.CheckBox(self, label="Activar linter acústico de sangría PEP 8 y sintaxis")
+        self.chk_linter = wx.CheckBox(self, label="Avisos sonoros de sangría y estructura")
         self.chk_linter.SetValue(prog.get("linter_enabled", True))
         settingsSizer.Add(self.chk_linter, flag=wx.ALL, border=6)
 
@@ -124,8 +124,8 @@ class GlobalPlugin(_BasePlugin):
 
             item_soporte = self._sub_menu.Append(
                 wx.ID_ANY,
-                "Soporte y contacto...",
-                "Enviar un correo de consulta o soporte"
+                "Soporte e incidencias...",
+                "Abrir la página de incidencias del repositorio oficial"
             )
             gui.mainFrame.Bind(wx.EVT_MENU, lambda evt: self._abrir_soporte(), id=item_soporte.GetId())
 
@@ -148,11 +148,11 @@ class GlobalPlugin(_BasePlugin):
             pass
 
     def _abrir_soporte(self):
-        url = "mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"
+        url = "https://github.com/KevinVelasquezVargas/python_tutor/issues"
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo cliente de correo para soporte...")
+                ui.message("Abriendo repositorio de incidencias en el navegador...")
         except Exception:
             pass
 

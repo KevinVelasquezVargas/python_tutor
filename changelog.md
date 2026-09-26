@@ -7,6 +7,7 @@
   - *Modo Editor autónomo:* Entorno profesional limpio que desactiva y oculta por completo las cajas didácticas, dejando una navegación por tabulación limpia y directa entre editor, consola y botones principales.
   - Ajuste persistente en las Preferencias de NVDA para iniciar opcionalmente en el Modo Editor autónomo.
 - **Navegación de Pasos y Compatibilidad con NVDA:**
+  - Ejecución ágil con `F5` o `Control + Enter`.
   - Desplazamiento entre pasos mediante `Alt + Flecha Derecha` (siguiente) y `Alt + Flecha Izquierda` (anterior), preservando `Control + Flechas` para la lectura palabra por palabra nativa del lector de pantalla.
   - Desbloqueo progresivo de capítulos: para acceder a un nuevo capítulo es requisito haber superado todas las lecciones del capítulo previo.
 - **Herramientas de Edición y Navegación de Código:**
@@ -26,9 +27,9 @@
   - *Fase 4 (Capítulos 23 a 27):* Programación Orientada a Objetos: clases, atributos, `__init__`, `self`, métodos de instancia, herencia con `super()` y representación textual con `__str__`.
   - *Fase 5 (Capítulos 28 a 32):* Librerías estándar (`math`, `random`, `datetime`), serialización JSON, persistencia SQLite3, APIs REST y pruebas unitarias con `unittest`.
 - **Experiencia de Usuario Optimizada:**
-  - Diálogo de bienvenida simplificado y cordial, derivando la consulta detallada de atajos a la tecla `F2` y a la opción *Acerca de*.
-  - Integración limpia en la barra de menús sin menús redundantes de configuración.
-  - Diccionario técnico interactivo con 43 conceptos y buscador en tiempo real.
+  - Diálogo de bienvenida simplificado y cordial, derivando la consulta detallada de atajos a la tecla `F2` y a la opción *Acerca de* (`F12`).
+  - Integración limpia en la barra de menús con opciones de soporte directo y donaciones.
+  - Diccionario técnico interactivo exhaustivo con 114 conceptos y buscador en tiempo real.
   - Traductor a lenguaje cotidiano (`F1`), linter acústico PEP 8 y consola REPL (`Control + J`).
   - Cierre inmediato con la tecla `Escape` desde cualquier control.
   - Adaptación canónica a la plantilla oficial AddonTemplate 2026 y soporte verificado desde NVDA 2022.1.0 hasta 2026.3.0.

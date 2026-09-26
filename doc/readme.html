@@ -1,570 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprendizaje de Python con NVDA - Manual del Usuario</title>
+  <title>Aprendizaje de Python con NVDA - Documentación Oficial</title>
   <style>
     :root {
       --bg-color: #ffffff;
-      --text-color: #212529;
-      --link-color: #0b5ed7;
-      --link-visited: #59359a;
-      --border-color: #dee2e6;
-      --code-bg: #f8f9fa;
-      --table-header: #e9ecef;
-      --accent-color: #0d6efd;
+      --text-color: #1a1a1a;
+      --heading-color: #0b3c5d;
+      --link-color: #0056b3;
+      --link-focus: #d9381e;
+      --code-bg: #f4f6f8;
+      --border-color: #d0d7de;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-color: #1a1a1a;
-        --text-color: #f1f1f1;
-        --link-color: #6ea8fe;
-        --link-visited: #c29ffa;
-        --border-color: #444444;
-        --code-bg: #2d2d2d;
-        --table-header: #333333;
-        --accent-color: #3d8bfd;
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --heading-color: #82b1ff;
+        --link-color: #80d8ff;
+        --link-focus: #ff8a80;
+        --code-bg: #1e1e1e;
+        --border-color: #424242;
       }
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.6;
       color: var(--text-color);
       background-color: var(--bg-color);
-      max-width: 920px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 2rem 1.5rem;
     }
-    h1, h2, h3, h4 {
-      color: var(--text-color);
-      margin-top: 1.6em;
-      margin-bottom: 0.5em;
-      line-height: 1.3;
+    header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     h1 {
-      border-bottom: 3px solid var(--accent-color);
-      padding-bottom: 12px;
+      color: var(--heading-color);
+      font-size: 2.2rem;
+      margin-top: 0;
     }
     h2 {
+      color: var(--heading-color);
+      font-size: 1.6rem;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 8px;
+      padding-bottom: 0.4rem;
+      margin-top: 2rem;
+    }
+    h3 {
+      color: var(--heading-color);
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    p, ul, ol {
+      margin-bottom: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
     }
     a {
       color: var(--link-color);
       text-decoration: underline;
     }
-    a:visited {
-      color: var(--link-visited);
+    a:focus, a:hover {
+      color: var(--link-focus);
+      outline: 3px solid var(--link-focus);
+      outline-offset: 2px;
     }
-    a:focus {
-      outline: 3px solid var(--accent-color);
-      outline-offset: 3px;
-    }
-    code, kbd {
-      font-family: Consolas, "Courier New", monospace;
+    kbd {
       background-color: var(--code-bg);
-      padding: 2px 6px;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
-      border: 1px solid var(--border-color);
-      font-size: 0.95em;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      font-family: Consolas, "Liberation Mono", Courier, monospace;
+      font-size: 0.9em;
+      padding: 0.2em 0.5em;
     }
-    pre {
+    code {
       background-color: var(--code-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 14px;
-      overflow-x: auto;
-      font-family: Consolas, "Courier New", monospace;
+      border-radius: 3px;
+      font-family: Consolas, "Liberation Mono", Courier, monospace;
+      font-size: 0.9em;
+      padding: 0.15em 0.35em;
     }
-    pre code {
-      background: none;
-      padding: 0;
-      border: none;
+    .metadata-list {
+      list-style-type: none;
+      padding-left: 0;
+      background: var(--code-bg);
+      padding: 1rem;
+      border-left: 4px solid var(--heading-color);
+      border-radius: 4px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.3em 0;
+    .metadata-list li {
+      margin-bottom: 0.4rem;
     }
-    th, td {
-      border: 1px solid var(--border-color);
-      padding: 10px 14px;
-      text-align: left;
-    }
-    th {
-      background-color: var(--table-header);
-      font-weight: bold;
-    }
-    blockquote {
-      border-left: 4px solid var(--accent-color);
-      margin: 1.3em 0;
-      padding: 12px 18px;
-      background-color: var(--code-bg);
-    }
-    nav#indice {
-      background-color: var(--code-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 18px 24px;
-      margin-bottom: 2em;
-    }
-    nav#indice ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-    nav#indice li {
-      margin-bottom: 6px;
+    footer {
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <header role="banner">
     <h1>Aprendizaje de Python con NVDA</h1>
-    <p><strong>Entorno integral de formación en programación accesible y editor tiflotécnico de alto rendimiento.</strong></p>
-    <p>Versión: 2.0.0 | Autor: Kevin Andrés Velasquez Vargas</p>
+    <p>
+      Herramienta formativa y editor de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 capítulos conceptuales y prácticos (128 lecciones), complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo. Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error.
+    </p>
+
+    <ul class="metadata-list" aria-label="Información del complemento">
+      <li><strong>Versión:</strong> 2.0.0</li>
+      <li><strong>Autor:</strong> Kevin Andrés Velasquez Vargas</li>
+      <li><strong>Compatibilidad:</strong> NVDA 2022.1.0 hasta 2026.3.0</li>
+      <li><strong>Licencia:</strong> GNU General Public License v3.0 (GPLv3)</li>
+      <li><strong>Repositorio:</strong> <a href="https://github.com/KevinVelasquezVargas/python_tutor" target="_blank" rel="noopener">Visitar el repositorio oficial en GitHub</a></li>
+    </ul>
   </header>
 
-  <nav id="indice" aria-label="Tabla de contenidos">
-    <h2>Índice de Contenidos</h2>
-    <ul>
-      <li><a href="#introduccion">1. Introducción y Filosofía Didáctica</a></li>
-      <li><a href="#compatibilidad">2. Compatibilidad y Requisitos del Sistema</a></li>
-      <li><a href="#primeros-pasos">3. Primeros Pasos e Inicio Rápido</a></li>
-      <li><a href="#dualidad">4. Dualidad de Uso: Modo Aprendizaje y Modo Solo Editor</a></li>
-      <li><a href="#herramientas-editor">5. Herramientas Tiflotécnicas de Edición</a>
-        <ul>
-          <li><a href="#nav-estructural">Navegación Estructural (Alt + N / Alt + P y Ctrl + Shift + O)</a></li>
-          <li><a href="#salto-error">Salto Inmediato a la Línea del Error (F4)</a></li>
-          <li><a href="#balanceo-delimitadores">Verificador de Delimitadores y Comillas (F7)</a></li>
-          <li><a href="#lectura-consola">Lectura de Consola sin Perder Foco (Ctrl + Shift + C)</a></li>
-          <li><a href="#traductor">Traductor a Lenguaje Humano (F1)</a></li>
-          <li><a href="#linter">Linter Acústico de Sangría PEP 8</a></li>
-          <li><a href="#repl">Laboratorio de Pruebas Rápidas (REPL - Ctrl + J)</a></li>
-          <li><a href="#glosario">Diccionario de Términos (Ctrl + G)</a></li>
-        </ul>
-      </li>
-      <li><a href="#atajos">6. Tabla Completa de Atajos de Teclado</a></li>
-      <li><a href="#temario">7. Plan Formativo Integral (32 Capítulos / 128 Micro-pasos)</a></li>
-      <li><a href="#preferencias">8. Configuración en Opciones de NVDA</a></li>
-      <li><a href="#novedades">9. Registro de Cambios (Historial de Versiones)</a></li>
-      <li><a href="#soporte">10. Soporte Técnico, Donaciones y Licencia</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section id="introduccion">
-      <h2>1. Introducción y Filosofía Didáctica</h2>
+  <main role="main">
+    <section id="introduccion" aria-labelledby="h2-intro">
+      <h2 id="h2-intro">1. Introducción</h2>
       <p>
-        <strong>Aprendizaje de Python con NVDA</strong> es un entorno diseñado para eliminar de raíz las barreras habituales a las que se enfrentan las personas ciegas o con baja visión al aprender programación. 
+        Aprendizaje de Python con NVDA es un complemento integral diseñado para eliminar las barreras de accesibilidad que experimentan las personas con discapacidad visual al aprender y escribir código en Python.
       </p>
       <p>
-        El diseño pedagógico se rige por el principio de <em>«Conceptos Primero»</em> y la no sobrecarga cognitiva:
+        Combina una pedagogía activa no visual («Conceptos Primero», micro-retos, preguntas conceptuales y explicaciones cotidianas) con un editor tiflotécnico profesional, enfocado y libre de distracciones.
       </p>
-      <ul>
-        <li><strong>Fundamentación conceptual previa:</strong> Antes de escribir código formal, se afianzan los conceptos abstractos (algoritmos cotidianos, memoria, decisiones, colecciones y objetos) mediante analogías del mundo real.</li>
-        <li><strong>Micro-pasos de aprendizaje:</strong> Cada capítulo se divide en 4 fases metodológicas: concepto guiado, análisis reflexivo de código, misión práctica interactiva y verificación conceptual mediante preguntas breves.</li>
-        <li><strong>Cero trampas visuales:</strong> Se evitan ejercicios complejos de reordenar código desordenado o contar caracteres visualmente.</li>
-      </ul>
-      <blockquote>
-        <p><strong>Misión:</strong> Proporcionar un puente sólido desde los primeros pasos lógicos hasta el desarrollo de software profesional con bases de datos, librerías estándar y pruebas unitarias.</p>
-      </blockquote>
     </section>
 
-    <section id="compatibilidad">
-      <h2>2. Compatibilidad y Requisitos del Sistema</h2>
+    <section id="iniciar" aria-labelledby="h2-iniciar">
+      <h2 id="h2-iniciar">2. Iniciar el complemento</h2>
       <ul>
-        <li><strong>Lector de pantalla:</strong> NVDA versión 2022.1.0 hasta la versión 2026.3.0 oficial (ambas inclusive).</li>
-        <li><strong>Sistema Operativo:</strong> Microsoft Windows 10, Windows 11 o superior (arquitecturas x86, x64 y ARM64).</li>
-        <li><strong>Intérprete de Python:</strong> Utiliza el entorno de ejecución Python integrado en NVDA. No requiere instalar Python por separado ni configurar variables de entorno en Windows.</li>
+        <li><strong>Atajo global:</strong> <kbd>NVDA + Control + Shift + P</kbd></li>
+        <li><strong>Menú de NVDA:</strong> Menú NVDA (<kbd>NVDA + N</kbd>) &gt; Herramientas &gt; Aprendizaje de Python con NVDA &gt; Aprendizaje de Python con NVDA...</li>
       </ul>
     </section>
 
-    <section id="primeros-pasos">
-      <h2>3. Primeros Pasos e Inicio Rápido</h2>
-      <p>Para abrir el entorno en cualquier momento dispone de las siguientes vías:</p>
-      <ol>
-        <li><strong>Atajo global de teclado:</strong> Pulse <kbd>NVDA + Control + Shift + P</kbd>.</li>
-        <li><strong>Menú Herramientas de NVDA:</strong> Abra el menú de NVDA con <kbd>NVDA + N</kbd>, acceda a <em>Herramientas</em> &gt; <em>Aprendizaje de Python con NVDA</em> &gt; <em>Aprendizaje de Python con NVDA...</em>.</li>
-      </ol>
+    <section id="dualidad" aria-labelledby="h2-dualidad">
+      <h2 id="h2-dualidad">3. Dualidad de Uso</h2>
       <p>
-        Al abrir la ventana, el foco se sitúa de forma automática en el <strong>Editor de código</strong>. En cualquier momento puede cerrar la ventana de manera instantánea presionando la tecla <kbd>Escape</kbd>.
-      </p>
-    </section>
-
-    <section id="dualidad">
-      <h2>4. Dualidad de Uso: Modo Aprendizaje y Modo Solo Editor</h2>
-      <p>
-        El complemento incorpora dos modos de trabajo perfectamente integrados que se pueden conmutar en cualquier momento pulsando <kbd>Control + M</kbd> o desde el menú <em>Herramientas</em> / <em>Configuración</em>:
-      </p>
-      <dl>
-        <dt><strong>Modo Aprendizaje (Didáctico):</strong></dt>
-        <dd>
-          Presenta el currículo guiado con la barra de estado del capítulo, la caja de lectura de misiones, los botones de pistas escalonadas, explicación de línea y navegación de pasos. Al pulsar <kbd>Control + Enter</kbd>, el tutor evalúa los requisitos formativos del ejercicio.
-        </dd>
-        <dt><strong>Modo Solo Editor (Profesional):</strong></dt>
-        <dd>
-          Transforma la interfaz en un editor de código limpio y libre de distracciones. Oculta las cajas de instrucciones y botones pedagógicos, maximizando el espacio de pantalla para el buffer de edición y la consola de salida. Permite escribir, depurar y ejecutar scripts de Python propios sin validaciones de ejercicios. Mantiene al 100% todas las herramientas tiflotécnicas avanzadas.
-        </dd>
-      </dl>
-    </section>
-
-    <section id="herramientas-editor">
-      <h2>5. Herramientas Tiflotécnicas de Edición</h2>
-
-      <article id="nav-estructural">
-        <h3>Navegación Estructural Directa</h3>
-        <p>
-          En ficheros extensos, desplazarse línea a línea resulta ineficiente. El complemento incluye navegación directa por cabeceras:
-        </p>
-        <ul>
-          <li><kbd>Alt + N</kbd>: Salta a la cabecera de la siguiente función (<code>def</code>) o clase (<code>class</code>) en el buffer.</li>
-          <li><kbd>Alt + P</kbd>: Salta a la cabecera de la función o clase anterior.</li>
-          <li><kbd>Control + Shift + O</kbd>: Abre la <strong>Lista de Funciones y Clases</strong> (diálogo de símbolos), enumera todos los bloques con su número de línea y permite saltar directamente al elemento seleccionado al pulsar <kbd>Enter</kbd>.</li>
-        </ul>
-      </article>
-
-      <article id="salto-error">
-        <h3>Salto Inmediato a la Línea del Error (F4)</h3>
-        <p>
-          Cuando una ejecución produce un error de sintaxis o una excepción con Traceback, pulsar <kbd>F4</kbd> posiciona el cursor inmediatamente en la línea exacta del fallo dentro del editor y verbaliza el diagnóstico técnico por voz y braille.
-        </p>
-      </article>
-
-      <article id="balanceo-delimitadores">
-        <h3>Verificador de Delimitadores y Comillas (F7)</h3>
-        <p>
-          Pulsar <kbd>F7</kbd> analiza el código sin ejecutarlo. Comprueba minuciosamente el balanceo de delimitadores: paréntesis <code>()</code>, corchetes <code>[]</code>, llaves <code>{}</code> y comillas simples o dobles sin cerrar. Si detecta una discordancia, sitúa el cursor en la línea del problema e indica el elemento esperado.
-        </p>
-      </article>
-
-      <article id="lectura-consola">
-        <h3>Lectura de Consola sin Perder Foco</h3>
-        <p>
-          Para mantener la máxima agilidad mientras programa en el editor:
-        </p>
-        <ul>
-          <li><kbd>Control + Shift + C</kbd>: Verbaliza todo el texto de la consola de resultados sin retirar el cursor del editor de código.</li>
-          <li><kbd>Control + 6</kbd>: Lee únicamente la última línea emitida en la consola.</li>
-          <li><kbd>F6</kbd>: Alterna el foco físico entre el editor de código y la consola de salida.</li>
-        </ul>
-      </article>
-
-      <article id="traductor">
-        <h3>Traductor a Lenguaje Humano (F1)</h3>
-        <p>
-          Al pulsar <kbd>F1</kbd> sobre cualquier línea de código, el tutor analiza su estructura y la traduce a explicaciones en español coloquial. Por ejemplo:
-        </p>
-        <ul>
-          <li><code>def calcular_total(precio, iva):</code> &rarr; <em>"Definición de función: Declara la función 'calcular_total' que recibe los parámetros 'precio' e 'iva'."</em></li>
-          <li><code>class Vehiculo:</code> &rarr; <em>"Declaración de clase: Define la plantilla u objeto 'Vehiculo'."</em></li>
-          <li><code>with open('datos.txt', 'r') as f:</code> &rarr; <em>"Apertura segura de archivo: Abre 'datos.txt' en modo lectura con cierre automático garantizado."</em></li>
-        </ul>
-      </article>
-
-      <article id="linter">
-        <h3>Linter Acústico de Sangría PEP 8</h3>
-        <p>
-          Emite tonos auditivos diferenciados en tiempo real según el nivel de indentación de la línea activa:
-        </p>
-        <ul>
-          <li><strong>0 espacios:</strong> Clic sutil de alineación raíz.</li>
-          <li><strong>4 espacios:</strong> Tono agudo claro (primer nivel de bloque).</li>
-          <li><strong>8 espacios:</strong> Tono armónico medio (segundo nivel).</li>
-          <li><strong>12 o más espacios:</strong> Tono armónico agudo (tercer nivel anidado).</li>
-          <li><strong>Dos puntos (:):</strong> Tono ascendente de apertura de bloque.</li>
-        </ul>
-      </article>
-
-      <article id="repl">
-        <h3>Laboratorio de Pruebas Rápidas (REPL - Control + J)</h3>
-        <p>
-          Ventana emergente para ensayar cálculos, llamadas a métodos o expresiones puntuales de Python sin modificar el código del editor principal.
-        </p>
-      </article>
-
-      <article id="glosario">
-        <h3>Diccionario de Términos (Control + G)</h3>
-        <p>
-          Buscador interactivo con 43 definiciones técnicas accesibles que abarcan desde conceptos elementales (variable, algoritmo, print) hasta paradigmas avanzados (herencia, JSON, SQLite, unittest, recursividad).
-        </p>
-      </article>
-    </section>
-
-    <section id="atajos">
-      <h2>6. Tabla Completa de Atajos de Teclado</h2>
-      <table>
-        <caption>Atajos de teclado del complemento</caption>
-        <thead>
-          <tr>
-            <th scope="col">Atajo</th>
-            <th scope="col">Acción Realizada</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><kbd>Control + Enter</kbd> (o <kbd>Control + E</kbd>)</td>
-            <td>Ejecutar el código del editor (evalúa misión en Modo Aprendizaje o corre libre en Modo Solo Editor).</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + M</kbd></td>
-            <td><strong>Alternar modo de trabajo:</strong> Conmuta entre el Modo Aprendizaje y el Modo Solo Editor profesional.</td>
-          </tr>
-          <tr>
-            <td><kbd>F4</kbd></td>
-            <td><strong>Ir al error:</strong> Desplaza el cursor a la línea del fallo del Traceback o sintaxis y anuncia el motivo.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + Shift + O</kbd></td>
-            <td><strong>Diálogo de símbolos:</strong> Lista todas las funciones y clases del script para saltar de inmediato.</td>
-          </tr>
-          <tr>
-            <td><kbd>Alt + N</kbd></td>
-            <td>Saltar a la cabecera de la siguiente función (<code>def</code>) o clase (<code>class</code>).</td>
-          </tr>
-          <tr>
-            <td><kbd>Alt + P</kbd></td>
-            <td>Saltar a la cabecera de la función o clase anterior.</td>
-          </tr>
-          <tr>
-            <td><kbd>F7</kbd></td>
-            <td><strong>Verificar sintaxis:</strong> Comprueba el balanceo de delimitadores, comillas y compilación sin ejecutar.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + Shift + C</kbd></td>
-            <td>Leer por voz toda la salida de consola sin mover el cursor del editor.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + 6</kbd></td>
-            <td>Leer por voz la última línea emitida en la consola.</td>
-          </tr>
-          <tr>
-            <td><kbd>F3</kbd> (o <kbd>Control + I</kbd>)</td>
-            <td>Leer la instrucción del paso activo sin retirar el foco del editor de código.</td>
-          </tr>
-          <tr>
-            <td><kbd>F6</kbd></td>
-            <td>Alternar el foco entre el editor de código y la consola de resultados.</td>
-          </tr>
-          <tr>
-            <td><kbd>F1</kbd></td>
-            <td><strong>Traductor a Lenguaje Humano:</strong> Explica la línea actual en lenguaje cotidiano.</td>
-          </tr>
-          <tr>
-            <td><kbd>F2</kbd></td>
-            <td>Mostrar la guía de atajos de teclado.</td>
-          </tr>
-          <tr>
-            <td><kbd>F12</kbd></td>
-            <td>Abrir este manual del usuario en el navegador web predeterminado.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + P</kbd></td>
-            <td>Solicitar una pista de ayuda pedagógica (Modo Aprendizaje).</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + /</kbd> (o <kbd>Control + K</kbd>)</td>
-            <td>Comentar o descomentar la línea actual con <code>#</code>.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + D</kbd></td>
-            <td>Duplicar la línea actual debajo de la misma.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + Shift + K</kbd></td>
-            <td>Eliminar por completo la línea donde se encuentra el cursor.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + L</kbd></td>
-            <td>Anunciar la línea y columna actual del cursor.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + Espacio</kbd></td>
-            <td>Autocompletar palabras reservadas de Python.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + J</kbd></td>
-            <td>Abrir el Laboratorio de Pruebas Rápidas (REPL).</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + G</kbd></td>
-            <td>Abrir el Diccionario de Términos de Python.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + 1</kbd></td>
-            <td>Abrir el Selector de Capítulos del temario.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + R</kbd></td>
-            <td>Restablecer el código del paso a su estado original.</td>
-          </tr>
-          <tr>
-            <td><kbd>Alt + Flecha Derecha</kbd></td>
-            <td>Avanzar al siguiente paso del capítulo.</td>
-          </tr>
-          <tr>
-            <td><kbd>Alt + Flecha Izquierda</kbd></td>
-            <td>Retroceder al paso anterior del capítulo.</td>
-          </tr>
-                    <tr>
-            <td><kbd>Control + N</kbd></td>
-            <td>Iniciar un nuevo script limpio en el editor.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + F</kbd></td>
-            <td>Buscar texto dentro del editor de código.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + G</kbd></td>
-            <td>Desplazarse a un número de línea específico.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + Shift + S</kbd></td>
-            <td>Guardar el script actual con un nuevo nombre o ruta.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + O</kbd></td>
-            <td>Cargar un archivo <code>.py</code> externo en el editor.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + S</kbd></td>
-            <td>Guardar el contenido del editor en el archivo de trabajo.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + 4</kbd></td>
-            <td>Enfocar directamente el Editor de código.</td>
-          </tr>
-          <tr>
-            <td><kbd>Control + 5</kbd></td>
-            <td>Enfocar directamente la Consola de resultados.</td>
-          </tr>
-          <tr>
-            <td><kbd>Escape</kbd></td>
-            <td>Cerrar inmediatamente el entorno interactivo.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="temario">
-      <h2>7. Plan Formativo Integral (32 Capítulos / 128 Micro-pasos)</h2>
-      <p>
-        El currículo abarca desde la formulación lógica previa hasta el desarrollo de aplicaciones completas, dividido en 6 fases pedagógicas:
-      </p>
-
-      <h3>Fase 0: Pensamiento Computacional y Fundamentos Conceptuales</h3>
-      <ol>
-        <li><strong>Capítulo 1: Pensamiento Computacional y Algoritmos Cotidianos:</strong> Instrucciones paso a paso, secuencia ordenada y analogías de la vida real.</li>
-        <li><strong>Capítulo 2: Cómo Piensa una Computadora: Memoria, Procesador y Secuencia:</strong> El ciclo de instrucción, almacenamiento de datos y flujo lineal.</li>
-        <li><strong>Capítulo 3: Lógica Booleana Elemental: Verdadero, Falso y Decisiones:</strong> Estados lógicos, condiciones binarias y compuertas lógicas (AND, OR, NOT).</li>
-      </ol>
-
-      <h3>Fase 1: Sintaxis Básica y Tipos Elementales</h3>
-      <ol start="4">
-        <li><strong>Capítulo 4: Tu Primer Programa: Salida con print y Textos Entrecomillados:</strong> Emisión de mensajes accesibles por voz y braille.</li>
-        <li><strong>Capítulo 5: Variables: Contenedores de Información en Memoria:</strong> Creación, asignación con <code>=</code> y reutilización de valores.</li>
-        <li><strong>Capítulo 6: Tipos de Datos Primitivos: Números Enteros y Decimales:</strong> Operaciones aritméticas con <code>int</code> y <code>float</code>.</li>
-        <li><strong>Capítulo 7: Cadenas de Texto (str) y Operaciones Básicas:</strong> Concatenación, repetición y formateo claro.</li>
-        <li><strong>Capítulo 8: Entrada de Datos del Usuario: input y Conversión de Tipos:</strong> Recepción interactiva de datos y conversión con <code>int()</code> / <code>float()</code>.</li>
-      </ol>
-
-      <h3>Fase 2: Estructuras de Control y Colecciones Fundamentales</h3>
-      <ol start="9">
-        <li><strong>Capítulo 9: Comparaciones y Condiciones: Mayor, Menor e Igualdad:</strong> Operadores relacionales (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>).</li>
-        <li><strong>Capítulo 10: La Estructura Condicional if y la Importancia de la Sangría:</strong> Bloques subordinados a 4 espacios y sangría PEP 8.</li>
-        <li><strong>Capítulo 11: Caminos Alternativos: if, elif y else:</strong> Evaluación de múltiples ramas condicionales.</li>
-        <li><strong>Capítulo 12: Colecciones Ordenadas: Introducción a las Listas:</strong> Declaración entre corchetes <code>[]</code> e indexación base 0.</li>
-        <li><strong>Capítulo 13: Modificando Listas: append, remove y len:</strong> Métodos mutables e inspección de tamaño.</li>
-        <li><strong>Capítulo 14: Bucles y Automatización: Recorridos con for y range:</strong> Iteración predeterminada sobre listas y rangos numéricos.</li>
-        <li><strong>Capítulo 15: Bucles Mientras: Repetición Condicionada con while:</strong> Ciclos condicionados, contadores y prevención de bucles infinitos.</li>
-        <li><strong>Capítulo 16: Estructuras Clave-Valor: Diccionarios en Python:</strong> Almacenamiento asociativo mediante llaves <code>{}</code>.</li>
-      </ol>
-
-      <h3>Fase 3: Modularidad, Robustez y Persistencia Básica</h3>
-      <ol start="17">
-        <li><strong>Capítulo 17: Colecciones Inmutables y Conjuntos: Tuplas y Sets:</strong> Integridad de datos con <code>tuple</code> y unicidad con <code>set</code>.</li>
-        <li><strong>Capítulo 18: Modularidad: Creando Nuestras Propias Funciones con def:</strong> Reutilización de código y paso de argumentos.</li>
-        <li><strong>Capítulo 19: Retorno de Valores y Ámbito de Variables (Scope):</strong> La sentencia <code>return</code>, variables locales y globales.</li>
-        <li><strong>Capítulo 20: Programas Robustos: Control de Excepciones con try y except:</strong> Prevención de bloqueos ante datos inesperados.</li>
-        <li><strong>Capítulo 21: Depuración y Análisis de Errores: Cómo Leer un Traceback:</strong> Comprensión no visual del rastro de errores y uso de <kbd>F4</kbd>.</li>
-        <li><strong>Capítulo 22: Manejo Seguro de Ficheros: Lectura y Escritura con with open:</strong> Persistencia en disco con cierre garantizado de recursos.</li>
-      </ol>
-
-      <h3>Fase 4: Programación Orientada a Objetos (POO) Accesible</h3>
-      <ol start="23">
-        <li><strong>Capítulo 23: Introducción a la Orientación a Objetos: Clases y Atributos:</strong> Modelado del mundo real mediante plantillas e instancias.</li>
-        <li><strong>Capítulo 24: El Constructor __init__ y el Parámetro self:</strong> Inicialización de estado y vinculación de instancia.</li>
-        <li><strong>Capítulo 25: Métodos de Instancia: Acciones que Pertenecen a un Objeto:</strong> Comportamientos definidos dentro de la clase.</li>
-        <li><strong>Capítulo 26: Herencia: Reutilización y Extensión con super():</strong> Clases base y derivadas para modelar jerarquías.</li>
-        <li><strong>Capítulo 27: Representación Textual Accesible de Objetos con __str__:</strong> Generación de cadenas legibles para el sintetizador de voz.</li>
-      </ol>
-
-      <h3>Fase 5: Desarrollo Profesional, Librerías, APIs y Pruebas</h3>
-      <ol start="28">
-        <li><strong>Capítulo 28: Librerías de la Biblioteca Estándar: math, random y datetime:</strong> Importación y uso de módulos utilitarios.</li>
-        <li><strong>Capítulo 29: Intercambio de Datos Estructurados con JSON:</strong> Serialización y deserialización de cadenas JSON con <code>json.loads()</code> y <code>json.dumps()</code>.</li>
-        <li><strong>Capítulo 30: Bases de Datos Relacionales Ligeras con SQLite3:</strong> Creación de tablas, inserción (<code>INSERT</code>) y consulta (<code>SELECT</code>) con SQL nativo.</li>
-        <li><strong>Capítulo 31: Consumo de Servicios Web y APIs REST:</strong> Conexión por red, peticiones GET y consumo estructurado.</li>
-        <li><strong>Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest:</strong> Aserciones automatizadas (<code>assertEqual</code>, <code>assertTrue</code>) para verificar código.</li>
-      </ol>
-    </section>
-
-    <section id="preferencias">
-      <h2>8. Configuración en Opciones de NVDA</h2>
-      <p>
-        El complemento incluye un panel de opciones en el menú estándar de preferencias de NVDA (<kbd>NVDA + Control + G</kbd>, categoría <em>Aprendizaje de Python con NVDA</em>). Desde allí puede configurar:
+        Pulsando <kbd>Control + M</kbd> (o desde el menú Herramientas) se puede alternar en cualquier instante entre:
       </p>
       <ul>
-        <li><strong>Iniciar directamente en Modo Solo Editor profesional:</strong> Omite las secciones didácticas al abrir el tutor.</li>
-        <li><strong>Activar señales sonoras y efectos auditivos:</strong> Controla los sonidos de inicio, pasos superados y pistas.</li>
-        <li><strong>Activar linter acústico de sangría PEP 8 y sintaxis:</strong> Tonos indicadores de nivel de tabulación.</li>
-        <li><strong>Mostrar diálogo de bienvenida al iniciar:</strong> Asistente inicial de bienvenida.</li>
+        <li><strong>Modo Aprendizaje:</strong> Entorno guiado paso a paso con consignas didácticas, pistas escalonadas y evaluación automatizada de ejercicios.</li>
+        <li><strong>Modo Editor autónomo:</strong> Entorno limpio de edición sin secciones pedagógicas. Maximiza el área de trabajo para escribir, depurar y ejecutar scripts propios con todas las herramientas tiflotécnicas activas y navegación fluida por tabulación.</li>
       </ul>
     </section>
 
-    <section id="novedades">
-      <h2>9. Registro de Cambios (Historial de Versiones)</h2>
+    <section id="navegacion-herramientas" aria-labelledby="h2-herramientas">
+      <h2 id="h2-herramientas">4. Navegación y Herramientas del Editor</h2>
+      
+      <h3>Navegación de Lecciones</h3>
+      <ul>
+        <li><kbd>Alt + Flecha Derecha</kbd>: Ir al siguiente paso de la lección.</li>
+        <li><kbd>Alt + Flecha Izquierda</kbd>: Ir al paso anterior de la lección.</li>
+      </ul>
 
+      <h3>Navegación Estructural Directa</h3>
+      <ul>
+        <li><kbd>Alt + N</kbd> / <kbd>Alt + P</kbd>: Saltar a la cabecera de la siguiente o anterior función (<code>def</code>) o clase (<code>class</code>).</li>
+        <li><kbd>Control + Shift + O</kbd>: Diálogo accesible de símbolos para listar todas las funciones y clases y saltar a ellas al instante.</li>
+      </ul>
+
+      <h3>Búsqueda y Desplazamiento</h3>
+      <ul>
+        <li><kbd>Control + F</kbd>: Diálogo accesible para buscar texto en el editor.</li>
+        <li><kbd>Control + G</kbd>: Diálogo accesible para ir directamente a un número de línea.</li>
+      </ul>
+
+      <h3>Gestión de Archivos</h3>
+      <ul>
+        <li><kbd>Control + N</kbd>: Crear un nuevo script limpio en el editor.</li>
+        <li><kbd>Control + O</kbd>: Abrir un archivo Python (<code>.py</code>) existente.</li>
+        <li><kbd>Control + S</kbd>: Guardar el script actual.</li>
+        <li><kbd>Control + Shift + S</kbd>: Guardar script con un nuevo nombre o ubicación.</li>
+      </ul>
+
+      <h3>Ejecución y Diagnóstico</h3>
+      <ul>
+        <li><kbd>F5</kbd>: Ejecutar el script actual en la consola integrada.</li>
+        <li><kbd>F4</kbd>: Salto inmediato a la línea exacta del fallo del Traceback o error de sintaxis con lectura accesible del problema.</li>
+        <li><kbd>F7</kbd>: Verificación en tiempo real de balanceo de delimitadores <code>()</code>, <code>[]</code>, <code>{}</code> y comillas sin cerrar.</li>
+      </ul>
+
+      <h3>Lectura No Invasiva de Consola</h3>
+      <ul>
+        <li><kbd>Control + Shift + C</kbd>: Leer por voz toda la salida de consola sin mover el cursor del editor.</li>
+        <li><kbd>Control + 6</kbd>: Leer la última línea emitida en la consola.</li>
+        <li><kbd>F6</kbd>: Alternar el foco físico entre el editor y la consola de resultados.</li>
+      </ul>
+
+      <h3>Asistencia de Código y Señales Acústicas</h3>
+      <ul>
+        <li><kbd>F1</kbd> (Traductor a Lenguaje Cotidiano): Explica la línea de código donde se encuentra el cursor en lenguaje natural y sencillo.</li>
+        <li><strong>Señales sonoras de sangría PEP 8:</strong> Emite tonos en tiempo real para indicar niveles de sangría (0, 4, 8, 12 espacios) y la apertura de bloques sintácticos tras dos puntos (<code>:</code>).</li>
+      </ul>
+
+      <h3>Edición Eficiente</h3>
+      <ul>
+        <li><kbd>Control + /</kbd> (o <kbd>Control + K</kbd>): Comentar o descomentar la línea actual.</li>
+        <li><kbd>Control + D</kbd>: Duplicar la línea actual hacia abajo.</li>
+        <li><kbd>Control + Shift + K</kbd>: Eliminar la línea actual.</li>
+        <li><kbd>Control + L</kbd>: Anunciar línea y columna actual del cursor.</li>
+        <li><kbd>Control + Espacio</kbd>: Autocompletar palabras clave de Python.</li>
+      </ul>
+
+      <h3>Herramientas de Apoyo</h3>
+      <ul>
+        <li><kbd>Control + J</kbd>: Abrir la consola de pruebas rápidas (REPL).</li>
+        <li><kbd>Control + 1</kbd>: Selector de capítulos del temario (con control de desbloqueo progresivo).</li>
+        <li><kbd>Control + R</kbd>: Restablecer el código inicial del ejercicio.</li>
+        <li><kbd>F2</kbd>: Diálogo con la guía completa de atajos de teclado.</li>
+        <li><kbd>F12</kbd>: Abrir el manual accesible en el navegador web.</li>
+        <li><kbd>Escape</kbd>: Cerrar la ventana del tutor inmediatamente desde cualquier control.</li>
+      </ul>
+    </section>
+
+    <section id="plan-formativo" aria-labelledby="h2-plan">
+      <h2 id="h2-plan">5. Plan Formativo</h2>
+      <ul>
+        <li><strong>Fase 0: Fundamentos Conceptuales:</strong> Pensamiento computacional, algoritmos cotidianos, memoria y procesador, lógica booleana elemental (Capítulos 1 a 3).</li>
+        <li><strong>Fase 1: Sintaxis Básica y Tipos Elementales:</strong> Primer print, variables, números enteros y flotantes, cadenas de texto (<code>str</code>), entrada del usuario con input (Capítulos 4 a 8).</li>
+        <li><strong>Fase 2: Control de Flujo y Colecciones:</strong> Condiciones relacionales, if y sangría PEP 8, elif/else, listas, métodos mutables, bucles for/range, while, diccionarios clave-valor (Capítulos 9 a 16).</li>
+        <li><strong>Fase 3: Modularidad, Robustez y Archivos:</strong> Tuplas y conjuntos (<code>set</code>), funciones con def, retorno con return y ámbito (scope), manejo de excepciones (try/except), lectura accesible de Tracebacks, gestión de archivos con with open (Capítulos 17 a 22).</li>
+        <li><strong>Fase 4: Programación Orientada a Objetos (POO):</strong> Clases y atributos, constructor <code>__init__</code> y parámetro self, métodos de instancia, herencia con super(), representación textual con <code>__str__</code> (Capítulos 23 a 27).</li>
+        <li><strong>Fase 5: Desarrollo Profesional y Pruebas:</strong> Librerías estándar (math, random, datetime), intercambio de datos con JSON, bases de datos locales con SQLite3, consumo de APIs REST, pruebas unitarias con unittest (Capítulos 28 a 32).</li>
+      </ul>
+    </section>
+
+    <section id="configuracion" aria-labelledby="h2-config">
+      <h2 id="h2-config">6. Configuración</h2>
+      <p>
+        Para personalizar el comportamiento del complemento, diríjase a <strong>Menú NVDA &gt; Preferencias &gt; Opciones &gt; Aprendizaje de Python con NVDA</strong>:
+      </p>
+      <ul>
+        <li><strong>Iniciar en Modo Editor autónomo:</strong> Abre directamente el área de edición pura, ocultando las secciones de lecciones del tutor.</li>
+        <li><strong>Efectos sonoros de confirmación y eventos:</strong> Activa o desactiva los tonos al evaluar ejercicios o cambiar de estado.</li>
+        <li><strong>Avisos sonoros de sangría y estructura:</strong> Controla las señales acústicas de espacios de sangría y apertura de bloques.</li>
+        <li><strong>Mostrar diálogo de bienvenida:</strong> Configura si se debe mostrar el mensaje informativo al arrancar el complemento.</li>
+      </ul>
+    </section>
+
+    <section id="registro-novedades" aria-labelledby="h2-novedades">
+      <h2 id="h2-novedades">7. Registro de Novedades</h2>
+      
       <h3>Versión 2.0.0</h3>
       <ul>
-        <li><strong>Dualidad de Uso (Modo Aprendizaje vs. Modo Solo Editor):</strong> Conmutación rápida mediante <kbd>Control + M</kbd> o desde el menú. Permite disponer de un entorno didáctico guiado o de un editor accesible profesional para proyectos libres.</li>
-        <li><strong>Navegación Estructural Tiflotécnica:</strong> Salto entre funciones y clases con <kbd>Alt + N</kbd> (siguiente) y <kbd>Alt + P</kbd> (anterior), más el diálogo de símbolos <kbd>Control + Shift + O</kbd> para listar y saltar directamente a cualquier elemento.</li>
-        <li><strong>Salto Inmediato a la Línea del Error (F4):</strong> Posiciona el cursor en la línea exacta del fallo producido en la última ejecución o aviso de sintaxis, verbalizando el diagnóstico.</li>
-        <li><strong>Verificador de Delimitadores y Comillas (F7):</strong> Detección precisa de paréntesis, corchetes, llaves y comillas sin cerrar antes de ejecutar.</li>
-        <li><strong>Lectura de Consola sin Perder Foco:</strong> Atajo <kbd>Control + Shift + C</kbd> para leer toda la salida y <kbd>Control + 6</kbd> para leer la última línea sin mover el cursor del editor.</li>
-        <li><strong>Currículo Ampliado a 32 Capítulos y 128 Micro-pasos:</strong> Incorporación de la Fase 0 conceptual (pensamiento computacional, algoritmos cotidianos, arquitectura y lógica booleana), Fase 4 completa de Programación Orientada a Objetos (clases, métodos, herencia, <code>__str__</code>) y Fase 5 profesional (JSON, SQLite3, APIs REST y pruebas unitarias con unittest).</li>
-        <li><strong>Diccionario Técnico Ampliado:</strong> 43 términos accesibles con buscador en tiempo real.</li>
-        <li><strong>Herramientas de Edición Avanzadas:</strong> Comentar/descomentar (<kbd>Control + /</kbd>), duplicar línea (<kbd>Control + D</kbd>), eliminar línea (<kbd>Control + Shift + K</kbd>), anunciar posición (<kbd>Control + L</kbd>) y autocompletado (<kbd>Control + Espacio</kbd>).</li>
-        <li><strong>Detección Preventiva de Escritura:</strong> Alerta inmediata ante caracteres conflictivos de teclado (tildes agudas, comillas tipográficas, etc.).</li>
-        <li><strong>Plantilla Oficial AddonTemplate 2026:</strong> Adaptación rigurosa a las especificaciones y herramientas oficiales de empaquetado de NVDA.</li>
-        <li><strong>Compatibilidad Verificada:</strong> Soporte garantizado desde NVDA 2022.1.0 hasta la versión 2026.3.0.</li>
+        <li><strong>Incorporación de la Dualidad de Uso:</strong> Posibilidad de alternar con <kbd>Control + M</kbd> entre el Modo Aprendizaje y el nuevo Modo Editor autónomo para trabajo libre sin distracciones.</li>
+        <li><strong>Ampliación sustancial del temario:</strong> Expansión a 32 capítulos y 128 lecciones prácticas, cubriendo desde lógica computacional hasta POO, SQLite3, APIs REST y pruebas unitarias con unittest.</li>
+        <li><strong>Navegación estructural avanzada:</strong> Implementación de atajos (<kbd>Alt + N</kbd> / <kbd>Alt + P</kbd>) y visor de símbolos (<kbd>Control + Shift + O</kbd>) para saltar rápidamente entre funciones y clases.</li>
+        <li><strong>Diagnóstico y corrección en tiempo real:</strong> Verificación de balanceo de delimitadores y comillas (<kbd>F7</kbd>) y salto directo a líneas con error en Tracebacks (<kbd>F4</kbd>).</li>
+        <li><strong>Optimización de lectura de consola:</strong> Modos de lectura no invasivos por sintetizador (<kbd>Control + Shift + C</kbd> y <kbd>Control + 6</kbd>).</li>
+        <li><strong>Actualización del motor de compatibilidad:</strong> Soporte extendido para versiones modernas de NVDA (hasta 2026.3.0).</li>
       </ul>
 
       <h3>Versión 1.0.0</h3>
       <ul>
-        <li>Lanzamiento inicial del complemento con temario básico de fundamentos de programación.</li>
+        <li>Versión inicial con temario básico de fundamentos y ejecución interactiva en NVDA.</li>
       </ul>
     </section>
 
-    <section id="soporte">
-      <h2>10. Soporte Técnico, Donaciones y Licencia</h2>
+    <section id="soporte" aria-labelledby="h2-soporte">
+      <h2 id="h2-soporte">8. Soporte</h2>
       <p>
-        Este complemento es un proyecto de software libre sin ánimo de lucro, concebido para brindar oportunidades reales de formación y empleo en tecnología a personas con discapacidad visual.
+        Si deseas reportar un error, proponer una nueva funcionalidad, compartir sugerencias pedagógicas o requieres orientación sobre el uso del complemento, puedes comunicarte a través de los siguientes canales:
       </p>
       <ul>
-        <li><strong>Autor y Desarrollador:</strong> Kevin Andrés Velasquez Vargas</li>
-        <li><strong>Canal de Soporte e Incidencias:</strong> <a href="https://github.com/KevinVelasquezVargas/python_tutor/issues" target="_blank" rel="noopener">Reportar en GitHub</a></li>
-        <li><strong>Repositorio Oficial del Proyecto:</strong> <a href="https://github.com/KevinVelasquezVargas/python_tutor" target="_blank" rel="noopener">https://github.com/KevinVelasquezVargas/python_tutor</a></li>
-        <li><strong>Colaborar mediante Donación Voluntaria:</strong> <a href="https://www.paypal.me/kevinvelasquezvargas" target="_blank" rel="noopener">https://www.paypal.me/kevinvelasquezvargas</a></li>
-        <li><strong>Licencia de Software:</strong> Distribuido bajo la Licencia Pública General de GNU Versión 3.0 (GPLv3).</li>
+        <li><strong>Correo electrónico:</strong> <a href="mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA">Enviar un mensaje de correo electrónico de soporte</a></li>
+        <li><strong>Gestión de incidencias:</strong> <a href="https://github.com/KevinVelasquezVargas/python_tutor/issues" target="_blank" rel="noopener">Acceder al sistema de incidencias en GitHub</a></li>
       </ul>
+    </section>
+
+    <section id="donaciones" aria-labelledby="h2-donaciones">
+      <h2 id="h2-donaciones">9. Donaciones</h2>
+      <p>
+        Este proyecto se distribuye de manera libre y gratuita bajo la filosofía del software de código abierto, con el compromiso de garantizar el acceso equitativo a la educación en programación para personas con discapacidad visual.
+      </p>
+      <p>
+        Si este complemento te ha sido de utilidad en tu proceso de aprendizaje o enseñanza y deseas respaldar su mantenimiento continuo, desarrollo de nuevos módulos y actualización permanente:
+      </p>
+      <p>
+        <strong>Enlace directo:</strong> <a href="https://paypal.me/kevinvelasquezvargas" target="_blank" rel="noopener">Realizar una donación voluntaria en PayPal</a>
+      </p>
     </section>
   </main>
 
-  <footer>
-    <hr>
-    <p><small>&copy; 2026 Kevin Andrés Velasquez Vargas. Distribuido libremente bajo licencia GPLv3.</small></p>
+  <footer role="contentinfo">
+    <p>Copyright &copy; 2026 Kevin Andrés Velasquez Vargas.</p>
   </footer>
 
 </body>

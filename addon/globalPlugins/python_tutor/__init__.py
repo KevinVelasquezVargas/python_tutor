@@ -64,6 +64,17 @@ class PythonTutorSettingsPanel(SettingsPanel):
         self.chk_bienvenida.SetValue(prog.get("show_welcome", True))
         settingsSizer.Add(self.chk_bienvenida, flag=wx.ALL, border=6)
 
+        # Botones de soporte y donaciones voluntarias
+        btn_box = wx.BoxSizer(wx.HORIZONTAL)
+        btn_soporte = wx.Button(self, label="Enviar mensaje de soporte")
+        btn_donar = wx.Button(self, label="Realizar donación voluntaria")
+        btn_box.Add(btn_soporte, flag=wx.RIGHT, border=8)
+        btn_box.Add(btn_donar)
+        settingsSizer.Add(btn_box, flag=wx.ALL, border=6)
+
+        btn_soporte.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open("mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"))
+        btn_donar.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open("https://paypal.me/kevinvelasquezvargas"))
+
     def onSave(self):
         ProgressManager.set_editor_mode("editor" if self.chk_modo_editor.GetValue() else "learning")
         ProgressManager.set_setting("sound_enabled", self.chk_sonidos.GetValue())
@@ -120,21 +131,33 @@ class GlobalPlugin(_BasePlugin):
                 "Aprendizaje de Python con NVDA...",
                 "Abre el entorno interactivo de aprendizaje"
             )
-            gui.mainFrame.Bind(wx.EVT_MENU, lambda evt: wx.CallAfter(self._lanzar_interfaz), id=item_abrir.GetId())
-
-            item_soporte = self._sub_menu.Append(
-                wx.ID_ANY,
-                "Soporte e incidencias...",
-                "Abrir la página de incidencias del repositorio oficial"
-            )
-            gui.mainFrame.Bind(wx.EVT_MENU, lambda evt: self._abrir_soporte(), id=item_soporte.GetId())
-
             item_donacion = self._sub_menu.Append(
                 wx.ID_ANY,
                 "Realizar una donación...",
                 "Apoyar el desarrollo libre del complemento"
             )
-            gui.mainFrame.Bind(wx.EVT_MENU, lambda evt: self._abrir_donacion(), id=item_donacion.GetId())
+            item_soporte = self._sub_menu.Append(
+                wx.ID_ANY,
+                "Soporte y contacto...",
+                "Abrir canal de soporte por correo o incidencias"
+            )
+
+            # Vincular en sysTray, sub_menu y mainFrame para garantizar captura del evento
+            cb_abrir = lambda evt: wx.CallAfter(self._lanzar_interfaz)
+            cb_donacion = lambda evt: self._abrir_donacion()
+            cb_soporte = lambda evt: self._abrir_soporte()
+
+            sysTray.Bind(wx.EVT_MENU, cb_abrir, item_abrir)
+            sysTray.Bind(wx.EVT_MENU, cb_donacion, item_donacion)
+            sysTray.Bind(wx.EVT_MENU, cb_soporte, item_soporte)
+
+            self._sub_menu.Bind(wx.EVT_MENU, cb_abrir, id=item_abrir.GetId())
+            self._sub_menu.Bind(wx.EVT_MENU, cb_donacion, id=item_donacion.GetId())
+            self._sub_menu.Bind(wx.EVT_MENU, cb_soporte, id=item_soporte.GetId())
+
+            gui.mainFrame.Bind(wx.EVT_MENU, cb_abrir, id=item_abrir.GetId())
+            gui.mainFrame.Bind(wx.EVT_MENU, cb_donacion, id=item_donacion.GetId())
+            gui.mainFrame.Bind(wx.EVT_MENU, cb_soporte, id=item_soporte.GetId())
 
             self._menu_item_sub = self._tools_menu.AppendSubMenu(self._sub_menu, "Aprendizaje de Python con NVDA")
         except Exception:
@@ -148,13 +171,16 @@ class GlobalPlugin(_BasePlugin):
             pass
 
     def _abrir_soporte(self):
-        url = "https://github.com/KevinVelasquezVargas/python_tutor/issues"
+        url = "mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo repositorio de incidencias en el navegador...")
+                ui.message("Abriendo cliente de correo para soporte...")
         except Exception:
-            pass
+            try:
+                webbrowser.open("https://github.com/KevinVelasquezVargas/python_tutor/issues")
+            except Exception:
+                pass
 
     def _abrir_donacion(self):
         url = "https://www.paypal.me/kevinvelasquezvargas"
@@ -178,36 +204,26 @@ class GlobalPlugin(_BasePlugin):
             wx.CallAfter(self._lanzar_interfaz)
 
     def _lanzar_interfaz(self):
-        parent_window = None
         try:
-            if gui and hasattr(gui, 'mainFrame') and gui.mainFrame:
-                parent_window = gui.mainFrame
-        except Exception:
-            pass
+            if self.gui_frame:
+                try:
+                    self.gui_frame.Show()
+                    self.gui_frame.Raise()
+                    self.gui_frame.edicion.SetFocus()
+                    SoundManager.play('inicio')
+                    return
+                except Exception:
+                    self.gui_frame = None
 
-        if not self.gui_frame:
-            try:
-                self.gui_frame = TutorFrame(parent_window)
-                self.gui_frame.Bind(wx.EVT_WINDOW_DESTROY, self.on_frame_destroy)
-            except Exception as e:
-                if ui:
-                    ui.message(f"Error al iniciar Aprendizaje de Python con NVDA: {e}")
-                return
-
-        try:
+            self.gui_frame = TutorFrame(None)
+            self.gui_frame.Bind(wx.EVT_WINDOW_DESTROY, self.on_frame_destroy)
             self.gui_frame.Show()
             self.gui_frame.Raise()
             self.gui_frame.edicion.SetFocus()
-        except Exception:
-            try:
-                self.gui_frame = TutorFrame(parent_window)
-                self.gui_frame.Bind(wx.EVT_WINDOW_DESTROY, self.on_frame_destroy)
-                self.gui_frame.Show()
-                self.gui_frame.Raise()
-                self.gui_frame.edicion.SetFocus()
-            except Exception as e:
-                if ui:
-                    ui.message(f"No fue posible abrir la ventana del tutor: {e}")
+        except Exception as e:
+            self.gui_frame = None
+            if ui:
+                ui.message(f"Error al iniciar Aprendizaje de Python con NVDA: {e}")
 
     def on_frame_destroy(self, event):
         if event.GetEventObject() == self.gui_frame:

@@ -52,7 +52,9 @@ class SoundManager:
             'indent8': os.path.join(cls._waves_dir, 'indent8.wav'),
             'indent12': os.path.join(cls._waves_dir, 'indent12.wav'),
             'bloque': os.path.join(cls._waves_dir, 'bloque.wav'),
-            'sintaxis_aviso': os.path.join(cls._waves_dir, 'sintaxis_aviso.wav')
+            'sintaxis_aviso': os.path.join(cls._waves_dir, 'sintaxis_aviso.wav'),
+            'modo_editor': os.path.join(cls._waves_dir, 'modo_editor.wav'),
+            'modo_aprendizaje': os.path.join(cls._waves_dir, 'modo_aprendizaje.wav')
         }
 
         # Generar únicamente los archivos que no existan en disco
@@ -84,6 +86,10 @@ class SoundManager:
                 cls._write_sweep(cls._paths['bloque'], 340, 1200, 0.14)
             if not os.path.exists(cls._paths['sintaxis_aviso']):
                 cls._write_descending_tone(cls._paths['sintaxis_aviso'], 550, 280, 0.16)
+            if not os.path.exists(cls._paths['modo_editor']):
+                cls._write_arpeggio(cls._paths['modo_editor'], [330.0, 440.0, 554.37, 659.25], 0.04, 0.16)
+            if not os.path.exists(cls._paths['modo_aprendizaje']):
+                cls._write_arpeggio(cls._paths['modo_aprendizaje'], [440.0, 554.37, 659.25, 880.0], 0.04, 0.18)
         except Exception:
             pass
 

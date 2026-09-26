@@ -22,7 +22,8 @@ class MockModule(MagicMock):
 
 for mod in [
     "wx", "wx.xrc", "gui", "gui.settingsDialogs", "globalPluginHandler",
-    "scriptHandler", "ui", "speech", "addonHandler", "nvwave", "config", "core"
+    "scriptHandler", "ui", "speech", "addonHandler", "nvwave", "config", "core",
+    "winsound"
 ]:
     if mod not in sys.modules:
         sys.modules[mod] = MockModule()

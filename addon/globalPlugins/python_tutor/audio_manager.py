@@ -9,7 +9,11 @@ import os
 import wave
 import struct
 import math
-import winsound
+
+try:
+    import winsound
+except ImportError:
+    winsound = None
 
 try:
     import nvwave
@@ -214,20 +218,22 @@ class SoundManager:
                     pass
 
             # 2. Respaldo: winsound de Windows
-            try:
-                winsound.PlaySound(
-                    wave_file,
-                    winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_NODEFAULT
-                )
-                return
-            except Exception:
-                pass
+            if winsound:
+                try:
+                    winsound.PlaySound(
+                        wave_file,
+                        winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_NODEFAULT
+                    )
+                    return
+                except Exception:
+                    pass
 
         # 3. Respaldo acústico mínimo del sistema si el archivo no responde
-        try:
-            winsound.MessageBeep(winsound.MB_OK)
-        except Exception:
-            pass
+        if winsound:
+            try:
+                winsound.MessageBeep(winsound.MB_OK)
+            except Exception:
+                pass
 
     @classmethod
     def cleanup(cls):

@@ -3,28 +3,29 @@ requires = ["setuptools~=80.9", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "addonTemplate"
+name = "python_tutor"
 dynamic = ["version"]
-description = "NVDA add-on template"
+description = "Herramienta formativa y editor de código adaptado para la programación en Python mediante NVDA"
 maintainers = [
-	{name = "NV Access", email = "info@nvaccess.org"},
+	{name = "Kevin Andrés Velasquez Vargas", email = "kevinvelasquezvargas@gmail.com"},
 ]
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.11"
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
 	"Intended Audience :: End Users/Desktop",
-	"License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 	"Operating System :: Microsoft :: Windows",
 	"Programming Language :: Python :: 3",
 	"Topic :: Accessibility",
+	"Topic :: Education",
 ]
-readme = "readme.md"
-license = {file = "COPYING.TXT"}
-# This package is not installed as a library; every dependency is tooling used to
-# build, translate, or lint the add-on. They are declared as PEP 735 dependency groups.
+readme = "README.md"
+license = {file = "COPYING.txt"}
 dependencies = []
 [project.urls]
-Repository = "https://github.com/nvaccess/addonTemplate"
+Repository = "https://github.com/KevinVelasquezVargas/python_tutor"
+Changelog = "https://github.com/KevinVelasquezVargas/python_tutor/blob/main/changelog.md"
+Issues = "https://github.com/KevinVelasquezVargas/python_tutor/issues"
 
 # PEP 735 dependency groups. `uv sync` installs the `dev` group by default, which
 # pulls in every tool needed to build, translate, and lint the add-on.

@@ -20,6 +20,19 @@ Herramienta formativa y editor de código adaptado para la programación en Pyth
 
 ---
 
+## Tabla de Contenidos
+* [1. Introducción](#1-introducción)
+* [2. Iniciar el complemento](#2-iniciar-el-complemento)
+* [3. Dualidad de Uso](#3-dualidad-de-uso)
+* [4. Navegación y Herramientas del Editor](#4-navegación-y-herramientas-del-editor)
+* [5. Plan Formativo (32 Capítulos y 128 Lecciones)](#5-plan-formativo)
+* [6. Configuración y Preferencias](#6-configuración)
+* [7. Registro de Novedades](#7-registro-de-novedades)
+* [8. Soporte](#8-soporte)
+* [9. Donaciones](#9-donaciones)
+
+---
+
 ## 1. Introducción
 Aprendizaje de Python con NVDA es un complemento integral diseñado para eliminar las barreras de accesibilidad que experimentan las personas con discapacidad visual al aprender y escribir código en Python.
 

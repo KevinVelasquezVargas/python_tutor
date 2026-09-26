@@ -29,7 +29,7 @@ for mod in [
 
 # Agregar la raíz del proyecto para importar módulos de prueba
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, "globalPlugins"))
+sys.path.insert(0, os.path.join(BASE_DIR, "addon", "globalPlugins"))
 
 
 class TestCurriculumIntegrity(unittest.TestCase):
@@ -165,18 +165,37 @@ class TestIDETools(unittest.TestCase):
         self.assertTrue("función" in doc_def.lower() or "funcion" in doc_def.lower())
 
 
+class TestAddonMetadata(unittest.TestCase):
+    """Pruebas de consistencia de metadatos del complemento y empaquetado."""
+
+    def test_manifest_and_buildvars_consistency(self):
+        manifest_path = os.path.join(BASE_DIR, "addon", "manifest.ini")
+        self.assertTrue(os.path.isfile(manifest_path), "addon/manifest.ini debe existir")
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        self.assertIn("name = python_tutor", content)
+        self.assertIn("version = 2.0.0", content)
+        self.assertIn("minimumNVDAVersion = 2022.1.0", content)
+        self.assertIn("lastTestedNVDAVersion = 2026.3.0", content)
+        self.assertIn("Kevin Andrés Velasquez Vargas", content)
+        self.assertIn("32 capítulos conceptuales y prácticos (128 lecciones)", content)
+
+
 class TestAudioAssets(unittest.TestCase):
     """Pruebas de la presencia y formatos de los recursos de audio."""
 
     def test_audio_files_exist_and_valid(self):
         import wave
-        waves_dir = os.path.join(BASE_DIR, "globalPlugins", "python_tutor", "waves")
+        waves_dir = os.path.join(BASE_DIR, "addon", "globalPlugins", "python_tutor", "waves")
         self.assertTrue(os.path.isdir(waves_dir))
 
         required_sounds = [
             "inicio.wav", "exito.wav", "error.wav",
             "modo_editor.wav", "modo_aprendizaje.wav",
-            "paso.wav", "pista.wav", "indent0.wav", "indent4.wav"
+            "paso.wav", "pista.wav", "bloque.wav",
+            "sintaxis_aviso.wav", "indent0.wav",
+            "indent4.wav", "indent8.wav", "indent12.wav"
         ]
         for snd in required_sounds:
             snd_path = os.path.join(waves_dir, snd)
@@ -184,8 +203,10 @@ class TestAudioAssets(unittest.TestCase):
             with wave.open(snd_path, 'rb') as wf:
                 self.assertIn(wf.getnchannels(), (1, 2))
                 self.assertEqual(wf.getsampwidth(), 2, "Debe ser formato PCM 16 bits")
+                self.assertIn(wf.getframerate(), (22050, 44100), "Debe ser frecuencia de muestreo válida (22.05 kHz o 44.1 kHz)")
                 self.assertGreater(wf.getnframes(), 0)
 
 
 if __name__ == "__main__":
     unittest.main()
+

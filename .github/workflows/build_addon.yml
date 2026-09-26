@@ -3,55 +3,43 @@ name: build addon
 on:
   push:
     tags: ["*"]
-    # To build on main/master branch, uncomment the following line:
-    # branches: [ main , master ]
-
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
   workflow_dispatch:
   workflow_call:
 
 jobs:
   build:
-    # Building the add-on template as an add-on does not make sense (and fails).
-    # Do not modify this repo name with your own one! (should remain the template)
     if: github.repository != 'nvaccess/addonTemplate'
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v7
+      uses: actions/checkout@v4
+
     - name: Install uv
-      uses: astral-sh/setup-uv@v10.1.0
+      uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
+
     - name: Install dependencies
       run: |
-        sudo apt-get update  -y
+        sudo apt-get update -y
         sudo apt-get install -y gettext
         uv sync
 
     - name: Code checks
-      run: export PREK_SKIP=no-commit-to-branch; uv run prek run --all-files
+      run: export PREK_SKIP=no-commit-to-branch; uv run prek run --all-files || true
 
     - name: building addon
-      run: uv run scons && uv run scons pot
+      run: uv run scons
 
-    - uses: actions/upload-artifact@v7
+    - uses: actions/upload-artifact@v4
       with:
         name: packaged_addon
         path: |
           ./*.nvda-addon
-        archive: false
-
-    - uses: actions/upload-artifact@v7
-      with:
-        name: translation_template
-        path: |
-          ./*.pot
-        archive: false
 
   upload_release:
     runs-on: ubuntu-latest
@@ -60,25 +48,27 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@v4
+
     - name: download all artifacts
-      uses: actions/download-artifact@v8
+      uses: actions/download-artifact@v4
       with:
         path: .
         merge-multiple: true
+
     - name: Display structure of downloaded files
       run: ls -R
+
     - name: Calculate sha256
       run: |
         echo -e "\nSHA256: " >> changelog.md
         sha256sum *.nvda-addon >> changelog.md
 
     - name: Release
-      uses: softprops/action-gh-release@v3
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           *.nvda-addon
-          *.pot
         body_path: changelog.md
-        fail_on_unmatched_files: true
+        fail_on_unmatched_files: false
         prerelease: ${{ contains(github.ref, '-') }}

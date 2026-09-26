@@ -39,9 +39,10 @@ from .gui_frame import TutorFrame
 from .progress import ProgressManager
 
 _BasePlugin = globalPluginHandler.GlobalPlugin if globalPluginHandler else object
+_BaseSettingsPanel = SettingsPanel if SettingsPanel else object
 
 
-class PythonTutorSettingsPanel(SettingsPanel):
+class PythonTutorSettingsPanel(_BaseSettingsPanel):
     """Panel de configuración nativo integrado en el diálogo de opciones de NVDA."""
     title = "Aprendizaje de Python con NVDA"
 

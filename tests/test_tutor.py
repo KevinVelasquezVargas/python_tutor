@@ -178,7 +178,7 @@ class TestAddonMetadata(unittest.TestCase):
         self.assertIn("name = python_tutor", content)
         self.assertIn("version = 2.0.0", content)
         self.assertIn("minimumNVDAVersion = 2022.1.0", content)
-        self.assertIn("lastTestedNVDAVersion = 2026.3.0", content)
+        self.assertIn("lastTestedNVDAVersion = 2026.2.0", content)
         self.assertIn("Kevin Andrés Velasquez Vargas", content)
         self.assertIn("32 capítulos conceptuales y prácticos (128 lecciones)", content)
 

@@ -1,7 +1,7 @@
 # Aprendizaje de Python con NVDA
 
 [![Versión](https://img.shields.io/github/v/release/KevinVelasquezVargas/python_tutor?label=Versi%C3%B3n&color=blue)](https://github.com/KevinVelasquezVargas/python_tutor/releases/latest)
-[![Compatibilidad NVDA](https://img.shields.io/badge/NVDA-2022.1%20a%202026.3-005a9c)](https://github.com/KevinVelasquezVargas/python_tutor)
+[![Compatibilidad NVDA](https://img.shields.io/badge/NVDA-2022.1%20a%202026.2-005a9c)](https://github.com/KevinVelasquezVargas/python_tutor)
 [![Licencia](https://img.shields.io/badge/Licencia-GPL%20v3-green)](COPYING.txt)
 [![Pruebas Unitarias](https://github.com/KevinVelasquezVargas/python_tutor/actions/workflows/unitTests.yml/badge.svg)](https://github.com/KevinVelasquezVargas/python_tutor/actions)
 [![Descargas](https://img.shields.io/github/downloads/KevinVelasquezVargas/python_tutor/total?label=Descargas&color=orange)](https://github.com/KevinVelasquezVargas/python_tutor/releases)
@@ -14,7 +14,7 @@ Herramienta formativa y editor de código adaptado para la programación en Pyth
 
 * **Versión:** 2.0.0
 * **Autor:** Kevin Andrés Velasquez Vargas
-* **Compatibilidad:** NVDA 2022.1.0 hasta 2026.3.0
+* **Compatibilidad:** NVDA 2022.1.0 hasta 2026.2.0
 * **Licencia:** GNU General Public License v3.0 (GPLv3)
 * **Repositorio:** [Visitar el repositorio oficial en GitHub](https://github.com/KevinVelasquezVargas/python_tutor)
 
@@ -121,7 +121,7 @@ Para personalizar el comportamiento del complemento, diríjase a **Menú NVDA > 
 * **Navegación estructural avanzada:** Implementación de atajos (`Alt + N` / `Alt + P`) y visor de símbolos (`Control + Shift + O`) para saltar rápidamente entre funciones y clases.
 * **Diagnóstico y corrección en tiempo real:** Verificación de balanceo de delimitadores y comillas (`F7`) y salto directo a líneas con error en Tracebacks (`F4`).
 * **Optimización de lectura de consola:** Modos de lectura no invasivos por sintetizador (`Control + Shift + C` y `Control + 6`).
-* **Actualización del motor de compatibilidad:** Soporte extendido para versiones modernas de NVDA (hasta 2026.3.0).
+* **Actualización del motor de compatibilidad:** Soporte extendido para versiones modernas de NVDA (hasta 2026.2.0).
 
 ### Versión 1.0.0
 * Versión inicial con temario básico de fundamentos y ejecución interactiva en NVDA.

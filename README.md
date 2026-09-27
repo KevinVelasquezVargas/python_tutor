@@ -7,7 +7,7 @@
 [![Descargas](https://img.shields.io/github/downloads/KevinVelasquezVargas/python_tutor/total?label=Descargas&color=orange)](https://github.com/KevinVelasquezVargas/python_tutor/releases)
 
 > 📥 **Descarga Directa del Instalador Oficial:**  
-> [**Descargar python_tutor-2.0.0.nvda-addon (856 KB)**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v2.0.0/python_tutor-2.0.0.nvda-addon)  
+> [**Descargar python_tutor-2.0.0.nvda-addon (980 KB)**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v2.0.0/python_tutor-2.0.0.nvda-addon)  
 > *(Descarga directa lista para instalar en NVDA simplemente abriendo el archivo o pulsando Enter sobre él)*
 
 Herramienta formativa y editor de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 capítulos conceptuales y prácticos (128 lecciones), complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo. Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error.

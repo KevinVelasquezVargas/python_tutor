@@ -8,20 +8,34 @@
 
 import re
 
+try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    def _(msg):
+        return msg
+
 
 def traducir_linea_codigo(linea):
     """
     Recibe una línea de código de Python y devuelve una explicación pedagógica,
-    clara y natural en español para personas usuarias de lectores de pantalla.
+    clara y natural para personas usuarias de lectores de pantalla.
     """
     raw_linea = linea.strip()
     if not raw_linea:
-        return "Línea vacía."
+        # Translators: Screen reader explanation for an empty line of code.
+        return _("Empty line.")
 
     # Comentarios
     if raw_linea.startswith("#"):
         comentario = raw_linea.lstrip("#").strip()
-        return f"Comentario: {comentario}. Las computadoras ignoran esta línea, sirve como nota explicativa."
+        # Translators: Screen reader explanation for a Python comment line.
+        return _("Comment: {comment}. Computers ignore this line; it serves as an explanatory note.").format(comment=comentario)
 
     # Quitar comentario inline si existe
     codigo = raw_linea
@@ -33,61 +47,75 @@ def traducir_linea_codigo(linea):
     if m_print:
         contenido = m_print.group(1).strip()
         if not contenido:
-            return "Instrucción print: Imprime una línea en blanco en la salida de consola."
+            # Translators: Screen reader explanation for print statement with no arguments.
+            return _("print instruction: Prints a blank line to console output.")
         if (contenido.startswith("'") and contenido.endswith("'")) or (contenido.startswith('"') and contenido.endswith('"')):
             texto = contenido[1:-1]
-            return f"Instrucción print: Muestra en pantalla y lee con voz el mensaje: '{texto}'."
+            # Translators: Screen reader explanation for print statement with text literal.
+            return _("print instruction: Displays on screen and speaks aloud the message: '{text}'.").format(text=texto)
         elif "," in contenido:
-            return f"Instrucción print: Muestra varios datos en pantalla separados por espacios: {contenido}."
+            # Translators: Screen reader explanation for print statement with multiple comma-separated items.
+            return _("print instruction: Displays multiple items on screen separated by spaces: {items}.").format(items=contenido)
         elif any(op in contenido for op in ["+", "-", "*", "/", "%"]):
-            return f"Instrucción print: Calcula la operación matemática '{contenido}' y muestra el resultado."
+            # Translators: Screen reader explanation for print statement with arithmetic operation.
+            return _("print instruction: Calculates the mathematical operation '{operation}' and displays the result.").format(operation=contenido)
         else:
-            return f"Instrucción print: Muestra el valor contenido en la variable o expresión: {contenido}."
+            # Translators: Screen reader explanation for print statement with variable or expression.
+            return _("print instruction: Displays the value stored in variable or expression: {expression}.").format(expression=contenido)
 
     # 2. Control de flujo: if
     m_if = re.match(r"^if\s+(.*):$", codigo)
     if m_if:
         cond = m_if.group(1).strip()
-        return f"Condicional 'si' (if): Comprueba si se cumple '{cond}'. Si es verdadera, ejecutará las instrucciones indentadas siguientes."
+        # Translators: Screen reader explanation for an if conditional statement.
+        return _("Conditional 'if': Checks if '{condition}' is met. If true, executes the following indented statements.").format(condition=cond)
 
     # 3. Control de flujo: elif
     m_elif = re.match(r"^elif\s+(.*):$", codigo)
     if m_elif:
         cond = m_elif.group(1).strip()
-        return f"Condición alternativa (elif): Si la condición anterior fue falsa pero '{cond}' es verdadera, ejecutará este bloque."
+        # Translators: Screen reader explanation for an elif conditional statement.
+        return _("Alternative condition 'elif': If the previous condition was false but '{condition}' is true, executes this block.").format(condition=cond)
 
     # 4. Control de flujo: else
     if codigo == "else:":
-        return "Caso alternativo 'de lo contrario' (else): Se ejecutará si ninguna de las condiciones anteriores resultó verdadera."
+        # Translators: Screen reader explanation for an else statement.
+        return _("Alternative case 'else': Executes if none of the preceding conditions were true.")
 
     # 5. Bucle for
     m_for = re.match(r"^for\s+([a-zA-Z0-9_,\s]+)\s+in\s+(.*):$", codigo)
     if m_for:
         var = m_for.group(1).strip()
         iterable = m_for.group(2).strip()
-        return f"Bucle 'para cada' (for): Recorrerá uno a uno los elementos de '{iterable}', asignando cada uno a la variable '{var}' en cada vuelta."
+        # Translators: Screen reader explanation for a for loop.
+        return _("For loop: Iterates item by item over '{iterable}', assigning each to variable '{variable}' on each pass.").format(iterable=iterable, variable=var)
 
     # 6. Bucle while
     m_while = re.match(r"^while\s+(.*):$", codigo)
     if m_while:
         cond = m_while.group(1).strip()
-        return f"Bucle 'mientras' (while): Repetirá las instrucciones siguientes de forma continua mientras la condición '{cond}' siga siendo verdadera."
+        # Translators: Screen reader explanation for a while loop.
+        return _("While loop: Repeats following statements continuously as long as condition '{condition}' remains true.").format(condition=cond)
 
     # 7. Definición de función: def
     m_def = re.match(r"^def\s+([a-zA-Z0-9_]+)\s*\((.*)\):$", codigo)
     if m_def:
         nombre = m_def.group(1).strip()
         params = m_def.group(2).strip()
-        param_desc = f"con los parámetros '{params}'" if params else "sin recibir parámetros"
-        return f"Definición de función: Crea una nueva función llamada '{nombre}' {param_desc}."
+        # Translators: Part of function definition description when arguments are present.
+        param_desc = _("with parameters '{params}'").format(params=params) if params else _("without receiving parameters")
+        # Translators: Screen reader explanation for a function definition.
+        return _("Function definition: Creates a new function named '{name}' {param_desc}.").format(name=nombre, param_desc=param_desc)
 
     # 8. Sentencia return
     m_ret = re.match(r"^return(\s+(.*))?$", codigo)
     if m_ret:
         val = m_ret.group(2)
         if val:
-            return f"Retorno de función: Finaliza la ejecución de la función y devuelve el resultado: {val.strip()}."
-        return "Retorno de función: Finaliza la ejecución de la función sin devolver ningún valor específico."
+            # Translators: Screen reader explanation for return statement returning a value.
+            return _("Function return: Ends function execution and returns result: {value}.").format(value=val.strip())
+        # Translators: Screen reader explanation for bare return statement.
+        return _("Function return: Ends function execution without returning a specific value.")
 
     # 9. Asignaciones acumulativas: +=, -=, *=, /=
     m_aug = re.match(r"^([a-zA-Z0-9_]+)\s*(\+=|-=|\*=|/=|//=)\s*(.*)$", codigo)
@@ -96,13 +124,21 @@ def traducir_linea_codigo(linea):
         op = m_aug.group(2)
         val = m_aug.group(3)
         op_nombres = {
-            "+=": "sumándole",
-            "-=": "restándole",
-            "*=": "multiplicándolo por",
-            "/=": "dividiéndolo entre",
-            "//=": "haciendo división entera con"
+            # Translators: Augmented assignment description for +=.
+            "+=": _("adding"),
+            # Translators: Augmented assignment description for -=.
+            "-=": _("subtracting"),
+            # Translators: Augmented assignment description for *=.
+            "*=": _("multiplying by"),
+            # Translators: Augmented assignment description for /=.
+            "/=": _("dividing by"),
+            # Translators: Augmented assignment description for //=.
+            "//=": _("floor dividing by")
         }
-        return f"Actualización acumulativa: Modifica la variable '{var}' {op_nombres.get(op, 'aplicándole')} {val}."
+        # Translators: Fallback verb for unrecognized augmented assignment operators.
+        op_label = op_nombres.get(op, _("applying"))
+        # Translators: Screen reader explanation for augmented assignment operators (+-, -=, etc.).
+        return _("Cumulative update: Modifies variable '{variable}' by {op} {value}.").format(variable=var, op=op_label, value=val)
 
     # 10. Asignación estándar: variable = valor
     m_assign = re.match(r"^([a-zA-Z0-9_]+)\s*=\s*(.*)$", codigo)
@@ -111,55 +147,72 @@ def traducir_linea_codigo(linea):
         val = m_assign.group(2).strip()
 
         if "input(" in val:
-            return f"Asignación con entrada de usuario: Pide al usuario que escriba un dato y lo guarda en la variable '{var}'."
+            # Translators: Screen reader explanation for user input prompt assignment.
+            return _("Assignment with user input: Prompts the user for input and stores it in variable '{variable}'.").format(variable=var)
         elif (val.startswith("'") and val.endswith("'")) or (val.startswith('"') and val.endswith('"')):
-            return f"Asignación de variable: Guarda en la variable '{var}' el texto {val}."
+            # Translators: Screen reader explanation for string assignment.
+            return _("Variable assignment: Stores text {value} in variable '{variable}'.").format(variable=var, value=val)
         elif val.isdigit() or (val.startswith("-") and val[1:].isdigit()):
-            return f"Asignación de variable: Guarda en la variable '{var}' el número entero {val}."
+            # Translators: Screen reader explanation for integer assignment.
+            return _("Variable assignment: Stores integer number {value} in variable '{variable}'.").format(variable=var, value=val)
         elif val in ("True", "False"):
-            return f"Asignación de variable: Guarda en la variable '{var}' el valor lógico {val}."
+            # Translators: Screen reader explanation for boolean assignment.
+            return _("Variable assignment: Stores boolean value {value} in variable '{variable}'.").format(variable=var, value=val)
         elif val.startswith("[") and val.endswith("]"):
-            return f"Asignación de variable: Crea una lista de elementos y la almacena en '{var}'."
+            # Translators: Screen reader explanation for list assignment.
+            return _("Variable assignment: Creates a list of elements and stores it in '{variable}'.").format(variable=var)
         else:
-            return f"Asignación de variable: Evalúa '{val}' y guarda el resultado en la variable '{var}'."
+            # Translators: Screen reader explanation for generic expression assignment.
+            return _("Variable assignment: Evaluates '{value}' and stores result in variable '{variable}'.").format(variable=var, value=val)
 
     # 11. Manejo de excepciones: try y except
     if codigo == "try:":
-        return "Bloque vigilado (try): Inicia una sección donde intentará ejecutar código protegiéndolo de posibles errores."
+        # Translators: Screen reader explanation for try block.
+        return _("Guarded block (try): Begins a protected section executing code safe from errors.")
 
     m_exc = re.match(r"^except(\s+([a-zA-Z0-9_]+))?:$", codigo)
     if m_exc:
         err = m_exc.group(2)
         if err:
-            return f"Captura de error (except): Si en el bloque try ocurre un fallo de tipo '{err}', ejecutará estas instrucciones para solucionarlo."
-        return "Captura de error (except): Si en el bloque anterior ocurre cualquier error, ejecutará este bloque de contingencia."
+            # Translators: Screen reader explanation for typed except block.
+            return _("Error handler (except): If error '{error}' occurs in try block, executes these recovery statements.").format(error=err)
+        # Translators: Screen reader explanation for general except block.
+        return _("Error handler (except): If any error occurs in the preceding block, executes this fallback block.")
 
     # 12. Importaciones
     m_imp = re.match(r"^import\s+([a-zA-Z0-9_,\s]+)$", codigo)
     if m_imp:
-        return f"Importación de módulo: Carga la librería '{m_imp.group(1).strip()}' para utilizar sus funciones adicionales."
+        # Translators: Screen reader explanation for import statement.
+        return _("Module import: Loads library '{module}' to use its functions.").format(module=m_imp.group(1).strip())
 
     m_from = re.match(r"^from\s+([a-zA-Z0-9_.]+)\s+import\s+(.*)$", codigo)
     if m_from:
-        return f"Importación específica: Carga '{m_from.group(2).strip()}' desde el módulo '{m_from.group(1).strip()}'."
+        # Translators: Screen reader explanation for from-import statement.
+        return _("Specific import: Loads '{item}' from module '{module}'.").format(item=m_from.group(2).strip(), module=m_from.group(1).strip())
 
     # 13. Métodos comunes de listas: append, remove, pop
     if ".append(" in codigo:
         m_app = re.search(r"([a-zA-Z0-9_]+)\.append\((.*)\)", codigo)
         if m_app:
-            return f"Método append: Agrega el elemento '{m_app.group(2)}' al final de la lista '{m_app.group(1)}'."
+            # Translators: Screen reader explanation for list.append method.
+            return _("append method: Adds element '{item}' to the end of list '{list_name}'.").format(item=m_app.group(2), list_name=m_app.group(1))
 
     if ".remove(" in codigo:
         m_rem = re.search(r"([a-zA-Z0-9_]+)\.remove\((.*)\)", codigo)
         if m_rem:
-            return f"Método remove: Elimina la primera aparición de '{m_rem.group(2)}' en la lista '{m_rem.group(1)}'."
+            # Translators: Screen reader explanation for list.remove method.
+            return _("remove method: Removes first occurrence of '{item}' from list '{list_name}'.").format(item=m_rem.group(2), list_name=m_rem.group(1))
 
     # 14. Control directo: break, continue, pass
     if codigo == "break":
-        return "Sentencia break: Interrumpe y finaliza inmediatamente el bucle actual."
+        # Translators: Screen reader explanation for break statement.
+        return _("break statement: Immediately terminates the current loop.")
     if codigo == "continue":
-        return "Sentencia continue: Salta directamente a la siguiente vuelta del bucle ignorando el resto del bloque."
+        # Translators: Screen reader explanation for continue statement.
+        return _("continue statement: Skips directly to the next loop iteration.")
     if codigo == "pass":
-        return "Sentencia pass: Indicador de paso nulo (no realiza ninguna acción, reserva el espacio de un bloque)."
+        # Translators: Screen reader explanation for pass statement.
+        return _("pass statement: Null operation placeholder reserving space for a block.")
 
-    return f"Línea de código: {codigo}."
+    # Translators: Screen reader explanation for generic line of code.
+    return _("Code line: {code}.").format(code=codigo)

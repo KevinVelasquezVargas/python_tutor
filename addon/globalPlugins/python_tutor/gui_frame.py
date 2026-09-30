@@ -10,6 +10,18 @@ import webbrowser
 import wx
 
 try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    def _(msg):
+        return msg
+
+try:
     import ui
     import speech
 except ImportError:
@@ -48,26 +60,31 @@ except ImportError:
 class FindDialog(wx.Dialog):
     """Diálogo accesible para buscar texto dentro del editor de código."""
     def __init__(self, parent, text_ctrl):
-        super(FindDialog, self).__init__(parent, title="Buscar en el Editor", size=(480, 240))
+        # Translators: Dialog title for text search.
+        super(FindDialog, self).__init__(parent, title=_("Find in Editor"), size=(480, 240))
         self.text_ctrl = text_ctrl
 
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label="Texto a buscar:")
+        # Translators: Label for search query text field.
+        lbl = wx.StaticText(panel, label=_("Text to &find:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.query_ctrl = wx.TextCtrl(panel)
         self.query_ctrl.SetName("Texto a buscar")
         vbox.Add(self.query_ctrl, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
-        self.chk_case = wx.CheckBox(panel, label="Coincidir mayúsculas y minúsculas")
+        # Translators: Checkbox label for case-sensitive search.
+        self.chk_case = wx.CheckBox(panel, label=_("Match &case"))
         vbox.Add(self.chk_case, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_find = wx.Button(panel, wx.ID_OK, label="Buscar siguiente")
+        # Translators: Button to find next occurrence.
+        btn_find = wx.Button(panel, wx.ID_OK, label=_("&Find Next"))
         btn_find.SetDefault()
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cerrar")
+        # Translators: Button to close search dialog.
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("&Close"))
         hbox.Add(btn_find, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
@@ -88,7 +105,8 @@ class FindDialog(wx.Dialog):
         q = self.query_ctrl.GetValue()
         if not q:
             if ui:
-                ui.message("Escribe un texto para buscar.")
+                # Translators: Speech announcement when user submits empty search field.
+                ui.message(_("Enter text to search."))
             return
 
         full_text = self.text_ctrl.GetValue()
@@ -105,14 +123,16 @@ class FindDialog(wx.Dialog):
             self.text_ctrl.SetSelection(idx, idx + len(q))
             self.text_ctrl.SetInsertionPoint(idx)
             row = full_text[:idx].count('\n') + 1
-            msg = f"Encontrado '{q}' en la línea {row}"
+            # Translators: Speech notification when search query is found.
+            msg = _("Found '{query}' on line {line}").format(query=q, line=row)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(msg)
             if ui:
                 ui.message(msg)
             self.EndModal(wx.ID_OK)
         else:
-            msg = f"No se encontró '{q}' en el código."
+            # Translators: Speech notification when search query is not found.
+            msg = _("'{query}' not found in code.").format(query=q)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(msg)
             if ui:
@@ -122,7 +142,8 @@ class FindDialog(wx.Dialog):
 class GoToLineDialog(wx.Dialog):
     """Diálogo accesible para desplazarse a un número de línea específico."""
     def __init__(self, parent, text_ctrl):
-        super(GoToLineDialog, self).__init__(parent, title="Ir a la Línea", size=(420, 200))
+        # Translators: Dialog title for jump to line number.
+        super(GoToLineDialog, self).__init__(parent, title=_("Go to Line"), size=(420, 200))
         self.text_ctrl = text_ctrl
         total_lines = self.text_ctrl.GetNumberOfLines()
         if total_lines < 1:
@@ -133,7 +154,8 @@ class GoToLineDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label=f"Número de línea (1 - {self.total_lines}):")
+        # Translators: Label indicating available line number range.
+        lbl = wx.StaticText(panel, label=_("&Line number (1 - {total}):").format(total=self.total_lines))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.line_ctrl = wx.TextCtrl(panel)
@@ -141,9 +163,11 @@ class GoToLineDialog(wx.Dialog):
         vbox.Add(self.line_ctrl, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_go = wx.Button(panel, wx.ID_OK, label="Ir a línea")
+        # Translators: Button to execute line jump.
+        btn_go = wx.Button(panel, wx.ID_OK, label=_("&Go to Line"))
         btn_go.SetDefault()
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        # Translators: Button to cancel line jump dialog.
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("&Cancel"))
         hbox.Add(btn_go, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
@@ -166,7 +190,8 @@ class GoToLineDialog(wx.Dialog):
             line_no = int(val)
         except ValueError:
             if ui:
-                ui.message("Por favor introduce un número de línea válido.")
+                # Translators: Speech announcement for invalid line number entry.
+                ui.message(_("Please enter a valid line number."))
             return
 
         if 1 <= line_no <= self.total_lines:
@@ -175,7 +200,8 @@ class GoToLineDialog(wx.Dialog):
             pt = len('\n'.join(lineas[:line_no - 1])) + 1 if line_no > 1 else 0
             self.text_ctrl.SetInsertionPoint(min(pt, len(src)))
             self.text_ctrl.SetFocus()
-            msg = f"Cursor en línea {line_no}"
+            # Translators: Speech notification confirming cursor positioned at line.
+            msg = _("Cursor on line {line}").format(line=line_no)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(msg)
             if ui:
@@ -183,17 +209,20 @@ class GoToLineDialog(wx.Dialog):
             self.EndModal(wx.ID_OK)
         else:
             if ui:
-                ui.message(f"La línea debe estar entre 1 y {self.total_lines}.")
+                # Translators: Speech error announcement when line number is out of bounds.
+                ui.message(_("The line must be between 1 and {total}.").format(total=self.total_lines))
 
 
 class ChapterSelectDialog(wx.Dialog):
     """Diálogo accesible para saltar directamente a cualquier capítulo del temario."""
     def __init__(self, parent, current_idx):
-        super(ChapterSelectDialog, self).__init__(parent, title="Selector de Capítulos del Temario", size=(650, 480))
+        # Translators: Dialog title for selecting curriculum chapters.
+        super(ChapterSelectDialog, self).__init__(parent, title=_("Curriculum Chapter Selector"), size=(650, 480))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label="Elige el capítulo al que deseas acceder:")
+        # Translators: Label for chapter selection list.
+        lbl = wx.StaticText(panel, label=_("Choose the &chapter you want to access:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.opciones = []
@@ -204,22 +233,28 @@ class ChapterSelectDialog(wx.Dialog):
             desbloqueado = ProgressManager.is_chapter_unlocked(i)
             self.cap_estados.append((desbloqueado, completado))
             if completado:
-                estado_str = "Superado, "
+                # Translators: Status prefix for completed chapter.
+                estado_str = _("Completed, ")
             elif desbloqueado:
-                estado_str = "Disponible, "
+                # Translators: Status prefix for available chapter.
+                estado_str = _("Available, ")
             else:
-                estado_str = "Bloqueado, "
+                # Translators: Status prefix for locked chapter.
+                estado_str = _("Locked, ")
             self.opciones.append(f"{estado_str}{cap.get('titulo', f'Capítulo {i+1}')}")
 
         self.list_box = wx.ListBox(panel, choices=self.opciones)
-        self.list_box.SetName("Lista de capítulos. Presione Enter o haga clic para seleccionar.")
+        # Translators: Accessible name for chapter selection list.
+        self.list_box.SetName(_("Chapter list. Press Enter or click to select."))
         if 0 <= current_idx < len(self.opciones):
             self.list_box.SetSelection(current_idx)
         vbox.Add(self.list_box, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_ok = wx.Button(panel, wx.ID_OK, label="Cargar Capítulo")
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        # Translators: Button to load chosen chapter.
+        btn_ok = wx.Button(panel, wx.ID_OK, label=_("&Load Chapter"))
+        # Translators: Button to cancel line jump dialog.
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("&Cancel"))
         hbox.Add(btn_ok, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
@@ -240,12 +275,14 @@ class ChapterSelectDialog(wx.Dialog):
     def on_ok(self, event):
         sel = self.list_box.GetSelection()
         if sel != wx.NOT_FOUND:
-            desbloqueado, _ = self.cap_estados[sel]
+            desbloqueado, _completado = self.cap_estados[sel]
             if not desbloqueado:
-                msg = "Este capítulo está bloqueado. Debes completar todos los pasos del capítulo anterior para desbloquearlo."
+                # Translators: Message explaining a chapter is locked.
+                msg = _("This chapter is locked. You must complete all steps of the previous chapter to unlock it.")
                 if ui:
                     ui.message(msg)
-                wx.MessageBox(msg, "Capítulo bloqueado", wx.OK | wx.ICON_WARNING, self)
+                # Translators: Message box title when chapter is locked.
+                wx.MessageBox(msg, _("Chapter Locked"), wx.OK | wx.ICON_WARNING, self)
                 return
         self.EndModal(wx.ID_OK)
 
@@ -256,21 +293,27 @@ class ChapterSelectDialog(wx.Dialog):
 class HintDialog(wx.Dialog):
     """Diálogo accesible para el sistema escalonado de pistas pedagógicas."""
     def __init__(self, parent, pistas, nivel_actual=0):
-        super(HintDialog, self).__init__(parent, title="Pista de Asistencia", size=(620, 380))
+        # Translators: Title for pedagogical assistance hint dialog.
+        super(HintDialog, self).__init__(parent, title=_("Assistance Hint"), size=(620, 380))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
         total_pistas = max(1, len(pistas))
-        lbl = wx.StaticText(panel, label=f"Pista disponible (Nivel {min(nivel_actual + 1, total_pistas)} de {total_pistas}):")
+        # Translators: Label indicating current hint tier level.
+        lbl = wx.StaticText(panel, label=_("Available hint (Level {level} of {total}):").format(level=min(nivel_actual + 1, total_pistas), total=total_pistas))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
-        texto_pista = pistas[nivel_actual] if nivel_actual < len(pistas) else (pistas[-1] if pistas else "Revisa las instrucciones del ejercicio.")
+        # Translators: Fallback message when no hint text is defined.
+        fallback_hint = _("Review the exercise instructions.")
+        texto_pista = pistas[nivel_actual] if nivel_actual < len(pistas) else (pistas[-1] if pistas else fallback_hint)
         self.text_ctrl = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         self.text_ctrl.SetValue(texto_pista)
-        self.text_ctrl.SetName("Contenido de la pista.")
+        # Translators: Accessible name for hint text box.
+        self.text_ctrl.SetName(_("Hint content."))
         vbox.Add(self.text_ctrl, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
-        btn_ok = wx.Button(panel, wx.ID_OK, label="Entendido")
+        # Translators: Confirmation button to dismiss hint.
+        btn_ok = wx.Button(panel, wx.ID_OK, label=_("&Understood"))
         vbox.Add(btn_ok, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
 
         panel.SetSizer(vbox)
@@ -288,7 +331,8 @@ class HintDialog(wx.Dialog):
 class WelcomeDialog(wx.Dialog):
     """Diálogo accesible de bienvenida para orientar a nuevos estudiantes."""
     def __init__(self, parent):
-        super(WelcomeDialog, self).__init__(parent, title="Bienvenido a Aprendizaje de Python con NVDA", size=(660, 440))
+        # Translators: Title for the first-launch welcome dialog.
+        super(WelcomeDialog, self).__init__(parent, title=_("Welcome to Python Learning with NVDA"), size=(660, 440))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -307,15 +351,18 @@ class WelcomeDialog(wx.Dialog):
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         txt.SetValue(mensaje)
-        txt.SetName("Mensaje de bienvenida")
+        # Translators: Accessible name for welcome text control.
+        txt.SetName(_("Welcome message"))
         vbox.Add(txt, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         prog = ProgressManager.load_progress()
-        self.chk_mostrar = wx.CheckBox(panel, label="Mostrar esta guía de bienvenida al iniciar")
+        # Translators: Checkbox to show welcome dialog on start.
+        self.chk_mostrar = wx.CheckBox(panel, label=_("&Show this welcome guide on startup"))
         self.chk_mostrar.SetValue(prog.get("show_welcome", True))
         vbox.Add(self.chk_mostrar, flag=wx.LEFT | wx.RIGHT | wx.BOTTOM, border=12)
 
-        btn_comenzar = wx.Button(panel, wx.ID_OK, label="Comenzar a aprender")
+        # Translators: Primary button to start learning curriculum.
+        btn_comenzar = wx.Button(panel, wx.ID_OK, label=_("&Start learning"))
         btn_comenzar.SetDefault()
         vbox.Add(btn_comenzar, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
 
@@ -338,7 +385,8 @@ class WelcomeDialog(wx.Dialog):
 class ShortcutsDialog(wx.Dialog):
     """Diálogo accesible que enumera todos los atajos de teclado del complemento."""
     def __init__(self, parent):
-        super(ShortcutsDialog, self).__init__(parent, title="Guía de Atajos de Teclado", size=(700, 560))
+        # Translators: Dialog title for keyboard shortcuts guide.
+        super(ShortcutsDialog, self).__init__(parent, title=_("Keyboard Shortcuts Guide"), size=(700, 560))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -395,10 +443,12 @@ class ShortcutsDialog(wx.Dialog):
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         txt.SetValue(texto_atajos)
-        txt.SetName("Lista completa de atajos de teclado")
+        # Translators: Accessible name for keyboard shortcuts text box.
+        txt.SetName(_("Full list of keyboard shortcuts"))
         vbox.Add(txt, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
-        btn_cerrar = wx.Button(panel, wx.ID_OK, label="Cerrar Guía")
+        # Translators: Button to close shortcuts guide.
+        btn_cerrar = wx.Button(panel, wx.ID_OK, label=_("&Close Guide"))
         btn_cerrar.SetDefault()
         vbox.Add(btn_cerrar, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
 
@@ -417,7 +467,8 @@ class ShortcutsDialog(wx.Dialog):
 class GlossaryDialog(wx.Dialog):
     """Buscador rápido e interactivo de definiciones del lenguaje."""
     def __init__(self, parent):
-        super(GlossaryDialog, self).__init__(parent, title="Diccionario de Términos de Python", size=(720, 520))
+        # Translators: Dialog title for Python terms glossary.
+        super(GlossaryDialog, self).__init__(parent, title=_("Python Terms Dictionary"), size=(720, 520))
         self.terminos = sorted(list(GLOSARIO.keys()))
         self.filtrados = list(self.terminos)
 
@@ -425,24 +476,29 @@ class GlossaryDialog(wx.Dialog):
         main_sizer = wx.BoxSizer(wx.VERTICAL)
 
         search_box = wx.BoxSizer(wx.HORIZONTAL)
-        lbl = wx.StaticText(panel, label="Buscar término:")
+        # Translators: Label for glossary search input.
+        lbl = wx.StaticText(panel, label=_("Search &term:"))
         search_box.Add(lbl, flag=wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, border=8)
         self.search_ctrl = wx.TextCtrl(panel)
-        self.search_ctrl.SetName("Escribe aquí el comando o concepto para buscar.")
+        # Translators: Accessible name for glossary search control.
+        self.search_ctrl.SetName(_("Type command or concept here to search."))
         search_box.Add(self.search_ctrl, proportion=1, flag=wx.EXPAND)
         main_sizer.Add(search_box, flag=wx.EXPAND | wx.ALL, border=10)
 
         content_box = wx.BoxSizer(wx.HORIZONTAL)
         self.list_box = wx.ListBox(panel, choices=self.terminos)
-        self.list_box.SetName("Términos disponibles.")
+        # Translators: Accessible name for available glossary terms list.
+        self.list_box.SetName(_("Available terms."))
         content_box.Add(self.list_box, proportion=1, flag=wx.EXPAND | wx.RIGHT, border=10)
 
         self.def_ctrl = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.def_ctrl.SetName("Significado del término.")
+        # Translators: Accessible name for term definition readout.
+        self.def_ctrl.SetName(_("Meaning of the term."))
         content_box.Add(self.def_ctrl, proportion=2, flag=wx.EXPAND)
         main_sizer.Add(content_box, proportion=1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, border=10)
 
-        btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label="Cerrar Diccionario")
+        # Translators: Button to close glossary dictionary.
+        btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label=_("&Close Dictionary"))
         main_sizer.Add(btn_cerrar, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=10)
 
         panel.SetSizer(main_sizer)
@@ -472,7 +528,8 @@ class GlossaryDialog(wx.Dialog):
             self.list_box.SetSelection(0)
             self.def_ctrl.SetValue(GLOSARIO.get(self.filtrados[0], ""))
         else:
-            self.def_ctrl.SetValue("No se encontraron coincidencias.")
+            # Translators: Notice displayed when glossary search finds no matches.
+            self.def_ctrl.SetValue(_("No matches found."))
 
     def on_select(self, event):
         sel = self.list_box.GetStringSelection()
@@ -485,7 +542,8 @@ class GlossaryDialog(wx.Dialog):
 class SymbolsDialog(wx.Dialog):
     """Diálogo accesible que enumera todas las funciones y clases del script para navegación directa."""
     def __init__(self, parent, code_text):
-        super(SymbolsDialog, self).__init__(parent, title="Estructura del Código: Funciones y Clases", size=(680, 480))
+        # Translators: Dialog title for symbols navigation.
+        super(SymbolsDialog, self).__init__(parent, title=_("Code Structure: Functions and Classes"), size=(680, 480))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -495,27 +553,33 @@ class SymbolsDialog(wx.Dialog):
         for num_linea, linea in enumerate(lineas, start=1):
             m = re.match(r'^(?:[ \t]*)(def|class)\s+([a-zA-Z_0-9]+)', linea)
             if m:
-                tipo = "Clase" if m.group(1) == "class" else "Función"
+                # Translators: Label identifying symbol as Class or Function.
+                tipo = _("Class") if m.group(1) == "class" else _("Function")
                 nombre = m.group(2)
                 self.simbolos.append((tipo, nombre, num_linea, pos_acum))
             pos_acum += len(linea)
 
-        lbl = wx.StaticText(panel, label="Selecciona una función o clase para desplazar el cursor directamente a su cabecera:")
+        # Translators: Label for symbols selector list.
+        lbl = wx.StaticText(panel, label=_("Select a &function or class to jump cursor directly to its header:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         opciones = [f"[{tipo}] {nombre} (Línea {lin})" for tipo, nombre, lin, _ in self.simbolos]
         if not opciones:
-            opciones = ["(No se encontraron funciones ni clases en el código actual)"]
+            # Translators: Notice in symbols list when no definitions are present.
+            opciones = [_("(No functions or classes found in current code)")]
 
         self.list_box = wx.ListBox(panel, choices=opciones)
-        self.list_box.SetName("Lista de funciones y clases. Presione Enter para ir al elemento.")
+        # Translators: Accessible name for symbols list box.
+        self.list_box.SetName(_("List of functions and classes. Press Enter to jump to element."))
         if self.simbolos:
             self.list_box.SetSelection(0)
         vbox.Add(self.list_box, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_ir = wx.Button(panel, wx.ID_OK, label="Ir al elemento")
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        # Translators: Button to jump to selected symbol.
+        btn_ir = wx.Button(panel, wx.ID_OK, label=_("&Go to Element"))
+        # Translators: Button to cancel line jump dialog.
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("&Cancel"))
         hbox.Add(btn_ir, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
@@ -543,7 +607,8 @@ class SymbolsDialog(wx.Dialog):
 class SupportDialog(wx.Dialog):
     """Diálogo accesible para contactar con soporte técnico o realizar donaciones."""
     def __init__(self, parent):
-        super(SupportDialog, self).__init__(parent, title="Soporte y Contacto", size=(640, 420))
+        # Translators: Dialog title for technical support and contact.
+        super(SupportDialog, self).__init__(parent, title=_("Support and Contact"), size=(640, 420))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -560,12 +625,15 @@ class SupportDialog(wx.Dialog):
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         txt.SetValue(info)
-        txt.SetName("Información de soporte y contacto")
+        # Translators: Accessible name for support info text control.
+        txt.SetName(_("Support and contact information"))
         vbox.Add(txt, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_mail = wx.Button(panel, label="Enviar correo de soporte")
-        btn_donar = wx.Button(panel, label="Realizar donación (PayPal)")
+        # Translators: Button to open default mail client for support.
+        btn_mail = wx.Button(panel, label=_("&Send support email"))
+        # Translators: Button to open donation page.
+        btn_donar = wx.Button(panel, label=_("Make &donation (PayPal)"))
         btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label="Cerrar")
 
         hbox.Add(btn_mail, flag=wx.RIGHT, border=8)
@@ -591,17 +659,20 @@ class SupportDialog(wx.Dialog):
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo cliente de correo predeterminado...")
+                # Translators: Speech announcement when opening email client.
+                ui.message(_("Opening default email client..."))
         except Exception:
             if ui:
-                ui.message("Escribe a kevinvelasquezvargas@gmail.com")
+                # Translators: Speech announcement displaying contact email address.
+                ui.message(_("Write to {email}").format(email="kevinvelasquezvargas@gmail.com"))
 
     def on_donar(self, event=None):
         url = "https://www.paypal.me/kevinvelasquezvargas"
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo página de donaciones...")
+                # Translators: Speech announcement when opening donations link.
+                ui.message(_("Opening donations page..."))
         except Exception:
             pass
 
@@ -609,7 +680,8 @@ class SupportDialog(wx.Dialog):
 class AboutDialog(wx.Dialog):
     """Diálogo accesible que presenta la documentación completa y estructurada del complemento."""
     def __init__(self, parent):
-        super(AboutDialog, self).__init__(parent, title="Acerca de Aprendizaje de Python con NVDA", size=(780, 620))
+        # Translators: Dialog title for About documentation.
+        super(AboutDialog, self).__init__(parent, title=_("About Python Learning with NVDA"), size=(780, 620))
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -765,7 +837,8 @@ class AboutDialog(wx.Dialog):
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         txt.SetValue(contenido)
-        txt.SetName("Documentación de Aprendizaje de Python con NVDA")
+        # Translators: Accessible name for about documentation text control.
+        txt.SetName(_("Python Learning with NVDA Documentation"))
         vbox.Add(txt, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         btn_cerrar = wx.Button(panel, wx.ID_OK, label="Cerrar")
@@ -796,7 +869,8 @@ class TutorFrame(wx.Frame):
     ]
 
     def __init__(self, parent):
-        super(TutorFrame, self).__init__(parent, title="Aprendizaje de Python con NVDA", size=(980, 840))
+        # Translators: Main application window title.
+        super(TutorFrame, self).__init__(parent, title=_("Python Learning with NVDA"), size=(980, 840))
 
         prog = ProgressManager.load_progress()
         self.cap_idx = max(0, min(prog.get("current_chapter", 0), len(CURRICULUM) - 1))
@@ -829,48 +903,67 @@ class TutorFrame(wx.Frame):
 
         # 2. Instrucción del paso
         self.mision_ctrl = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2, size=(-1, 130))
-        self.mision_ctrl.SetName("Instrucción del paso activo.")
+        # Translators: Accessible name for active step instruction control.
+        self.mision_ctrl.SetName(_("Active step instruction."))
         self.vbox.Add(self.mision_ctrl, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 3. Editor de código
-        self.lbl_ed = wx.StaticText(self.panel, label="Editor de código:")
+        # Translators: Label for the code editor area.
+        self.lbl_ed = wx.StaticText(self.panel, label=_("Code editor:"))
         self.vbox.Add(self.lbl_ed, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.edicion = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_PROCESS_TAB)
-        self.edicion.SetName("Editor de código")
+        # Translators: Accessible name for the code editor text control.
+        self.edicion.SetName(_("Code editor"))
         self.vbox.Add(self.edicion, proportion=3, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 4. Consola de resultados
-        self.lbl_sal = wx.StaticText(self.panel, label="Consola de resultados y diagnóstico:")
+        # Translators: Label for results output and diagnostic console.
+        self.lbl_sal = wx.StaticText(self.panel, label=_("Results and diagnostic console:"))
         self.vbox.Add(self.lbl_sal, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.salida = wx.TextCtrl(self.panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.salida.SetName("Consola de resultados.")
+        # Translators: Accessible name for the results output console control.
+        self.salida.SetName(_("Results console."))
         self.vbox.Add(self.salida, proportion=2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # 5. Barra de botones
         self.hbox = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.btn_ejecutar = wx.Button(self.panel, label="Ejecutar (F5 o Ctrl+Enter)")
-        self.btn_ejecutar.SetName("Botón Ejecutar Código")
+        # Translators: Toolbar button to run script or check exercise.
+        self.btn_ejecutar = wx.Button(self.panel, label=_("&Run (F5 or Ctrl+Enter)"))
+        # Translators: Accessible name for run code button.
+        self.btn_ejecutar.SetName(_("Run Code Button"))
 
-        self.btn_pista = wx.Button(self.panel, label="Pedir pista (Ctrl+P)")
-        self.btn_pista.SetName("Botón Pedir Pista")
+        # Translators: Toolbar button to request hint.
+        self.btn_pista = wx.Button(self.panel, label=_("Get &Hint (Ctrl+P)"))
+        # Translators: Accessible name for hint button.
+        self.btn_pista.SetName(_("Get Hint Button"))
 
-        self.btn_traductor = wx.Button(self.panel, label="Explicar línea (F1)")
-        self.btn_traductor.SetName("Botón Explicar Línea")
+        # Translators: Toolbar button to explain current code line.
+        self.btn_traductor = wx.Button(self.panel, label=_("Explain &Line (F1)"))
+        # Translators: Accessible name for explain line button.
+        self.btn_traductor.SetName(_("Explain Line Button"))
 
-        self.btn_anterior = wx.Button(self.panel, label="Paso anterior (Alt+Izquierda)")
-        self.btn_anterior.SetName("Botón Paso Anterior")
+        # Translators: Toolbar button to go to previous step.
+        self.btn_anterior = wx.Button(self.panel, label=_("&Previous Step (Alt+Left)"))
+        # Translators: Accessible name for previous step button.
+        self.btn_anterior.SetName(_("Previous Step Button"))
 
-        self.btn_siguiente = wx.Button(self.panel, label="Paso siguiente (Alt+Derecha)")
-        self.btn_siguiente.SetName("Botón Paso Siguiente")
+        # Translators: Toolbar button to go to next step.
+        self.btn_siguiente = wx.Button(self.panel, label=_("&Next Step (Alt+Right)"))
+        # Translators: Accessible name for next step button.
+        self.btn_siguiente.SetName(_("Next Step Button"))
 
-        self.btn_temario = wx.Button(self.panel, label="Temario (Ctrl+1)")
-        self.btn_temario.SetName("Botón Selector de Capítulos")
+        # Translators: Toolbar button to open curriculum chapter selector.
+        self.btn_temario = wx.Button(self.panel, label=_("&Curriculum (Ctrl+1)"))
+        # Translators: Accessible name for chapter selector button.
+        self.btn_temario.SetName(_("Chapter Selector Button"))
 
-        self.btn_cerrar = wx.Button(self.panel, wx.ID_CANCEL, label="Cerrar (Escape)")
-        self.btn_cerrar.SetName("Botón Cerrar")
+        # Translators: Toolbar button to close application.
+        self.btn_cerrar = wx.Button(self.panel, wx.ID_CANCEL, label=_("&Close (Escape)"))
+        # Translators: Accessible name for close button.
+        self.btn_cerrar.SetName(_("Close Button"))
 
         self.hbox.Add(self.btn_ejecutar, flag=wx.RIGHT, border=6)
         self.hbox.Add(self.btn_pista, flag=wx.RIGHT, border=6)
@@ -947,12 +1040,12 @@ class TutorFrame(wx.Frame):
 
         # 1. Menú Archivo
         m_archivo = wx.Menu()
-        item_nuevo = m_archivo.Append(wx.ID_ANY, "Nuevo script\tCtrl+N", "Inicia un nuevo script limpio en el editor")
-        item_abrir = m_archivo.Append(wx.ID_ANY, "Abrir archivo...\tCtrl+O", "Carga un script de Python desde el disco")
-        item_guardar = m_archivo.Append(wx.ID_ANY, "Guardar script\tCtrl+S", "Guarda el contenido del editor en el archivo")
-        item_guardar_como = m_archivo.Append(wx.ID_ANY, "Guardar como...\tCtrl+Shift+S", "Guarda el código con un nuevo nombre o ubicación")
+        item_nuevo = m_archivo.Append(wx.ID_ANY, _("&New script\tCtrl+N"), _("Starts a new blank script in the editor"))
+        item_abrir = m_archivo.Append(wx.ID_ANY, _("&Open file...\tCtrl+O"), _("Loads a Python script from disk"))
+        item_guardar = m_archivo.Append(wx.ID_ANY, _("&Save script\tCtrl+S"), _("Saves editor content to file"))
+        item_guardar_como = m_archivo.Append(wx.ID_ANY, _("Save &as...\tCtrl+Shift+S"), _("Saves code with a new name or location"))
         m_archivo.AppendSeparator()
-        item_salir = m_archivo.Append(wx.ID_EXIT, "Cerrar tutor\tAlt+F4", "Cierra el entorno de aprendizaje")
+        item_salir = m_archivo.Append(wx.ID_EXIT, _("&Close tutor\tAlt+F4"), _("Closes the learning environment"))
 
         self.Bind(wx.EVT_MENU, self.on_nuevo_archivo, id=item_nuevo.GetId())
         self.Bind(wx.EVT_MENU, self.on_abrir_archivo, id=item_abrir.GetId())
@@ -962,31 +1055,31 @@ class TutorFrame(wx.Frame):
 
         # 2. Menú Edición
         m_edicion = wx.Menu()
-        item_deshacer = m_edicion.Append(wx.ID_UNDO, "Deshacer\tCtrl+Z", "Revierte la última acción de edición")
-        item_rehacer = m_edicion.Append(wx.ID_REDO, "Rehacer\tCtrl+Y", "Reaplica la acción deshecha")
+        item_deshacer = m_edicion.Append(wx.ID_UNDO, _("&Undo\tCtrl+Z"), _("Reverts the last editing action"))
+        item_rehacer = m_edicion.Append(wx.ID_REDO, _("&Redo\tCtrl+Y"), _("Reapplies undone action"))
         m_edicion.AppendSeparator()
-        item_cortar = m_edicion.Append(wx.ID_CUT, "Cortar\tCtrl+X", "Corta el texto seleccionado al portapapeles")
-        item_copiar = m_edicion.Append(wx.ID_COPY, "Copiar\tCtrl+C", "Copia el texto seleccionado al portapapeles")
-        item_pegar = m_edicion.Append(wx.ID_PASTE, "Pegar\tCtrl+V", "Pega el contenido del portapapeles")
-        item_sel_todo = m_edicion.Append(wx.ID_SELECTALL, "Seleccionar todo\tCtrl+A", "Selecciona todo el texto del editor")
+        item_cortar = m_edicion.Append(wx.ID_CUT, _("Cu&t\tCtrl+X"), _("Cuts selected text to clipboard"))
+        item_copiar = m_edicion.Append(wx.ID_COPY, _("&Copy\tCtrl+C"), _("Copies selected text to clipboard"))
+        item_pegar = m_edicion.Append(wx.ID_PASTE, _("&Paste\tCtrl+V"), _("Pastes clipboard content"))
+        item_sel_todo = m_edicion.Append(wx.ID_SELECTALL, _("Select &all\tCtrl+A"), _("Selects all text in editor"))
         m_edicion.AppendSeparator()
-        item_buscar = m_edicion.Append(wx.ID_ANY, "Buscar texto...\tCtrl+F", "Busca palabras o fragmentos de código")
-        item_ir_linea = m_edicion.Append(wx.ID_ANY, "Ir a línea...\tCtrl+G", "Desplaza el cursor al número de línea indicado")
+        item_buscar = m_edicion.Append(wx.ID_ANY, _("&Find text...\tCtrl+F"), _("Searches for words or code snippets"))
+        item_ir_linea = m_edicion.Append(wx.ID_ANY, _("&Go to line...\tCtrl+G"), _("Moves cursor to specified line number"))
         m_edicion.AppendSeparator()
-        item_pep8 = m_edicion.Append(wx.ID_ANY, "Formatear documento según PEP 8\tShift+Alt+F", "Ajusta la sangría a 4 espacios y los espacios de operadores")
-        item_renombrar = m_edicion.Append(wx.ID_ANY, "Renombrar símbolo...\tF2", "Renombra la variable o función seleccionada en todo el script")
-        item_extraer = m_edicion.Append(wx.ID_ANY, "Extraer a función...\tCtrl+Shift+R", "Convierte el bloque seleccionado en una nueva función")
+        item_pep8 = m_edicion.Append(wx.ID_ANY, _("Format document by &PEP 8\tShift+Alt+F"), _("Adjusts indentation to 4 spaces and formats operator spacing"))
+        item_renombrar = m_edicion.Append(wx.ID_ANY, _("&Rename symbol...\tF2"), _("Renames selected variable or function across script"))
+        item_extraer = m_edicion.Append(wx.ID_ANY, _("E&xtract to function...\tCtrl+Shift+R"), _("Converts selected block into a new function"))
         m_edicion.AppendSeparator()
-        item_simbolos = m_edicion.Append(wx.ID_ANY, "Lista de funciones y clases...\tCtrl+Shift+O", "Abre la lista de funciones y clases del archivo")
-        item_sig_def = m_edicion.Append(wx.ID_ANY, "Ir a siguiente función o clase\tAlt+N", "Salta a la cabecera de la siguiente función o clase")
-        item_ant_def = m_edicion.Append(wx.ID_ANY, "Ir a anterior función o clase\tAlt+P", "Salta a la cabecera de la función o clase anterior")
+        item_simbolos = m_edicion.Append(wx.ID_ANY, _("List of &functions and classes...\tCtrl+Shift+O"), _("Opens list of functions and classes in file"))
+        item_sig_def = m_edicion.Append(wx.ID_ANY, _("&Next function or class\tAlt+N"), _("Jumps to next function or class header"))
+        item_ant_def = m_edicion.Append(wx.ID_ANY, _("&Previous function or class\tAlt+P"), _("Jumps to previous function or class header"))
         m_edicion.AppendSeparator()
-        item_comentar = m_edicion.Append(wx.ID_ANY, "Comentar o descomentar línea\tCtrl+/", "Alterna el comentario '#' al inicio de la línea")
-        item_duplicar = m_edicion.Append(wx.ID_ANY, "Duplicar línea abajo\tCtrl+D", "Duplica la línea actual en la siguiente")
-        item_eliminar = m_edicion.Append(wx.ID_ANY, "Eliminar línea actual\tCtrl+Shift+K", "Elimina por completo la línea donde está el cursor")
+        item_comentar = m_edicion.Append(wx.ID_ANY, _("Toggle &comment on line\tCtrl+/"), _("Toggles '#' comment prefix on current line"))
+        item_duplicar = m_edicion.Append(wx.ID_ANY, _("&Duplicate line below\tCtrl+D"), _("Duplicates current line below"))
+        item_eliminar = m_edicion.Append(wx.ID_ANY, _("D&elete current line\tCtrl+Shift+K"), _("Completely deletes the line at cursor"))
         m_edicion.AppendSeparator()
-        item_verificar = m_edicion.Append(wx.ID_ANY, "Verificar sintaxis y delimitadores\tF7", "Comprueba paréntesis, comillas y errores de sintaxis")
-        item_posicion = m_edicion.Append(wx.ID_ANY, "Anunciar posición (Línea y columna)\tCtrl+L", "Informa en qué línea y columna se encuentra el cursor")
+        item_verificar = m_edicion.Append(wx.ID_ANY, _("Check s&yntax and delimiters\tF7"), _("Checks parentheses, quotes, and syntax errors"))
+        item_posicion = m_edicion.Append(wx.ID_ANY, _("Announce &position (Line and column)\tCtrl+L"), _("Reports line and column cursor position"))
 
         self.Bind(wx.EVT_MENU, lambda e: self.edicion.Undo(), id=item_deshacer.GetId())
         self.Bind(wx.EVT_MENU, lambda e: self.edicion.Redo(), id=item_rehacer.GetId())
@@ -1010,23 +1103,23 @@ class TutorFrame(wx.Frame):
 
         # 3. Menú Herramientas (organizado estrictamente por orden alfabético)
         m_herramientas = wx.Menu()
-        item_alternar = m_herramientas.Append(wx.ID_ANY, "Alternar foco entre editor y consola\tF6", "Cambia el foco entre el editor de código y la salida")
-        item_modo = m_herramientas.Append(wx.ID_ANY, "Alternar Modo Aprendizaje / Editor autónomo\tCtrl+M", "Conmuta entre el entorno didáctico y el editor limpio")
-        item_breakpoint = m_herramientas.Append(wx.ID_ANY, "Alternar punto de interrupción\tF9", "Activa o desactiva un punto de parada en la línea actual")
-        item_autocompletar = m_herramientas.Append(wx.ID_ANY, "Autocompletado con documentación\tCtrl+Space", "Muestra sugerencias de código con su descripción")
-        item_repl = m_herramientas.Append(wx.ID_ANY, "Consola de pruebas rápidas (REPL)\tCtrl+J", "Ventana de pruebas inmediatas de una línea")
-        item_depurar = m_herramientas.Append(wx.ID_ANY, "Depuración interactiva paso a paso...\tF10", "Ejecuta el script inspeccionando cada línea y sus variables")
-        item_glosario = m_herramientas.Append(wx.ID_ANY, "Diccionario de términos de Python", "Buscador de términos y conceptos del lenguaje")
-        item_doc_rapida = m_herramientas.Append(wx.ID_ANY, "Documentación rápida del símbolo\tShift+F1", "Lee la explicación de la función o palabra bajo el cursor")
-        item_ejecutar = m_herramientas.Append(wx.ID_ANY, "Ejecutar código y verificar\tF5", "Ejecuta el script o valida la misión actual (F5 o Ctrl+Enter)")
-        item_pruebas = m_herramientas.Append(wx.ID_ANY, "Ejecutar pruebas unitarias (Test Runner)...\tCtrl+T", "Ejecuta las pruebas unittest del script con reporte accesible")
-        item_traductor = m_herramientas.Append(wx.ID_ANY, "Explicar línea de código\tF1", "Traduce la línea de código actual a palabras cotidianas")
-        item_interprete = m_herramientas.Append(wx.ID_ANY, "Gestor de intérpretes y entornos virtuales...\tCtrl+Shift+P", "Selecciona el entorno de Python o virtualenv activo")
-        item_error = m_herramientas.Append(wx.ID_ANY, "Ir a la línea del error del Traceback\tF4", "Mueve el cursor exactamente a la línea del fallo")
-        item_temario = m_herramientas.Append(wx.ID_ANY, "Ir a un capítulo del temario...\tCtrl+1", "Ver el listado completo de capítulos")
-        item_leer_inst = m_herramientas.Append(wx.ID_ANY, "Leer instrucción del paso activo\tF3", "Lee la consigna actual sin retirar el cursor del editor")
-        item_leer_salida = m_herramientas.Append(wx.ID_ANY, "Leer toda la salida de consola\tCtrl+Shift+C", "Verbaliza todo el texto de la consola sin perder el foco")
-        item_reiniciar = m_herramientas.Append(wx.ID_ANY, "Restablecer código del ejercicio\tCtrl+R", "Restaura el código original del paso")
+        item_alternar = m_herramientas.Append(wx.ID_ANY, _("Toggle &focus between editor and console\tF6"), _("Switches focus between editor and output"))
+        item_modo = m_herramientas.Append(wx.ID_ANY, _("Toggle &Learning / Standalone Mode\tCtrl+M"), _("Toggles between didactic guide and standalone editor"))
+        item_breakpoint = m_herramientas.Append(wx.ID_ANY, _("Toggle &breakpoint\tF9"), _("Toggles a breakpoint on current line"))
+        item_autocompletar = m_herramientas.Append(wx.ID_ANY, _("&Autocomplete with documentation\tCtrl+Space"), _("Shows code suggestions with description"))
+        item_repl = m_herramientas.Append(wx.ID_ANY, _("Quick test console (&REPL)\tCtrl+J"), _("Instant one-line interactive test window"))
+        item_depurar = m_herramientas.Append(wx.ID_ANY, _("&Step-by-step interactive debugger...\tF10"), _("Runs script inspecting each line and its variables"))
+        item_glosario = m_herramientas.Append(wx.ID_ANY, _("Python terms &dictionary"), _("Search terms and language concepts"))
+        item_doc_rapida = m_herramientas.Append(wx.ID_ANY, _("&Quick documentation of symbol\tShift+F1"), _("Reads explanation of function or keyword under cursor"))
+        item_ejecutar = m_herramientas.Append(wx.ID_ANY, _("&Run code and verify\tF5"), _("Executes script or validates current mission (F5 or Ctrl+Enter)"))
+        item_pruebas = m_herramientas.Append(wx.ID_ANY, _("Run unit &tests (Test Runner)...\tCtrl+T"), _("Runs unittest suite with accessible report"))
+        item_traductor = m_herramientas.Append(wx.ID_ANY, _("&Explain line of code\tF1"), _("Translates current code line to plain words"))
+        item_interprete = m_herramientas.Append(wx.ID_ANY, _("&Interpreter and virtual environment manager...\tCtrl+Shift+P"), _("Selects active Python interpreter or virtual environment"))
+        item_error = m_herramientas.Append(wx.ID_ANY, _("&Go to Traceback error line\tF4"), _("Moves cursor directly to the error line"))
+        item_temario = m_herramientas.Append(wx.ID_ANY, _("Go to curriculum &chapter...\tCtrl+1"), _("View the complete list of chapters"))
+        item_leer_inst = m_herramientas.Append(wx.ID_ANY, _("Read active step &instruction\tF3"), _("Reads current mission prompt without moving editor cursor"))
+        item_leer_salida = m_herramientas.Append(wx.ID_ANY, _("Read &all console output\tCtrl+Shift+C"), _("Speaks all console output without losing focus"))
+        item_reiniciar = m_herramientas.Append(wx.ID_ANY, _("Reset exercise &code\tCtrl+R"), _("Restores initial exercise code"))
 
         self.Bind(wx.EVT_MENU, self.on_alternar_foco, id=item_alternar.GetId())
         self.Bind(wx.EVT_MENU, self.on_alternar_modo_trabajo, id=item_modo.GetId())
@@ -1048,20 +1141,24 @@ class TutorFrame(wx.Frame):
 
         # 4. Menú Ayuda (organizado alfabéticamente)
         m_ayuda = wx.Menu()
-        item_acerca = m_ayuda.Append(wx.ID_ANY, "Acerca de Aprendizaje de Python con NVDA...\tF12", "Documentación accesible completa en el navegador")
-        item_donacion = m_ayuda.Append(wx.ID_ANY, "Colaborar con el proyecto...", "Realizar una donación voluntaria para apoyar el complemento")
-        item_atajos = m_ayuda.Append(wx.ID_ANY, "Guía de atajos de teclado\tF11", "Muestra la lista de atajos rápidos")
-        item_soporte = m_ayuda.Append(wx.ID_ANY, "Soporte y contacto...", "Canales de contacto directo por correo y asistencia")
+        item_acerca = m_ayuda.Append(wx.ID_ANY, _("&About Python Learning with NVDA...\tF12"), _("Complete accessible documentation in web browser"))
+        item_donacion = m_ayuda.Append(wx.ID_ANY, _("&Donate to project..."), _("Make a voluntary donation to support the add-on"))
+        item_atajos = m_ayuda.Append(wx.ID_ANY, _("Keyboard shortcuts &guide\tF11"), _("Displays quick shortcuts reference"))
+        item_soporte = m_ayuda.Append(wx.ID_ANY, _("&Support and contact..."), _("Direct email and technical assistance channels"))
 
         self.Bind(wx.EVT_MENU, self.on_acerca, id=item_acerca.GetId())
         self.Bind(wx.EVT_MENU, self.on_donacion, id=item_donacion.GetId())
         self.Bind(wx.EVT_MENU, self.on_mostrar_atajos, id=item_atajos.GetId())
         self.Bind(wx.EVT_MENU, self.on_soporte, id=item_soporte.GetId())
 
-        menu_bar.Append(m_archivo, "&Archivo")
-        menu_bar.Append(m_edicion, "&Edición")
-        menu_bar.Append(m_herramientas, "&Herramientas")
-        menu_bar.Append(m_ayuda, "A&yuda")
+        # Translators: Top-level menu title for File operations.
+        menu_bar.Append(m_archivo, _("&File"))
+        # Translators: Top-level menu title for Edit operations.
+        menu_bar.Append(m_edicion, _("&Edit"))
+        # Translators: Top-level menu title for Tools.
+        menu_bar.Append(m_herramientas, _("&Tools"))
+        # Translators: Top-level menu title for Help.
+        menu_bar.Append(m_ayuda, _("&Help"))
         self.SetMenuBar(menu_bar)
 
     def aplicar_modo_trabajo(self, anunciar=False):
@@ -1075,7 +1172,8 @@ class TutorFrame(wx.Frame):
             self.mision_ctrl.Disable()
             self.vbox.Show(self.mision_ctrl, False)
 
-            self.lbl_ed.SetLabel("Editor de código (Modo autónomo):")
+            # Translators: Label for editor in standalone mode.
+            self.lbl_ed.SetLabel(_("Code editor (Standalone mode):"))
 
             self.btn_pista.Hide()
             self.btn_pista.Disable()
@@ -1101,7 +1199,8 @@ class TutorFrame(wx.Frame):
             self.panel.Layout()
             self.Layout()
             if anunciar:
-                msg = "Modo Editor autónomo activado. Entorno limpio de trabajo sin lecciones."
+                # Translators: Speech announcement when switching to standalone editor mode.
+                msg = _("Standalone Editor mode activated. Clean workspace without lessons.")
                 self.anunciar(msg)
         else:
             self.lbl_estado.Enable()
@@ -1138,7 +1237,8 @@ class TutorFrame(wx.Frame):
             self.panel.Layout()
             self.Layout()
             if anunciar:
-                msg = "Modo Aprendizaje guiado activado. Lecciones y temario visibles."
+                # Translators: Speech announcement when switching to guided learning mode.
+                msg = _("Guided Learning mode activated. Lessons and curriculum visible.")
                 self.anunciar(msg)
 
     def on_alternar_modo_trabajo(self, event=None):
@@ -1222,10 +1322,12 @@ class TutorFrame(wx.Frame):
         if bal_err:
             self.ultimo_error_linea = bal_err.get("linea")
             self.ultimo_error_msg = bal_err.get("mensaje")
-            self.salida.SetValue(f"Aviso de delimitadores:\n{bal_err['mensaje']}\n\nPresiona F4 para situar el cursor en la línea del aviso.")
+            # Translators: Output console warning for unclosed delimiters.
+            self.salida.SetValue(_("Delimiter Notice:\n{message}\n\nPress F4 to place cursor on notice line.").format(message=bal_err["mensaje"]))
             if self.sonidos_activos:
                 SoundManager.play('sintaxis_aviso')
-            self.anunciar(f"Aviso de delimitadores: {bal_err['mensaje']}. Presiona F4 para ir a la línea.")
+            # Translators: Speech announcement for unclosed delimiters.
+            self.anunciar(_("Delimiter notice: {message}. Press F4 to go to line.").format(message=bal_err["mensaje"]))
             return
 
         # 2. Comprobación de código vacío o solo comentarios
@@ -1236,15 +1338,20 @@ class TutorFrame(wx.Frame):
                 paso = cap["pasos"][self.paso_idx]
                 tipo_paso = paso.get("tipo", "observar")
                 if tipo_paso == "quiz":
-                    msg = "No has indicado ninguna opción. Escribe el número 1, 2 o 3 en el editor y pulsa Control + Enter o F5."
+                    # Translators: Notice when quiz answer is missing.
+                    msg = _("No option selected. Type number 1, 2, or 3 in the editor and press Control + Enter or F5.")
                 elif tipo_paso == "desafio":
-                    msg = "El editor está vacío o solo contiene comentarios. Escribe tu código para resolver el reto práctico y pulsa Control + Enter o F5."
+                    # Translators: Notice when challenge editor is empty.
+                    msg = _("The editor is empty or only contains comments. Write your code to solve the challenge and press Control + Enter or F5.")
                 elif tipo_paso == "experimentar":
-                    msg = "No se detecta código ejecutable. Realiza la modificación indicada en la consigna y pulsa Control + Enter o F5."
+                    # Translators: Notice when experimentation step has no executable code.
+                    msg = _("No executable code detected. Make the modification indicated in the prompt and press Control + Enter or F5.")
                 else:
-                    msg = "El editor no contiene código para ejecutar."
+                    # Translators: Generic notice for empty editor.
+                    msg = _("The editor contains no code to run.")
             else:
-                msg = "El editor está vacío. Escribe instrucciones de Python antes de ejecutar."
+                # Translators: Notice in standalone mode when trying to run empty editor.
+                msg = _("The editor is empty. Write Python instructions before executing.")
 
             self.salida.SetValue(msg)
             if self.sonidos_activos:
@@ -1257,30 +1364,33 @@ class TutorFrame(wx.Frame):
             res = ejecutar_codigo_seguro(src, timeout=5.0)
             salida_txt = []
             if getattr(res, 'keyboard_warning', None):
-                salida_txt.append("Aviso de escritura:")
+                salida_txt.append(_("Typing Notice:"))
                 salida_txt.append(res.keyboard_warning)
                 salida_txt.append("")
 
-            salida_txt.append("Salida:")
-            salida_txt.append(res.output if res.output else "(Sin salida de consola)")
+            salida_txt.append(_("Output:"))
+            salida_txt.append(res.output if res.output else _("(No console output)"))
 
             if not res.success:
                 self.ultimo_error_linea = res.error_line
                 self.ultimo_error_msg = res.error_msg
                 if res.friendly_explanation:
                     salida_txt.append("")
-                    salida_txt.append(f"Aviso de ejecución: {res.friendly_explanation}")
-                    salida_txt.append("Presiona F4 para posicionar el cursor en la línea del fallo.")
+                    salida_txt.append(_("Execution notice: {message}").format(message=res.friendly_explanation))
+                    salida_txt.append(_("Press F4 to position cursor on error line."))
                 if self.sonidos_activos:
                     SoundManager.play('error')
-                msg_err = res.friendly_explanation or res.error_msg or "Error durante la ejecución"
-                self.anunciar(f"Error: {msg_err}. Pulse F4 para ir al error.")
+                fallback_err = _("Error during execution")
+                msg_err = res.friendly_explanation or res.error_msg or fallback_err
+                # Translators: Speech announcement on execution error.
+                self.anunciar(_("Error: {error}. Press F4 to go to error.").format(error=msg_err))
             else:
                 self.ultimo_error_linea = None
                 self.ultimo_error_msg = None
                 if self.sonidos_activos:
                     SoundManager.play('exito')
-                self.anunciar("Ejecución finalizada con éxito.")
+                # Translators: Speech announcement on successful standalone execution.
+                self.anunciar(_("Execution finished successfully."))
 
             self.salida.SetValue("\n".join(salida_txt))
             wx.CallLater(100, self.salida.SetFocus)
@@ -1301,12 +1411,15 @@ class TutorFrame(wx.Frame):
             digits = re.findall(r'\d+', val_clean)
             if len(digits) == 1 and digits[0] == cor:
                 aprobado = True
-                reporte_pruebas.append(f"Correcto: {paso.get('explicacion', 'Respuesta correcta.')}")
+                correct_exp = paso.get("explicacion", _("Correct answer."))
+                reporte_pruebas.append(_("Correct: {explanation}").format(explanation=correct_exp))
             else:
                 aprobado = False
-                reporte_pruebas.append("Pendiente: La opción seleccionada no es la correcta. Revisa las opciones en la instrucción e inténtalo de nuevo.")
+                # Translators: Notice when quiz answer is incorrect.
+                reporte_pruebas.append(_("Pending: Selected option is incorrect. Review options in instruction and try again."))
 
-            res_output = f"Opción enviada: {digits[0] if digits else val_clean}"
+            submitted_opt = digits[0] if digits else val_clean
+            res_output = _("Option submitted: {option}").format(option=submitted_opt)
             self.ultimo_error_linea = None
             self.ultimo_error_msg = None
         else:
@@ -1329,9 +1442,11 @@ class TutorFrame(wx.Frame):
                         except Exception:
                             ok = False
                         if ok:
-                            reporte_pruebas.append(f"Correcto: {p.get('nombre', 'Prueba')} superada")
+                            test_name = p.get("nombre", _("Test"))
+                            reporte_pruebas.append(_("Correct: {test_name} passed").format(test_name=test_name))
                         else:
-                            reporte_pruebas.append(f"Pendiente: {p.get('nombre', 'Prueba')} no superada")
+                            test_name = p.get("nombre", _("Test"))
+                            reporte_pruebas.append(_("Pending: {test_name} not passed").format(test_name=test_name))
                             todas_ok = False
                     aprobado = todas_ok
                 elif "validar" in paso and callable(paso["validar"]):
@@ -1340,27 +1455,28 @@ class TutorFrame(wx.Frame):
                     except Exception:
                         aprobado = False
                     if not aprobado:
-                        reporte_pruebas.append("Pendiente: El código se ejecutó sin errores de sintaxis, pero el resultado aún no cumple los requisitos específicos del reto.")
+                        # Translators: Feedback when challenge execution does not satisfy validator.
+                        reporte_pruebas.append(_("Pending: Code ran without syntax errors, but output does not yet meet challenge requirements."))
                 else:
                     aprobado = (tipo_paso == "observar")
 
         lineas_reporte = []
         if tipo_paso != "quiz" and getattr(res, 'keyboard_warning', None):
-            lineas_reporte.append("Aviso de escritura:")
+            lineas_reporte.append(_("Typing Notice:"))
             lineas_reporte.append(res.keyboard_warning)
             lineas_reporte.append("")
 
-        lineas_reporte.append("Salida:")
-        lineas_reporte.append(res_output if res_output else "(Sin salida de consola)")
+        lineas_reporte.append(_("Output:"))
+        lineas_reporte.append(res_output if res_output else _("(No console output)"))
         lineas_reporte.append("")
 
         if reporte_pruebas:
-            lineas_reporte.append("Resultado de la comprobación:")
+            lineas_reporte.append(_("Check Results:"))
             lineas_reporte.extend(reporte_pruebas)
             lineas_reporte.append("")
 
         if aprobado:
-            lineas_reporte.append("¡Misión superada con éxito! Puedes avanzar al siguiente paso con Alt + Flecha Derecha.")
+            lineas_reporte.append(_("Mission passed successfully! You can advance to next step with Alt + Right Arrow."))
             self.salida.SetValue("\n".join(lineas_reporte))
             wx.CallLater(100, self.salida.SetFocus)
 
@@ -1368,19 +1484,20 @@ class TutorFrame(wx.Frame):
 
             if self.sonidos_activos:
                 SoundManager.play('exito')
-            self.anunciar("¡Misión superada! Pulsa Alt + Flecha Derecha para avanzar.")
+            # Translators: Speech announcement on mission completion.
+            self.anunciar(_("Mission accomplished! Press Alt + Right Arrow to advance."))
         else:
             if paso.get("salida_esperada"):
                 comp = generar_comparacion_salida(paso["salida_esperada"], res_output)
-                lineas_reporte.append("Comparación con la salida esperada:")
+                lineas_reporte.append(_("Comparison with expected output:"))
                 lineas_reporte.append(comp)
                 lineas_reporte.append("")
 
             if friendly_err:
-                lineas_reporte.append(f"Aviso de ejecución: {friendly_err}")
-                lineas_reporte.append("Pulsa F4 para posicionar el cursor en la línea del fallo.")
+                lineas_reporte.append(_("Execution notice: {message}").format(message=friendly_err))
+                lineas_reporte.append(_("Press F4 to position cursor on error line."))
             elif tipo_paso != "quiz":
-                lineas_reporte.append("La solución no ha sido aprobada aún. Revisa la consigna o pulsa Control + P para solicitar una pista.")
+                lineas_reporte.append(_("Solution not yet approved. Review prompt or press Control + P to request a hint."))
 
             self.salida.SetValue("\n".join(lineas_reporte))
             wx.CallLater(100, self.salida.SetFocus)
@@ -1388,11 +1505,11 @@ class TutorFrame(wx.Frame):
             if self.sonidos_activos:
                 SoundManager.play('error')
             if friendly_err:
-                self.anunciar(f"{friendly_err}. Pulsa F4 para ir al error.")
+                self.anunciar(_("{error}. Press F4 to go to error.").format(error=friendly_err))
             elif tipo_paso == "quiz":
-                self.anunciar("Opción incorrecta. Revisa la pregunta y vuelve a intentarlo.")
+                self.anunciar(_("Incorrect option. Review question and try again."))
             else:
-                self.anunciar("Solución no superada. Pulsa Control + P para recibir una pista.")
+                self.anunciar(_("Solution not passed. Press Control + P to receive a hint."))
 
     def on_pista(self, event=None):
         cap = CURRICULUM[self.cap_idx]
@@ -1441,7 +1558,8 @@ class TutorFrame(wx.Frame):
         self.ultimo_error_linea = None
         self.ultimo_error_msg = None
         self.edicion.SetFocus()
-        self.anunciar("Nuevo script iniciado.")
+        # Translators: Speech announcement when a new blank script is created.
+        self.anunciar(_("New blank script started."))
 
     def on_buscar(self, event=None):
         """Abre el diálogo accesible de búsqueda en el editor (Ctrl+F)."""
@@ -1478,10 +1596,12 @@ class TutorFrame(wx.Frame):
                         if resto.startswith(' '):
                             resto = resto[1:]
                         lineas[row] = linea[:idx] + resto
-                msg = "Línea descomentada"
+                # Translators: Speech announcement when code line is uncommented.
+                msg = _("Line uncommented")
             else:
                 lineas[row] = '# ' + linea
-                msg = "Línea comentada"
+                # Translators: Speech announcement when code line is commented.
+                msg = _("Line commented")
 
             nueva_txt = '\n'.join(lineas)
             self.edicion.SetValue(nueva_txt)
@@ -1503,7 +1623,8 @@ class TutorFrame(wx.Frame):
 
             nuevo_pt = len('\n'.join(lineas[:row + 1])) + 1
             self.edicion.SetInsertionPoint(min(nuevo_pt, len(self.edicion.GetValue())))
-            self.anunciar("Línea duplicada")
+            # Translators: Speech announcement when code line is duplicated.
+            self.anunciar(_("Line duplicated"))
         except Exception:
             pass
 
@@ -1522,7 +1643,8 @@ class TutorFrame(wx.Frame):
             else:
                 self.edicion.SetValue("")
 
-            self.anunciar("Línea eliminada")
+            # Translators: Speech announcement when code line is deleted.
+            self.anunciar(_("Line deleted"))
         except Exception:
             pass
 
@@ -1551,14 +1673,16 @@ class TutorFrame(wx.Frame):
             compile(src, "<string>", "exec")
             self.ultimo_error_linea = None
             self.ultimo_error_msg = None
-            msg = "Sintaxis y delimitadores correctos. No se detectaron errores de estructura en el código."
+            # Translators: Speech announcement when code syntax check passes with no errors.
+            msg = _("Syntax and delimiters correct. No structural errors detected in code.")
             if self.sonidos_activos:
                 SoundManager.play('exito')
         except SyntaxError as e:
             linea_err = e.lineno or 1
             self.ultimo_error_linea = linea_err
             self.ultimo_error_msg = e.msg
-            msg = f"Error de sintaxis en la línea {linea_err}: {e.msg}."
+            # Translators: Speech announcement when a SyntaxError is detected.
+            msg = _("Syntax error on line {line}: {error}.").format(line=linea_err, error=e.msg)
             if self.sonidos_activos:
                 SoundManager.play('sintaxis_aviso')
             try:
@@ -1568,14 +1692,16 @@ class TutorFrame(wx.Frame):
             except Exception:
                 pass
         except Exception as e:
-            msg = f"Aviso de compilación: {e}."
+            # Translators: Speech announcement for compilation notice.
+            msg = _("Compilation notice: {error}.").format(error=e)
 
         self.anunciar(msg)
 
     def on_ir_al_error(self, event=None):
         """Mueve el cursor exactamente a la línea del último error detectado (F4)."""
         if self.ultimo_error_linea is None:
-            self.anunciar("No hay registro de errores recientes de ejecución o sintaxis.")
+            # Translators: Speech announcement when pressing F4 but no error is recorded.
+            self.anunciar(_("No recent execution or syntax errors recorded."))
             return
 
         src = self.edicion.GetValue()
@@ -1598,7 +1724,8 @@ class TutorFrame(wx.Frame):
                 tipo, nombre, num_linea, pos_char = simbolo
                 self.edicion.SetInsertionPoint(min(pos_char, len(self.edicion.GetValue())))
                 self.edicion.SetFocus()
-                msg = f"Cursor en {tipo.lower()} {nombre}, línea {num_linea}"
+                # Translators: Speech announcement after jumping to symbol header.
+                msg = _("Cursor on {type} {name}, line {line}").format(type=tipo.lower(), name=nombre, line=num_linea)
                 self.anunciar(msg)
         dlg.Destroy()
 
@@ -1627,7 +1754,8 @@ class TutorFrame(wx.Frame):
             msg = f"{desc} {nombre}, línea {num_linea}"
             self.anunciar(msg)
         else:
-            self.anunciar("No hay más definiciones adelante.")
+            # Translators: Speech announcement when Alt+N finds no further definitions.
+            self.anunciar(_("No more definitions ahead."))
 
     def on_anterior_definicion(self, event=None):
         """Salta a la cabecera de la función o clase anterior en el código (Alt+P)."""
@@ -1653,13 +1781,15 @@ class TutorFrame(wx.Frame):
             msg = f"{desc} {nombre}, línea {num_linea}"
             self.anunciar(msg)
         else:
-            self.anunciar("No hay definiciones anteriores.")
+            # Translators: Speech announcement when Alt+P finds no earlier definitions.
+            self.anunciar(_("No previous definitions."))
 
     def on_leer_toda_la_salida(self, event=None):
         """Verbaliza por voz todo el contenido de la consola sin retirar el foco del editor (Ctrl+Shift+C)."""
         txt = self.salida.GetValue().strip()
         if not txt:
-            self.anunciar("Consola vacía.")
+            # Translators: Speech announcement when reading console output but it is empty.
+            self.anunciar(_("Console empty."))
             return
         self.anunciar(txt)
 
@@ -1672,7 +1802,8 @@ class TutorFrame(wx.Frame):
         col = (pt - last_nl) if last_nl != -1 else (pt + 1)
         total_lineas = txt.count('\n') + 1
 
-        msg = f"Línea {row} de {total_lineas}, columna {col}."
+        # Translators: Speech announcement reporting cursor line and column.
+        msg = _("Line {row} of {total}, column {col}.").format(row=row, total=total_lineas, col=col)
         self.anunciar(msg)
 
     def on_autocompletar(self, event=None):
@@ -1739,7 +1870,8 @@ class TutorFrame(wx.Frame):
                     palabra = sel
 
             if not palabra:
-                self.anunciar("Sitúa el cursor sobre una función o palabra para ver su documentación.")
+                # Translators: Speech announcement when Shift+F1 is pressed on empty space.
+                self.anunciar(_("Place cursor over a function or keyword to view documentation."))
                 return
 
             doc = obtener_documentacion_simbolo(palabra)
@@ -1789,7 +1921,8 @@ class TutorFrame(wx.Frame):
         """Extrae el bloque seleccionado a una nueva función (Ctrl+Shift+R)."""
         sel = self.edicion.GetStringSelection()
         if not sel.strip():
-            self.anunciar("Selecciona primero el bloque de código que deseas extraer a una función.")
+            # Translators: Speech announcement when extracting function without active selection.
+            self.anunciar(_("First select the code block you want to extract into a function."))
             return
 
         dlg = ExtractFunctionDialog(self)
@@ -1830,7 +1963,8 @@ class TutorFrame(wx.Frame):
         """Inicia el depurador interactivo paso a paso (F10)."""
         codigo = self.edicion.GetValue()
         if not codigo.strip():
-            self.anunciar("El editor está vacío. Escribe código antes de iniciar la depuración.")
+            # Translators: Speech announcement when launching debugger on empty code.
+            self.anunciar(_("The editor is empty. Write code before starting debugging."))
             return
 
         dlg = StepDebuggerDialog(self, codigo, self.breakpoints)
@@ -1866,7 +2000,7 @@ class TutorFrame(wx.Frame):
         else:
             if self.cap_idx < len(CURRICULUM) - 1:
                 if not ProgressManager.is_chapter_completed(self.cap_idx, total_pasos):
-                    msg = "Para avanzar al siguiente capítulo, debes completar todos los pasos del capítulo actual."
+                    msg = _("To advance to next chapter, you must complete all steps of current chapter.")
                     if speech and hasattr(speech, 'speakMessage'):
                         speech.speakMessage(msg)
                     if ui:
@@ -1880,7 +2014,7 @@ class TutorFrame(wx.Frame):
                 self.edicion.SetFocus()
             else:
                 if ui:
-                    ui.message("¡Felicidades! Has completado todos los capítulos del temario.")
+                    ui.message(_("Congratulations! You have completed all chapters in curriculum."))
 
     def on_paso_anterior(self, event=None):
         if self.paso_idx > 0:
@@ -1926,7 +2060,8 @@ class TutorFrame(wx.Frame):
         self.edicion.SetValue(paso.get("codigo", ""))
         self.salida.SetValue("")
         self.edicion.SetFocus()
-        self.anunciar("Código del ejercicio restablecido a su estado inicial.")
+        # Translators: Speech announcement when code is reset.
+        self.anunciar(_("Exercise code reset to its initial state."))
 
     def on_mostrar_atajos(self, event=None):
         dlg = ShortcutsDialog(self)
@@ -2219,19 +2354,22 @@ class TutorFrame(wx.Frame):
         if foco_actual == self.salida:
             def _ir_edicion():
                 self.edicion.SetFocus()
-                self.anunciar("Foco en el editor de código", delay=50)
+                # Translators: Speech announcement when switching focus to code editor.
+                self.anunciar(_("Focus on code editor"), delay=50)
             wx.CallLater(100, _ir_edicion)
         else:
             def _ir_salida():
                 self.salida.SetFocus()
-                self.anunciar("Foco en la consola de resultados", delay=50)
+                # Translators: Speech announcement when switching focus to results console.
+                self.anunciar(_("Focus on results console"), delay=50)
             wx.CallLater(100, _ir_salida)
 
     def leer_ultima_salida(self):
         txt = self.salida.GetValue().strip()
         if not txt:
             if ui:
-                ui.message("Consola vacía.")
+                # Translators: Speech announcement when reading last console line but it is empty.
+                ui.message(_("Console empty."))
             return
         lineas = [l.strip() for l in txt.splitlines() if l.strip()]
         if lineas:
@@ -2243,8 +2381,8 @@ class TutorFrame(wx.Frame):
 
     def on_abrir_archivo(self, event=None):
         dlg = wx.FileDialog(
-            self, "Abrir script de Python",
-            wildcard="Archivos Python (*.py)|*.py|Todos los archivos (*.*)|*.*",
+            self, _("Open Python script"),
+            wildcard=_("Python Files (*.py)|*.py|All Files (*.*)|*.*"),
             style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
         )
         if dlg.ShowModal() == wx.ID_OK:
@@ -2254,10 +2392,10 @@ class TutorFrame(wx.Frame):
                     self.edicion.SetValue(f.read())
                 self.archivo_abierto = path
                 if ui:
-                    ui.message(f"Archivo cargado: {os.path.basename(path)}")
+                    ui.message(_("File loaded: {filename}").format(filename=os.path.basename(path)))
                 self.edicion.SetFocus()
             except Exception as e:
-                wx.MessageBox(f"Error al abrir archivo: {e}", "Error", wx.OK | wx.ICON_ERROR, self)
+                wx.MessageBox(_("Error opening file: {error}").format(error=e), _("Error"), wx.OK | wx.ICON_ERROR, self)
         dlg.Destroy()
 
     def on_guardar_archivo(self, event=None):
@@ -2266,16 +2404,16 @@ class TutorFrame(wx.Frame):
                 with open(self.archivo_abierto, "w", encoding="utf-8") as f:
                     f.write(self.edicion.GetValue())
                 if ui:
-                    ui.message(f"Guardado en {os.path.basename(self.archivo_abierto)}")
+                    ui.message(_("Saved to {filename}").format(filename=os.path.basename(self.archivo_abierto)))
             except Exception as e:
-                wx.MessageBox(f"Error al guardar: {e}", "Error", wx.OK | wx.ICON_ERROR, self)
+                wx.MessageBox(_("Error saving file: {error}").format(error=e), _("Error"), wx.OK | wx.ICON_ERROR, self)
         else:
             self.on_guardar_como(event)
 
     def on_guardar_como(self, event=None):
         dlg = wx.FileDialog(
-            self, "Guardar script como",
-            wildcard="Archivos Python (*.py)|*.py",
+            self, _("Save script as"),
+            wildcard=_("Python Files (*.py)|*.py"),
             style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
         )
         if dlg.ShowModal() == wx.ID_OK:
@@ -2285,9 +2423,9 @@ class TutorFrame(wx.Frame):
                     f.write(self.edicion.GetValue())
                 self.archivo_abierto = path
                 if ui:
-                    ui.message(f"Guardado como {os.path.basename(path)}")
+                    ui.message(_("Saved as {filename}").format(filename=os.path.basename(path)))
             except Exception as e:
-                wx.MessageBox(f"Error al guardar: {e}", "Error", wx.OK | wx.ICON_ERROR, self)
+                wx.MessageBox(_("Error saving file: {error}").format(error=e), _("Error"), wx.OK | wx.ICON_ERROR, self)
         dlg.Destroy()
 
     def on_abrir_doc(self, event=None):
@@ -2321,7 +2459,7 @@ class TutorFrame(wx.Frame):
                             pass
 
         if not abierto and ui:
-            ui.message("No fue posible abrir la documentación en el navegador.")
+            ui.message(_("Could not open documentation in web browser."))
 
     def on_soporte(self, event=None):
         """Abre el diálogo accesible de soporte técnico y donaciones."""
@@ -2332,7 +2470,8 @@ class TutorFrame(wx.Frame):
 
     def on_acerca(self, event=None):
         """Abre la documentación de Acerca de en el navegador web predeterminado."""
-        msg = "Abriendo la documentación de Acerca de en el navegador web."
+        # Translators: Speech announcement when opening About documentation.
+        msg = _("Opening About documentation in web browser.")
         if speech and hasattr(speech, 'speakMessage'):
             speech.speakMessage(msg)
         if ui:

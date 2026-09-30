@@ -6,6 +6,7 @@
 # ======
 import os
 import re
+import urllib.parse
 import webbrowser
 import wx
 
@@ -72,7 +73,8 @@ class FindDialog(wx.Dialog):
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.query_ctrl = wx.TextCtrl(panel)
-        self.query_ctrl.SetName("Texto a buscar")
+        # Translators: Accessible name for search text field in Find dialog.
+        self.query_ctrl.SetName(_("Search text"))
         vbox.Add(self.query_ctrl, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # Translators: Checkbox label for case-sensitive search.
@@ -159,7 +161,8 @@ class GoToLineDialog(wx.Dialog):
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.line_ctrl = wx.TextCtrl(panel)
-        self.line_ctrl.SetName("Número de línea")
+        # Translators: Accessible name for line number field in Go To Line dialog.
+        self.line_ctrl.SetName(_("Line number"))
         vbox.Add(self.line_ctrl, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
@@ -241,7 +244,9 @@ class ChapterSelectDialog(wx.Dialog):
             else:
                 # Translators: Status prefix for locked chapter.
                 estado_str = _("Locked, ")
-            self.opciones.append(f"{estado_str}{cap.get('titulo', f'Capítulo {i+1}')}")
+            # Translators: Fallback title format for chapter if not explicitly named.
+            default_chapter_title = _("Chapter {num}").format(num=i+1)
+            self.opciones.append(f"{estado_str}{cap.get('titulo', default_chapter_title)}")
 
         self.list_box = wx.ListBox(panel, choices=self.opciones)
         # Translators: Accessible name for chapter selection list.
@@ -336,17 +341,18 @@ class WelcomeDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        mensaje = (
-            "¡Te damos la bienvenida a Aprendizaje de Python con NVDA!\n\n"
-            "Este complemento te guiará paso a paso en el aprendizaje de la programación en Python, "
-            "comenzando desde los conceptos fundamentales y avanzando de manera progresiva a través "
-            "de ejercicios prácticos diseñados para ser resueltos directamente en el editor.\n\n"
-            "El entorno cuenta con dos modalidades de trabajo:\n"
-            "Modo Aprendizaje: Ofrece lecciones guiadas, explicaciones teóricas y comprobación automática de soluciones.\n"
-            "Modo Editor autónomo: Un editor despejado y accesible para escribir y ejecutar tus propios scripts.\n\n"
-            "Puedes consultar la lista completa de atajos de teclado en cualquier momento pulsando F11 o desde el menú Ayuda, "
-            "y obtener más detalles sobre el complemento en la opción Acerca de.\n\n"
-            "Pulsa el botón Comenzar a aprender o pulsa Enter para empezar tu primera lección."
+        # Translators: Welcome guide text displayed on first launch.
+        mensaje = _(
+            "Welcome to Python Learning with NVDA!\n\n"
+            "This add-on will guide you step by step in learning Python programming, "
+            "starting from fundamental concepts and advancing progressively through "
+            "practical exercises designed to be solved directly in the editor.\n\n"
+            "The environment features two working modes:\n"
+            "Learning Mode: Provides guided lessons, theoretical explanations, and automatic solution verification.\n"
+            "Standalone Editor Mode: A clutter-free, accessible editor to write and run your own scripts.\n\n"
+            "You can consult the full list of keyboard shortcuts at any time by pressing F11 or from the Help menu, "
+            "and learn more about the add-on in About.\n\n"
+            "Press the Start learning button or press Enter to begin your first lesson."
         )
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
@@ -390,55 +396,56 @@ class ShortcutsDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        texto_atajos = (
-            "Guía Completa de Atajos de Teclado:\n\n"
-            "Modos y Aprendizaje:\n"
-            "Control + Enter o Control + E: Ejecutar código y comprobar la solución.\n"
-            "Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
-            "F3 o Control + I: Leer la instrucción activa sin mover el foco del editor.\n"
-            "F4: Situar el cursor en la línea exacta del error del Traceback.\n"
-            "F6: Alternar el foco entre el editor de código y la consola de resultados.\n"
-            "Alt + Flecha Derecha: Ir al paso siguiente de la lección.\n"
-            "Alt + Flecha Izquierda: Ir al paso anterior de la lección.\n"
-            "Control + P: Pedir una pista escalonada de asistencia.\n"
-            "F1: Explicar la línea actual con palabras sencillas y cotidianas.\n"
-            "Shift + F1: Documentación rápida del símbolo bajo el cursor.\n"
-            "Control + R: Restablecer el código inicial del ejercicio.\n"
-            "Control + 1: Abrir el Selector de Capítulos del temario.\n"
-            "Control + J: Abrir la consola de pruebas rápidas (REPL).\n\n"
-            "Edición y Funciones de Desarrollo (IDE):\n"
-            "Control + N: Crear un nuevo script limpio en el editor.\n"
-            "Control + F: Buscar texto en el editor de código.\n"
-            "Control + G: Desplazarse a un número de línea específico.\n"
-            "F2: Renombrar identificador o variable en todo el archivo.\n"
-            "Shift + Alt + F o Control + Shift + I: Formatear documento según PEP 8.\n"
-            "Control + Shift + R: Extraer bloque de código seleccionado a una nueva función.\n"
-            "Control + Espacio: Autocompletado inteligente con documentación.\n"
-            "Control + Shift + O: Lista accesible de funciones y clases del script.\n"
-            "Alt + N: Salto rápido a la cabecera de la siguiente función o clase.\n"
-            "Alt + P: Salto rápido a la cabecera de la función o clase anterior.\n"
-            "Control + / o Control + K: Comentar o descomentar la línea actual con '# '.\n"
-            "Control + D: Duplicar la línea actual hacia abajo.\n"
-            "Control + Shift + K: Eliminar la línea actual.\n"
-            "F7: Verificar sintaxis, comillas y balanceo de delimitadores.\n"
-            "Control + L: Anunciar la línea y columna actual del cursor.\n"
-            "Control + 4: Llevar el foco directamente al Editor de código.\n"
-            "Control + 5: Llevar el foco directamente a la Consola de resultados.\n"
-            "Control + 6: Leer por voz la última línea de la consola.\n"
-            "Control + Shift + C: Leer por voz todo el contenido de la consola.\n\n"
-            "Depuración, Pruebas y Entornos:\n"
-            "F9: Alternar punto de interrupción (breakpoint) en la línea actual.\n"
-            "F10: Iniciar depurador interactivo paso a paso.\n"
-            "Control + T: Ejecutar pruebas unitarias (Test Runner accesible).\n"
-            "Control + Shift + P: Gestor de intérpretes de Python y entornos virtuales.\n\n"
-            "Archivos, Ayuda y Documentación:\n"
-            "Control + O: Abrir script de Python (.py) desde disco.\n"
-            "Control + S: Guardar script actual en disco.\n"
-            "Control + Shift + S: Guardar script con un nuevo nombre o ubicación.\n"
-            "F5: Ejecutar el código y verificar solución.\n"
-            "F11: Abrir esta Guía de Atajos de Teclado.\n"
-            "F12: Abrir la documentación de Acerca de en el navegador web.\n"
-            "Escape: Cerrar la ventana del tutor inmediatamente desde cualquier control."
+        # Translators: Complete keyboard shortcuts reference text.
+        texto_atajos = _(
+            "Complete Keyboard Shortcuts Guide:\n\n"
+            "Modes and Learning:\n"
+            "Control + Enter or Control + E: Run code and verify solution.\n"
+            "Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
+            "F3 or Control + I: Read the active instruction without moving focus from the editor.\n"
+            "F4: Place the cursor on the exact line of the Traceback error.\n"
+            "F6: Toggle focus between the code editor and the output console.\n"
+            "Alt + Right Arrow: Go to next step of the lesson.\n"
+            "Alt + Left Arrow: Go to previous step of the lesson.\n"
+            "Control + P: Request a graduated hint.\n"
+            "F1: Explain current line in simple, everyday words.\n"
+            "Shift + F1: Quick documentation for symbol under cursor.\n"
+            "Control + R: Reset exercise initial code.\n"
+            "Control + 1: Open Chapter Selector.\n"
+            "Control + J: Open quick interactive playground (REPL).\n\n"
+            "Editing and IDE Development Features:\n"
+            "Control + N: Create a new blank script in editor.\n"
+            "Control + F: Find text in code editor.\n"
+            "Control + G: Go to a specific line number.\n"
+            "F2: Rename identifier or variable across the file.\n"
+            "Shift + Alt + F or Control + Shift + I: Format document with PEP 8.\n"
+            "Control + Shift + R: Extract selected code block to a new function.\n"
+            "Control + Space: Intelligent autocompletion with documentation.\n"
+            "Control + Shift + O: Accessible list of functions and classes in script.\n"
+            "Alt + N: Quick jump to header of next function or class.\n"
+            "Alt + P: Quick jump to header of previous function or class.\n"
+            "Control + / or Control + K: Comment or uncomment current line with '# '.\n"
+            "Control + D: Duplicate current line downward.\n"
+            "Control + Shift + K: Delete current line.\n"
+            "F7: Check syntax, quotes, and delimiter balancing.\n"
+            "Control + L: Announce cursor's current line and column.\n"
+            "Control + 4: Focus Code Editor directly.\n"
+            "Control + 5: Focus Output Console directly.\n"
+            "Control + 6: Speak the last line of the console.\n"
+            "Control + Shift + C: Speak the entire console output.\n\n"
+            "Debugging, Testing, and Environments:\n"
+            "F9: Toggle breakpoint on current line.\n"
+            "F10: Start interactive step-by-step debugger.\n"
+            "Control + T: Run unit tests (accessible Test Runner).\n"
+            "Control + Shift + P: Python interpreters and virtual environments manager.\n\n"
+            "Files, Help, and Documentation:\n"
+            "Control + O: Open Python script (.py) from disk.\n"
+            "Control + S: Save current script to disk.\n"
+            "Control + Shift + S: Save script with a new name or location.\n"
+            "F5: Run code and verify solution.\n"
+            "F11: Open this Keyboard Shortcuts Guide.\n"
+            "F12: Open About documentation in web browser.\n"
+            "Escape: Close tutor window immediately from any control."
         )
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
@@ -563,7 +570,11 @@ class SymbolsDialog(wx.Dialog):
         lbl = wx.StaticText(panel, label=_("Select a &function or class to jump cursor directly to its header:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
-        opciones = [f"[{tipo}] {nombre} (Línea {lin})" for tipo, nombre, lin, _ in self.simbolos]
+        # Translators: Format for symbol entry in symbols list: [Type] Name (Line X).
+        opciones = [
+            _("[{type}] {name} (Line {line})").format(type=tipo, name=nombre, line=lin)
+            for tipo, nombre, lin, _ in self.simbolos
+        ]
         if not opciones:
             # Translators: Notice in symbols list when no definitions are present.
             opciones = [_("(No functions or classes found in current code)")]
@@ -612,16 +623,17 @@ class SupportDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        info = (
-            "Soporte y Contacto con el Desarrollador:\n\n"
-            "Autor y Desarrollador: Kevin Andrés Velasquez Vargas\n"
-            "Correo electrónico de soporte: kevinvelasquezvargas@gmail.com\n"
-            "Asunto recomendado: Soporte - Aprendizaje de Python con NVDA\n\n"
-            "Puedes enviar consultas pedagógicas sobre los capítulos, dudas sobre la resolución "
-            "de ejercicios, sugerencias de mejora o reportes de errores técnicos.\n\n"
-            "Asimismo, puedes colaborar voluntariamente con el proyecto mediante donaciones para "
-            "respaldar el mantenimiento continuo y la creación de nuevos contenidos formativos accesibles."
-        )
+        # Translators: Developer support and contact information text.
+        info = _(
+            "Developer Support and Contact:\n\n"
+            "Author and Developer: Kevin Andrés Velasquez Vargas\n"
+            "Support email: {email}\n"
+            "Recommended subject: Support - Python Learning with NVDA\n\n"
+            "You can send pedagogical inquiries about chapters, questions about solving "
+            "exercises, improvement suggestions, or technical bug reports.\n\n"
+            "Likewise, you can voluntarily support the project through donations to "
+            "back ongoing maintenance and the creation of new accessible educational content."
+        ).format(email="kevinvelasquezvargas@gmail.com")
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
         txt.SetValue(info)
@@ -634,7 +646,8 @@ class SupportDialog(wx.Dialog):
         btn_mail = wx.Button(panel, label=_("&Send support email"))
         # Translators: Button to open donation page.
         btn_donar = wx.Button(panel, label=_("Make &donation (PayPal)"))
-        btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label="Cerrar")
+        # Translators: Button to close support dialog.
+        btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label=_("&Close"))
 
         hbox.Add(btn_mail, flag=wx.RIGHT, border=8)
         hbox.Add(btn_donar, flag=wx.RIGHT, border=8)
@@ -655,7 +668,9 @@ class SupportDialog(wx.Dialog):
             event.Skip()
 
     def on_enviar_correo(self, event=None):
-        url = "mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"
+        # Translators: Subject line for support email.
+        subj = urllib.parse.quote(_("Support - Python Learning with NVDA"))
+        url = f"mailto:kevinvelasquezvargas@gmail.com?subject={subj}"
         try:
             webbrowser.open(url)
             if ui:
@@ -685,154 +700,159 @@ class AboutDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        contenido = (
-            "Aprendizaje de Python con NVDA\n"
-            "Versión: 2.0.0\n"
-            "Autor: Kevin Andrés Velasquez Vargas\n"
-            "Correo de soporte: kevinvelasquezvargas@gmail.com\n"
-            "Licencia: GNU General Public License v3.0 (GPLv3)\n"
-            "Compatibilidad: NVDA 2022.1 hasta 2026.3\n"
-            "Repositorio en GitHub: https://github.com/KevinVelasquezVargas/python_tutor\n"
-            "Donaciones y apoyo voluntario: https://www.paypal.me/kevinvelasquezvargas\n\n"
+        # Translators: Full structured manual and about documentation text.
+        contenido = _(
+            "Python Learning with NVDA\n"
+            "Version: 2.0.0\n"
+            "Author: Kevin Andrés Velasquez Vargas\n"
+            "Support email: {email}\n"
+            "License: GNU General Public License v3.0 (GPLv3)\n"
+            "Compatibility: NVDA 2022.1 up to 2026.3\n"
+            "GitHub repository: {repo_url}\n"
+            "Donations and voluntary support: {donate_url}\n\n"
             "======================================================================\n"
-            "1. Visión General y Propósito del Complemento\n"
+            "1. Overview and Purpose of the Add-on\n"
             "======================================================================\n\n"
-            "Aprendizaje de Python con NVDA es un entorno formativo integral y un editor tiflotécnico "
-            "de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de "
-            "aprendizaje estructurada en 32 lecciones conceptuales y prácticas, complementada con un "
-            "entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo.\n\n"
-            "Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría "
-            "y estructura, verificación de delimitadores y simplificación de mensajes de error.\n\n"
-            "El entorno ha sido diseñado para garantizar que cualquier persona ciega o con baja visión "
-            "pueda formarse de manera 100% independiente, con retroalimentación en voz y braille.\n\n"
+            "Python Learning with NVDA is a comprehensive educational environment and an accessible "
+            "code editor adapted for Python programming through NVDA. It provides a structured "
+            "learning path across 32 conceptual and practical lessons, complemented by a dual-mode "
+            "work environment: guided tutor mode and standalone editor mode.\n\n"
+            "It integrates structural navigation through code elements such as functions and classes, "
+            "audio cues for indentation and structure, delimiter balancing checks, and simplified error messages.\n\n"
+            "The environment has been designed to ensure that any blind or low-vision user "
+            "can learn 100% independently, with speech and braille feedback.\n\n"
             "======================================================================\n"
-            "2. Metodología Pedagógica: Ciclo de Aprendizaje en 4 Pasos\n"
+            "2. Pedagogical Methodology: 4-Step Learning Cycle\n"
             "======================================================================\n\n"
-            "Cada capítulo implementa un ciclo pedagógico de cuatro fases progresivas:\n\n"
-            "Paso 1: Fundamento Conceptual (Observar): Presenta la teoría en un lenguaje claro y "
-            "cotidiano, acompañada de un script de demostración ejecutable con F5 o Control + Enter.\n\n"
-            "Paso 2: Observación Guiada (Experimentar): Un fragmento de código funcional con una consigna "
-            "específica para modificarlo y constatar la causa y efecto de los cambios.\n\n"
-            "Paso 3: Reto Práctico (Desafío): El editor inicia completamente limpio para que el estudiante "
-            "escriba su propio código. El tutor valida rigurosamente la solución sin aceptar respuestas vacías.\n\n"
-            "Paso 4: Verificación Conceptual (Quiz): Pregunta formativa de opción múltiple (1, 2 o 3) para "
-            "consolidar los conceptos aprendidos.\n\n"
+            "Each chapter implements a four-phase progressive pedagogical cycle:\n\n"
+            "Step 1: Conceptual Foundation (Observe): Presents theory in clear, everyday language, "
+            "accompanied by a demonstration script runnable with F5 or Control + Enter.\n\n"
+            "Step 2: Guided Observation (Experiment): A functional code snippet with a specific task "
+            "to modify it and observe the cause and effect of changes.\n\n"
+            "Step 3: Practical Challenge (Challenge): The editor starts completely blank so the student "
+            "writes their own code. The tutor rigorously validates the solution without accepting empty answers.\n\n"
+            "Step 4: Conceptual Verification (Quiz): A formative multiple-choice question (1, 2, or 3) "
+            "to consolidate learned concepts.\n\n"
             "======================================================================\n"
-            "3. Doble Modalidad de Trabajo\n"
+            "3. Dual Working Modes\n"
             "======================================================================\n\n"
-            "Puedes alternar entre los dos modos en cualquier instante pulsando Control + M:\n\n"
-            "Modo Aprendizaje Guiado: Muestra la instrucción del paso, el código, botones didácticos y "
-            "el sistema de validación pedagógica.\n\n"
-            "Modo Solo Editor (Profesional libre): Oculta todas las secciones de lecciones y maximiza el "
-            "espacio para el editor y la consola de salida, permitiendo trabajar en proyectos propios con "
-            "soporte para abrir y guardar archivos .py, verificación de delimitadores y navegación estructural.\n\n"
+            "You can toggle between the two modes at any moment by pressing Control + M:\n\n"
+            "Guided Learning Mode: Displays the step instruction, code, didactic buttons, and "
+            "the pedagogical validation system.\n\n"
+            "Standalone Editor Mode (Free Professional): Hides all lesson sections and maximizes "
+            "workspace for the editor and output console, allowing work on personal projects with "
+            "support for opening and saving .py files, delimiter checking, and structural navigation.\n\n"
             "======================================================================\n"
-            "4. Catálogo del Temario Pedagógico (32 Capítulos)\n"
+            "4. Pedagogical Curriculum Catalog (32 Chapters)\n"
             "======================================================================\n\n"
-            "Fase 0: Pensamiento Computacional y Fundamentos (1 a 3)\n"
-            "Capítulo 1: Pensamiento Computacional y Algoritmos Cotidianos\n"
-            "Capítulo 2: Arquitectura Básica: Entrada, Proceso, Memoria y Salida\n"
-            "Capítulo 3: Lógica Booleana: Verdadero, Falso y Decisiones\n\n"
-            "Fase 1: Sintaxis Básica y Tipos de Datos (4 a 8)\n"
-            "Capítulo 4: Nuestra Primera Instrucción: La Función print()\n"
-            "Capítulo 5: Almacenamiento en Memoria: Variables y Asignación\n"
-            "Capítulo 6: Tipos de Datos Primitivos: Números Enteros y Decimales\n"
-            "Capítulo 7: Cadenas de Texto (Strings): Comillas y Concatenación\n"
-            "Capítulo 8: Interacción con el Usuario: Entrada con input()\n\n"
-            "Fase 2: Estructuras de Control de Flujo (9 a 15)\n"
-            "Capítulo 9: Operadores de Comparación y Expresiones Condicionales\n"
-            "Capítulo 10: Bifurcación Básica: Estructura if y Sangría PEP 8\n"
-            "Capítulo 11: Alternativas Múltiples: Bloques elif y else\n"
-            "Capítulo 12: Colecciones Ordenadas: Introducción a las Listas\n"
-            "Capítulo 13: Métodos Fundamentales de Listas (append, remove, pop, len)\n"
-            "Capítulo 14: Repetición y Automatización: El Bucle for y range()\n"
-            "Capítulo 15: Repetición Condicional: El Bucle while\n\n"
-            "Fase 3: Estructuras de Datos Complejas (16 a 17)\n"
-            "Capítulo 16: Colecciones Clave-Valor: Diccionarios en Python\n"
-            "Capítulo 17: Tuplas y Conjuntos (Sets): Inmutabilidad y Colecciones Únicas\n\n"
-            "Fase 4: Modularidad y Funciones (18 a 19)\n"
-            "Capítulo 18: Funciones Propias: Declaración con def y Parámetros\n"
-            "Capítulo 19: Retorno de Resultados: La Sentencia return y Ámbito\n\n"
-            "Fase 5: Manejo Profesional de Errores y Diagnóstico (20 a 21)\n"
-            "Capítulo 20: Manejo Profesional de Errores: try, except y finally\n"
-            "Capítulo 21: Decodificación de Tracebacks y Diagnóstico de Fallos\n\n"
-            "Fase 6: Entrada/Salida de Archivos y Persistencia (22)\n"
-            "Capítulo 22: Entrada y Salida de Archivos: with open() para Texto\n\n"
-            "Fase 7: Programación Orientada a Objetos (23 a 27)\n"
-            "Capítulo 23: Paradigma de Objetos: Clases, Instancias y Atributos\n"
-            "Capítulo 24: El Constructor __init__ y el Parámetro self\n"
-            "Capítulo 25: Métodos de Instancia y Encapsulamiento\n"
-            "Capítulo 26: Herencia de Clases: Reutilización con super()\n"
-            "Capítulo 27: Polimorfismo y Métodos Especiales (__str__)\n\n"
-            "Fase 8: Ecosistema Profesional y Calidad (28 a 32)\n"
-            "Capítulo 28: Módulos de la Biblioteca Estándar (math, random, datetime)\n"
-            "Capítulo 29: Persistencia Estructurada: Formato JSON y Serialización\n"
-            "Capítulo 30: Bases de Datos Relacionales con SQLite: Tablas y Consultas\n"
-            "Capítulo 31: Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON\n"
-            "Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest\n\n"
+            "Phase 0: Computational Thinking and Fundamentals (1 to 3)\n"
+            "Chapter 1: Computational Thinking and Everyday Algorithms\n"
+            "Chapter 2: Basic Architecture: Input, Process, Memory, and Output\n"
+            "Chapter 3: Boolean Logic: True, False, and Decisions\n\n"
+            "Phase 1: Basic Syntax and Data Types (4 to 8)\n"
+            "Chapter 4: Our First Instruction: The print() Function\n"
+            "Chapter 5: Memory Storage: Variables and Assignment\n"
+            "Chapter 6: Primitive Data Types: Integers and Floats\n"
+            "Chapter 7: Text Strings: Quotes and Concatenation\n"
+            "Chapter 8: User Interaction: Input with input()\n\n"
+            "Phase 2: Flow Control Structures (9 to 15)\n"
+            "Chapter 9: Comparison Operators and Conditional Expressions\n"
+            "Chapter 10: Basic Branching: The if Statement and PEP 8 Indentation\n"
+            "Chapter 11: Multiple Alternatives: elif and else Blocks\n"
+            "Chapter 12: Ordered Collections: Introduction to Lists\n"
+            "Chapter 13: Fundamental List Methods (append, remove, pop, len)\n"
+            "Chapter 14: Repetition and Automation: The for Loop and range()\n"
+            "Chapter 15: Conditional Repetition: The while Loop\n\n"
+            "Phase 3: Complex Data Structures (16 to 17)\n"
+            "Chapter 16: Key-Value Collections: Dictionaries in Python\n"
+            "Chapter 17: Tuples and Sets: Immutability and Unique Collections\n\n"
+            "Phase 4: Modularity and Functions (18 to 19)\n"
+            "Chapter 18: Custom Functions: Declaration with def and Parameters\n"
+            "Chapter 19: Returning Results: The return Statement and Scope\n\n"
+            "Phase 5: Professional Error Handling and Diagnostics (20 to 21)\n"
+            "Chapter 20: Professional Error Handling: try, except, and finally\n"
+            "Chapter 21: Decoding Tracebacks and Fault Diagnostics\n\n"
+            "Phase 6: File Input/Output and Persistence (22)\n"
+            "Chapter 22: File Input and Output: with open() for Text\n\n"
+            "Phase 7: Object-Oriented Programming (23 to 27)\n"
+            "Chapter 23: Object Paradigm: Classes, Instances, and Attributes\n"
+            "Chapter 24: The __init__ Constructor and the self Parameter\n"
+            "Chapter 25: Instance Methods and Encapsulation\n"
+            "Chapter 26: Class Inheritance: Reuse with super()\n"
+            "Chapter 27: Polymorphism and Special Methods (__str__)\n\n"
+            "Phase 8: Professional Ecosystem and Quality (28 to 32)\n"
+            "Chapter 28: Standard Library Modules (math, random, datetime)\n"
+            "Chapter 29: Structured Persistence: JSON Format and Serialization\n"
+            "Chapter 30: Relational Databases with SQLite: Tables and Queries\n"
+            "Chapter 31: Consuming Web Services: HTTP Requests and JSON Responses\n"
+            "Chapter 32: Software Quality: Unit Testing with unittest\n\n"
             "======================================================================\n"
-            "5. Referencia Integral de Atajos de Teclado\n"
+            "5. Comprehensive Keyboard Shortcuts Reference\n"
             "======================================================================\n\n"
-            "F5 o Control + Enter: Ejecutar el código y comprobar la solución.\n"
-            "Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
-            "Alt + Flecha Derecha: Ir al paso siguiente.\n"
-            "Alt + Flecha Izquierda: Ir al paso anterior.\n"
-            "F1: Explicar la línea donde está el cursor con palabras sencillas.\n"
-            "F2: Ver todos los atajos de teclado.\n"
-            "F3 o Control + I: Leer la consigna activa sin mover el cursor del editor.\n"
-            "F4: Situar el cursor directamente en la línea del error del Traceback.\n"
-            "F6: Alternar el foco entre el editor de código y la consola.\n"
-            "F7: Verificar sintaxis y balanceo de delimitadores/comillas.\n"
-            "Control + P: Pedir una pista de asistencia.\n"
-            "Control + 1: Selector de capítulos del temario.\n"
-            "Control + J: Abrir la consola de pruebas rápidas (REPL).\n"
-            "Control + Shift + O: Lista accesible de funciones y clases del script.\n"
-            "Alt + N / Alt + P: Salto a la siguiente / anterior función o clase.\n"
-            "Control + /: Comentar o descomentar la línea actual.\n"
-            "Control + D: Duplicar línea abajo.\n"
-            "Control + Shift + K: Eliminar línea actual.\n"
-            "Control + L: Anunciar línea y columna actual.\n"
-            "Control + F: Buscar texto en el editor.\n"
-            "Control + G: Ir a número de línea.\n"
-            "Control + N: Iniciar nuevo script limpio.\n"
-            "Control + O / Control + S: Abrir / Guardar archivo.\n"
-            "Control + Shift + S: Guardar como nuevo archivo.\n"
-            "Control + 4 / Control + 5: Foco directo al editor / consola.\n"
-            "Control + Shift + C: Verbalizar toda la salida de consola sin salir del editor.\n"
-            "F12: Abrir esta documentación en Acerca de.\n"
-            "Escape: Cerrar el tutor en cualquier momento.\n\n"
+            "F5 or Control + Enter: Run code and check solution.\n"
+            "Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
+            "Alt + Right Arrow: Go to next step.\n"
+            "Alt + Left Arrow: Go to previous step.\n"
+            "F1: Explain line where cursor is located in simple words.\n"
+            "F2: Rename symbol across file.\n"
+            "F3 or Control + I: Read active mission prompt without moving cursor from editor.\n"
+            "F4: Place cursor directly on Traceback error line.\n"
+            "F6: Toggle focus between code editor and console.\n"
+            "F7: Check syntax and balance of delimiters/quotes.\n"
+            "Control + P: Request assistance hint.\n"
+            "Control + 1: Curriculum chapter selector.\n"
+            "Control + J: Open quick test console (REPL).\n"
+            "Control + Shift + O: Accessible list of functions and classes in script.\n"
+            "Alt + N / Alt + P: Jump to next / previous function or class.\n"
+            "Control + /: Comment or uncomment current line.\n"
+            "Control + D: Duplicate line downward.\n"
+            "Control + Shift + K: Delete current line.\n"
+            "Control + L: Announce current line and column.\n"
+            "Control + F: Find text in editor.\n"
+            "Control + G: Go to line number.\n"
+            "Control + N: Start new blank script.\n"
+            "Control + O / Control + S: Open / Save file.\n"
+            "Control + Shift + S: Save as new file.\n"
+            "Control + 4 / Control + 5: Direct focus to editor / console.\n"
+            "Control + Shift + C: Speak all console output without leaving editor.\n"
+            "F12: Open this documentation in About.\n"
+            "Escape: Close tutor at any time.\n\n"
             "======================================================================\n"
-            "6. Sistema de Retroalimentación Sonora\n"
+            "6. Acoustic Feedback System\n"
             "======================================================================\n\n"
-            "El entorno produce señales auditivas breves y diferenciadas:\n"
-            "Inicio: Tono de confirmación al iniciar el entorno.\n"
-            "Éxito: Tono agudo y gratificante al superar un ejercicio o ejecutar con éxito.\n"
-            "Error: Tono grave al presentarse una excepción o fallo.\n"
-            "Advertencia: Señal sonora ante delimitadores abiertos o avisos de sintaxis.\n"
-            "Bloque: Tono sutil al tipear dos puntos (:) para indicar apertura de sangría.\n\n"
+            "The environment produces brief, distinct audio cues:\n"
+            "Startup: Confirmation tone when starting the environment.\n"
+            "Success: High, rewarding tone when passing an exercise or executing successfully.\n"
+            "Error: Low tone when an exception or failure occurs.\n"
+            "Warning: Sound cue on unclosed delimiters or syntax notices.\n"
+            "Block: Subtle tone when typing a colon (:) to indicate opening indentation.\n\n"
             "======================================================================\n"
-            "7. Asistencia en la Depuración y Diagnóstico\n"
+            "7. Debugging and Diagnostic Assistance\n"
             "======================================================================\n\n"
-            "El entorno asiste activamente en la detección temprana de fallos:\n"
-            "Comprobación previa de comillas y delimitadores () [] {}.\n"
-            "Salto automático con F4 a la línea del error del Traceback.\n"
-            "Detección de caracteres confusos frecuentes como comas en flotantes o signos ¿¡.\n"
-            "Traductor de sentencias con F1 a explicaciones humanas comprensibles.\n\n"
+            "The environment actively assists in early fault detection:\n"
+            "Pre-check of quotes and delimiters () [] {}.\n"
+            "Automatic jump with F4 to Traceback error line.\n"
+            "Detection of confusing characters such as commas in floats or punctuation signs.\n"
+            "Statement translator with F1 to understandable human explanations.\n\n"
             "======================================================================\n"
-            "8. Soporte, Contacto y Donaciones\n"
+            "8. Support, Contact, and Donations\n"
             "======================================================================\n\n"
-            "Para soporte directo, sugerencias o consultas:\n"
-            "Desarrollador: Kevin Andrés Velasquez Vargas\n"
-            "Correo electrónico directo: kevinvelasquezvargas@gmail.com\n"
-            "Asunto recomendado: Soporte - Aprendizaje de Python con NVDA\n"
-            "Donaciones voluntarias por PayPal: https://www.paypal.me/kevinvelasquezvargas\n\n"
+            "For direct support, suggestions, or inquiries:\n"
+            "Developer: Kevin Andrés Velasquez Vargas\n"
+            "Direct email: {email}\n"
+            "Recommended subject: Support - Python Learning with NVDA\n"
+            "Voluntary donations via PayPal: {donate_url}\n\n"
             "======================================================================\n"
-            "9. Información Técnica y Licencia\n"
+            "9. Technical Information and License\n"
             "======================================================================\n\n"
-            "Versión: 2.0.0\n"
-            "Compatibilidad: NVDA 2022.1 hasta 2026.3\n"
-            "Licencia: GNU General Public License v3.0 (GPLv3)\n"
-            "Desarrollado para la comunidad de programadores usuarios de lectores de pantalla."
+            "Version: 2.0.0\n"
+            "Compatibility: NVDA 2022.1 up to 2026.3\n"
+            "License: GNU General Public License v3.0 (GPLv3)\n"
+            "Developed for the screen reader programmer community."
+        ).format(
+            email="kevinvelasquezvargas@gmail.com",
+            repo_url="https://github.com/KevinVelasquezVargas/python_tutor",
+            donate_url="https://www.paypal.me/kevinvelasquezvargas"
         )
 
         txt = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
@@ -841,7 +861,8 @@ class AboutDialog(wx.Dialog):
         txt.SetName(_("Python Learning with NVDA Documentation"))
         vbox.Add(txt, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
-        btn_cerrar = wx.Button(panel, wx.ID_OK, label="Cerrar")
+        # Translators: Button to close about dialog.
+        btn_cerrar = wx.Button(panel, wx.ID_OK, label=_("&Close"))
         btn_cerrar.SetDefault()
         vbox.Add(btn_cerrar, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
 
@@ -1195,7 +1216,8 @@ class TutorFrame(wx.Frame):
             self.btn_temario.Disable()
             self.hbox.Show(self.btn_temario, False)
 
-            self.SetTitle("Aprendizaje de Python con NVDA")
+            # Translators: Main application window title.
+            self.SetTitle(_("Python Learning with NVDA"))
             self.panel.Layout()
             self.Layout()
             if anunciar:
@@ -1211,7 +1233,8 @@ class TutorFrame(wx.Frame):
             self.mision_ctrl.Show()
             self.vbox.Show(self.mision_ctrl, True)
 
-            self.lbl_ed.SetLabel("Editor de código:")
+            # Translators: Label for the code editor area.
+            self.lbl_ed.SetLabel(_("Code editor:"))
 
             self.btn_pista.Enable()
             self.btn_pista.Show()
@@ -1233,7 +1256,8 @@ class TutorFrame(wx.Frame):
             self.btn_temario.Show()
             self.hbox.Show(self.btn_temario, True)
 
-            self.SetTitle("Aprendizaje de Python con NVDA")
+            # Translators: Main application window title.
+            self.SetTitle(_("Python Learning with NVDA"))
             self.panel.Layout()
             self.Layout()
             if anunciar:
@@ -1287,11 +1311,21 @@ class TutorFrame(wx.Frame):
         self._last_linter_line = -1
         self._last_linter_indent = -1
 
-        superado = ProgressManager.is_step_completed(self.cap_idx, self.paso_idx)
-        marca_estado = "Superado" if superado else "Pendiente"
+        # Translators: Step status label: Passed / Completed.
+        # Translators: Step status label: Pending.
+        marca_estado = _("Completed") if superado else _("Pending")
 
-        titulo_paso = paso.get("titulo", f"Paso {self.paso_idx + 1}")
-        texto_encabezado = f"{cap.get('titulo', 'Capítulo')}, Paso {self.paso_idx + 1} de {total_pasos}: {titulo_paso}, {marca_estado}"
+        # Translators: Default step title format if not named.
+        titulo_paso = paso.get("titulo", _("Step {step}").format(step=self.paso_idx + 1))
+        # Translators: Header format for current step: Chapter, Step X of Y: Step Title, Status
+        cap_tit = cap.get('titulo', _("Chapter"))
+        texto_encabezado = _("{chapter}, Step {step} of {total}: {title}, {status}").format(
+            chapter=cap_tit,
+            step=self.paso_idx + 1,
+            total=total_pasos,
+            title=titulo_paso,
+            status=marca_estado
+        )
         self.lbl_estado.SetLabel(texto_encabezado)
 
         instruccion = paso.get("instruccion")
@@ -1300,9 +1334,14 @@ class TutorFrame(wx.Frame):
                 preg = paso.get("pregunta", "")
                 opciones = paso.get("opciones", [])
                 ops_txt = "\n".join(f"{i+1}. {op}" for i, op in enumerate(opciones))
-                instruccion = f"Pregunta de verificación conceptual:\n\n{preg}\n\nOpciones:\n{ops_txt}\n\nEscribe el número de la respuesta correcta (1, 2 o 3) en el editor y pulsa Control + Enter."
+                # Translators: Instruction template for conceptual quiz lessons.
+                instruccion = _(
+                    "Conceptual verification question:\n\n{question}\n\nOptions:\n{options}\n\n"
+                    "Type the number of the correct answer (1, 2 or 3) in the editor and press Control + Enter."
+                ).format(question=preg, options=ops_txt)
             else:
-                instruccion = "Sigue las instrucciones del ejercicio y ejecuta con Control + Enter."
+                # Translators: Default instruction fallback for lessons.
+                instruccion = _("Follow the instructions for the exercise and run with Control + Enter.")
 
         instruccion_limpia = instruccion.replace("\r\n", "\n")
         self.mision_ctrl.SetValue(instruccion_limpia)
@@ -1513,8 +1552,9 @@ class TutorFrame(wx.Frame):
 
     def on_pista(self, event=None):
         cap = CURRICULUM[self.cap_idx]
-        paso = cap["pasos"][self.paso_idx]
-        pistas = paso.get("pistas", ["Revisa el enunciado de la lección en la parte superior e intenta ejecutar nuevamente."])
+        # Translators: Default fallback hint if no hints are defined in the step.
+        default_hint = _("Review the lesson description at the top and try running again.")
+        pistas = paso.get("pistas", [default_hint])
 
         if self.sonidos_activos:
             SoundManager.play('pista')
@@ -1544,9 +1584,13 @@ class TutorFrame(wx.Frame):
     def on_nuevo_archivo(self, event=None):
         """Crea un nuevo script en blanco tras confirmación si hay texto."""
         if self.edicion.GetValue().strip():
+            # Translators: Confirmation prompt before creating a new blank script.
+            msg = _("Do you want to start a new blank script? Current text in the editor will be cleared.")
+            # Translators: Title for new script confirmation dialog.
+            title = _("New Script")
             res = wx.MessageBox(
-                "¿Deseas iniciar un nuevo script en blanco? Se limpiará el texto actual del editor.",
-                "Nuevo script",
+                msg,
+                title,
                 wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION,
                 self
             )
@@ -1655,7 +1699,10 @@ class TutorFrame(wx.Frame):
         bal_err = comprobar_balanceo_delimitadores(src)
         if bal_err:
             linea_err = bal_err.get("linea", 1)
-            msg = f"Aviso de delimitador en línea {linea_err}: {bal_err['mensaje']}"
+            # Translators: Speech announcement for delimiter syntax warning.
+            msg = _("Delimiter notice on line {line}: {message}").format(
+                line=linea_err, message=bal_err['mensaje']
+            )
             self.ultimo_error_linea = linea_err
             self.ultimo_error_msg = bal_err['mensaje']
             if self.sonidos_activos:
@@ -1711,8 +1758,10 @@ class TutorFrame(wx.Frame):
         self.edicion.SetInsertionPoint(min(pt, len(src)))
         self.edicion.SetFocus()
 
-        detalle = self.ultimo_error_msg or "error detectado"
-        msg = f"Cursor en línea {linea_num}: {detalle}"
+        # Translators: Fallback error detail if not specifically recorded.
+        detalle = self.ultimo_error_msg or _("error detected")
+        # Translators: Speech announcement after jumping cursor to error line.
+        msg = _("Cursor on line {line}: {detail}").format(line=linea_num, detail=detalle)
         self.anunciar(msg)
 
     def on_mostrar_simbolos(self, event=None):
@@ -1750,8 +1799,11 @@ class TutorFrame(wx.Frame):
             tipo, nombre, num_linea, pos_char = siguiente
             self.edicion.SetInsertionPoint(min(pos_char, len(src)))
             self.edicion.SetFocus()
-            desc = "Clase" if tipo == "class" else "Función"
-            msg = f"{desc} {nombre}, línea {num_linea}"
+            # Translators: Label for Class in definition jump announcement.
+            # Translators: Label for Function in definition jump announcement.
+            desc = _("Class") if tipo == "class" else _("Function")
+            # Translators: Speech announcement when jumping to definition: [Class/Function] Name, line X.
+            msg = _("{kind} {name}, line {line}").format(kind=desc, name=nombre, line=num_linea)
             self.anunciar(msg)
         else:
             # Translators: Speech announcement when Alt+N finds no further definitions.
@@ -1777,8 +1829,11 @@ class TutorFrame(wx.Frame):
             tipo, nombre, num_linea, pos_char = anterior
             self.edicion.SetInsertionPoint(min(pos_char, len(src)))
             self.edicion.SetFocus()
-            desc = "Clase" if tipo == "class" else "Función"
-            msg = f"{desc} {nombre}, línea {num_linea}"
+            # Translators: Label for Class in definition jump announcement.
+            # Translators: Label for Function in definition jump announcement.
+            desc = _("Class") if tipo == "class" else _("Function")
+            # Translators: Speech announcement when jumping to definition: [Class/Function] Name, line X.
+            msg = _("{kind} {name}, line {line}").format(kind=desc, name=nombre, line=num_linea)
             self.anunciar(msg)
         else:
             # Translators: Speech announcement when Alt+P finds no earlier definitions.
@@ -1824,27 +1879,32 @@ class TutorFrame(wx.Frame):
 
             if not coincidencias:
                 if ui:
-                    ui.message(f"Sin sugerencias para '{prefijo}'.")
+                    # Translators: Speech announcement when autocomplete finds no suggestions.
+                    ui.message(_("No suggestions for '{prefix}'.").format(prefix=prefijo))
                 return
 
             if len(coincidencias) == 1:
                 eleccion = coincidencias[0]
                 resto = eleccion[len(prefijo):]
                 self.edicion.WriteText(resto)
+                # Translators: Announcement when autocompletion completes a word.
+                msg = _("Completed: {choice}").format(choice=eleccion)
                 if speech and hasattr(speech, 'speakMessage'):
-                    speech.speakMessage(f"Completado: {eleccion}")
+                    speech.speakMessage(msg)
                 if ui:
-                    ui.message(f"Completado: {eleccion}")
+                    ui.message(msg)
             else:
                 dlg = AutoCompleteDialog(self, prefijo, coincidencias)
                 if dlg.ShowModal() == wx.ID_OK and dlg.seleccion:
                     eleccion = dlg.seleccion
                     resto = eleccion[len(prefijo):]
                     self.edicion.WriteText(resto)
+                    # Translators: Announcement when autocompletion inserts a word.
+                    msg = _("Inserted: {choice}").format(choice=eleccion)
                     if speech and hasattr(speech, 'speakMessage'):
-                        speech.speakMessage(f"Insertado: {eleccion}")
+                        speech.speakMessage(msg)
                     if ui:
-                        ui.message(f"Insertado: {eleccion}")
+                        ui.message(msg)
                 dlg.Destroy()
                 self.edicion.SetFocus()
         except Exception:
@@ -1912,7 +1972,10 @@ class TutorFrame(wx.Frame):
             nuevo_txt, total = re.subn(patron, dlg.nuevo_nombre, txt)
             self.edicion.SetValue(nuevo_txt)
             self.edicion.SetInsertionPoint(min(pt, len(nuevo_txt)))
-            msg = f"Se renombraron {total} apariciones de {palabra} por {dlg.nuevo_nombre}."
+            # Translators: Speech announcement after renaming an identifier across script.
+            msg = _("Renamed {count} occurrences of {old} to {new}.").format(
+                count=total, old=palabra, new=dlg.nuevo_nombre
+            )
             self.anunciar(msg)
         dlg.Destroy()
         self.edicion.SetFocus()
@@ -1937,7 +2000,8 @@ class TutorFrame(wx.Frame):
 
             nuevo_codigo = nueva_def + txt_completo[:inicio] + f"{nombre}()" + txt_completo[fin:]
             self.edicion.SetValue(nuevo_codigo)
-            msg = f"Función '{nombre}' extraída correctamente."
+            # Translators: Speech announcement after extracting code into a function.
+            msg = _("Function '{name}' extracted successfully.").format(name=nombre)
             self.anunciar(msg)
         dlg.Destroy()
         self.edicion.SetFocus()
@@ -1950,10 +2014,12 @@ class TutorFrame(wx.Frame):
 
         if row in self.breakpoints:
             self.breakpoints.remove(row)
-            msg = f"Punto de interrupción eliminado en la línea {row}."
+            # Translators: Speech announcement when a breakpoint is removed.
+            msg = _("Breakpoint removed on line {line}.").format(line=row)
         else:
             self.breakpoints.add(row)
-            msg = f"Punto de interrupción activado en la línea {row}."
+            # Translators: Speech announcement when a breakpoint is set.
+            msg = _("Breakpoint set on line {line}.").format(line=row)
             if self.sonidos_activos:
                 SoundManager.play('bloque')
 
@@ -2073,11 +2139,19 @@ class TutorFrame(wx.Frame):
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo página de donaciones en el navegador...")
+                # Translators: Speech announcement when opening donation page in browser.
+                ui.message(_("Opening donation page in web browser..."))
         except Exception:
+            # Translators: Dialog message showing donation link.
+            msg = _(
+                "You can make a voluntary contribution to support the project at:\n"
+                "{url}"
+            ).format(url=url)
+            # Translators: Title for donation dialog.
+            title = _("Make a Donation")
             wx.MessageBox(
-                "Puedes realizar una contribución voluntaria para apoyar el proyecto en:\nhttps://www.paypal.me/kevinvelasquezvargas",
-                "Realizar una Donación",
+                msg,
+                title,
                 wx.OK | wx.ICON_INFORMATION,
                 self
             )
@@ -2333,7 +2407,8 @@ class TutorFrame(wx.Frame):
         """Lee la consigna del paso actual por voz y braille sin retirar el foco del editor de código."""
         try:
             if self.modo_editor:
-                self.anunciar("Modo Editor autónomo activo.")
+                # Translators: Speech announcement when reading instruction in standalone editor mode.
+                self.anunciar(_("Standalone Editor mode active."))
                 return
 
             cap = CURRICULUM[self.cap_idx]
@@ -2343,7 +2418,10 @@ class TutorFrame(wx.Frame):
             instruccion = paso.get("instruccion", "")
             if not instruccion:
                 instruccion = self.mision_ctrl.GetValue().strip()
-            msg = f"Paso {num_paso} de {total_pasos}: {instruccion}"
+            # Translators: Speech announcement when reading current lesson instruction.
+            msg = _("Step {step} of {total}: {instruction}").format(
+                step=num_paso, total=total_pasos, instruction=instruccion
+            )
             self.anunciar(msg)
         except Exception:
             pass
@@ -2437,12 +2515,23 @@ class TutorFrame(wx.Frame):
                 abierto = False
 
         if not abierto:
+            cur_lang = "en"
+            try:
+                import languageHandler
+                cur_lang = languageHandler.getLanguage().split("_")[0]
+            except Exception:
+                cur_lang = "es"
+
             base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             candidatos = [
+                os.path.join(base_dir, "doc", cur_lang, "readme.html"),
+                os.path.join(base_dir, "addon", "doc", cur_lang, "readme.html"),
                 os.path.join(base_dir, "doc", "es", "readme.html"),
+                os.path.join(base_dir, "addon", "doc", "es", "readme.html"),
+                os.path.join(base_dir, "doc", "en", "readme.html"),
+                os.path.join(base_dir, "addon", "doc", "en", "readme.html"),
                 os.path.join(base_dir, "doc", "readme.html"),
-                os.path.join(base_dir, "readme.html"),
-                os.path.join(base_dir, "addon", "doc", "es", "readme.html")
+                os.path.join(base_dir, "readme.html")
             ]
             for cand in candidatos:
                 if os.path.isfile(cand):

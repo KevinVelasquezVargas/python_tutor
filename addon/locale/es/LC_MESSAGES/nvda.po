@@ -1,19 +1,9 @@
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: python_tutor 2.0.0\n"
-"Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2026-09-30 21:33+0530\n"
-"PO-Revision-Date: 2026-09-30 21:35+0530\n"
-"Last-Translator: MisterK-Dev <misterk@dev.org>\n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-
 "Project-Id-Version: 'python_tutor' '2.0.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-09-30 21:33+0530\n"
+"POT-Creation-Date: 2026-09-30 23:20+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,907 +13,1406 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Translators: Dialog title for text search.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:64
+#: addon\globalPlugins\python_tutor\gui_frame.py:65
 msgid "Find in Editor"
 msgstr "Buscar en el Editor"
 
 #. Translators: Label for search query text field.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:71
+#: addon\globalPlugins\python_tutor\gui_frame.py:72
 msgid "Text to &find:"
 msgstr "Texto a &buscar:"
 
-#. Translators: Checkbox label for case-sensitive search.
+#. Translators: Accessible name for search text field in Find dialog.
+#: addon\globalPlugins\python_tutor\gui_frame.py:77
+msgid "Search text"
+msgstr "Texto a buscar"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:79
+#. Translators: Checkbox label for case-sensitive search.
+#: addon\globalPlugins\python_tutor\gui_frame.py:81
 msgid "Match &case"
 msgstr "Coincidir &mayúsculas y minúsculas"
 
 #. Translators: Button to find next occurrence.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:84
+#: addon\globalPlugins\python_tutor\gui_frame.py:86
 msgid "&Find Next"
 msgstr "&Buscar siguiente"
 
 #. Translators: Button to close search dialog.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:87
+#. Translators: Button to close support dialog.
+#. Translators: Button to close about dialog.
+#: addon\globalPlugins\python_tutor\gui_frame.py:89
+#: addon\globalPlugins\python_tutor\gui_frame.py:650
+#: addon\globalPlugins\python_tutor\gui_frame.py:865
 msgid "&Close"
 msgstr "&Cerrar"
 
 #. Translators: Speech announcement when user submits empty search field.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:109
+#: addon\globalPlugins\python_tutor\gui_frame.py:111
 msgid "Enter text to search."
 msgstr "Escribe un texto para buscar."
 
 #. Translators: Speech notification when search query is found.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:127
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:129
 #, python-brace-format
 msgid "Found '{query}' on line {line}"
 msgstr "Encontrado '{query}' en la línea {line}"
 
 #. Translators: Speech notification when search query is not found.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:135
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:137
 #, python-brace-format
 msgid "'{query}' not found in code."
 msgstr "No se encontró '{query}' en el código."
 
 #. Translators: Dialog title for jump to line number.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:146
+#: addon\globalPlugins\python_tutor\gui_frame.py:148
 msgid "Go to Line"
 msgstr "Ir a la Línea"
 
 #. Translators: Label indicating available line number range.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:158
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:160
 #, python-brace-format
 msgid "&Line number (1 - {total}):"
 msgstr "&Número de línea (1 - {total}):"
 
-#. Translators: Button to execute line jump.
+#. Translators: Accessible name for line number field in Go To Line dialog.
+#: addon\globalPlugins\python_tutor\gui_frame.py:165
+msgid "Line number"
+msgstr "Número de línea"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:167
+#. Translators: Button to execute line jump.
+#: addon\globalPlugins\python_tutor\gui_frame.py:170
 msgid "&Go to Line"
 msgstr "&Ir a línea"
 
 #. Translators: Button to cancel line jump dialog.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:170
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:257
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:582
+#: addon\globalPlugins\python_tutor\gui_frame.py:173
+#: addon\globalPlugins\python_tutor\gui_frame.py:262
+#: addon\globalPlugins\python_tutor\gui_frame.py:593
 msgid "&Cancel"
 msgstr "&Cancelar"
 
 #. Translators: Speech announcement for invalid line number entry.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:194
+#: addon\globalPlugins\python_tutor\gui_frame.py:197
 msgid "Please enter a valid line number."
 msgstr "Por favor introduce un número de línea válido."
 
 #. Translators: Speech notification confirming cursor positioned at line.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:204
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:207
 #, python-brace-format
 msgid "Cursor on line {line}"
 msgstr "Cursor en línea {line}"
 
 #. Translators: Speech error announcement when line number is out of bounds.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:213
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:216
 #, python-brace-format
 msgid "The line must be between 1 and {total}."
 msgstr "La línea debe estar entre 1 y {total}."
 
 #. Translators: Dialog title for selecting curriculum chapters.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:220
+#: addon\globalPlugins\python_tutor\gui_frame.py:223
 msgid "Curriculum Chapter Selector"
 msgstr "Selector de Capítulos del Temario"
 
 #. Translators: Label for chapter selection list.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:225
+#: addon\globalPlugins\python_tutor\gui_frame.py:228
 msgid "Choose the &chapter you want to access:"
 msgstr "Elige el &capítulo al que deseas acceder:"
 
 #. Translators: Status prefix for completed chapter.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:237
+#: addon\globalPlugins\python_tutor\gui_frame.py:240
 msgid "Completed, "
 msgstr "Superado, "
 
 #. Translators: Status prefix for available chapter.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:240
+#: addon\globalPlugins\python_tutor\gui_frame.py:243
 msgid "Available, "
 msgstr "Disponible, "
 
 #. Translators: Status prefix for locked chapter.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:243
+#: addon\globalPlugins\python_tutor\gui_frame.py:246
 msgid "Locked, "
 msgstr "Bloqueado, "
 
-#. Translators: Accessible name for chapter selection list.
-
+#. Translators: Fallback title format for chapter if not explicitly named.
 #: addon\globalPlugins\python_tutor\gui_frame.py:248
+#, python-brace-format
+msgid "Chapter {num}"
+msgstr "Capítulo {num}"
+
+#. Translators: Accessible name for chapter selection list.
+#: addon\globalPlugins\python_tutor\gui_frame.py:253
 msgid "Chapter list. Press Enter or click to select."
 msgstr "Lista de capítulos. Presione Enter o haga clic para seleccionar."
 
 #. Translators: Button to load chosen chapter.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:255
+#: addon\globalPlugins\python_tutor\gui_frame.py:260
 msgid "&Load Chapter"
 msgstr "&Cargar Capítulo"
 
 #. Translators: Message explaining a chapter is locked.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:281
+#: addon\globalPlugins\python_tutor\gui_frame.py:286
 msgid ""
 "This chapter is locked. You must complete all steps of the previous chapter "
 "to unlock it."
 msgstr ""
+"Este capítulo se encuentra bloqueado. Debes superar todos los pasos de los "
+"capítulos anteriores para desbloquearlo."
 
 #. Translators: Message box title when chapter is locked.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:285
+#: addon\globalPlugins\python_tutor\gui_frame.py:290
 msgid "Chapter Locked"
 msgstr "Capítulo bloqueado"
 
 #. Translators: Title for pedagogical assistance hint dialog.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:297
+#: addon\globalPlugins\python_tutor\gui_frame.py:302
 msgid "Assistance Hint"
 msgstr "Pista de Asistencia"
 
 #. Translators: Label indicating current hint tier level.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:303
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:308
 #, python-brace-format
 msgid "Available hint (Level {level} of {total}):"
 msgstr "Pista disponible (Nivel {level} de {total}):"
 
 #. Translators: Fallback message when no hint text is defined.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:307
+#: addon\globalPlugins\python_tutor\gui_frame.py:312
 msgid "Review the exercise instructions."
 msgstr "Revisa las instrucciones del ejercicio."
 
 #. Translators: Accessible name for hint text box.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:312
+#: addon\globalPlugins\python_tutor\gui_frame.py:317
 msgid "Hint content."
 msgstr "Contenido de la pista."
 
 #. Translators: Confirmation button to dismiss hint.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:316
+#: addon\globalPlugins\python_tutor\gui_frame.py:321
 msgid "&Understood"
 msgstr "&Entendido"
 
 #. Translators: Title for the first-launch welcome dialog.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:335
+#: addon\globalPlugins\python_tutor\gui_frame.py:340
 msgid "Welcome to Python Learning with NVDA"
 msgstr "Bienvenido a Aprendizaje de Python con NVDA"
 
-#. Translators: Accessible name for welcome text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:346
+msgid ""
+"Welcome to Python Learning with NVDA!\n"
+"\n"
+"This add-on will guide you step by step in learning Python programming, starting from fundamental concepts and advancing progressively through practical exercises designed to be solved directly in the editor.\n"
+"\n"
+"The environment features two working modes:\n"
+"Learning Mode: Provides guided lessons, theoretical explanations, and automatic solution verification.\n"
+"Standalone Editor Mode: A clutter-free, accessible editor to write and run your own scripts.\n"
+"\n"
+"You can consult the full list of keyboard shortcuts at any time by pressing F11 or from the Help menu, and learn more about the add-on in About.\n"
+"\n"
+"Press the Start learning button or press Enter to begin your first lesson."
+msgstr ""
+"¡Te damos la bienvenida a Aprendizaje de Python con NVDA!\n"
+"\n"
+"Este complemento te guiará paso a paso en el aprendizaje de la programación en Python, comenzando desde los conceptos fundamentales y avanzando de manera progresiva a través de ejercicios prácticos diseñados para ser resueltos directamente en el editor.\n"
+"\n"
+"El entorno cuenta con dos modalidades de trabajo:\n"
+"Modo Aprendizaje: Ofrece lecciones guiadas, explicaciones teóricas y comprobación automática de soluciones.\n"
+"Modo Editor autónomo: Un editor despejado y accesible para escribir y ejecutar tus propios scripts.\n"
+"\n"
+"Puedes consultar la lista completa de atajos de teclado en cualquier momento pulsando F11 o desde el menú Ayuda, y obtener más detalles sobre el complemento en la opción Acerca de.\n"
+"\n"
+"Pulsa el botón Comenzar a aprender o pulsa Enter para empezar tu primera lección."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:355
+#. Translators: Accessible name for welcome text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:361
 msgid "Welcome message"
 msgstr "Mensaje de bienvenida"
 
 #. Translators: Checkbox to show welcome dialog on start.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:360
+#: addon\globalPlugins\python_tutor\gui_frame.py:366
 msgid "&Show this welcome guide on startup"
 msgstr "&Mostrar esta guía de bienvenida al iniciar"
 
 #. Translators: Primary button to start learning curriculum.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:365
+#: addon\globalPlugins\python_tutor\gui_frame.py:371
 msgid "&Start learning"
 msgstr "&Comenzar a aprender"
 
 #. Translators: Dialog title for keyboard shortcuts guide.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:389
+#: addon\globalPlugins\python_tutor\gui_frame.py:395
 msgid "Keyboard Shortcuts Guide"
 msgstr "Guía de Atajos de Teclado"
 
-#. Translators: Accessible name for keyboard shortcuts text box.
+#: addon\globalPlugins\python_tutor\gui_frame.py:401
+msgid ""
+"Complete Keyboard Shortcuts Guide:\n"
+"\n"
+"Modes and Learning:\n"
+"Control + Enter or Control + E: Run code and verify solution.\n"
+"Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
+"F3 or Control + I: Read the active instruction without moving focus from the editor.\n"
+"F4: Place the cursor on the exact line of the Traceback error.\n"
+"F6: Toggle focus between the code editor and the output console.\n"
+"Alt + Right Arrow: Go to next step of the lesson.\n"
+"Alt + Left Arrow: Go to previous step of the lesson.\n"
+"Control + P: Request a graduated hint.\n"
+"F1: Explain current line in simple, everyday words.\n"
+"Shift + F1: Quick documentation for symbol under cursor.\n"
+"Control + R: Reset exercise initial code.\n"
+"Control + 1: Open Chapter Selector.\n"
+"Control + J: Open quick interactive playground (REPL).\n"
+"\n"
+"Editing and IDE Development Features:\n"
+"Control + N: Create a new blank script in editor.\n"
+"Control + F: Find text in code editor.\n"
+"Control + G: Go to a specific line number.\n"
+"F2: Rename identifier or variable across the file.\n"
+"Shift + Alt + F or Control + Shift + I: Format document with PEP 8.\n"
+"Control + Shift + R: Extract selected code block to a new function.\n"
+"Control + Space: Intelligent autocompletion with documentation.\n"
+"Control + Shift + O: Accessible list of functions and classes in script.\n"
+"Alt + N: Quick jump to header of next function or class.\n"
+"Alt + P: Quick jump to header of previous function or class.\n"
+"Control + / or Control + K: Comment or uncomment current line with '# '.\n"
+"Control + D: Duplicate current line downward.\n"
+"Control + Shift + K: Delete current line.\n"
+"F7: Check syntax, quotes, and delimiter balancing.\n"
+"Control + L: Announce cursor's current line and column.\n"
+"Control + 4: Focus Code Editor directly.\n"
+"Control + 5: Focus Output Console directly.\n"
+"Control + 6: Speak the last line of the console.\n"
+"Control + Shift + C: Speak the entire console output.\n"
+"\n"
+"Debugging, Testing, and Environments:\n"
+"F9: Toggle breakpoint on current line.\n"
+"F10: Start interactive step-by-step debugger.\n"
+"Control + T: Run unit tests (accessible Test Runner).\n"
+"Control + Shift + P: Python interpreters and virtual environments manager.\n"
+"\n"
+"Files, Help, and Documentation:\n"
+"Control + O: Open Python script (.py) from disk.\n"
+"Control + S: Save current script to disk.\n"
+"Control + Shift + S: Save script with a new name or location.\n"
+"F5: Run code and verify solution.\n"
+"F11: Open this Keyboard Shortcuts Guide.\n"
+"F12: Open About documentation in web browser.\n"
+"Escape: Close tutor window immediately from any control."
+msgstr ""
+"Guía Completa de Atajos de Teclado:\n"
+"\n"
+"Modos y Aprendizaje:\n"
+"Control + Enter o Control + E: Ejecutar código y comprobar la solución.\n"
+"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
+"F3 o Control + I: Leer la instrucción activa sin mover el foco del editor.\n"
+"F4: Situar el cursor en la línea exacta del error del Traceback.\n"
+"F6: Alternar el foco entre el editor de código y la consola de resultados.\n"
+"Alt + Flecha Derecha: Ir al paso siguiente de la lección.\n"
+"Alt + Flecha Izquierda: Ir al paso anterior de la lección.\n"
+"Control + P: Pedir una pista escalonada de asistencia.\n"
+"F1: Explicar la línea actual con palabras sencillas y cotidianas.\n"
+"Shift + F1: Documentación rápida del símbolo bajo el cursor.\n"
+"Control + R: Restablecer el código inicial del ejercicio.\n"
+"Control + 1: Abrir el Selector de Capítulos del temario.\n"
+"Control + J: Abrir la consola de pruebas rápidas (REPL).\n"
+"\n"
+"Edición y Funciones de Desarrollo (IDE):\n"
+"Control + N: Crear un nuevo script limpio en el editor.\n"
+"Control + F: Buscar texto en el editor de código.\n"
+"Control + G: Desplazarse a un número de línea específico.\n"
+"F2: Renombrar identificador o variable en todo el archivo.\n"
+"Shift + Alt + F o Control + Shift + I: Formatear documento según PEP 8.\n"
+"Control + Shift + R: Extraer bloque de código seleccionado a una nueva función.\n"
+"Control + Espacio: Autocompletado inteligente con documentación.\n"
+"Control + Shift + O: Lista accesible de funciones y clases del script.\n"
+"Alt + N: Salto rápido a la cabecera de la siguiente función o clase.\n"
+"Alt + P: Salto rápido a la cabecera de la función o clase anterior.\n"
+"Control + / o Control + K: Comentar o descomentar la línea actual con '# '.\n"
+"Control + D: Duplicar la línea actual hacia abajo.\n"
+"Control + Shift + K: Eliminar la línea actual.\n"
+"F7: Verificar sintaxis, comillas y balanceo de delimitadores.\n"
+"Control + L: Anunciar la línea y columna actual del cursor.\n"
+"Control + 4: Llevar el foco directamente al Editor de código.\n"
+"Control + 5: Llevar el foco directamente a la Consola de resultados.\n"
+"Control + 6: Leer por voz la última línea de la consola.\n"
+"Control + Shift + C: Leer por voz todo el contenido de la consola.\n"
+"\n"
+"Depuración, Pruebas y Entornos:\n"
+"F9: Alternar punto de interrupción (breakpoint) en la línea actual.\n"
+"F10: Iniciar depurador interactivo paso a paso.\n"
+"Control + T: Ejecutar pruebas unitarias (Test Runner accesible).\n"
+"Control + Shift + P: Gestor de intérpretes de Python y entornos virtuales.\n"
+"\n"
+"Archivos, Ayuda y Documentación:\n"
+"Control + O: Abrir script de Python (.py) desde disco.\n"
+"Control + S: Guardar script actual en disco.\n"
+"Control + Shift + S: Guardar script con un nuevo nombre o ubicación.\n"
+"F5: Ejecutar el código y verificar solución.\n"
+"F11: Abrir esta Guía de Atajos de Teclado.\n"
+"F12: Abrir la documentación de Acerca de en el navegador web.\n"
+"Escape: Cerrar la ventana del tutor inmediatamente desde cualquier control."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:447
+#. Translators: Accessible name for keyboard shortcuts text box.
+#: addon\globalPlugins\python_tutor\gui_frame.py:454
 msgid "Full list of keyboard shortcuts"
 msgstr "Lista completa de atajos de teclado"
 
 #. Translators: Button to close shortcuts guide.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:451
+#: addon\globalPlugins\python_tutor\gui_frame.py:458
 msgid "&Close Guide"
 msgstr "&Cerrar Guía"
 
 #. Translators: Dialog title for Python terms glossary.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:471
+#: addon\globalPlugins\python_tutor\gui_frame.py:478
 msgid "Python Terms Dictionary"
 msgstr "Diccionario de Términos de Python"
 
 #. Translators: Label for glossary search input.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:480
+#: addon\globalPlugins\python_tutor\gui_frame.py:487
 msgid "Search &term:"
 msgstr "Buscar &término:"
 
 #. Translators: Accessible name for glossary search control.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:484
+#: addon\globalPlugins\python_tutor\gui_frame.py:491
 msgid "Type command or concept here to search."
 msgstr "Escribe aquí el comando o concepto para buscar."
 
 #. Translators: Accessible name for available glossary terms list.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:491
+#: addon\globalPlugins\python_tutor\gui_frame.py:498
 msgid "Available terms."
 msgstr "Términos disponibles."
 
 #. Translators: Accessible name for term definition readout.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:496
+#: addon\globalPlugins\python_tutor\gui_frame.py:503
 msgid "Meaning of the term."
 msgstr "Significado del término."
 
 #. Translators: Button to close glossary dictionary.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:501
+#: addon\globalPlugins\python_tutor\gui_frame.py:508
 msgid "&Close Dictionary"
 msgstr "&Cerrar Diccionario"
 
 #. Translators: Notice displayed when glossary search finds no matches.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:532
+#: addon\globalPlugins\python_tutor\gui_frame.py:539
 msgid "No matches found."
 msgstr "No se encontraron coincidencias."
 
 #. Translators: Dialog title for symbols navigation.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:546
+#: addon\globalPlugins\python_tutor\gui_frame.py:553
 msgid "Code Structure: Functions and Classes"
 msgstr "Estructura del Código: Funciones y Clases"
 
 #. Translators: Label identifying symbol as Class or Function.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:557
+#. Translators: Label for Class in definition jump announcement.
+#. Translators: Label for Function in definition jump announcement.
+#: addon\globalPlugins\python_tutor\gui_frame.py:564
+#: addon\globalPlugins\python_tutor\gui_frame.py:1804
+#: addon\globalPlugins\python_tutor\gui_frame.py:1834
 msgid "Class"
 msgstr "Clase"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:557
+#: addon\globalPlugins\python_tutor\gui_frame.py:564
+#: addon\globalPlugins\python_tutor\gui_frame.py:1804
+#: addon\globalPlugins\python_tutor\gui_frame.py:1834
 msgid "Function"
 msgstr "Función"
 
 #. Translators: Label for symbols selector list.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:563
+#: addon\globalPlugins\python_tutor\gui_frame.py:570
 msgid "Select a &function or class to jump cursor directly to its header:"
-msgstr "Selecciona una &función o clase para desplazar el cursor directamente a su cabecera:"
+msgstr ""
+"Selecciona una &función o clase para desplazar el cursor directamente a su "
+"cabecera:"
+
+#: addon\globalPlugins\python_tutor\gui_frame.py:575
+#, python-brace-format
+msgid "[{type}] {name} (Line {line})"
+msgstr "[{type}] {name} (Línea {line})"
 
 #. Translators: Notice in symbols list when no definitions are present.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:569
+#: addon\globalPlugins\python_tutor\gui_frame.py:580
 msgid "(No functions or classes found in current code)"
 msgstr "(No se encontraron funciones ni clases en el código actual)"
 
 #. Translators: Accessible name for symbols list box.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:573
+#: addon\globalPlugins\python_tutor\gui_frame.py:584
 msgid "List of functions and classes. Press Enter to jump to element."
 msgstr "Lista de funciones y clases. Presione Enter para ir al elemento."
 
 #. Translators: Button to jump to selected symbol.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:580
+#: addon\globalPlugins\python_tutor\gui_frame.py:591
 msgid "&Go to Element"
 msgstr "&Ir al elemento"
 
 #. Translators: Dialog title for technical support and contact.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:611
+#: addon\globalPlugins\python_tutor\gui_frame.py:622
 msgid "Support and Contact"
 msgstr "Soporte y Contacto"
 
-#. Translators: Accessible name for support info text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:628
+#, python-brace-format
+msgid ""
+"Developer Support and Contact:\n"
+"\n"
+"Author and Developer: Kevin Andrés Velasquez Vargas\n"
+"Support email: {email}\n"
+"Recommended subject: Support - Python Learning with NVDA\n"
+"\n"
+"You can send pedagogical inquiries about chapters, questions about solving exercises, improvement suggestions, or technical bug reports.\n"
+"\n"
+"Likewise, you can voluntarily support the project through donations to back ongoing maintenance and the creation of new accessible educational content."
+msgstr ""
+"Soporte y Contacto con el Desarrollador:\n"
+"\n"
+"Autor y Desarrollador: Kevin Andrés Velasquez Vargas\n"
+"Correo electrónico de soporte: {email}\n"
+"Asunto recomendado: Soporte - Aprendizaje de Python con NVDA\n"
+"\n"
+"Puedes enviar consultas pedagógicas sobre los capítulos, dudas sobre la resolución de ejercicios, sugerencias de mejora o reportes de errores técnicos.\n"
+"\n"
+"Asimismo, puedes colaborar voluntariamente con el proyecto mediante donaciones para respaldar el mantenimiento continuo y la creación de nuevos contenidos formativos accesibles."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:629
+#. Translators: Accessible name for support info text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:641
 msgid "Support and contact information"
 msgstr "Información de soporte y contacto"
 
 #. Translators: Button to open default mail client for support.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:634
+#: addon\globalPlugins\python_tutor\gui_frame.py:646
 msgid "&Send support email"
 msgstr "&Enviar correo de soporte"
 
 #. Translators: Button to open donation page.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:636
+#: addon\globalPlugins\python_tutor\gui_frame.py:648
 msgid "Make &donation (PayPal)"
 msgstr "Realizar &donación (PayPal)"
 
-#. Translators: Speech announcement when opening email client.
+#. Translators: Subject line for support email.
+#: addon\globalPlugins\python_tutor\gui_frame.py:672
+msgid "Support - Python Learning with NVDA"
+msgstr "Soporte - Aprendizaje de Python con NVDA"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:663
+#. Translators: Speech announcement when opening email client.
+#: addon\globalPlugins\python_tutor\gui_frame.py:678
 msgid "Opening default email client..."
 msgstr "Abriendo cliente de correo predeterminado..."
 
 #. Translators: Speech announcement displaying contact email address.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:667
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:682
 #, python-brace-format
 msgid "Write to {email}"
 msgstr "Escribe a {email}"
 
 #. Translators: Speech announcement when opening donations link.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:675
+#: addon\globalPlugins\python_tutor\gui_frame.py:690
 msgid "Opening donations page..."
 msgstr "Abriendo página de donaciones..."
 
 #. Translators: Dialog title for About documentation.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:684
+#: addon\globalPlugins\python_tutor\gui_frame.py:699
 msgid "About Python Learning with NVDA"
 msgstr "Acerca de Aprendizaje de Python con NVDA"
 
-#. Translators: Accessible name for about documentation text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:705
+#, python-brace-format
+msgid ""
+"Python Learning with NVDA\n"
+"Version: 2.0.0\n"
+"Author: Kevin Andrés Velasquez Vargas\n"
+"Support email: {email}\n"
+"License: GNU General Public License v3.0 (GPLv3)\n"
+"Compatibility: NVDA 2022.1 up to 2026.3\n"
+"GitHub repository: {repo_url}\n"
+"Donations and voluntary support: {donate_url}\n"
+"\n"
+"======================================================================\n"
+"1. Overview and Purpose of the Add-on\n"
+"======================================================================\n"
+"\n"
+"Python Learning with NVDA is a comprehensive educational environment and an accessible code editor adapted for Python programming through NVDA. It provides a structured learning path across 32 conceptual and practical lessons, complemented by a dual-mode work environment: guided tutor mode and standalone editor mode.\n"
+"\n"
+"It integrates structural navigation through code elements such as functions and classes, audio cues for indentation and structure, delimiter balancing checks, and simplified error messages.\n"
+"\n"
+"The environment has been designed to ensure that any blind or low-vision user can learn 100% independently, with speech and braille feedback.\n"
+"\n"
+"======================================================================\n"
+"2. Pedagogical Methodology: 4-Step Learning Cycle\n"
+"======================================================================\n"
+"\n"
+"Each chapter implements a four-phase progressive pedagogical cycle:\n"
+"\n"
+"Step 1: Conceptual Foundation (Observe): Presents theory in clear, everyday language, accompanied by a demonstration script runnable with F5 or Control + Enter.\n"
+"\n"
+"Step 2: Guided Observation (Experiment): A functional code snippet with a specific task to modify it and observe the cause and effect of changes.\n"
+"\n"
+"Step 3: Practical Challenge (Challenge): The editor starts completely blank so the student writes their own code. The tutor rigorously validates the solution without accepting empty answers.\n"
+"\n"
+"Step 4: Conceptual Verification (Quiz): A formative multiple-choice question (1, 2, or 3) to consolidate learned concepts.\n"
+"\n"
+"======================================================================\n"
+"3. Dual Working Modes\n"
+"======================================================================\n"
+"\n"
+"You can toggle between the two modes at any moment by pressing Control + M:\n"
+"\n"
+"Guided Learning Mode: Displays the step instruction, code, didactic buttons, and the pedagogical validation system.\n"
+"\n"
+"Standalone Editor Mode (Free Professional): Hides all lesson sections and maximizes workspace for the editor and output console, allowing work on personal projects with support for opening and saving .py files, delimiter checking, and structural navigation.\n"
+"\n"
+"======================================================================\n"
+"4. Pedagogical Curriculum Catalog (32 Chapters)\n"
+"======================================================================\n"
+"\n"
+"Phase 0: Computational Thinking and Fundamentals (1 to 3)\n"
+"Chapter 1: Computational Thinking and Everyday Algorithms\n"
+"Chapter 2: Basic Architecture: Input, Process, Memory, and Output\n"
+"Chapter 3: Boolean Logic: True, False, and Decisions\n"
+"\n"
+"Phase 1: Basic Syntax and Data Types (4 to 8)\n"
+"Chapter 4: Our First Instruction: The print() Function\n"
+"Chapter 5: Memory Storage: Variables and Assignment\n"
+"Chapter 6: Primitive Data Types: Integers and Floats\n"
+"Chapter 7: Text Strings: Quotes and Concatenation\n"
+"Chapter 8: User Interaction: Input with input()\n"
+"\n"
+"Phase 2: Flow Control Structures (9 to 15)\n"
+"Chapter 9: Comparison Operators and Conditional Expressions\n"
+"Chapter 10: Basic Branching: The if Statement and PEP 8 Indentation\n"
+"Chapter 11: Multiple Alternatives: elif and else Blocks\n"
+"Chapter 12: Ordered Collections: Introduction to Lists\n"
+"Chapter 13: Fundamental List Methods (append, remove, pop, len)\n"
+"Chapter 14: Repetition and Automation: The for Loop and range()\n"
+"Chapter 15: Conditional Repetition: The while Loop\n"
+"\n"
+"Phase 3: Complex Data Structures (16 to 17)\n"
+"Chapter 16: Key-Value Collections: Dictionaries in Python\n"
+"Chapter 17: Tuples and Sets: Immutability and Unique Collections\n"
+"\n"
+"Phase 4: Modularity and Functions (18 to 19)\n"
+"Chapter 18: Custom Functions: Declaration with def and Parameters\n"
+"Chapter 19: Returning Results: The return Statement and Scope\n"
+"\n"
+"Phase 5: Professional Error Handling and Diagnostics (20 to 21)\n"
+"Chapter 20: Professional Error Handling: try, except, and finally\n"
+"Chapter 21: Decoding Tracebacks and Fault Diagnostics\n"
+"\n"
+"Phase 6: File Input/Output and Persistence (22)\n"
+"Chapter 22: File Input and Output: with open() for Text\n"
+"\n"
+"Phase 7: Object-Oriented Programming (23 to 27)\n"
+"Chapter 23: Object Paradigm: Classes, Instances, and Attributes\n"
+"Chapter 24: The __init__ Constructor and the self Parameter\n"
+"Chapter 25: Instance Methods and Encapsulation\n"
+"Chapter 26: Class Inheritance: Reuse with super()\n"
+"Chapter 27: Polymorphism and Special Methods (__str__)\n"
+"\n"
+"Phase 8: Professional Ecosystem and Quality (28 to 32)\n"
+"Chapter 28: Standard Library Modules (math, random, datetime)\n"
+"Chapter 29: Structured Persistence: JSON Format and Serialization\n"
+"Chapter 30: Relational Databases with SQLite: Tables and Queries\n"
+"Chapter 31: Consuming Web Services: HTTP Requests and JSON Responses\n"
+"Chapter 32: Software Quality: Unit Testing with unittest\n"
+"\n"
+"======================================================================\n"
+"5. Comprehensive Keyboard Shortcuts Reference\n"
+"======================================================================\n"
+"\n"
+"F5 or Control + Enter: Run code and check solution.\n"
+"Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
+"Alt + Right Arrow: Go to next step.\n"
+"Alt + Left Arrow: Go to previous step.\n"
+"F1: Explain line where cursor is located in simple words.\n"
+"F2: Rename symbol across file.\n"
+"F3 or Control + I: Read active mission prompt without moving cursor from editor.\n"
+"F4: Place cursor directly on Traceback error line.\n"
+"F6: Toggle focus between code editor and console.\n"
+"F7: Check syntax and balance of delimiters/quotes.\n"
+"Control + P: Request assistance hint.\n"
+"Control + 1: Curriculum chapter selector.\n"
+"Control + J: Open quick test console (REPL).\n"
+"Control + Shift + O: Accessible list of functions and classes in script.\n"
+"Alt + N / Alt + P: Jump to next / previous function or class.\n"
+"Control + /: Comment or uncomment current line.\n"
+"Control + D: Duplicate line downward.\n"
+"Control + Shift + K: Delete current line.\n"
+"Control + L: Announce current line and column.\n"
+"Control + F: Find text in editor.\n"
+"Control + G: Go to line number.\n"
+"Control + N: Start new blank script.\n"
+"Control + O / Control + S: Open / Save file.\n"
+"Control + Shift + S: Save as new file.\n"
+"Control + 4 / Control + 5: Direct focus to editor / console.\n"
+"Control + Shift + C: Speak all console output without leaving editor.\n"
+"F12: Open this documentation in About.\n"
+"Escape: Close tutor at any time.\n"
+"\n"
+"======================================================================\n"
+"6. Acoustic Feedback System\n"
+"======================================================================\n"
+"\n"
+"The environment produces brief, distinct audio cues:\n"
+"Startup: Confirmation tone when starting the environment.\n"
+"Success: High, rewarding tone when passing an exercise or executing successfully.\n"
+"Error: Low tone when an exception or failure occurs.\n"
+"Warning: Sound cue on unclosed delimiters or syntax notices.\n"
+"Block: Subtle tone when typing a colon (:) to indicate opening indentation.\n"
+"\n"
+"======================================================================\n"
+"7. Debugging and Diagnostic Assistance\n"
+"======================================================================\n"
+"\n"
+"The environment actively assists in early fault detection:\n"
+"Pre-check of quotes and delimiters () [] {}.\n"
+"Automatic jump with F4 to Traceback error line.\n"
+"Detection of confusing characters such as commas in floats or punctuation signs.\n"
+"Statement translator with F1 to understandable human explanations.\n"
+"\n"
+"======================================================================\n"
+"8. Support, Contact, and Donations\n"
+"======================================================================\n"
+"\n"
+"For direct support, suggestions, or inquiries:\n"
+"Developer: Kevin Andrés Velasquez Vargas\n"
+"Direct email: {email}\n"
+"Recommended subject: Support - Python Learning with NVDA\n"
+"Voluntary donations via PayPal: {donate_url}\n"
+"\n"
+"======================================================================\n"
+"9. Technical Information and License\n"
+"======================================================================\n"
+"\n"
+"Version: 2.0.0\n"
+"Compatibility: NVDA 2022.1 up to 2026.3\n"
+"License: GNU General Public License v3.0 (GPLv3)\n"
+"Developed for the screen reader programmer community."
+msgstr ""
+"Aprendizaje de Python con NVDA\n"
+"Versión: 2.0.0\n"
+"Autor: Kevin Andrés Velasquez Vargas\n"
+"Correo de soporte: {email}\n"
+"Licencia: GNU General Public License v3.0 (GPLv3)\n"
+"Compatibilidad: NVDA 2022.1 hasta 2026.3\n"
+"Repositorio en GitHub: {repo_url}\n"
+"Donaciones y apoyo voluntario: {donate_url}\n"
+"\n"
+"======================================================================\n"
+"1. Visión General y Propósito del Complemento\n"
+"======================================================================\n"
+"\n"
+"Aprendizaje de Python con NVDA es un entorno formativo integral y un editor tiflotécnico de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 lecciones conceptuales y prácticas, complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo.\n"
+"\n"
+"Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error.\n"
+"\n"
+"El entorno ha sido diseñado para garantizar que cualquier persona ciega o con baja visión pueda formarse de manera 100% independiente, con retroalimentación en voz y braille.\n"
+"\n"
+"======================================================================\n"
+"2. Metodología Pedagógica: Ciclo de Aprendizaje en 4 Pasos\n"
+"======================================================================\n"
+"\n"
+"Cada capítulo implementa un ciclo pedagógico de cuatro fases progresivas:\n"
+"\n"
+"Paso 1: Fundamento Conceptual (Observar): Presenta la teoría en un lenguaje claro y cotidiano, acompañada de un script de demostración ejecutable con F5 o Control + Enter.\n"
+"\n"
+"Paso 2: Observación Guiada (Experimentar): Un fragmento de código funcional con una consigna específica para modificarlo y constatar la causa y efecto de los cambios.\n"
+"\n"
+"Paso 3: Reto Práctico (Desafío): El editor inicia completamente limpio para que el estudiante escriba su propio código. El tutor valida rigurosamente la solución sin aceptar respuestas vacías.\n"
+"\n"
+"Paso 4: Verificación Conceptual (Quiz): Pregunta formativa de opción múltiple (1, 2 o 3) para consolidar los conceptos aprendidos.\n"
+"\n"
+"======================================================================\n"
+"3. Doble Modalidad de Trabajo\n"
+"======================================================================\n"
+"\n"
+"Puedes alternar entre los dos modos en cualquier instante pulsando Control + M:\n"
+"\n"
+"Modo Aprendizaje Guiado: Muestra la instrucción del paso, el código, botones didácticos y el sistema de validación pedagógica.\n"
+"\n"
+"Modo Solo Editor (Profesional libre): Oculta todas las secciones de lecciones y maximiza el espacio para el editor y la consola de salida, permitiendo trabajar en proyectos propios con soporte para abrir y guardar archivos .py, verificación de delimitadores y navegación estructural.\n"
+"\n"
+"======================================================================\n"
+"4. Catálogo del Temario Pedagógico (32 Capítulos)\n"
+"======================================================================\n"
+"\n"
+"Fase 0: Pensamiento Computacional y Fundamentos (1 a 3)\n"
+"Capítulo 1: Pensamiento Computacional y Algoritmos Cotidianos\n"
+"Capítulo 2: Arquitectura Básica: Entrada, Proceso, Memoria y Salida\n"
+"Capítulo 3: Lógica Booleana: Verdadero, Falso y Decisiones\n"
+"\n"
+"Fase 1: Sintaxis Básica y Tipos de Datos (4 a 8)\n"
+"Capítulo 4: Nuestra Primera Instrucción: La Función print()\n"
+"Capítulo 5: Almacenamiento en Memoria: Variables y Asignación\n"
+"Capítulo 6: Tipos de Datos Primitivos: Números Enteros y Decimales\n"
+"Capítulo 7: Cadenas de Texto (Strings): Comillas y Concatenación\n"
+"Capítulo 8: Interacción con el Usuario: Entrada con input()\n"
+"\n"
+"Fase 2: Estructuras de Control de Flujo (9 a 15)\n"
+"Capítulo 9: Operadores de Comparación y Expresiones Condicionales\n"
+"Capítulo 10: Bifurcación Básica: Estructura if y Sangría PEP 8\n"
+"Capítulo 11: Alternativas Múltiples: Bloques elif y else\n"
+"Capítulo 12: Colecciones Ordenadas: Introducción a las Listas\n"
+"Capítulo 13: Métodos Fundamentales de Listas (append, remove, pop, len)\n"
+"Capítulo 14: Repetición y Automatización: El Bucle for y range()\n"
+"Capítulo 15: Repetición Condicional: El Bucle while\n"
+"\n"
+"Fase 3: Estructuras de Datos Complejas (16 a 17)\n"
+"Capítulo 16: Colecciones Clave-Valor: Diccionarios en Python\n"
+"Capítulo 17: Tuplas y Conjuntos (Sets): Inmutabilidad y Colecciones Únicas\n"
+"\n"
+"Fase 4: Modularidad y Funciones (18 a 19)\n"
+"Capítulo 18: Funciones Propias: Declaración con def y Parámetros\n"
+"Capítulo 19: Retorno de Resultados: La Sentencia return y Ámbito\n"
+"\n"
+"Fase 5: Manejo Profesional de Errores y Diagnóstico (20 a 21)\n"
+"Capítulo 20: Manejo Profesional de Errores: try, except y finally\n"
+"Capítulo 21: Decodificación de Tracebacks y Diagnóstico de Fallos\n"
+"\n"
+"Fase 6: Entrada/Salida de Archivos y Persistencia (22)\n"
+"Capítulo 22: Entrada y Salida de Archivos: with open() para Texto\n"
+"\n"
+"Fase 7: Programación Orientada a Objetos (23 a 27)\n"
+"Capítulo 23: Paradigma de Objetos: Clases, Instancias y Atributos\n"
+"Capítulo 24: El Constructor __init__ y el Parámetro self\n"
+"Capítulo 25: Métodos de Instancia y Encapsulamiento\n"
+"Capítulo 26: Herencia de Clases: Reutilización con super()\n"
+"Capítulo 27: Polimorfismo y Métodos Especiales (__str__)\n"
+"\n"
+"Fase 8: Ecosistema Profesional y Calidad (28 a 32)\n"
+"Capítulo 28: Módulos de la Biblioteca Estándar (math, random, datetime)\n"
+"Capítulo 29: Persistencia Estructurada: Formato JSON y Serialización\n"
+"Capítulo 30: Bases de Datos Relacionales con SQLite: Tablas y Consultas\n"
+"Capítulo 31: Consumo de Servicios Web: Peticiones HTTP y Respuestas JSON\n"
+"Capítulo 32: Calidad de Software: Pruebas Unitarias con unittest\n"
+"\n"
+"======================================================================\n"
+"5. Referencia Integral de Atajos de Teclado\n"
+"======================================================================\n"
+"\n"
+"F5 o Control + Enter: Ejecutar el código y comprobar la solución.\n"
+"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
+"Alt + Flecha Derecha: Ir al paso siguiente.\n"
+"Alt + Flecha Izquierda: Ir al paso anterior.\n"
+"F1: Explicar la línea donde está el cursor con palabras sencillas.\n"
+"F2: Ver todos los atajos de teclado.\n"
+"F3 o Control + I: Leer la consigna activa sin mover el cursor del editor.\n"
+"F4: Situar el cursor directamente en la línea del error del Traceback.\n"
+"F6: Alternar el foco entre el editor de código y la consola.\n"
+"F7: Verificar sintaxis y balanceo de delimitadores/comillas.\n"
+"Control + P: Pedir una pista de asistencia.\n"
+"Control + 1: Selector de capítulos del temario.\n"
+"Control + J: Abrir la consola de pruebas rápidas (REPL).\n"
+"Control + Shift + O: Lista accesible de funciones y clases del script.\n"
+"Alt + N / Alt + P: Salto a la siguiente / anterior función o clase.\n"
+"Control + /: Comentar o descomentar la línea actual.\n"
+"Control + D: Duplicar línea abajo.\n"
+"Control + Shift + K: Eliminar línea actual.\n"
+"Control + L: Anunciar línea y columna actual.\n"
+"Control + F: Buscar texto en el editor.\n"
+"Control + G: Ir a número de línea.\n"
+"Control + N: Iniciar nuevo script limpio.\n"
+"Control + O / Control + S: Abrir / Guardar archivo.\n"
+"Control + Shift + S: Guardar como nuevo archivo.\n"
+"Control + 4 / Control + 5: Foco directo al editor / consola.\n"
+"Control + Shift + C: Verbalizar toda la salida de consola sin salir del editor.\n"
+"F12: Abrir esta documentación en Acerca de.\n"
+"Escape: Cerrar el tutor en cualquier momento.\n"
+"\n"
+"======================================================================\n"
+"6. Sistema de Retroalimentación Sonora\n"
+"======================================================================\n"
+"\n"
+"El entorno produce señales auditivas breves y diferenciadas:\n"
+"Inicio: Tono de confirmación al iniciar el entorno.\n"
+"Éxito: Tono agudo y gratificante al superar un ejercicio o ejecutar con éxito.\n"
+"Error: Tono grave al presentarse una excepción o fallo.\n"
+"Advertencia: Señal sonora ante delimitadores abiertos o avisos de sintaxis.\n"
+"Bloque: Tono sutil al tipear dos puntos (:) para indicar apertura de sangría.\n"
+"\n"
+"======================================================================\n"
+"7. Asistencia en la Depuración y Diagnóstico\n"
+"======================================================================\n"
+"\n"
+"El entorno asiste activamente en la detección temprana de fallos:\n"
+"Comprobación previa de comillas y delimitadores () [] {}.\n"
+"Salto automático con F4 a la línea del error del Traceback.\n"
+"Detección de caracteres confusos frecuentes como comas en flotantes o signos ¿¡.\n"
+"Traductor de sentencias con F1 a explicaciones humanas comprensibles.\n"
+"\n"
+"======================================================================\n"
+"8. Soporte, Contacto y Donaciones\n"
+"======================================================================\n"
+"\n"
+"Para soporte directo, sugerencias o consultas:\n"
+"Desarrollador: Kevin Andrés Velasquez Vargas\n"
+"Correo electrónico directo: {email}\n"
+"Asunto recomendado: Soporte - Aprendizaje de Python con NVDA\n"
+"Donaciones voluntarias por PayPal: {donate_url}\n"
+"\n"
+"======================================================================\n"
+"9. Información Técnica y Licencia\n"
+"======================================================================\n"
+"\n"
+"Versión: 2.0.0\n"
+"Compatibilidad: NVDA 2022.1 hasta 2026.3\n"
+"Licencia: GNU General Public License v3.0 (GPLv3)\n"
+"Desarrollado para la comunidad de programadores usuarios de lectores de pantalla."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:841
+#. Translators: Accessible name for about documentation text control.
+#: addon\globalPlugins\python_tutor\gui_frame.py:861
 msgid "Python Learning with NVDA Documentation"
 msgstr "Documentación de Aprendizaje de Python con NVDA"
 
 #. Translators: Main application window title.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:873
+#: addon\globalPlugins\python_tutor\gui_frame.py:894
+#: addon\globalPlugins\python_tutor\gui_frame.py:1220
+#: addon\globalPlugins\python_tutor\gui_frame.py:1260
 msgid "Python Learning with NVDA"
 msgstr "Aprendizaje de Python con NVDA"
 
 #. Translators: Accessible name for active step instruction control.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:907
+#: addon\globalPlugins\python_tutor\gui_frame.py:928
 msgid "Active step instruction."
 msgstr "Instrucción del paso activo."
 
 #. 3. Editor de código
-
 #. Translators: Label for the code editor area.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:912
+#: addon\globalPlugins\python_tutor\gui_frame.py:933
+#: addon\globalPlugins\python_tutor\gui_frame.py:1237
 msgid "Code editor:"
 msgstr "Editor de código:"
 
 #. Translators: Accessible name for the code editor text control.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:917
+#: addon\globalPlugins\python_tutor\gui_frame.py:938
 msgid "Code editor"
 msgstr "Editor de código"
 
 #. 4. Consola de resultados
-
 #. Translators: Label for results output and diagnostic console.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:922
+#: addon\globalPlugins\python_tutor\gui_frame.py:943
 msgid "Results and diagnostic console:"
 msgstr "Consola de resultados y diagnóstico:"
 
 #. Translators: Accessible name for the results output console control.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:927
+#: addon\globalPlugins\python_tutor\gui_frame.py:948
 msgid "Results console."
 msgstr "Consola de resultados."
 
 #. Translators: Toolbar button to run script or check exercise.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:934
+#: addon\globalPlugins\python_tutor\gui_frame.py:955
 msgid "&Run (F5 or Ctrl+Enter)"
 msgstr "&Ejecutar (F5 o Ctrl+Enter)"
 
 #. Translators: Accessible name for run code button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:936
+#: addon\globalPlugins\python_tutor\gui_frame.py:957
 msgid "Run Code Button"
 msgstr "Botón Ejecutar Código"
 
 #. Translators: Toolbar button to request hint.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:939
+#: addon\globalPlugins\python_tutor\gui_frame.py:960
 msgid "Get &Hint (Ctrl+P)"
 msgstr "Pedir &pista (Ctrl+P)"
 
 #. Translators: Accessible name for hint button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:941
+#: addon\globalPlugins\python_tutor\gui_frame.py:962
 msgid "Get Hint Button"
 msgstr "Botón Pedir Pista"
 
 #. Translators: Toolbar button to explain current code line.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:944
+#: addon\globalPlugins\python_tutor\gui_frame.py:965
 msgid "Explain &Line (F1)"
 msgstr "Explicar &línea (F1)"
 
 #. Translators: Accessible name for explain line button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:946
+#: addon\globalPlugins\python_tutor\gui_frame.py:967
 msgid "Explain Line Button"
 msgstr "Botón Explicar Línea"
 
 #. Translators: Toolbar button to go to previous step.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:949
+#: addon\globalPlugins\python_tutor\gui_frame.py:970
 msgid "&Previous Step (Alt+Left)"
 msgstr "Paso &anterior (Alt+Izquierda)"
 
 #. Translators: Accessible name for previous step button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:951
+#: addon\globalPlugins\python_tutor\gui_frame.py:972
 msgid "Previous Step Button"
 msgstr "Botón Paso Anterior"
 
 #. Translators: Toolbar button to go to next step.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:954
+#: addon\globalPlugins\python_tutor\gui_frame.py:975
 msgid "&Next Step (Alt+Right)"
 msgstr "Paso &siguiente (Alt+Derecha)"
 
 #. Translators: Accessible name for next step button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:956
+#: addon\globalPlugins\python_tutor\gui_frame.py:977
 msgid "Next Step Button"
 msgstr "Botón Paso Siguiente"
 
 #. Translators: Toolbar button to open curriculum chapter selector.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:959
+#: addon\globalPlugins\python_tutor\gui_frame.py:980
 msgid "&Curriculum (Ctrl+1)"
 msgstr "&Temario (Ctrl+1)"
 
 #. Translators: Accessible name for chapter selector button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:961
+#: addon\globalPlugins\python_tutor\gui_frame.py:982
 msgid "Chapter Selector Button"
 msgstr "Botón Selector de Capítulos"
 
 #. Translators: Toolbar button to close application.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:964
+#: addon\globalPlugins\python_tutor\gui_frame.py:985
 msgid "&Close (Escape)"
 msgstr "&Cerrar (Escape)"
 
 #. Translators: Accessible name for close button.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:966
+#: addon\globalPlugins\python_tutor\gui_frame.py:987
 msgid "Close Button"
 msgstr "Botón Cerrar"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1043
+#: addon\globalPlugins\python_tutor\gui_frame.py:1064
 msgid "&New script\tCtrl+N"
-msgstr "Nuevo script	Ctrl+N"
+msgstr "Nuevo script\tCtrl+N"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1043
+#: addon\globalPlugins\python_tutor\gui_frame.py:1064
 msgid "Starts a new blank script in the editor"
 msgstr "Inicia un nuevo script limpio en el editor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1044
+#: addon\globalPlugins\python_tutor\gui_frame.py:1065
 msgid "&Open file...\tCtrl+O"
-msgstr "Abrir archivo...	Ctrl+O"
+msgstr "Abrir archivo...\tCtrl+O"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1044
+#: addon\globalPlugins\python_tutor\gui_frame.py:1065
 msgid "Loads a Python script from disk"
 msgstr "Carga un script de Python desde el disco"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1045
+#: addon\globalPlugins\python_tutor\gui_frame.py:1066
 msgid "&Save script\tCtrl+S"
-msgstr "Guardar script	Ctrl+S"
+msgstr "Guardar script\tCtrl+S"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1045
+#: addon\globalPlugins\python_tutor\gui_frame.py:1066
 msgid "Saves editor content to file"
 msgstr "Guarda el contenido del editor en el archivo"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1046
+#: addon\globalPlugins\python_tutor\gui_frame.py:1067
 msgid "Save &as...\tCtrl+Shift+S"
-msgstr "Guardar como...	Ctrl+Shift+S"
+msgstr "Guardar como...\tCtrl+Shift+S"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1046
+#: addon\globalPlugins\python_tutor\gui_frame.py:1067
 msgid "Saves code with a new name or location"
 msgstr "Guarda el código con un nuevo nombre o ubicación"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1048
+#: addon\globalPlugins\python_tutor\gui_frame.py:1069
 msgid "&Close tutor\tAlt+F4"
-msgstr "Cerrar tutor	Alt+F4"
+msgstr "Cerrar tutor\tAlt+F4"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1048
+#: addon\globalPlugins\python_tutor\gui_frame.py:1069
 msgid "Closes the learning environment"
 msgstr "Cierra el entorno de aprendizaje"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1058
+#: addon\globalPlugins\python_tutor\gui_frame.py:1079
 msgid "&Undo\tCtrl+Z"
-msgstr "Deshacer	Ctrl+Z"
+msgstr "Deshacer\tCtrl+Z"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1058
+#: addon\globalPlugins\python_tutor\gui_frame.py:1079
 msgid "Reverts the last editing action"
 msgstr "Revierte la última acción de edición"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1059
+#: addon\globalPlugins\python_tutor\gui_frame.py:1080
 msgid "&Redo\tCtrl+Y"
-msgstr "Rehacer	Ctrl+Y"
+msgstr "Rehacer\tCtrl+Y"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1059
+#: addon\globalPlugins\python_tutor\gui_frame.py:1080
 msgid "Reapplies undone action"
 msgstr "Reaplica la acción deshecha"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1061
+#: addon\globalPlugins\python_tutor\gui_frame.py:1082
 msgid "Cu&t\tCtrl+X"
-msgstr "Cortar	Ctrl+X"
+msgstr "Cortar\tCtrl+X"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1061
+#: addon\globalPlugins\python_tutor\gui_frame.py:1082
 msgid "Cuts selected text to clipboard"
 msgstr "Corta el texto seleccionado al portapapeles"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1062
+#: addon\globalPlugins\python_tutor\gui_frame.py:1083
 msgid "&Copy\tCtrl+C"
-msgstr "Copiar	Ctrl+C"
+msgstr "Copiar\tCtrl+C"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1062
+#: addon\globalPlugins\python_tutor\gui_frame.py:1083
 msgid "Copies selected text to clipboard"
 msgstr "Copia el texto seleccionado al portapapeles"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1063
+#: addon\globalPlugins\python_tutor\gui_frame.py:1084
 msgid "&Paste\tCtrl+V"
-msgstr "Pegar	Ctrl+V"
+msgstr "Pegar\tCtrl+V"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1063
+#: addon\globalPlugins\python_tutor\gui_frame.py:1084
 msgid "Pastes clipboard content"
 msgstr "Pega el contenido del portapapeles"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1064
+#: addon\globalPlugins\python_tutor\gui_frame.py:1085
 msgid "Select &all\tCtrl+A"
-msgstr "Seleccionar todo	Ctrl+A"
+msgstr "Seleccionar todo\tCtrl+A"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1064
+#: addon\globalPlugins\python_tutor\gui_frame.py:1085
 msgid "Selects all text in editor"
 msgstr "Selecciona todo el texto del editor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1066
+#: addon\globalPlugins\python_tutor\gui_frame.py:1087
 msgid "&Find text...\tCtrl+F"
-msgstr "Buscar texto...	Ctrl+F"
+msgstr "Buscar texto...\tCtrl+F"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1066
+#: addon\globalPlugins\python_tutor\gui_frame.py:1087
 msgid "Searches for words or code snippets"
 msgstr "Busca palabras o fragmentos de código"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1067
+#: addon\globalPlugins\python_tutor\gui_frame.py:1088
 msgid "&Go to line...\tCtrl+G"
-msgstr "Ir a línea...	Ctrl+G"
+msgstr "Ir a línea...\tCtrl+G"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1067
+#: addon\globalPlugins\python_tutor\gui_frame.py:1088
 msgid "Moves cursor to specified line number"
 msgstr "Desplaza el cursor al número de línea indicado"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1069
+#: addon\globalPlugins\python_tutor\gui_frame.py:1090
 msgid "Format document by &PEP 8\tShift+Alt+F"
-msgstr "Formatear documento según PEP 8	Shift+Alt+F"
+msgstr "Formatear documento según PEP 8\tShift+Alt+F"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1069
+#: addon\globalPlugins\python_tutor\gui_frame.py:1090
 msgid "Adjusts indentation to 4 spaces and formats operator spacing"
 msgstr "Ajusta la sangría a 4 espacios y los espacios de operadores"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1070
+#: addon\globalPlugins\python_tutor\gui_frame.py:1091
 msgid "&Rename symbol...\tF2"
-msgstr "Renombrar símbolo...	F2"
+msgstr "Renombrar símbolo...\tF2"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1070
+#: addon\globalPlugins\python_tutor\gui_frame.py:1091
 msgid "Renames selected variable or function across script"
 msgstr "Renombra la variable o función seleccionada en todo el script"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1071
+#: addon\globalPlugins\python_tutor\gui_frame.py:1092
 msgid "E&xtract to function...\tCtrl+Shift+R"
-msgstr "Extraer a función...	Ctrl+Shift+R"
+msgstr "Extraer a función...\tCtrl+Shift+R"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1071
+#: addon\globalPlugins\python_tutor\gui_frame.py:1092
 msgid "Converts selected block into a new function"
 msgstr "Convierte el bloque seleccionado en una nueva función"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1073
+#: addon\globalPlugins\python_tutor\gui_frame.py:1094
 msgid "List of &functions and classes...\tCtrl+Shift+O"
-msgstr "Lista de funciones y clases...	Ctrl+Shift+O"
+msgstr "Lista de funciones y clases...\tCtrl+Shift+O"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1073
+#: addon\globalPlugins\python_tutor\gui_frame.py:1094
 msgid "Opens list of functions and classes in file"
 msgstr "Abre la lista de funciones y clases del archivo"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1074
+#: addon\globalPlugins\python_tutor\gui_frame.py:1095
 msgid "&Next function or class\tAlt+N"
-msgstr "Ir a siguiente función o clase	Alt+N"
+msgstr "Ir a siguiente función o clase\tAlt+N"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1074
+#: addon\globalPlugins\python_tutor\gui_frame.py:1095
 msgid "Jumps to next function or class header"
 msgstr "Salta a la cabecera de la siguiente función o clase"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1075
+#: addon\globalPlugins\python_tutor\gui_frame.py:1096
 msgid "&Previous function or class\tAlt+P"
-msgstr "Ir a anterior función o clase	Alt+P"
+msgstr "Ir a anterior función o clase\tAlt+P"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1075
+#: addon\globalPlugins\python_tutor\gui_frame.py:1096
 msgid "Jumps to previous function or class header"
 msgstr "Salta a la cabecera de la función o clase anterior"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1077
+#: addon\globalPlugins\python_tutor\gui_frame.py:1098
 msgid "Toggle &comment on line\tCtrl+/"
-msgstr "Comentar o descomentar línea	Ctrl+/"
+msgstr "Comentar o descomentar línea\tCtrl+/"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1077
+#: addon\globalPlugins\python_tutor\gui_frame.py:1098
 msgid "Toggles '#' comment prefix on current line"
 msgstr "Alterna el comentario '#' al inicio de la línea"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1078
+#: addon\globalPlugins\python_tutor\gui_frame.py:1099
 msgid "&Duplicate line below\tCtrl+D"
-msgstr "Duplicar línea abajo	Ctrl+D"
+msgstr "Duplicar línea abajo\tCtrl+D"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1078
+#: addon\globalPlugins\python_tutor\gui_frame.py:1099
 msgid "Duplicates current line below"
 msgstr "Duplica la línea actual en la siguiente"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1079
+#: addon\globalPlugins\python_tutor\gui_frame.py:1100
 msgid "D&elete current line\tCtrl+Shift+K"
-msgstr "Eliminar línea actual	Ctrl+Shift+K"
+msgstr "Eliminar línea actual\tCtrl+Shift+K"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1079
+#: addon\globalPlugins\python_tutor\gui_frame.py:1100
 msgid "Completely deletes the line at cursor"
 msgstr "Elimina por completo la línea donde está el cursor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1081
+#: addon\globalPlugins\python_tutor\gui_frame.py:1102
 msgid "Check s&yntax and delimiters\tF7"
-msgstr "Verificar sintaxis y delimitadores	F7"
+msgstr "Verificar sintaxis y delimitadores\tF7"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1081
+#: addon\globalPlugins\python_tutor\gui_frame.py:1102
 msgid "Checks parentheses, quotes, and syntax errors"
 msgstr "Comprueba paréntesis, comillas y errores de sintaxis"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1082
+#: addon\globalPlugins\python_tutor\gui_frame.py:1103
 msgid "Announce &position (Line and column)\tCtrl+L"
-msgstr "Anunciar posición (Línea y columna)	Ctrl+L"
+msgstr "Anunciar posición (Línea y columna)\tCtrl+L"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1082
+#: addon\globalPlugins\python_tutor\gui_frame.py:1103
 msgid "Reports line and column cursor position"
 msgstr "Informa en qué línea y columna se encuentra el cursor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1106
+#: addon\globalPlugins\python_tutor\gui_frame.py:1127
 msgid "Toggle &focus between editor and console\tF6"
-msgstr "Alternar foco entre editor y consola	F6"
+msgstr "Alternar foco entre editor y consola\tF6"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1106
+#: addon\globalPlugins\python_tutor\gui_frame.py:1127
 msgid "Switches focus between editor and output"
 msgstr "Cambia el foco entre el editor de código y la salida"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1107
+#: addon\globalPlugins\python_tutor\gui_frame.py:1128
 msgid "Toggle &Learning / Standalone Mode\tCtrl+M"
-msgstr "Alternar Modo Aprendizaje / Editor autónomo	Ctrl+M"
+msgstr "Alternar Modo Aprendizaje / Editor autónomo\tCtrl+M"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1107
+#: addon\globalPlugins\python_tutor\gui_frame.py:1128
 msgid "Toggles between didactic guide and standalone editor"
 msgstr "Conmuta entre el entorno didáctico y el editor limpio"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1108
+#: addon\globalPlugins\python_tutor\gui_frame.py:1129
 msgid "Toggle &breakpoint\tF9"
-msgstr "Alternar punto de interrupción	F9"
+msgstr "Alternar punto de interrupción\tF9"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1108
+#: addon\globalPlugins\python_tutor\gui_frame.py:1129
 msgid "Toggles a breakpoint on current line"
 msgstr "Activa o desactiva un punto de parada en la línea actual"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1109
+#: addon\globalPlugins\python_tutor\gui_frame.py:1130
 msgid "&Autocomplete with documentation\tCtrl+Space"
-msgstr "Autocompletado con documentación	Ctrl+Space"
+msgstr "Autocompletado con documentación\tCtrl+Space"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1109
+#: addon\globalPlugins\python_tutor\gui_frame.py:1130
 msgid "Shows code suggestions with description"
 msgstr "Muestra sugerencias de código con su descripción"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1110
+#: addon\globalPlugins\python_tutor\gui_frame.py:1131
 msgid "Quick test console (&REPL)\tCtrl+J"
-msgstr "Consola de pruebas rápidas (REPL)	Ctrl+J"
+msgstr "Consola de pruebas rápidas (REPL)\tCtrl+J"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1110
+#: addon\globalPlugins\python_tutor\gui_frame.py:1131
 msgid "Instant one-line interactive test window"
 msgstr "Ventana de pruebas inmediatas de una línea"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1111
+#: addon\globalPlugins\python_tutor\gui_frame.py:1132
 msgid "&Step-by-step interactive debugger...\tF10"
-msgstr "Depuración interactiva paso a paso...	F10"
+msgstr "Depuración interactiva paso a paso...\tF10"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1111
+#: addon\globalPlugins\python_tutor\gui_frame.py:1132
 msgid "Runs script inspecting each line and its variables"
 msgstr "Ejecuta el script inspeccionando cada línea y sus variables"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1112
+#: addon\globalPlugins\python_tutor\gui_frame.py:1133
 msgid "Python terms &dictionary"
 msgstr "Diccionario de términos de Python"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1112
+#: addon\globalPlugins\python_tutor\gui_frame.py:1133
 msgid "Search terms and language concepts"
 msgstr "Buscador de términos y conceptos del lenguaje"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1113
+#: addon\globalPlugins\python_tutor\gui_frame.py:1134
 msgid "&Quick documentation of symbol\tShift+F1"
-msgstr "Documentación rápida del símbolo	Shift+F1"
+msgstr "Documentación rápida del símbolo\tShift+F1"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1113
+#: addon\globalPlugins\python_tutor\gui_frame.py:1134
 msgid "Reads explanation of function or keyword under cursor"
 msgstr "Lee la explicación de la función o palabra bajo el cursor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1114
+#: addon\globalPlugins\python_tutor\gui_frame.py:1135
 msgid "&Run code and verify\tF5"
-msgstr "Ejecutar código y verificar	F5"
+msgstr "Ejecutar código y verificar\tF5"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1114
+#: addon\globalPlugins\python_tutor\gui_frame.py:1135
 msgid "Executes script or validates current mission (F5 or Ctrl+Enter)"
 msgstr "Ejecuta el script o valida la misión actual (F5 o Ctrl+Enter)"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1115
+#: addon\globalPlugins\python_tutor\gui_frame.py:1136
 msgid "Run unit &tests (Test Runner)...\tCtrl+T"
-msgstr "Ejecutar pruebas unitarias (Test Runner)...	Ctrl+T"
+msgstr "Ejecutar pruebas unitarias (Test Runner)...\tCtrl+T"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1115
+#: addon\globalPlugins\python_tutor\gui_frame.py:1136
 msgid "Runs unittest suite with accessible report"
 msgstr "Ejecuta las pruebas unittest del script con reporte accesible"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1116
+#: addon\globalPlugins\python_tutor\gui_frame.py:1137
 msgid "&Explain line of code\tF1"
-msgstr "Explicar línea de código	F1"
+msgstr "Explicar línea de código\tF1"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1116
+#: addon\globalPlugins\python_tutor\gui_frame.py:1137
 msgid "Translates current code line to plain words"
 msgstr "Traduce la línea de código actual a palabras cotidianas"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1117
+#: addon\globalPlugins\python_tutor\gui_frame.py:1138
 msgid "&Interpreter and virtual environment manager...\tCtrl+Shift+P"
-msgstr "Gestor de intérpretes y entornos virtuales...	Ctrl+Shift+P"
+msgstr "Gestor de intérpretes y entornos virtuales...\tCtrl+Shift+P"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1117
+#: addon\globalPlugins\python_tutor\gui_frame.py:1138
 msgid "Selects active Python interpreter or virtual environment"
 msgstr "Selecciona el entorno de Python o virtualenv activo"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1118
+#: addon\globalPlugins\python_tutor\gui_frame.py:1139
 msgid "&Go to Traceback error line\tF4"
-msgstr "Ir a la línea del error del Traceback	F4"
+msgstr "Ir a la línea del error del Traceback\tF4"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1118
+#: addon\globalPlugins\python_tutor\gui_frame.py:1139
 msgid "Moves cursor directly to the error line"
 msgstr "Mueve el cursor exactamente a la línea del fallo"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1119
+#: addon\globalPlugins\python_tutor\gui_frame.py:1140
 msgid "Go to curriculum &chapter...\tCtrl+1"
-msgstr "Ir a un capítulo del temario...	Ctrl+1"
+msgstr "Ir a un capítulo del temario...\tCtrl+1"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1119
+#: addon\globalPlugins\python_tutor\gui_frame.py:1140
 msgid "View the complete list of chapters"
 msgstr "Ver el listado completo de capítulos"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1120
+#: addon\globalPlugins\python_tutor\gui_frame.py:1141
 msgid "Read active step &instruction\tF3"
-msgstr "Leer instrucción del paso activo	F3"
+msgstr "Leer instrucción del paso activo\tF3"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1120
+#: addon\globalPlugins\python_tutor\gui_frame.py:1141
 msgid "Reads current mission prompt without moving editor cursor"
 msgstr "Lee la consigna actual sin retirar el cursor del editor"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1121
+#: addon\globalPlugins\python_tutor\gui_frame.py:1142
 msgid "Read &all console output\tCtrl+Shift+C"
-msgstr "Leer toda la salida de consola	Ctrl+Shift+C"
+msgstr "Leer toda la salida de consola\tCtrl+Shift+C"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1121
+#: addon\globalPlugins\python_tutor\gui_frame.py:1142
 msgid "Speaks all console output without losing focus"
 msgstr "Verbaliza todo el texto de la consola sin perder el foco"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1122
+#: addon\globalPlugins\python_tutor\gui_frame.py:1143
 msgid "Reset exercise &code\tCtrl+R"
-msgstr "Restablecer código del ejercicio	Ctrl+R"
+msgstr "Restablecer código del ejercicio\tCtrl+R"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1122
+#: addon\globalPlugins\python_tutor\gui_frame.py:1143
 msgid "Restores initial exercise code"
 msgstr "Restaura el código original del paso"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1144
+#: addon\globalPlugins\python_tutor\gui_frame.py:1165
 msgid "&About Python Learning with NVDA...\tF12"
-msgstr "Acerca de Aprendizaje de Python con NVDA...	F12"
+msgstr "Acerca de Aprendizaje de Python con NVDA...\tF12"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1144
+#: addon\globalPlugins\python_tutor\gui_frame.py:1165
 msgid "Complete accessible documentation in web browser"
 msgstr "Documentación accesible completa en el navegador"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1145
+#: addon\globalPlugins\python_tutor\gui_frame.py:1166
 msgid "&Donate to project..."
 msgstr "Colaborar con el proyecto..."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1145
+#: addon\globalPlugins\python_tutor\gui_frame.py:1166
 msgid "Make a voluntary donation to support the add-on"
 msgstr "Realizar una donación voluntaria para apoyar el complemento"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1146
+#: addon\globalPlugins\python_tutor\gui_frame.py:1167
 msgid "Keyboard shortcuts &guide\tF11"
-msgstr "Guía de atajos de teclado	F11"
+msgstr "Guía de atajos de teclado\tF11"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1146
+#: addon\globalPlugins\python_tutor\gui_frame.py:1167
 msgid "Displays quick shortcuts reference"
 msgstr "Muestra la lista de atajos rápidos"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1147
+#: addon\globalPlugins\python_tutor\gui_frame.py:1168
 msgid "&Support and contact..."
 msgstr "Soporte y contacto..."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1147
+#: addon\globalPlugins\python_tutor\gui_frame.py:1168
 msgid "Direct email and technical assistance channels"
 msgstr "Canales de contacto directo por correo y asistencia"
 
 #. Translators: Top-level menu title for File operations.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1155
+#: addon\globalPlugins\python_tutor\gui_frame.py:1176
 msgid "&File"
 msgstr "&Archivo"
 
 #. Translators: Top-level menu title for Edit operations.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1157
+#: addon\globalPlugins\python_tutor\gui_frame.py:1178
 msgid "&Edit"
 msgstr "&Edición"
 
 #. Translators: Top-level menu title for Tools.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1159
+#: addon\globalPlugins\python_tutor\gui_frame.py:1180
 msgid "&Tools"
 msgstr "&Herramientas"
 
 #. Translators: Top-level menu title for Help.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1161
+#: addon\globalPlugins\python_tutor\gui_frame.py:1182
 msgid "&Help"
 msgstr "A&yuda"
 
 #. Translators: Label for editor in standalone mode.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1176
+#: addon\globalPlugins\python_tutor\gui_frame.py:1197
 msgid "Code editor (Standalone mode):"
 msgstr "Editor de código (Modo autónomo):"
 
 #. Translators: Speech announcement when switching to standalone editor mode.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1203
+#: addon\globalPlugins\python_tutor\gui_frame.py:1225
 msgid "Standalone Editor mode activated. Clean workspace without lessons."
-msgstr "Modo Editor autónomo activado. Entorno limpio de trabajo sin lecciones."
+msgstr ""
+"Modo Editor autónomo activado. Entorno limpio de trabajo sin lecciones."
 
 #. Translators: Speech announcement when switching to guided learning mode.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1241
+#: addon\globalPlugins\python_tutor\gui_frame.py:1265
 msgid "Guided Learning mode activated. Lessons and curriculum visible."
 msgstr "Modo Aprendizaje guiado activado. Lecciones y temario visibles."
 
+#. Translators: Step status label: Passed / Completed.
+#. Translators: Step status label: Pending.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1316
+msgid "Completed"
+msgstr "Superado"
+
+#: addon\globalPlugins\python_tutor\gui_frame.py:1316
+msgid "Pending"
+msgstr "Pendiente"
+
+#. Translators: Default step title format if not named.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1319
+#, python-brace-format
+msgid "Step {step}"
+msgstr "Paso {step}"
+
+#. Translators: Header format for current step: Chapter, Step X of Y: Step
+#. Title, Status
+#: addon\globalPlugins\python_tutor\gui_frame.py:1321
+msgid "Chapter"
+msgstr "Capítulo"
+
+#: addon\globalPlugins\python_tutor\gui_frame.py:1322
+#, python-brace-format
+msgid "{chapter}, Step {step} of {total}: {title}, {status}"
+msgstr "{chapter}, Paso {step} de {total}: {title}, {status}"
+
+#: addon\globalPlugins\python_tutor\gui_frame.py:1339
+#, python-brace-format
+msgid ""
+"Conceptual verification question:\n"
+"\n"
+"{question}\n"
+"\n"
+"Options:\n"
+"{options}\n"
+"\n"
+"Type the number of the correct answer (1, 2 or 3) in the editor and press Control + Enter."
+msgstr ""
+"Pregunta de verificación conceptual:\n"
+"\n"
+"{question}\n"
+"\n"
+"Opciones:\n"
+"{options}\n"
+"\n"
+"Escribe el número de la respuesta correcta (1, 2 o 3) en el editor y pulsa Control + Enter."
+
+#. Translators: Default instruction fallback for lessons.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1344
+msgid "Follow the instructions for the exercise and run with Control + Enter."
+msgstr "Sigue las instrucciones del ejercicio y ejecuta con Control + Enter."
+
 #. Translators: Output console warning for unclosed delimiters.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1326
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1365
 #, python-brace-format
 msgid ""
 "Delimiter Notice:\n"
@@ -931,511 +1420,605 @@ msgid ""
 "\n"
 "Press F4 to place cursor on notice line."
 msgstr ""
+"Aviso de delimitador:\n"
+"{message}\n"
+"\n"
+"Pulsa F4 para situar el cursor en la línea del aviso."
 
 #. Translators: Speech announcement for unclosed delimiters.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1330
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1369
 #, python-brace-format
 msgid "Delimiter notice: {message}. Press F4 to go to line."
 msgstr "Aviso de delimitadores: {message}. Presiona F4 para ir a la línea."
 
 #. Translators: Notice when quiz answer is missing.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1342
+#: addon\globalPlugins\python_tutor\gui_frame.py:1381
 msgid ""
-"No option selected. Type number 1, 2, or 3 in the editor and press Control + "
-"Enter or F5."
+"No option selected. Type number 1, 2, or 3 in the editor and press Control +"
+" Enter or F5."
 msgstr ""
+"No se ha seleccionado ninguna opción. Escribe el número 1, 2 o 3 en el "
+"editor y pulsa Control + Enter o F5."
 
 #. Translators: Notice when challenge editor is empty.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1345
+#: addon\globalPlugins\python_tutor\gui_frame.py:1384
 msgid ""
 "The editor is empty or only contains comments. Write your code to solve the "
 "challenge and press Control + Enter or F5."
 msgstr ""
+"El editor está vacío o solo contiene comentarios. Escribe tu código para "
+"resolver el desafío y pulsa Control + Enter o F5."
 
 #. Translators: Notice when experimentation step has no executable code.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1348
+#: addon\globalPlugins\python_tutor\gui_frame.py:1387
 msgid ""
 "No executable code detected. Make the modification indicated in the prompt "
 "and press Control + Enter or F5."
 msgstr ""
+"No se detectó código ejecutable. Realiza la modificación indicada en la "
+"consigna y pulsa Control + Enter o F5."
 
 #. Translators: Generic notice for empty editor.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1351
+#: addon\globalPlugins\python_tutor\gui_frame.py:1390
 msgid "The editor contains no code to run."
 msgstr "El editor no contiene código para ejecutar."
 
 #. Translators: Notice in standalone mode when trying to run empty editor.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1354
+#: addon\globalPlugins\python_tutor\gui_frame.py:1393
 msgid "The editor is empty. Write Python instructions before executing."
-msgstr "El editor está vacío. Escribe instrucciones de Python antes de ejecutar."
+msgstr ""
+"El editor está vacío. Escribe instrucciones de Python antes de ejecutar."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1367
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1465
+#: addon\globalPlugins\python_tutor\gui_frame.py:1406
+#: addon\globalPlugins\python_tutor\gui_frame.py:1504
 msgid "Typing Notice:"
 msgstr "Aviso de escritura:"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1371
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1469
+#: addon\globalPlugins\python_tutor\gui_frame.py:1410
+#: addon\globalPlugins\python_tutor\gui_frame.py:1508
 msgid "Output:"
 msgstr "Salida:"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1372
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1470
+#: addon\globalPlugins\python_tutor\gui_frame.py:1411
+#: addon\globalPlugins\python_tutor\gui_frame.py:1509
 msgid "(No console output)"
 msgstr "(Sin salida de consola)"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1379
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1497
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1418
+#: addon\globalPlugins\python_tutor\gui_frame.py:1536
 #, python-brace-format
 msgid "Execution notice: {message}"
 msgstr "Aviso de ejecución: {message}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1380
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1498
+#: addon\globalPlugins\python_tutor\gui_frame.py:1419
+#: addon\globalPlugins\python_tutor\gui_frame.py:1537
 msgid "Press F4 to position cursor on error line."
 msgstr "Presiona F4 para posicionar el cursor en la línea del fallo."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1383
+#: addon\globalPlugins\python_tutor\gui_frame.py:1422
 msgid "Error during execution"
 msgstr "Error durante la ejecución"
 
 #. Translators: Speech announcement on execution error.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1386
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1425
 #, python-brace-format
 msgid "Error: {error}. Press F4 to go to error."
 msgstr "Error: {error}. Pulse F4 para ir al error."
 
 #. Translators: Speech announcement on successful standalone execution.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1393
+#: addon\globalPlugins\python_tutor\gui_frame.py:1432
 msgid "Execution finished successfully."
 msgstr "Ejecución finalizada con éxito."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1414
+#: addon\globalPlugins\python_tutor\gui_frame.py:1453
 msgid "Correct answer."
 msgstr "Respuesta correcta."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1415
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1454
 #, python-brace-format
 msgid "Correct: {explanation}"
 msgstr "Correcto: {explanation}"
 
 #. Translators: Notice when quiz answer is incorrect.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1419
+#: addon\globalPlugins\python_tutor\gui_frame.py:1458
 msgid ""
-"Pending: Selected option is incorrect. Review options in instruction and try "
-"again."
+"Pending: Selected option is incorrect. Review options in instruction and try"
+" again."
 msgstr ""
+"Pendiente: La opción elegida no es la correcta. Revisa las opciones en la "
+"instrucción e intenta nuevamente."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1422
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1461
 #, python-brace-format
 msgid "Option submitted: {option}"
 msgstr "Opción enviada: {option}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1445
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1448
+#: addon\globalPlugins\python_tutor\gui_frame.py:1484
+#: addon\globalPlugins\python_tutor\gui_frame.py:1487
 msgid "Test"
 msgstr "Prueba"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1446
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1485
 #, python-brace-format
 msgid "Correct: {test_name} passed"
 msgstr "Correcto: {test_name} superada"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1449
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1488
 #, python-brace-format
 msgid "Pending: {test_name} not passed"
 msgstr "Pendiente: {test_name} no superada"
 
 #. Translators: Feedback when challenge execution does not satisfy validator.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1459
+#: addon\globalPlugins\python_tutor\gui_frame.py:1498
 msgid ""
 "Pending: Code ran without syntax errors, but output does not yet meet "
 "challenge requirements."
 msgstr ""
+"Pendiente: El código se ejecutó sin errores de sintaxis, pero la salida aún "
+"no cumple con lo solicitado en el desafío."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1474
+#: addon\globalPlugins\python_tutor\gui_frame.py:1513
 msgid "Check Results:"
 msgstr "Resultado de la comprobación:"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1479
+#: addon\globalPlugins\python_tutor\gui_frame.py:1518
 msgid ""
 "Mission passed successfully! You can advance to next step with Alt + Right "
 "Arrow."
 msgstr ""
+"¡Misión superada con éxito! Puedes avanzar al siguiente paso con Alt + "
+"Flecha Derecha."
 
 #. Translators: Speech announcement on mission completion.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1488
+#: addon\globalPlugins\python_tutor\gui_frame.py:1527
 msgid "Mission accomplished! Press Alt + Right Arrow to advance."
 msgstr "¡Misión superada! Pulsa Alt + Flecha Derecha para avanzar."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1492
+#: addon\globalPlugins\python_tutor\gui_frame.py:1531
 msgid "Comparison with expected output:"
 msgstr "Comparación con la salida esperada:"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1500
+#: addon\globalPlugins\python_tutor\gui_frame.py:1539
 msgid ""
 "Solution not yet approved. Review prompt or press Control + P to request a "
 "hint."
 msgstr ""
+"Solución no aprobada aún. Revisa la consigna o pulsa Control + P para "
+"solicitar una pista."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1508
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1547
 #, python-brace-format
 msgid "{error}. Press F4 to go to error."
 msgstr "{error}. Pulsa F4 para ir al error."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1510
+#: addon\globalPlugins\python_tutor\gui_frame.py:1549
 msgid "Incorrect option. Review question and try again."
 msgstr "Opción incorrecta. Revisa la pregunta y vuelve a intentarlo."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1512
+#: addon\globalPlugins\python_tutor\gui_frame.py:1551
 msgid "Solution not passed. Press Control + P to receive a hint."
 msgstr "Solución no superada. Pulsa Control + P para recibir una pista."
 
-#. Translators: Speech announcement when a new blank script is created.
+#. Translators: Default fallback hint if no hints are defined in the step.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1556
+msgid "Review the lesson description at the top and try running again."
+msgstr ""
+"Revisa el enunciado de la lección en la parte superior e intenta ejecutar "
+"nuevamente."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1562
+#. Translators: Confirmation prompt before creating a new blank script.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1588
+msgid ""
+"Do you want to start a new blank script? Current text in the editor will be "
+"cleared."
+msgstr ""
+"¿Deseas iniciar un nuevo script en blanco? Se limpiará el texto actual del "
+"editor."
+
+#. Translators: Title for new script confirmation dialog.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1590
+msgid "New Script"
+msgstr "Nuevo script"
+
+#. Translators: Speech announcement when a new blank script is created.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1606
 msgid "New blank script started."
 msgstr "Nuevo script iniciado."
 
 #. Translators: Speech announcement when code line is uncommented.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1600
+#: addon\globalPlugins\python_tutor\gui_frame.py:1644
 msgid "Line uncommented"
 msgstr "Línea descomentada"
 
 #. Translators: Speech announcement when code line is commented.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1604
+#: addon\globalPlugins\python_tutor\gui_frame.py:1648
 msgid "Line commented"
 msgstr "Línea comentada"
 
 #. Translators: Speech announcement when code line is duplicated.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1627
+#: addon\globalPlugins\python_tutor\gui_frame.py:1671
 msgid "Line duplicated"
 msgstr "Línea duplicada"
 
 #. Translators: Speech announcement when code line is deleted.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1647
+#: addon\globalPlugins\python_tutor\gui_frame.py:1691
 msgid "Line deleted"
 msgstr "Línea eliminada"
 
-#. Translators: Speech announcement when code syntax check passes with no errors.
+#. Translators: Speech announcement for delimiter syntax warning.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1703
+#, python-brace-format
+msgid "Delimiter notice on line {line}: {message}"
+msgstr "Aviso de delimitador en línea {line}: {message}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1677
+#. Translators: Speech announcement when code syntax check passes with no
+#. errors.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1724
 msgid "Syntax and delimiters correct. No structural errors detected in code."
-msgstr "Sintaxis y delimitadores correctos. No se detectaron errores de estructura en el código."
+msgstr ""
+"Sintaxis y delimitadores correctos. No se detectaron errores de estructura "
+"en el código."
 
 #. Translators: Speech announcement when a SyntaxError is detected.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1685
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1732
 #, python-brace-format
 msgid "Syntax error on line {line}: {error}."
 msgstr "Error de sintaxis en la línea {line}: {error}."
 
 #. Translators: Speech announcement for compilation notice.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1696
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1743
 #, python-brace-format
 msgid "Compilation notice: {error}."
 msgstr "Aviso de compilación: {error}."
 
 #. Translators: Speech announcement when pressing F4 but no error is recorded.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1704
+#: addon\globalPlugins\python_tutor\gui_frame.py:1751
 msgid "No recent execution or syntax errors recorded."
 msgstr "No hay registro de errores recientes de ejecución o sintaxis."
 
+#. Translators: Fallback error detail if not specifically recorded.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1762
+msgid "error detected"
+msgstr "error detectado"
+
+#. Translators: Speech announcement after jumping cursor to error line.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1764
+#, python-brace-format
+msgid "Cursor on line {line}: {detail}"
+msgstr "Cursor en línea {line}: {detail}"
+
 #. Translators: Speech announcement after jumping to symbol header.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1728
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1777
 #, python-brace-format
 msgid "Cursor on {type} {name}, line {line}"
 msgstr "Cursor en {type} {name}, línea {line}"
 
-#. Translators: Speech announcement when Alt+N finds no further definitions.
+#. Translators: Speech announcement when jumping to definition:
+#. [Class/Function] Name, line X.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1806
+#: addon\globalPlugins\python_tutor\gui_frame.py:1836
+#, python-brace-format
+msgid "{kind} {name}, line {line}"
+msgstr "{kind} {name}, línea {line}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1758
+#. Translators: Speech announcement when Alt+N finds no further definitions.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1810
 msgid "No more definitions ahead."
 msgstr "No hay más definiciones adelante."
 
 #. Translators: Speech announcement when Alt+P finds no earlier definitions.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1785
+#: addon\globalPlugins\python_tutor\gui_frame.py:1840
 msgid "No previous definitions."
 msgstr "No hay definiciones anteriores."
 
-#. Translators: Speech announcement when reading console output but it is empty.
-
-#. Translators: Speech announcement when reading last console line but it is empty.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1792
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2372
+#. Translators: Speech announcement when reading console output but it is
+#. empty.
+#. Translators: Speech announcement when reading last console line but it is
+#. empty.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1847
+#: addon\globalPlugins\python_tutor\gui_frame.py:2450
 msgid "Console empty."
 msgstr "Consola vacía."
 
 #. Translators: Speech announcement reporting cursor line and column.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1806
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:1861
 #, python-brace-format
 msgid "Line {row} of {total}, column {col}."
 msgstr "Línea {row} de {total}, columna {col}."
 
+#. Translators: Speech announcement when autocomplete finds no suggestions.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1883
+#, python-brace-format
+msgid "No suggestions for '{prefix}'."
+msgstr "Sin sugerencias para '{prefix}'."
+
+#. Translators: Announcement when autocompletion completes a word.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1891
+#, python-brace-format
+msgid "Completed: {choice}"
+msgstr "Completado: {choice}"
+
+#. Translators: Announcement when autocompletion inserts a word.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1903
+#, python-brace-format
+msgid "Inserted: {choice}"
+msgstr "Insertado: {choice}"
+
 #. Translators: Speech announcement when Shift+F1 is pressed on empty space.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1874
+#: addon\globalPlugins\python_tutor\gui_frame.py:1934
 msgid "Place cursor over a function or keyword to view documentation."
-msgstr "Sitúa el cursor sobre una función o palabra para ver su documentación."
+msgstr ""
+"Sitúa el cursor sobre una función o palabra para ver su documentación."
 
-#. Translators: Speech announcement when extracting function without active selection.
+#. Translators: Speech announcement after renaming an identifier across
+#. script.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1976
+#, python-brace-format
+msgid "Renamed {count} occurrences of {old} to {new}."
+msgstr "Se renombraron {count} apariciones de {old} por {new}."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:1925
+#. Translators: Speech announcement when extracting function without active
+#. selection.
+#: addon\globalPlugins\python_tutor\gui_frame.py:1988
 msgid "First select the code block you want to extract into a function."
-msgstr "Selecciona primero el bloque de código que deseas extraer a una función."
+msgstr ""
+"Selecciona primero el bloque de código que deseas extraer a una función."
+
+#. Translators: Speech announcement after extracting code into a function.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2004
+#, python-brace-format
+msgid "Function '{name}' extracted successfully."
+msgstr "Función '{name}' extraída correctamente."
+
+#. Translators: Speech announcement when a breakpoint is removed.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2018
+#, python-brace-format
+msgid "Breakpoint removed on line {line}."
+msgstr "Punto de interrupción eliminado en la línea {line}."
+
+#. Translators: Speech announcement when a breakpoint is set.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2022
+#, python-brace-format
+msgid "Breakpoint set on line {line}."
+msgstr "Punto de interrupción activado en la línea {line}."
 
 #. Translators: Speech announcement when launching debugger on empty code.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:1967
+#: addon\globalPlugins\python_tutor\gui_frame.py:2033
 msgid "The editor is empty. Write code before starting debugging."
 msgstr "El editor está vacío. Escribe código antes de iniciar la depuración."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2003
+#: addon\globalPlugins\python_tutor\gui_frame.py:2069
 msgid ""
 "To advance to next chapter, you must complete all steps of current chapter."
 msgstr ""
+"Para avanzar al siguiente capítulo, debes completar todos los pasos del "
+"capítulo actual."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2017
+#: addon\globalPlugins\python_tutor\gui_frame.py:2083
 msgid "Congratulations! You have completed all chapters in curriculum."
 msgstr "¡Felicidades! Has completado todos los capítulos del temario."
 
 #. Translators: Speech announcement when code is reset.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2064
+#: addon\globalPlugins\python_tutor\gui_frame.py:2130
 msgid "Exercise code reset to its initial state."
 msgstr "Código del ejercicio restablecido a su estado inicial."
 
-#. Translators: Speech announcement when switching focus to code editor.
+#. Translators: Speech announcement when opening donation page in browser.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2143
+msgid "Opening donation page in web browser..."
+msgstr "Abriendo página de donaciones en el navegador..."
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2358
+#: addon\globalPlugins\python_tutor\gui_frame.py:2147
+#, python-brace-format
+msgid ""
+"You can make a voluntary contribution to support the project at:\n"
+"{url}"
+msgstr ""
+"Puedes realizar una contribución voluntaria para apoyar el proyecto en:\n"
+"{url}"
+
+#. Translators: Title for donation dialog.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2151
+msgid "Make a Donation"
+msgstr "Realizar una Donación"
+
+#. Translators: Speech announcement when reading instruction in standalone
+#. editor mode.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2411
+msgid "Standalone Editor mode active."
+msgstr "Modo Editor autónomo activo."
+
+#. Translators: Speech announcement when reading current lesson instruction.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2422
+#, python-brace-format
+msgid "Step {step} of {total}: {instruction}"
+msgstr "Paso {step} de {total}: {instruction}"
+
+#. Translators: Speech announcement when switching focus to code editor.
+#: addon\globalPlugins\python_tutor\gui_frame.py:2436
 msgid "Focus on code editor"
 msgstr "Foco en el editor de código"
 
 #. Translators: Speech announcement when switching focus to results console.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2364
+#: addon\globalPlugins\python_tutor\gui_frame.py:2442
 msgid "Focus on results console"
 msgstr "Foco en la consola de resultados"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2384
+#: addon\globalPlugins\python_tutor\gui_frame.py:2462
 msgid "Open Python script"
 msgstr "Abrir script de Python"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2385
+#: addon\globalPlugins\python_tutor\gui_frame.py:2463
 msgid "Python Files (*.py)|*.py|All Files (*.*)|*.*"
 msgstr "Archivos Python (*.py)|*.py|Todos los archivos (*.*)|*.*"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2395
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:2473
 #, python-brace-format
 msgid "File loaded: {filename}"
 msgstr "Archivo cargado: {filename}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2398
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:2476
 #, python-brace-format
 msgid "Error opening file: {error}"
 msgstr "Error al abrir archivo: {error}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2398
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2409
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2428
+#: addon\globalPlugins\python_tutor\gui_frame.py:2476
+#: addon\globalPlugins\python_tutor\gui_frame.py:2487
+#: addon\globalPlugins\python_tutor\gui_frame.py:2506
 msgid "Error"
 msgstr "Error"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2407
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:2485
 #, python-brace-format
 msgid "Saved to {filename}"
 msgstr "Guardado en {filename}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2409
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2428
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:2487
+#: addon\globalPlugins\python_tutor\gui_frame.py:2506
 #, python-brace-format
 msgid "Error saving file: {error}"
 msgstr "Error al guardar: {error}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2415
+#: addon\globalPlugins\python_tutor\gui_frame.py:2493
 msgid "Save script as"
 msgstr "Guardar script como"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2416
+#: addon\globalPlugins\python_tutor\gui_frame.py:2494
 msgid "Python Files (*.py)|*.py"
 msgstr "Archivos Python (*.py)|*.py"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2426
-
+#: addon\globalPlugins\python_tutor\gui_frame.py:2504
 #, python-brace-format
 msgid "Saved as {filename}"
 msgstr "Guardado como {filename}"
 
-#: addon\globalPlugins\python_tutor\gui_frame.py:2462
+#: addon\globalPlugins\python_tutor\gui_frame.py:2551
 msgid "Could not open documentation in web browser."
 msgstr "No fue posible abrir la documentación en el navegador."
 
 #. Translators: Speech announcement when opening About documentation.
-
-#: addon\globalPlugins\python_tutor\gui_frame.py:2474
+#: addon\globalPlugins\python_tutor\gui_frame.py:2563
 msgid "Opening About documentation in web browser."
 msgstr "Abriendo la documentación de Acerca de en el navegador web."
 
 #. Translators: Screen reader explanation for an empty line of code.
-
 #: addon\globalPlugins\python_tutor\translator.py:32
 msgid "Empty line."
 msgstr "Línea vacía."
 
 #. Translators: Screen reader explanation for a Python comment line.
-
 #: addon\globalPlugins\python_tutor\translator.py:38
-
 #, python-brace-format
 msgid ""
 "Comment: {comment}. Computers ignore this line; it serves as an explanatory "
 "note."
 msgstr ""
+"Comentario: {comment}. La computadora ignora esta línea, sirve como nota "
+"aclaratoria para ti."
 
-#. Translators: Screen reader explanation for print statement with no arguments.
-
+#. Translators: Screen reader explanation for print statement with no
+#. arguments.
 #: addon\globalPlugins\python_tutor\translator.py:51
 msgid "print instruction: Prints a blank line to console output."
-msgstr "Instrucción print: Imprime una línea en blanco en la salida de consola."
+msgstr ""
+"Instrucción print: Imprime una línea en blanco en la salida de consola."
 
-#. Translators: Screen reader explanation for print statement with text literal.
-
+#. Translators: Screen reader explanation for print statement with text
+#. literal.
 #: addon\globalPlugins\python_tutor\translator.py:55
-
 #, python-brace-format
 msgid ""
-"print instruction: Displays on screen and speaks aloud the message: '{text}'."
+"print instruction: Displays on screen and speaks aloud the message: "
+"'{text}'."
 msgstr ""
+"Instrucción print: Muestra en pantalla y lee en voz alta el mensaje "
+"'{text}'."
 
-#. Translators: Screen reader explanation for print statement with multiple comma-separated items.
-
+#. Translators: Screen reader explanation for print statement with multiple
+#. comma-separated items.
 #: addon\globalPlugins\python_tutor\translator.py:58
-
 #, python-brace-format
 msgid ""
 "print instruction: Displays multiple items on screen separated by spaces: "
 "{items}."
 msgstr ""
+"Instrucción print: Muestra varios elementos en pantalla separados por un "
+"espacio: {items}."
 
-#. Translators: Screen reader explanation for print statement with arithmetic operation.
-
+#. Translators: Screen reader explanation for print statement with arithmetic
+#. operation.
 #: addon\globalPlugins\python_tutor\translator.py:61
-
 #, python-brace-format
 msgid ""
 "print instruction: Calculates the mathematical operation '{operation}' and "
 "displays the result."
 msgstr ""
+"Instrucción print: Calcula la operación matemática '{operation}' y muestra "
+"su resultado numérico."
 
-#. Translators: Screen reader explanation for print statement with variable or expression.
-
+#. Translators: Screen reader explanation for print statement with variable or
+#. expression.
 #: addon\globalPlugins\python_tutor\translator.py:64
-
 #, python-brace-format
 msgid ""
 "print instruction: Displays the value stored in variable or expression: "
 "{expression}."
 msgstr ""
+"Instrucción print: Muestra el contenido almacenado en la variable o "
+"expresión '{expression}'."
 
 #. Translators: Screen reader explanation for an if conditional statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:71
-
 #, python-brace-format
 msgid ""
 "Conditional 'if': Checks if '{condition}' is met. If true, executes the "
 "following indented statements."
 msgstr ""
+"Condicional if: Evalúa si se cumple que '{condition}'. Si es verdad, "
+"ejecutará el bloque con sangría."
 
 #. Translators: Screen reader explanation for an elif conditional statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:78
-
 #, python-brace-format
 msgid ""
 "Alternative condition 'elif': If the previous condition was false but "
 "'{condition}' is true, executes this block."
 msgstr ""
+"Condición alternativa elif: Si lo anterior no se cumplió, comprueba si "
+"'{condition}'."
 
 #. Translators: Screen reader explanation for an else statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:83
 msgid ""
 "Alternative case 'else': Executes if none of the preceding conditions were "
 "true."
 msgstr ""
+"Caso alternativo else: Si ninguna de las condiciones anteriores fue "
+"verdadera, se ejecutará este bloque."
 
 #. Translators: Screen reader explanation for a for loop.
-
 #: addon\globalPlugins\python_tutor\translator.py:91
-
 #, python-brace-format
 msgid ""
 "For loop: Iterates item by item over '{iterable}', assigning each to "
 "variable '{variable}' on each pass."
 msgstr ""
+"Bucle for: Recorre elemento por elemento '{iterable}', guardando cada uno en"
+" la variable '{variable}'."
 
 #. Translators: Screen reader explanation for a while loop.
-
 #: addon\globalPlugins\python_tutor\translator.py:98
-
 #, python-brace-format
 msgid ""
 "While loop: Repeats following statements continuously as long as condition "
 "'{condition}' remains true."
 msgstr ""
+"Bucle while: Repite las instrucciones siguientes una y otra vez mientras sea"
+" verdad que '{condition}'."
 
-#. Translators: Part of function definition description when arguments are present.
-
+#. Translators: Part of function definition description when arguments are
+#. present.
 #: addon\globalPlugins\python_tutor\translator.py:106
-
 #, python-brace-format
 msgid "with parameters '{params}'"
 msgstr "con los parámetros '{params}'"
@@ -1445,250 +2028,253 @@ msgid "without receiving parameters"
 msgstr "sin recibir parámetros"
 
 #. Translators: Screen reader explanation for a function definition.
-
 #: addon\globalPlugins\python_tutor\translator.py:108
-
 #, python-brace-format
 msgid ""
 "Function definition: Creates a new function named '{name}' {param_desc}."
 msgstr ""
+"Definición de función: Crea una nueva función llamada '{name}' {param_desc}."
 
-#. Translators: Screen reader explanation for return statement returning a value.
-
+#. Translators: Screen reader explanation for return statement returning a
+#. value.
 #: addon\globalPlugins\python_tutor\translator.py:116
-
 #, python-brace-format
 msgid "Function return: Ends function execution and returns result: {value}."
-msgstr "Retorno de función: Finaliza la ejecución de la función y devuelve el resultado: {value}."
+msgstr ""
+"Retorno de función: Finaliza la ejecución de la función y devuelve el "
+"resultado: {value}."
 
 #. Translators: Screen reader explanation for bare return statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:118
 msgid ""
 "Function return: Ends function execution without returning a specific value."
 msgstr ""
+"Retorno de función: Termina la ejecución de la función sin devolver ningún "
+"valor."
 
 #. Translators: Augmented assignment description for +=.
-
 #: addon\globalPlugins\python_tutor\translator.py:128
 msgid "adding"
 msgstr "sumándole"
 
 #. Translators: Augmented assignment description for -=.
-
 #: addon\globalPlugins\python_tutor\translator.py:130
 msgid "subtracting"
 msgstr "restándole"
 
 #. Translators: Augmented assignment description for *=.
-
 #: addon\globalPlugins\python_tutor\translator.py:132
 msgid "multiplying by"
 msgstr "multiplicándolo por"
 
 #. Translators: Augmented assignment description for /=.
-
 #: addon\globalPlugins\python_tutor\translator.py:134
 msgid "dividing by"
 msgstr "dividiéndolo entre"
 
 #. Translators: Augmented assignment description for //=.
-
 #: addon\globalPlugins\python_tutor\translator.py:136
 msgid "floor dividing by"
 msgstr "haciendo división entera con"
 
 #. Translators: Fallback verb for unrecognized augmented assignment operators.
-
 #: addon\globalPlugins\python_tutor\translator.py:139
 msgid "applying"
 msgstr "aplicándole"
 
-#. Translators: Screen reader explanation for augmented assignment operators (+-, -=, etc.).
-
+#. Translators: Screen reader explanation for augmented assignment operators
+#. (+-, -=, etc.).
 #: addon\globalPlugins\python_tutor\translator.py:141
-
 #, python-brace-format
 msgid "Cumulative update: Modifies variable '{variable}' by {op} {value}."
-msgstr "Actualización acumulativa: Modifica la variable '{variable}' {op} {value}."
+msgstr ""
+"Actualización acumulativa: Modifica la variable '{variable}' {op} {value}."
 
 #. Translators: Screen reader explanation for user input prompt assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:151
-
 #, python-brace-format
 msgid ""
 "Assignment with user input: Prompts the user for input and stores it in "
 "variable '{variable}'."
 msgstr ""
+"Entrada por teclado: Pregunta al usuario con input y guarda lo que escriba "
+"en la variable '{variable}'."
 
 #. Translators: Screen reader explanation for string assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:154
-
 #, python-brace-format
 msgid "Variable assignment: Stores text {value} in variable '{variable}'."
-msgstr "Asignación de variable: Guarda en la variable '{variable}' el texto {value}."
+msgstr ""
+"Asignación de variable: Guarda en la variable '{variable}' el texto {value}."
 
 #. Translators: Screen reader explanation for integer assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:157
-
 #, python-brace-format
 msgid ""
 "Variable assignment: Stores integer number {value} in variable '{variable}'."
 msgstr ""
+"Asignación: Guarda el número entero {value} en la variable llamada "
+"'{variable}'."
 
 #. Translators: Screen reader explanation for boolean assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:160
-
 #, python-brace-format
 msgid ""
 "Variable assignment: Stores boolean value {value} in variable '{variable}'."
 msgstr ""
+"Asignación: Guarda el valor lógico {value} en la variable '{variable}'."
 
 #. Translators: Screen reader explanation for list assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:163
-
 #, python-brace-format
 msgid ""
 "Variable assignment: Creates a list of elements and stores it in "
 "'{variable}'."
 msgstr ""
+"Lista: Crea una lista de elementos y la guarda en la variable '{variable}'."
 
 #. Translators: Screen reader explanation for generic expression assignment.
-
 #: addon\globalPlugins\python_tutor\translator.py:166
-
 #, python-brace-format
 msgid ""
 "Variable assignment: Evaluates '{value}' and stores result in variable "
 "'{variable}'."
 msgstr ""
+"Asignación: Evalúa la expresión '{value}' y guarda su resultado en la "
+"variable '{variable}'."
 
 #. Translators: Screen reader explanation for try block.
-
 #: addon\globalPlugins\python_tutor\translator.py:171
 msgid ""
 "Guarded block (try): Begins a protected section executing code safe from "
 "errors."
 msgstr ""
+"Bloque protegido try: Inicia una zona de código vigilada donde intentará "
+"ejecutar instrucciones que podrían fallar."
 
 #. Translators: Screen reader explanation for typed except block.
-
 #: addon\globalPlugins\python_tutor\translator.py:178
-
 #, python-brace-format
 msgid ""
 "Error handler (except): If error '{error}' occurs in try block, executes "
 "these recovery statements."
 msgstr ""
+"Manejo de error except: Si en el bloque anterior ocurre un error de tipo "
+"'{error}', se capturará aquí sin detener el programa."
 
 #. Translators: Screen reader explanation for general except block.
-
 #: addon\globalPlugins\python_tutor\translator.py:180
 msgid ""
-"Error handler (except): If any error occurs in the preceding block, executes "
-"this fallback block."
+"Error handler (except): If any error occurs in the preceding block, executes"
+" this fallback block."
 msgstr ""
+"Manejo de error except general: Si ocurre cualquier fallo en el bloque "
+"protegido, ejecutará las instrucciones de este apartado."
 
 #. Translators: Screen reader explanation for import statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:186
-
 #, python-brace-format
 msgid "Module import: Loads library '{module}' to use its functions."
-msgstr "Importación de módulo: Carga la librería '{module}' para utilizar sus funciones adicionales."
+msgstr ""
+"Importación de módulo: Carga la librería '{module}' para utilizar sus "
+"funciones adicionales."
 
 #. Translators: Screen reader explanation for from-import statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:191
-
 #, python-brace-format
 msgid "Specific import: Loads '{item}' from module '{module}'."
 msgstr "Importación específica: Carga '{item}' desde el módulo '{module}'."
 
 #. Translators: Screen reader explanation for list.append method.
-
 #: addon\globalPlugins\python_tutor\translator.py:198
-
 #, python-brace-format
 msgid "append method: Adds element '{item}' to the end of list '{list_name}'."
-msgstr "Método append: Agrega el elemento '{item}' al final de la lista '{list_name}'."
+msgstr ""
+"Método append: Agrega el elemento '{item}' al final de la lista "
+"'{list_name}'."
 
 #. Translators: Screen reader explanation for list.remove method.
-
 #: addon\globalPlugins\python_tutor\translator.py:204
-
 #, python-brace-format
 msgid ""
 "remove method: Removes first occurrence of '{item}' from list '{list_name}'."
 msgstr ""
+"Método remove: Busca y elimina la primera aparición del elemento '{item}' "
+"dentro de la lista '{list_name}'."
 
 #. Translators: Screen reader explanation for break statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:209
 msgid "break statement: Immediately terminates the current loop."
-msgstr "Sentencia break: Interrumpe y finaliza inmediatamente el bucle actual."
+msgstr ""
+"Sentencia break: Interrumpe y finaliza inmediatamente el bucle actual."
 
 #. Translators: Screen reader explanation for continue statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:212
 msgid "continue statement: Skips directly to the next loop iteration."
-msgstr "Sentencia continue: Salta directamente a la siguiente vuelta del bucle ignorando el resto del bloque."
+msgstr ""
+"Sentencia continue: Salta directamente a la siguiente vuelta del bucle "
+"ignorando el resto del bloque."
 
 #. Translators: Screen reader explanation for pass statement.
-
 #: addon\globalPlugins\python_tutor\translator.py:215
-msgid "pass statement: Null operation placeholder reserving space for a block."
-msgstr "Sentencia pass: Indicador de paso nulo (no realiza ninguna acción, reserva el espacio de un bloque)."
+msgid ""
+"pass statement: Null operation placeholder reserving space for a block."
+msgstr ""
+"Sentencia pass: Indicador de paso nulo (no realiza ninguna acción, reserva "
+"el espacio de un bloque)."
 
 #. Translators: Screen reader explanation for generic line of code.
-
 #: addon\globalPlugins\python_tutor\translator.py:218
-
 #, python-brace-format
 msgid "Code line: {code}."
 msgstr "Línea de código: {code}."
 
 #: buildVars.py:9
 msgid "Aprendizaje de Python con NVDA"
-msgstr ""
+msgstr "Aprendizaje de Python con NVDA"
 
 #: buildVars.py:10
 msgid ""
 "Herramienta formativa y editor de código adaptado para la programación en "
-"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 "
-"capítulos conceptuales y prácticos (128 lecciones), complementada con un "
+"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32"
+" capítulos conceptuales y prácticos (128 lecciones), complementada con un "
 "entorno de trabajo de doble modalidad: modo tutor guiado y modo editor "
 "autónomo. Integra navegación por elementos de código como funciones y "
 "clases, señales sonoras de sangría y estructura, verificación de "
 "delimitadores y simplificación de mensajes de error."
 msgstr ""
+"Herramienta formativa y editor de código adaptado para la programación en "
+"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32"
+" capítulos conceptuales y prácticos (128 lecciones), complementada con un "
+"entorno de trabajo de doble modalidad: modo tutor guiado y modo editor "
+"autónomo. Integra navegación por elementos de código como funciones y "
+"clases, señales sonoras de sangría y estructura, verificación de "
+"delimitadores y simplificación de mensajes de error."
 
 #: buildVars.py:12
 msgid ""
 "Registro de cambios versión 2.0.0:\n"
-"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional "
-"(Control + M).\n"
-"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt "
-"+ Flechas.\n"
-"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y "
-"diálogo de símbolos Control + Shift + O).\n"
-"- Salto automático a la línea del error del Traceback con lectura "
-"diagnóstica (F4).\n"
+"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).\n"
+"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt + Flechas.\n"
+"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y diálogo de símbolos Control + Shift + O).\n"
+"- Salto automático a la línea del error del Traceback con lectura diagnóstica (F4).\n"
 "- Verificador en tiempo real de delimitadores y comillas sin cerrar (F7).\n"
-"- Lectura de consola no invasiva sin perder el foco del editor (Control + "
-"Shift + C y Control + 6).\n"
-"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos "
-"Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software "
-"profesional).\n"
-"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con "
-"buscador interactivo.\n"
-"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo "
-"(Control + J).\n"
+"- Lectura de consola no invasiva sin perder el foco del editor (Control + Shift + C y Control + 6).\n"
+"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software profesional).\n"
+"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con buscador interactivo.\n"
+"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).\n"
 "- Adaptación canónica a la plantilla oficial AddonTemplate 2026.\n"
 "- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."
 msgstr ""
+"Registro de cambios versión 2.0.0:\n"
+"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).\n"
+"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt + Flechas.\n"
+"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y diálogo de símbolos Control + Shift + O).\n"
+"- Salto automático a la línea del error del Traceback con lectura diagnóstica (F4).\n"
+"- Verificador en tiempo real de delimitadores y comillas sin cerrar (F7).\n"
+"- Lectura de consola no invasiva sin perder el foco del editor (Control + Shift + C y Control + 6).\n"
+"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software profesional).\n"
+"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con buscador interactivo.\n"
+"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).\n"
+"- Adaptación canónica a la plantilla oficial AddonTemplate 2026.\n"
+"- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."

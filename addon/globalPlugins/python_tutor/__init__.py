@@ -8,18 +8,33 @@
 # Compatibilidad: NVDA 2022.1.0 hasta 2026.3.0
 # ============================================================================
 
-import wx
+import os
+import urllib.parse
 import webbrowser
+import wx
+
+try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    import gettext
+    _loc = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "locale")
+    try:
+        _t = gettext.translation("nvda", localedir=_loc, languages=["es"])
+        _ = _t.gettext
+    except Exception:
+        def _(msg):
+            return msg
 
 try:
     import globalPluginHandler
     import scriptHandler
     import ui
-    import addonHandler
-    try:
-        addonHandler.initTranslation()
-    except Exception:
-        pass
 except ImportError:
     globalPluginHandler = None
     scriptHandler = None
@@ -44,36 +59,38 @@ _BaseSettingsPanel = SettingsPanel if SettingsPanel else object
 
 class PythonTutorSettingsPanel(_BaseSettingsPanel):
     """Panel de configuración nativo integrado en el diálogo de opciones de NVDA."""
-    title = "Aprendizaje de Python con NVDA"
+    title = _("Python Learning with NVDA")
 
     def makeSettings(self, settingsSizer):
         prog = ProgressManager.load_progress()
 
-        self.chk_modo_editor = wx.CheckBox(self, label="Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)")
+        self.chk_modo_editor = wx.CheckBox(self, label=_("Start in standalone Editor Mode (hide tutor lessons)"))
         self.chk_modo_editor.SetValue(ProgressManager.get_editor_mode() == "editor")
         settingsSizer.Add(self.chk_modo_editor, flag=wx.ALL, border=6)
 
-        self.chk_sonidos = wx.CheckBox(self, label="Efectos sonoros de confirmación y eventos")
+        self.chk_sonidos = wx.CheckBox(self, label=_("Confirmation and event sound effects"))
         self.chk_sonidos.SetValue(prog.get("sound_enabled", True))
         settingsSizer.Add(self.chk_sonidos, flag=wx.ALL, border=6)
 
-        self.chk_linter = wx.CheckBox(self, label="Avisos sonoros de sangría y estructura")
+        self.chk_linter = wx.CheckBox(self, label=_("Indentation and structure sound alerts"))
         self.chk_linter.SetValue(prog.get("linter_enabled", True))
         settingsSizer.Add(self.chk_linter, flag=wx.ALL, border=6)
 
-        self.chk_bienvenida = wx.CheckBox(self, label="Mostrar diálogo de bienvenida al iniciar el complemento")
+        self.chk_bienvenida = wx.CheckBox(self, label=_("Show welcome dialog when addon starts"))
         self.chk_bienvenida.SetValue(prog.get("show_welcome", True))
         settingsSizer.Add(self.chk_bienvenida, flag=wx.ALL, border=6)
 
         # Botones de soporte y donaciones voluntarias
         btn_box = wx.BoxSizer(wx.HORIZONTAL)
-        btn_soporte = wx.Button(self, label="Enviar mensaje de soporte")
-        btn_donar = wx.Button(self, label="Realizar donación voluntaria")
+        btn_soporte = wx.Button(self, label=_("Send support message"))
+        btn_donar = wx.Button(self, label=_("Make voluntary donation"))
         btn_box.Add(btn_soporte, flag=wx.RIGHT, border=8)
         btn_box.Add(btn_donar)
         settingsSizer.Add(btn_box, flag=wx.ALL, border=6)
 
-        btn_soporte.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open("mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"))
+        subject = _("Support - Python Learning with NVDA")
+        mail_url = f"mailto:kevinvelasquezvargas@gmail.com?subject={urllib.parse.quote(subject)}"
+        btn_soporte.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open(mail_url))
         btn_donar.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open("https://paypal.me/kevinvelasquezvargas"))
 
     def onSave(self):
@@ -89,7 +106,7 @@ class GlobalPlugin(_BasePlugin):
     Gestiona el registro de gestos de entrada, la integración con el menú de herramientas,
     el panel de preferencias y el ciclo de vida del entorno pedagógico.
     """
-    scriptCategory = "Aprendizaje de Python con NVDA"
+    scriptCategory = _("Python Learning with NVDA")
 
     gestures = {
         "kb:NVDA+control+shift+p": "openPythonTutor",
@@ -129,18 +146,18 @@ class GlobalPlugin(_BasePlugin):
 
             item_abrir = self._sub_menu.Append(
                 wx.ID_ANY,
-                "Aprendizaje de Python con NVDA...",
-                "Abre el entorno interactivo de aprendizaje"
+                _("Python Learning with NVDA..."),
+                _("Opens the interactive learning environment")
             )
             item_donacion = self._sub_menu.Append(
                 wx.ID_ANY,
-                "Realizar una donación...",
-                "Apoyar el desarrollo libre del complemento"
+                _("Make a donation..."),
+                _("Support free addon development")
             )
             item_soporte = self._sub_menu.Append(
                 wx.ID_ANY,
-                "Soporte y contacto...",
-                "Abrir canal de soporte por correo o incidencias"
+                _("Support and contact..."),
+                _("Open support channel via email or issues")
             )
 
             # Vincular en sysTray, sub_menu y mainFrame para garantizar captura del evento
@@ -160,7 +177,7 @@ class GlobalPlugin(_BasePlugin):
             gui.mainFrame.Bind(wx.EVT_MENU, cb_donacion, id=item_donacion.GetId())
             gui.mainFrame.Bind(wx.EVT_MENU, cb_soporte, id=item_soporte.GetId())
 
-            self._menu_item_sub = self._tools_menu.AppendSubMenu(self._sub_menu, "Aprendizaje de Python con NVDA")
+            self._menu_item_sub = self._tools_menu.AppendSubMenu(self._sub_menu, _("Python Learning with NVDA"))
         except Exception:
             pass
 
@@ -172,11 +189,12 @@ class GlobalPlugin(_BasePlugin):
             pass
 
     def _abrir_soporte(self):
-        url = "mailto:kevinvelasquezvargas@gmail.com?subject=Soporte%20-%20Aprendizaje%20de%20Python%20con%20NVDA"
+        subject = _("Support - Python Learning with NVDA")
+        url = f"mailto:kevinvelasquezvargas@gmail.com?subject={urllib.parse.quote(subject)}"
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo cliente de correo para soporte...")
+                ui.message(_("Opening email client for support..."))
         except Exception:
             try:
                 webbrowser.open("https://github.com/KevinVelasquezVargas/python_tutor/issues")
@@ -188,14 +206,14 @@ class GlobalPlugin(_BasePlugin):
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo página de donaciones en el navegador...")
+                ui.message(_("Opening donations page in browser..."))
         except Exception:
             pass
 
     if scriptHandler and hasattr(scriptHandler, 'script'):
         @scriptHandler.script(
-            description="Abre el entorno de Aprendizaje de Python con NVDA.",
-            category="Aprendizaje de Python con NVDA",
+            description=_("Opens the Python Learning with NVDA environment."),
+            category=_("Python Learning with NVDA"),
             gesture="kb:NVDA+control+shift+p"
         )
         def script_openPythonTutor(self, gesture):
@@ -224,7 +242,8 @@ class GlobalPlugin(_BasePlugin):
         except Exception as e:
             self.gui_frame = None
             if ui:
-                ui.message(f"Error al iniciar Aprendizaje de Python con NVDA: {e}")
+                # Translators: Error message when Python Tutor interface fails to launch. {error} is the error message.
+                ui.message(_("Error launching Python Learning with NVDA: {error}").format(error=e))
 
     def on_frame_destroy(self, event):
         if event.GetEventObject() == self.gui_frame:

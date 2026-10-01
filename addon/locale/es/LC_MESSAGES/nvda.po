@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'python_tutor' '2.0.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-10-01 18:35+0530\n"
+"POT-Creation-Date: 2026-10-01 19:09+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -804,6 +804,8 @@ msgstr "Realizar &donación (PayPal)"
 
 #. Translators: Subject line for support email.
 #: addon\globalPlugins\python_tutor\gui_frame.py:672
+#: addon\globalPlugins\python_tutor\__init__.py:91
+#: addon\globalPlugins\python_tutor\__init__.py:192
 msgid "Support - Python Learning with NVDA"
 msgstr "Soporte - Aprendizaje de Python con NVDA"
 
@@ -1180,6 +1182,10 @@ msgstr "Documentación de Aprendizaje de Python con NVDA"
 #: addon\globalPlugins\python_tutor\gui_frame.py:894
 #: addon\globalPlugins\python_tutor\gui_frame.py:1220
 #: addon\globalPlugins\python_tutor\gui_frame.py:1260
+#: addon\globalPlugins\python_tutor\__init__.py:62
+#: addon\globalPlugins\python_tutor\__init__.py:109
+#: addon\globalPlugins\python_tutor\__init__.py:180
+#: addon\globalPlugins\python_tutor\__init__.py:216
 msgid "Python Learning with NVDA"
 msgstr "Aprendizaje de Python con NVDA"
 
@@ -3329,6 +3335,73 @@ msgstr ""
 #, python-brace-format
 msgid "Code line: {code}."
 msgstr "Línea de código: {code}."
+
+#: addon\globalPlugins\python_tutor\__init__.py:67
+msgid "Start in standalone Editor Mode (hide tutor lessons)"
+msgstr "Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)"
+
+#: addon\globalPlugins\python_tutor\__init__.py:71
+msgid "Confirmation and event sound effects"
+msgstr "Efectos sonoros de confirmación y eventos"
+
+#: addon\globalPlugins\python_tutor\__init__.py:75
+msgid "Indentation and structure sound alerts"
+msgstr "Avisos sonoros de sangría y estructura"
+
+#: addon\globalPlugins\python_tutor\__init__.py:79
+msgid "Show welcome dialog when addon starts"
+msgstr "Mostrar diálogo de bienvenida al iniciar el complemento"
+
+#: addon\globalPlugins\python_tutor\__init__.py:85
+msgid "Send support message"
+msgstr "Enviar mensaje de soporte"
+
+#: addon\globalPlugins\python_tutor\__init__.py:86
+msgid "Make voluntary donation"
+msgstr "Realizar donación voluntaria"
+
+#: addon\globalPlugins\python_tutor\__init__.py:149
+msgid "Python Learning with NVDA..."
+msgstr "Aprendizaje de Python con NVDA..."
+
+#: addon\globalPlugins\python_tutor\__init__.py:150
+msgid "Opens the interactive learning environment"
+msgstr "Abre el entorno interactivo de aprendizaje"
+
+#: addon\globalPlugins\python_tutor\__init__.py:154
+msgid "Make a donation..."
+msgstr "Realizar una donación..."
+
+#: addon\globalPlugins\python_tutor\__init__.py:155
+msgid "Support free addon development"
+msgstr "Apoyar el desarrollo libre del complemento"
+
+#: addon\globalPlugins\python_tutor\__init__.py:159
+msgid "Support and contact..."
+msgstr "Soporte y contacto..."
+
+#: addon\globalPlugins\python_tutor\__init__.py:160
+msgid "Open support channel via email or issues"
+msgstr "Abrir canal de soporte por correo o incidencias"
+
+#: addon\globalPlugins\python_tutor\__init__.py:197
+msgid "Opening email client for support..."
+msgstr "Abriendo cliente de correo para soporte..."
+
+#: addon\globalPlugins\python_tutor\__init__.py:209
+msgid "Opening donations page in browser..."
+msgstr "Abriendo página de donaciones en el navegador..."
+
+#: addon\globalPlugins\python_tutor\__init__.py:215
+msgid "Opens the Python Learning with NVDA environment."
+msgstr "Abre el entorno de Aprendizaje de Python con NVDA."
+
+#. Translators: Error message when Python Tutor interface fails to launch.
+#. {error} is the error message.
+#: addon\globalPlugins\python_tutor\__init__.py:246
+#, python-brace-format
+msgid "Error launching Python Learning with NVDA: {error}"
+msgstr "Error al iniciar Aprendizaje de Python con NVDA: {error}"
 
 #: buildVars.py:9
 msgid "Aprendizaje de Python con NVDA"

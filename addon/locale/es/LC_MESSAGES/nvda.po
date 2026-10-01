@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'python_tutor' '2.0.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-10-01 19:09+0530\n"
+"POT-Creation-Date: 2026-10-01 21:08+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,16 +27,16 @@ msgid ""
 "Typography notice: The code contains curly or stylized quotes (“ ”). Python "
 "requires straight programming quotes (' or \")."
 msgstr ""
-"Aviso de tipografía: El código contiene comillas curvas o estilizadas (“ ”)."
-" Python requiere comillas rectas de programación (' o \")."
+"Aviso de tipografía: El código contiene comillas curvas o estilizadas (“ ”). "
+"Python requiere comillas rectas de programación (' o \")."
 
 #: addon\globalPlugins\python_tutor\executor.py:65
 msgid ""
-"Syntax notice: You have placed a semicolon (;) at the end of a structure. In"
-" Python, functions, conditions, and loops must end with a colon (:)."
+"Syntax notice: You have placed a semicolon (;) at the end of a structure. In "
+"Python, functions, conditions, and loops must end with a colon (:)."
 msgstr ""
-"Aviso de sintaxis: Has colocado punto y coma (;) al final de una estructura."
-" En Python, las funciones, condiciones y bucles deben finalizar con dos "
+"Aviso de sintaxis: Has colocado punto y coma (;) al final de una estructura. "
+"En Python, las funciones, condiciones y bucles deben finalizar con dos "
 "puntos (:)."
 
 #: addon\globalPlugins\python_tutor\executor.py:69
@@ -56,15 +56,13 @@ msgstr "(sin salida impresa)"
 msgid "Output comparison:"
 msgstr "Comparación de salida:"
 
-#. Translators: Output comparison expected output. {expected} is the expected
-#. output text.
+#. Translators: Output comparison expected output. {expected} is the expected output text.
 #: addon\globalPlugins\python_tutor\executor.py:85
 #, python-brace-format
 msgid "Expected output: {expected}"
 msgstr "Salida esperada: {expected}"
 
-#. Translators: Output comparison actual output. {actual} is the program's
-#. output text.
+#. Translators: Output comparison actual output. {actual} is the program's output text.
 #: addon\globalPlugins\python_tutor\executor.py:87
 #, python-brace-format
 msgid "Your program's output: {actual}"
@@ -92,8 +90,8 @@ msgid ""
 "Pedagogical hint: Check the punctuation marks (commas or periods); some are "
 "missing or extra compared to the exercise."
 msgstr ""
-"Pista pedagógica: Revisa los signos de puntuación (comas o puntos); faltan o"
-" sobran algunos respecto al ejercicio."
+"Pista pedagógica: Revisa los signos de puntuación (comas o puntos); faltan o "
+"sobran algunos respecto al ejercicio."
 
 #: addon\globalPlugins\python_tutor\executor.py:97
 msgid ""
@@ -103,8 +101,7 @@ msgstr ""
 "Pista pedagógica: Revisa el texto y variables solicitadas en la consigna de "
 "la misión."
 
-#. Translators: Prefix with line number for keyboard warning. {line} is line
-#. number, {notice} is warning message.
+#. Translators: Prefix with line number for keyboard warning. {line} is line number, {notice} is warning message.
 #: addon\globalPlugins\python_tutor\executor.py:111
 #, python-brace-format
 msgid "On line {line}: {notice}"
@@ -118,8 +115,8 @@ msgid ""
 "recognize yet. Check if it is spelled correctly or if you forgot to define "
 "the variable beforehand."
 msgstr ""
-"En la línea {line}: Has utilizado un nombre o función que Python no reconoce"
-" todavía. Comprueba si está bien escrito o si olvidaste definir la variable "
+"En la línea {line}: Has utilizado un nombre o función que Python no reconoce "
+"todavía. Comprueba si está bien escrito o si olvidaste definir la variable "
 "previamente."
 
 #. Translators: Friendly explanation for TypeError. {line} is the line number.
@@ -131,24 +128,22 @@ msgid ""
 "number without converting it first)."
 msgstr ""
 "En la línea {line}: Incompatibilidad de tipos. Se intentó realizar una "
-"operación entre datos que no combinan directamente (por ejemplo, sumar texto"
-" con un número sin convertirlo antes)."
+"operación entre datos que no combinan directamente (por ejemplo, sumar texto "
+"con un número sin convertirlo antes)."
 
-#. Translators: Friendly explanation for SyntaxError. {line} is the line
-#. number.
+#. Translators: Friendly explanation for SyntaxError. {line} is the line number.
 #: addon\globalPlugins\python_tutor\executor.py:121
 #, python-brace-format
 msgid ""
-"On line {line}: There is a detail in the code structure that the interpreter"
-" does not understand. Check for missing closing quotes, parentheses, or a "
+"On line {line}: There is a detail in the code structure that the interpreter "
+"does not understand. Check for missing closing quotes, parentheses, or a "
 "colon at the end of the line."
 msgstr ""
 "En la línea {line}: Hay un detalle en la estructura del código que el "
 "intérprete no comprende. Revisa si faltan comillas de cierre, paréntesis o "
 "los dos puntos al final de la línea."
 
-#. Translators: Friendly explanation for IndentationError. {line} is the line
-#. number.
+#. Translators: Friendly explanation for IndentationError. {line} is the line number.
 #: addon\globalPlugins\python_tutor\executor.py:124
 #, python-brace-format
 msgid ""
@@ -158,8 +153,7 @@ msgstr ""
 "En la línea {line}: Error de sangría (espacios al inicio). En Python, cada "
 "bloque subordinado debe alinearse de forma exacta con 4 espacios físicos."
 
-#. Translators: Friendly explanation for IndexError. {line} is the line
-#. number.
+#. Translators: Friendly explanation for IndexError. {line} is the line number.
 #: addon\globalPlugins\python_tutor\executor.py:127
 #, python-brace-format
 msgid ""
@@ -180,8 +174,7 @@ msgstr ""
 "En la línea {line}: Clave no encontrada en el diccionario. Verifica que el "
 "nombre de la clave coincida con los datos registrados."
 
-#. Translators: Friendly explanation for ZeroDivisionError. {line} is the line
-#. number.
+#. Translators: Friendly explanation for ZeroDivisionError. {line} is the line number.
 #: addon\globalPlugins\python_tutor\executor.py:133
 #, python-brace-format
 msgid ""
@@ -191,8 +184,7 @@ msgstr ""
 "En la línea {line}: División entre cero. El cálculo intentó dividir una "
 "cantidad entre 0, lo cual es matemáticamente indefinido."
 
-#. Translators: Friendly explanation for ValueError. {line} is the line
-#. number.
+#. Translators: Friendly explanation for ValueError. {line} is the line number.
 #: addon\globalPlugins\python_tutor\executor.py:136
 #, python-brace-format
 msgid ""
@@ -206,16 +198,15 @@ msgstr ""
 
 #: addon\globalPlugins\python_tutor\executor.py:138
 msgid ""
-"Active safety: Execution took more than 3 seconds and was stopped to protect"
-" your screen reader. A 'while' or 'for' loop might be missing an exit "
+"Active safety: Execution took more than 3 seconds and was stopped to protect "
+"your screen reader. A 'while' or 'for' loop might be missing an exit "
 "condition."
 msgstr ""
 "Seguridad activa: La ejecución tardó más de 3 segundos y se detuvo para "
 "proteger tu lector de pantalla. Es posible que un bucle 'while' o 'for' no "
 "tenga una condición de salida."
 
-#. Translators: Generic error explanation. {line} is line number, {error_type}
-#. is exception class name, {error_msg} is exception message.
+#. Translators: Generic error explanation. {line} is line number, {error_type} is exception class name, {error_msg} is exception message.
 #: addon\globalPlugins\python_tutor\executor.py:141
 #, python-brace-format
 msgid "On line {line}: An alert of type {error_type} occurred: {error_msg}."
@@ -226,8 +217,7 @@ msgstr ""
 msgid "Code executed (no output printed to console)."
 msgstr "Código ejecutado (sin salidas impresas en consola)."
 
-#. Translators: Error output during code execution. {line} is line number,
-#. {error_type} is exception name, {error_msg} is error description.
+#. Translators: Error output during code execution. {line} is line number, {error_type} is exception name, {error_msg} is error description.
 #: addon\globalPlugins\python_tutor\executor.py:188
 #, python-brace-format
 msgid "Error on line {line} ({error_type}): {error_msg}"
@@ -273,10 +263,8 @@ msgstr "llave"
 msgid "delimiter"
 msgstr "delimitador"
 
-#. Translators: Delimiter mismatch error when closing delimiter has no
-#. corresponding opener.
-#. {line} is line number, {col} is column, {char} is closing character,
-#. {delimiter} is delimiter name.
+#. Translators: Delimiter mismatch error when closing delimiter has no corresponding opener.
+#. {line} is line number, {col} is column, {char} is closing character, {delimiter} is delimiter name.
 #: addon\globalPlugins\python_tutor\executor.py:315
 #, python-brace-format
 msgid ""
@@ -286,11 +274,8 @@ msgstr ""
 "Línea {line}, col {col}: Se encontró '{char}' de cierre sin un {delimiter} "
 "de apertura correspondiente."
 
-#. Translators: Delimiter mismatch error when closing delimiter does not match
-#. opener.
-#. {line} is line number, {col} is column, {char} is closing char,
-#. {expected_name} is expected delimiter name, {expected_char} is expected
-#. char, {open_line} is line where opener was found.
+#. Translators: Delimiter mismatch error when closing delimiter does not match opener.
+#. {line} is line number, {col} is column, {char} is closing char, {expected_name} is expected delimiter name, {expected_char} is expected char, {open_line} is line where opener was found.
 #: addon\globalPlugins\python_tutor\executor.py:323
 #, python-brace-format
 msgid ""
@@ -300,28 +285,24 @@ msgstr ""
 "Línea {line}, col {col}: Se cerró con '{char}', pero se esperaba cerrar el "
 "{expected_name} '{expected_char}' abierto en la línea {open_line}."
 
-#. Translators: Unclosed quote error at end of line. {line} is line number,
-#. {quote} is quote character.
+#. Translators: Unclosed quote error at end of line. {line} is line number, {quote} is quote character.
 #: addon\globalPlugins\python_tutor\executor.py:332
 #, python-brace-format
 msgid "Line {line}: Unclosed string quote {quote} at end of line."
 msgstr ""
 "Línea {line}: Comilla {quote} de texto sin cerrar al final de la línea."
 
-#. Translators: Unclosed triple quote block at end of file. {quotes} is triple
-#. quote string.
+#. Translators: Unclosed triple quote block at end of file. {quotes} is triple quote string.
 #: addon\globalPlugins\python_tutor\executor.py:338
 #, python-brace-format
 msgid ""
 "Syntax notice: Triple quote block {quotes} open without being closed at the "
 "end of the file."
 msgstr ""
-"Aviso de sintaxis: Bloque de comillas triples {quotes} abierto sin cerrar al"
-" final del archivo."
+"Aviso de sintaxis: Bloque de comillas triples {quotes} abierto sin cerrar al "
+"final del archivo."
 
-#. Translators: Unclosed delimiter error at end of code. {line} is line
-#. number, {col} is column, {delimiter} is delimiter name, {char} is delimiter
-#. char.
+#. Translators: Unclosed delimiter error at end of code. {line} is line number, {col} is column, {delimiter} is delimiter name, {char} is delimiter char.
 #: addon\globalPlugins\python_tutor\executor.py:346
 #, python-brace-format
 msgid ""
@@ -517,27 +498,40 @@ msgstr "Bienvenido a Aprendizaje de Python con NVDA"
 msgid ""
 "Welcome to Python Learning with NVDA!\n"
 "\n"
-"This add-on will guide you step by step in learning Python programming, starting from fundamental concepts and advancing progressively through practical exercises designed to be solved directly in the editor.\n"
+"This add-on will guide you step by step in learning Python programming, "
+"starting from fundamental concepts and advancing progressively through "
+"practical exercises designed to be solved directly in the editor.\n"
 "\n"
 "The environment features two working modes:\n"
-"Learning Mode: Provides guided lessons, theoretical explanations, and automatic solution verification.\n"
-"Standalone Editor Mode: A clutter-free, accessible editor to write and run your own scripts.\n"
+"Learning Mode: Provides guided lessons, theoretical explanations, and "
+"automatic solution verification.\n"
+"Standalone Editor Mode: A clutter-free, accessible editor to write and run "
+"your own scripts.\n"
 "\n"
-"You can consult the full list of keyboard shortcuts at any time by pressing F11 or from the Help menu, and learn more about the add-on in About.\n"
+"You can consult the full list of keyboard shortcuts at any time by pressing "
+"F11 or from the Help menu, and learn more about the add-on in About.\n"
 "\n"
 "Press the Start learning button or press Enter to begin your first lesson."
 msgstr ""
 "¡Te damos la bienvenida a Aprendizaje de Python con NVDA!\n"
 "\n"
-"Este complemento te guiará paso a paso en el aprendizaje de la programación en Python, comenzando desde los conceptos fundamentales y avanzando de manera progresiva a través de ejercicios prácticos diseñados para ser resueltos directamente en el editor.\n"
+"Este complemento te guiará paso a paso en el aprendizaje de la programación "
+"en Python, comenzando desde los conceptos fundamentales y avanzando de "
+"manera progresiva a través de ejercicios prácticos diseñados para ser "
+"resueltos directamente en el editor.\n"
 "\n"
 "El entorno cuenta con dos modalidades de trabajo:\n"
-"Modo Aprendizaje: Ofrece lecciones guiadas, explicaciones teóricas y comprobación automática de soluciones.\n"
-"Modo Editor autónomo: Un editor despejado y accesible para escribir y ejecutar tus propios scripts.\n"
+"Modo Aprendizaje: Ofrece lecciones guiadas, explicaciones teóricas y "
+"comprobación automática de soluciones.\n"
+"Modo Editor autónomo: Un editor despejado y accesible para escribir y "
+"ejecutar tus propios scripts.\n"
 "\n"
-"Puedes consultar la lista completa de atajos de teclado en cualquier momento pulsando F11 o desde el menú Ayuda, y obtener más detalles sobre el complemento en la opción Acerca de.\n"
+"Puedes consultar la lista completa de atajos de teclado en cualquier momento "
+"pulsando F11 o desde el menú Ayuda, y obtener más detalles sobre el "
+"complemento en la opción Acerca de.\n"
 "\n"
-"Pulsa el botón Comenzar a aprender o pulsa Enter para empezar tu primera lección."
+"Pulsa el botón Comenzar a aprender o pulsa Enter para empezar tu primera "
+"lección."
 
 #. Translators: Accessible name for welcome text control.
 #: addon\globalPlugins\python_tutor\gui_frame.py:361
@@ -565,8 +559,10 @@ msgid ""
 "\n"
 "Modes and Learning:\n"
 "Control + Enter or Control + E: Run code and verify solution.\n"
-"Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
-"F3 or Control + I: Read the active instruction without moving focus from the editor.\n"
+"Control + M: Toggle between Learning Mode and Professional Editor-Only "
+"Mode.\n"
+"F3 or Control + I: Read the active instruction without moving focus from the "
+"editor.\n"
 "F4: Place the cursor on the exact line of the Traceback error.\n"
 "F6: Toggle focus between the code editor and the output console.\n"
 "Alt + Right Arrow: Go to next step of the lesson.\n"
@@ -618,7 +614,8 @@ msgstr ""
 "\n"
 "Modos y Aprendizaje:\n"
 "Control + Enter o Control + E: Ejecutar código y comprobar la solución.\n"
-"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
+"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor "
+"profesional.\n"
 "F3 o Control + I: Leer la instrucción activa sin mover el foco del editor.\n"
 "F4: Situar el cursor en la línea exacta del error del Traceback.\n"
 "F6: Alternar el foco entre el editor de código y la consola de resultados.\n"
@@ -637,7 +634,8 @@ msgstr ""
 "Control + G: Desplazarse a un número de línea específico.\n"
 "F2: Renombrar identificador o variable en todo el archivo.\n"
 "Shift + Alt + F o Control + Shift + I: Formatear documento según PEP 8.\n"
-"Control + Shift + R: Extraer bloque de código seleccionado a una nueva función.\n"
+"Control + Shift + R: Extraer bloque de código seleccionado a una nueva "
+"función.\n"
 "Control + Espacio: Autocompletado inteligente con documentación.\n"
 "Control + Shift + O: Lista accesible de funciones y clases del script.\n"
 "Alt + N: Salto rápido a la cabecera de la siguiente función o clase.\n"
@@ -773,9 +771,11 @@ msgid ""
 "Support email: {email}\n"
 "Recommended subject: Support - Python Learning with NVDA\n"
 "\n"
-"You can send pedagogical inquiries about chapters, questions about solving exercises, improvement suggestions, or technical bug reports.\n"
+"You can send pedagogical inquiries about chapters, questions about solving "
+"exercises, improvement suggestions, or technical bug reports.\n"
 "\n"
-"Likewise, you can voluntarily support the project through donations to back ongoing maintenance and the creation of new accessible educational content."
+"Likewise, you can voluntarily support the project through donations to back "
+"ongoing maintenance and the creation of new accessible educational content."
 msgstr ""
 "Soporte y Contacto con el Desarrollador:\n"
 "\n"
@@ -783,9 +783,13 @@ msgstr ""
 "Correo electrónico de soporte: {email}\n"
 "Asunto recomendado: Soporte - Aprendizaje de Python con NVDA\n"
 "\n"
-"Puedes enviar consultas pedagógicas sobre los capítulos, dudas sobre la resolución de ejercicios, sugerencias de mejora o reportes de errores técnicos.\n"
+"Puedes enviar consultas pedagógicas sobre los capítulos, dudas sobre la "
+"resolución de ejercicios, sugerencias de mejora o reportes de errores "
+"técnicos.\n"
 "\n"
-"Asimismo, puedes colaborar voluntariamente con el proyecto mediante donaciones para respaldar el mantenimiento continuo y la creación de nuevos contenidos formativos accesibles."
+"Asimismo, puedes colaborar voluntariamente con el proyecto mediante "
+"donaciones para respaldar el mantenimiento continuo y la creación de nuevos "
+"contenidos formativos accesibles."
 
 #. Translators: Accessible name for support info text control.
 #: addon\globalPlugins\python_tutor\gui_frame.py:641
@@ -846,11 +850,18 @@ msgid ""
 "1. Overview and Purpose of the Add-on\n"
 "======================================================================\n"
 "\n"
-"Python Learning with NVDA is a comprehensive educational environment and an accessible code editor adapted for Python programming through NVDA. It provides a structured learning path across 32 conceptual and practical lessons, complemented by a dual-mode work environment: guided tutor mode and standalone editor mode.\n"
+"Python Learning with NVDA is a comprehensive educational environment and an "
+"accessible code editor adapted for Python programming through NVDA. It "
+"provides a structured learning path across 32 conceptual and practical "
+"lessons, complemented by a dual-mode work environment: guided tutor mode and "
+"standalone editor mode.\n"
 "\n"
-"It integrates structural navigation through code elements such as functions and classes, audio cues for indentation and structure, delimiter balancing checks, and simplified error messages.\n"
+"It integrates structural navigation through code elements such as functions "
+"and classes, audio cues for indentation and structure, delimiter balancing "
+"checks, and simplified error messages.\n"
 "\n"
-"The environment has been designed to ensure that any blind or low-vision user can learn 100% independently, with speech and braille feedback.\n"
+"The environment has been designed to ensure that any blind or low-vision "
+"user can learn 100% independently, with speech and braille feedback.\n"
 "\n"
 "======================================================================\n"
 "2. Pedagogical Methodology: 4-Step Learning Cycle\n"
@@ -858,13 +869,19 @@ msgid ""
 "\n"
 "Each chapter implements a four-phase progressive pedagogical cycle:\n"
 "\n"
-"Step 1: Conceptual Foundation (Observe): Presents theory in clear, everyday language, accompanied by a demonstration script runnable with F5 or Control + Enter.\n"
+"Step 1: Conceptual Foundation (Observe): Presents theory in clear, everyday "
+"language, accompanied by a demonstration script runnable with F5 or Control "
+"+ Enter.\n"
 "\n"
-"Step 2: Guided Observation (Experiment): A functional code snippet with a specific task to modify it and observe the cause and effect of changes.\n"
+"Step 2: Guided Observation (Experiment): A functional code snippet with a "
+"specific task to modify it and observe the cause and effect of changes.\n"
 "\n"
-"Step 3: Practical Challenge (Challenge): The editor starts completely blank so the student writes their own code. The tutor rigorously validates the solution without accepting empty answers.\n"
+"Step 3: Practical Challenge (Challenge): The editor starts completely blank "
+"so the student writes their own code. The tutor rigorously validates the "
+"solution without accepting empty answers.\n"
 "\n"
-"Step 4: Conceptual Verification (Quiz): A formative multiple-choice question (1, 2, or 3) to consolidate learned concepts.\n"
+"Step 4: Conceptual Verification (Quiz): A formative multiple-choice question "
+"(1, 2, or 3) to consolidate learned concepts.\n"
 "\n"
 "======================================================================\n"
 "3. Dual Working Modes\n"
@@ -872,9 +889,13 @@ msgid ""
 "\n"
 "You can toggle between the two modes at any moment by pressing Control + M:\n"
 "\n"
-"Guided Learning Mode: Displays the step instruction, code, didactic buttons, and the pedagogical validation system.\n"
+"Guided Learning Mode: Displays the step instruction, code, didactic buttons, "
+"and the pedagogical validation system.\n"
 "\n"
-"Standalone Editor Mode (Free Professional): Hides all lesson sections and maximizes workspace for the editor and output console, allowing work on personal projects with support for opening and saving .py files, delimiter checking, and structural navigation.\n"
+"Standalone Editor Mode (Free Professional): Hides all lesson sections and "
+"maximizes workspace for the editor and output console, allowing work on "
+"personal projects with support for opening and saving .py files, delimiter "
+"checking, and structural navigation.\n"
 "\n"
 "======================================================================\n"
 "4. Pedagogical Curriculum Catalog (32 Chapters)\n"
@@ -935,12 +956,14 @@ msgid ""
 "======================================================================\n"
 "\n"
 "F5 or Control + Enter: Run code and check solution.\n"
-"Control + M: Toggle between Learning Mode and Professional Editor-Only Mode.\n"
+"Control + M: Toggle between Learning Mode and Professional Editor-Only "
+"Mode.\n"
 "Alt + Right Arrow: Go to next step.\n"
 "Alt + Left Arrow: Go to previous step.\n"
 "F1: Explain line where cursor is located in simple words.\n"
 "F2: Rename symbol across file.\n"
-"F3 or Control + I: Read active mission prompt without moving cursor from editor.\n"
+"F3 or Control + I: Read active mission prompt without moving cursor from "
+"editor.\n"
 "F4: Place cursor directly on Traceback error line.\n"
 "F6: Toggle focus between code editor and console.\n"
 "F7: Check syntax and balance of delimiters/quotes.\n"
@@ -969,7 +992,8 @@ msgid ""
 "\n"
 "The environment produces brief, distinct audio cues:\n"
 "Startup: Confirmation tone when starting the environment.\n"
-"Success: High, rewarding tone when passing an exercise or executing successfully.\n"
+"Success: High, rewarding tone when passing an exercise or executing "
+"successfully.\n"
 "Error: Low tone when an exception or failure occurs.\n"
 "Warning: Sound cue on unclosed delimiters or syntax notices.\n"
 "Block: Subtle tone when typing a colon (:) to indicate opening indentation.\n"
@@ -981,7 +1005,8 @@ msgid ""
 "The environment actively assists in early fault detection:\n"
 "Pre-check of quotes and delimiters () [] {}.\n"
 "Automatic jump with F4 to Traceback error line.\n"
-"Detection of confusing characters such as commas in floats or punctuation signs.\n"
+"Detection of confusing characters such as commas in floats or punctuation "
+"signs.\n"
 "Statement translator with F1 to understandable human explanations.\n"
 "\n"
 "======================================================================\n"
@@ -1016,11 +1041,19 @@ msgstr ""
 "1. Visión General y Propósito del Complemento\n"
 "======================================================================\n"
 "\n"
-"Aprendizaje de Python con NVDA es un entorno formativo integral y un editor tiflotécnico de código adaptado para la programación en Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 lecciones conceptuales y prácticas, complementada con un entorno de trabajo de doble modalidad: modo tutor guiado y modo editor autónomo.\n"
+"Aprendizaje de Python con NVDA es un entorno formativo integral y un editor "
+"tiflotécnico de código adaptado para la programación en Python mediante "
+"NVDA. Proporciona una ruta de aprendizaje estructurada en 32 lecciones "
+"conceptuales y prácticas, complementada con un entorno de trabajo de doble "
+"modalidad: modo tutor guiado y modo editor autónomo.\n"
 "\n"
-"Integra navegación por elementos de código como funciones y clases, señales sonoras de sangría y estructura, verificación de delimitadores y simplificación de mensajes de error.\n"
+"Integra navegación por elementos de código como funciones y clases, señales "
+"sonoras de sangría y estructura, verificación de delimitadores y "
+"simplificación de mensajes de error.\n"
 "\n"
-"El entorno ha sido diseñado para garantizar que cualquier persona ciega o con baja visión pueda formarse de manera 100% independiente, con retroalimentación en voz y braille.\n"
+"El entorno ha sido diseñado para garantizar que cualquier persona ciega o "
+"con baja visión pueda formarse de manera 100% independiente, con "
+"retroalimentación en voz y braille.\n"
 "\n"
 "======================================================================\n"
 "2. Metodología Pedagógica: Ciclo de Aprendizaje en 4 Pasos\n"
@@ -1028,23 +1061,35 @@ msgstr ""
 "\n"
 "Cada capítulo implementa un ciclo pedagógico de cuatro fases progresivas:\n"
 "\n"
-"Paso 1: Fundamento Conceptual (Observar): Presenta la teoría en un lenguaje claro y cotidiano, acompañada de un script de demostración ejecutable con F5 o Control + Enter.\n"
+"Paso 1: Fundamento Conceptual (Observar): Presenta la teoría en un lenguaje "
+"claro y cotidiano, acompañada de un script de demostración ejecutable con F5 "
+"o Control + Enter.\n"
 "\n"
-"Paso 2: Observación Guiada (Experimentar): Un fragmento de código funcional con una consigna específica para modificarlo y constatar la causa y efecto de los cambios.\n"
+"Paso 2: Observación Guiada (Experimentar): Un fragmento de código funcional "
+"con una consigna específica para modificarlo y constatar la causa y efecto "
+"de los cambios.\n"
 "\n"
-"Paso 3: Reto Práctico (Desafío): El editor inicia completamente limpio para que el estudiante escriba su propio código. El tutor valida rigurosamente la solución sin aceptar respuestas vacías.\n"
+"Paso 3: Reto Práctico (Desafío): El editor inicia completamente limpio para "
+"que el estudiante escriba su propio código. El tutor valida rigurosamente la "
+"solución sin aceptar respuestas vacías.\n"
 "\n"
-"Paso 4: Verificación Conceptual (Quiz): Pregunta formativa de opción múltiple (1, 2 o 3) para consolidar los conceptos aprendidos.\n"
+"Paso 4: Verificación Conceptual (Quiz): Pregunta formativa de opción "
+"múltiple (1, 2 o 3) para consolidar los conceptos aprendidos.\n"
 "\n"
 "======================================================================\n"
 "3. Doble Modalidad de Trabajo\n"
 "======================================================================\n"
 "\n"
-"Puedes alternar entre los dos modos en cualquier instante pulsando Control + M:\n"
+"Puedes alternar entre los dos modos en cualquier instante pulsando Control + "
+"M:\n"
 "\n"
-"Modo Aprendizaje Guiado: Muestra la instrucción del paso, el código, botones didácticos y el sistema de validación pedagógica.\n"
+"Modo Aprendizaje Guiado: Muestra la instrucción del paso, el código, botones "
+"didácticos y el sistema de validación pedagógica.\n"
 "\n"
-"Modo Solo Editor (Profesional libre): Oculta todas las secciones de lecciones y maximiza el espacio para el editor y la consola de salida, permitiendo trabajar en proyectos propios con soporte para abrir y guardar archivos .py, verificación de delimitadores y navegación estructural.\n"
+"Modo Solo Editor (Profesional libre): Oculta todas las secciones de "
+"lecciones y maximiza el espacio para el editor y la consola de salida, "
+"permitiendo trabajar en proyectos propios con soporte para abrir y guardar "
+"archivos .py, verificación de delimitadores y navegación estructural.\n"
 "\n"
 "======================================================================\n"
 "4. Catálogo del Temario Pedagógico (32 Capítulos)\n"
@@ -1105,7 +1150,8 @@ msgstr ""
 "======================================================================\n"
 "\n"
 "F5 o Control + Enter: Ejecutar el código y comprobar la solución.\n"
-"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor profesional.\n"
+"Control + M: Alternar entre Modo Aprendizaje y Modo Solo Editor "
+"profesional.\n"
 "Alt + Flecha Derecha: Ir al paso siguiente.\n"
 "Alt + Flecha Izquierda: Ir al paso anterior.\n"
 "F1: Explicar la línea donde está el cursor con palabras sencillas.\n"
@@ -1129,7 +1175,8 @@ msgstr ""
 "Control + O / Control + S: Abrir / Guardar archivo.\n"
 "Control + Shift + S: Guardar como nuevo archivo.\n"
 "Control + 4 / Control + 5: Foco directo al editor / consola.\n"
-"Control + Shift + C: Verbalizar toda la salida de consola sin salir del editor.\n"
+"Control + Shift + C: Verbalizar toda la salida de consola sin salir del "
+"editor.\n"
 "F12: Abrir esta documentación en Acerca de.\n"
 "Escape: Cerrar el tutor en cualquier momento.\n"
 "\n"
@@ -1139,10 +1186,12 @@ msgstr ""
 "\n"
 "El entorno produce señales auditivas breves y diferenciadas:\n"
 "Inicio: Tono de confirmación al iniciar el entorno.\n"
-"Éxito: Tono agudo y gratificante al superar un ejercicio o ejecutar con éxito.\n"
+"Éxito: Tono agudo y gratificante al superar un ejercicio o ejecutar con "
+"éxito.\n"
 "Error: Tono grave al presentarse una excepción o fallo.\n"
 "Advertencia: Señal sonora ante delimitadores abiertos o avisos de sintaxis.\n"
-"Bloque: Tono sutil al tipear dos puntos (:) para indicar apertura de sangría.\n"
+"Bloque: Tono sutil al tipear dos puntos (:) para indicar apertura de "
+"sangría.\n"
 "\n"
 "======================================================================\n"
 "7. Asistencia en la Depuración y Diagnóstico\n"
@@ -1151,7 +1200,8 @@ msgstr ""
 "El entorno asiste activamente en la detección temprana de fallos:\n"
 "Comprobación previa de comillas y delimitadores () [] {}.\n"
 "Salto automático con F4 a la línea del error del Traceback.\n"
-"Detección de caracteres confusos frecuentes como comas en flotantes o signos ¿¡.\n"
+"Detección de caracteres confusos frecuentes como comas en flotantes o signos "
+"¿¡.\n"
 "Traductor de sentencias con F1 a explicaciones humanas comprensibles.\n"
 "\n"
 "======================================================================\n"
@@ -1171,7 +1221,8 @@ msgstr ""
 "Versión: 2.0.0\n"
 "Compatibilidad: NVDA 2022.1 hasta 2026.3\n"
 "Licencia: GNU General Public License v3.0 (GPLv3)\n"
-"Desarrollado para la comunidad de programadores usuarios de lectores de pantalla."
+"Desarrollado para la comunidad de programadores usuarios de lectores de "
+"pantalla."
 
 #. Translators: Accessible name for about documentation text control.
 #: addon\globalPlugins\python_tutor\gui_frame.py:861
@@ -1699,8 +1750,7 @@ msgstr "Pendiente"
 msgid "Step {step}"
 msgstr "Paso {step}"
 
-#. Translators: Header format for current step: Chapter, Step X of Y: Step
-#. Title, Status
+#. Translators: Header format for current step: Chapter, Step X of Y: Step Title, Status
 #: addon\globalPlugins\python_tutor\gui_frame.py:1321
 msgid "Chapter"
 msgstr "Capítulo"
@@ -1720,7 +1770,8 @@ msgid ""
 "Options:\n"
 "{options}\n"
 "\n"
-"Type the number of the correct answer (1, 2 or 3) in the editor and press Control + Enter."
+"Type the number of the correct answer (1, 2 or 3) in the editor and press "
+"Control + Enter."
 msgstr ""
 "Pregunta de verificación conceptual:\n"
 "\n"
@@ -1729,7 +1780,8 @@ msgstr ""
 "Opciones:\n"
 "{options}\n"
 "\n"
-"Escribe el número de la respuesta correcta (1, 2 o 3) en el editor y pulsa Control + Enter."
+"Escribe el número de la respuesta correcta (1, 2 o 3) en el editor y pulsa "
+"Control + Enter."
 
 #. Translators: Default instruction fallback for lessons.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1344
@@ -1759,8 +1811,8 @@ msgstr "Aviso de delimitadores: {message}. Presiona F4 para ir a la línea."
 #. Translators: Notice when quiz answer is missing.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1381
 msgid ""
-"No option selected. Type number 1, 2, or 3 in the editor and press Control +"
-" Enter or F5."
+"No option selected. Type number 1, 2, or 3 in the editor and press Control + "
+"Enter or F5."
 msgstr ""
 "No se ha seleccionado ninguna opción. Escribe el número 1, 2 o 3 en el "
 "editor y pulsa Control + Enter o F5."
@@ -1847,8 +1899,8 @@ msgstr "Correcto: {explanation}"
 #. Translators: Notice when quiz answer is incorrect.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1458
 msgid ""
-"Pending: Selected option is incorrect. Review options in instruction and try"
-" again."
+"Pending: Selected option is incorrect. Review options in instruction and try "
+"again."
 msgstr ""
 "Pendiente: La opción elegida no es la correcta. Revisa las opciones en la "
 "instrucción e intenta nuevamente."
@@ -1976,8 +2028,7 @@ msgstr "Línea eliminada"
 msgid "Delimiter notice on line {line}: {message}"
 msgstr "Aviso de delimitador en línea {line}: {message}"
 
-#. Translators: Speech announcement when code syntax check passes with no
-#. errors.
+#. Translators: Speech announcement when code syntax check passes with no errors.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1724
 msgid "Syntax and delimiters correct. No structural errors detected in code."
 msgstr ""
@@ -2018,8 +2069,7 @@ msgstr "Cursor en línea {line}: {detail}"
 msgid "Cursor on {type} {name}, line {line}"
 msgstr "Cursor en {type} {name}, línea {line}"
 
-#. Translators: Speech announcement when jumping to definition:
-#. [Class/Function] Name, line X.
+#. Translators: Speech announcement when jumping to definition: [Class/Function] Name, line X.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1806
 #: addon\globalPlugins\python_tutor\gui_frame.py:1836
 #, python-brace-format
@@ -2036,10 +2086,8 @@ msgstr "No hay más definiciones adelante."
 msgid "No previous definitions."
 msgstr "No hay definiciones anteriores."
 
-#. Translators: Speech announcement when reading console output but it is
-#. empty.
-#. Translators: Speech announcement when reading last console line but it is
-#. empty.
+#. Translators: Speech announcement when reading console output but it is empty.
+#. Translators: Speech announcement when reading last console line but it is empty.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1847
 #: addon\globalPlugins\python_tutor\gui_frame.py:2450
 msgid "Console empty."
@@ -2072,18 +2120,15 @@ msgstr "Insertado: {choice}"
 #. Translators: Speech announcement when Shift+F1 is pressed on empty space.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1934
 msgid "Place cursor over a function or keyword to view documentation."
-msgstr ""
-"Sitúa el cursor sobre una función o palabra para ver su documentación."
+msgstr "Sitúa el cursor sobre una función o palabra para ver su documentación."
 
-#. Translators: Speech announcement after renaming an identifier across
-#. script.
+#. Translators: Speech announcement after renaming an identifier across script.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1976
 #, python-brace-format
 msgid "Renamed {count} occurrences of {old} to {new}."
 msgstr "Se renombraron {count} apariciones de {old} por {new}."
 
-#. Translators: Speech announcement when extracting function without active
-#. selection.
+#. Translators: Speech announcement when extracting function without active selection.
 #: addon\globalPlugins\python_tutor\gui_frame.py:1988
 msgid "First select the code block you want to extract into a function."
 msgstr ""
@@ -2147,8 +2192,7 @@ msgstr ""
 msgid "Make a Donation"
 msgstr "Realizar una Donación"
 
-#. Translators: Speech announcement when reading instruction in standalone
-#. editor mode.
+#. Translators: Speech announcement when reading instruction in standalone editor mode.
 #: addon\globalPlugins\python_tutor\gui_frame.py:2411
 msgid "Standalone Editor mode active."
 msgstr "Modo Editor autónomo activo."
@@ -2230,8 +2274,7 @@ msgstr "Abriendo la documentación de Acerca de en el navegador web."
 msgid ""
 "print(*objects, sep=' ', end='\\n'): Prints objects to the output console."
 msgstr ""
-"print(*objects, sep=' ', end='\\n'): Imprime objetos en la consola de "
-"salida."
+"print(*objects, sep=' ', end='\\n'): Imprime objetos en la consola de salida."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:51
 msgid "input(prompt=''): Reads a line of text entered by the user."
@@ -2260,11 +2303,9 @@ msgstr "int(x=0): Convierte un número o cadena a un número entero."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:56
 msgid ""
-"float(x=0.0): Converts a number or string to a floating-point decimal "
-"number."
+"float(x=0.0): Converts a number or string to a floating-point decimal number."
 msgstr ""
-"float(x=0.0): Convierte un número o cadena a número decimal de coma "
-"flotante."
+"float(x=0.0): Convierte un número o cadena a número decimal de coma flotante."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:57
 msgid ""
@@ -2295,8 +2336,8 @@ msgid ""
 "open(file, mode='r', encoding=None): Opens a file and returns a stream "
 "object."
 msgstr ""
-"open(file, mode='r', encoding=None): Abre un archivo y devuelve un objeto de"
-" flujo."
+"open(file, mode='r', encoding=None): Abre un archivo y devuelve un objeto de "
+"flujo."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:63
 msgid "type(object): Returns the type of the specified object."
@@ -2332,23 +2373,20 @@ msgid "enumerate(iterable, start=0): Returns tuples with index and item."
 msgstr "enumerate(iterable, start=0): Devuelve tuplas con índice y elemento."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:70
-msgid ""
-"zip(*iterables): Groups corresponding elements from multiple iterables."
+msgid "zip(*iterables): Groups corresponding elements from multiple iterables."
 msgstr ""
 "zip(*iterables): Agrupa elementos correspondientes de múltiples iterables."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:71
 msgid ""
-"isinstance(object, classinfo): Checks if an object is an instance of a "
-"class."
+"isinstance(object, classinfo): Checks if an object is an instance of a class."
 msgstr ""
 "isinstance(object, classinfo): Comprueba si un objeto es instancia de una "
 "clase."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:72
 msgid "list.append(item): Adds a new item to the end of the list."
-msgstr ""
-"lista.append(elemento): Agrega un nuevo elemento al final de la lista."
+msgstr "lista.append(elemento): Agrega un nuevo elemento al final de la lista."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:73
 msgid ""
@@ -2413,8 +2451,7 @@ msgstr ""
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:83
 msgid ""
-"dict.update(other): Updates the dictionary with key-value pairs from "
-"another."
+"dict.update(other): Updates the dictionary with key-value pairs from another."
 msgstr ""
 "diccionario.update(otro): Actualiza el diccionario con pares clave-valor de "
 "otro."
@@ -2424,8 +2461,8 @@ msgid ""
 "string.split(sep=None): Splits the string into a list of substrings by "
 "separator."
 msgstr ""
-"cadena.split(sep=None): Divide la cadena en una lista de subcadenas según el"
-" separador."
+"cadena.split(sep=None): Divide la cadena en una lista de subcadenas según el "
+"separador."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:85
 msgid ""
@@ -2439,8 +2476,7 @@ msgstr ""
 msgid ""
 "string.strip(): Removes leading and trailing whitespace from the string."
 msgstr ""
-"cadena.strip(): Elimina espacios en blanco al inicio y al final de la "
-"cadena."
+"cadena.strip(): Elimina espacios en blanco al inicio y al final de la cadena."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:87
 msgid "string.lower(): Returns a copy of the string in lowercase."
@@ -2459,8 +2495,7 @@ msgstr ""
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:90
 msgid ""
-"string.startswith(prefix): Returns True if the string starts with the "
-"prefix."
+"string.startswith(prefix): Returns True if the string starts with the prefix."
 msgstr ""
 "cadena.startswith(prefijo): Devuelve True si la cadena comienza con el "
 "prefijo."
@@ -2494,12 +2529,10 @@ msgstr ""
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:96
 msgid "else: Block executed if no previous condition was true."
-msgstr ""
-"else: Bloque que se ejecuta si ninguna condición previa fue verdadera."
+msgstr "else: Bloque que se ejecuta si ninguna condición previa fue verdadera."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:97
-msgid ""
-"for variable in sequence: Iterates over items of a collection or range."
+msgid "for variable in sequence: Iterates over items of a collection or range."
 msgstr ""
 "for variable in secuencia: Itera sobre los elementos de una colección o "
 "rango."
@@ -2537,8 +2570,7 @@ msgstr ""
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:103
 msgid "import module: Imports a module to use its functions and classes."
-msgstr ""
-"import modulo: Importa un módulo para utilizar sus funciones y clases."
+msgstr "import modulo: Importa un módulo para utilizar sus funciones y clases."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:104
 msgid ""
@@ -2556,8 +2588,7 @@ msgid "False: Boolean false value (0)."
 msgstr "False: Valor booleano falso (0)."
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:107
-msgid ""
-"None: Special object representing the absence of a value or null value."
+msgid "None: Special object representing the absence of a value or null value."
 msgstr ""
 "None: Objeto especial que representa la ausencia de valor o valor nulo."
 
@@ -2582,8 +2613,7 @@ msgstr ""
 "self: Primer parámetro convencional en métodos de instancia que referencia "
 "al objeto actual."
 
-#. Translators: Fallback message when no documentation is available for a
-#. symbol. {name} is the symbol name.
+#. Translators: Fallback message when no documentation is available for a symbol. {name} is the symbol name.
 #: addon\globalPlugins\python_tutor\ide_tools.py:136
 #, python-brace-format
 msgid "Symbol: {name}. No additional documentation available."
@@ -2593,21 +2623,18 @@ msgstr "Símbolo: {name}. Sin documentación adicional disponible."
 msgid "The editor is empty. There is no code to format."
 msgstr "El editor está vacío. No hay código para formatear."
 
-#. Translators: Error message when PEP 8 formatting fails due to a syntax
-#. error. {line} is the line number, {msg} is the syntax error message.
+#. Translators: Error message when PEP 8 formatting fails due to a syntax error. {line} is the line number, {msg} is the syntax error message.
 #: addon\globalPlugins\python_tutor\ide_tools.py:157
 #, python-brace-format
 msgid "Cannot format due to a syntax error on line {line}: {msg}"
 msgstr ""
-"No se puede formatear debido a un error de sintaxis en la línea {line}: "
-"{msg}"
+"No se puede formatear debido a un error de sintaxis en la línea {line}: {msg}"
 
 #: addon\globalPlugins\python_tutor\ide_tools.py:204
 msgid "Formatting was cancelled to preserve code integrity."
 msgstr "El formateo fue cancelado para preservar la integridad del código."
 
-#. Translators: Success message for PEP 8 formatter. {count} is the number of
-#. adjusted lines.
+#. Translators: Success message for PEP 8 formatter. {count} is the number of adjusted lines.
 #: addon\globalPlugins\python_tutor\ide_tools.py:207
 #, python-brace-format
 msgid "Code formatted according to PEP 8. {count} lines adjusted."
@@ -2617,8 +2644,7 @@ msgstr "Código formateado según PEP 8. Se ajustaron {count} líneas."
 msgid "Autocomplete Suggestions"
 msgstr "Sugerencias de Autocompletado"
 
-#. Translators: Label for autocomplete suggestions dialog. {prefix} is the
-#. current typed prefix.
+#. Translators: Label for autocomplete suggestions dialog. {prefix} is the current typed prefix.
 #: addon\globalPlugins\python_tutor\ide_tools.py:222
 #, python-brace-format
 msgid "Suggestions for '{prefix}':"
@@ -2651,8 +2677,7 @@ msgstr "Cancelar"
 msgid "Rename Symbol"
 msgstr "Renombrar Símbolo"
 
-#. Translators: Label for renaming symbol dialog. {symbol} is the current
-#. symbol name.
+#. Translators: Label for renaming symbol dialog. {symbol} is the current symbol name.
 #: addon\globalPlugins\python_tutor\ide_tools.py:298
 #, python-brace-format
 msgid "Rename '{symbol}' to:"
@@ -2670,8 +2695,7 @@ msgstr "Renombrar"
 msgid "Symbol name cannot be empty."
 msgstr "El nombre del símbolo no puede estar vacío."
 
-#. Translators: Error when symbol name is not a valid Python identifier.
-#. {name} is the invalid name.
+#. Translators: Error when symbol name is not a valid Python identifier. {name} is the invalid name.
 #: addon\globalPlugins\python_tutor\ide_tools.py:336
 #, python-brace-format
 msgid "'{name}' is not a valid Python identifier."
@@ -2701,8 +2725,7 @@ msgstr "Nombre de la nueva función"
 msgid "Extract"
 msgstr "Extraer"
 
-#. Translators: Error when function name is not a valid Python identifier.
-#. {name} is the invalid name.
+#. Translators: Error when function name is not a valid Python identifier. {name} is the invalid name.
 #: addon\globalPlugins\python_tutor\ide_tools.py:388
 #, python-brace-format
 msgid "'{name}' is not a valid function identifier."
@@ -2756,8 +2779,7 @@ msgstr "No hay líneas ejecutables en el código."
 msgid "Breakpoint, "
 msgstr "Punto de interrupción, "
 
-#. Translators: Announcement of current line in debugger. {breakpoint} is
-#. breakpoint alert if set, {line} is line number, {code} is code content.
+#. Translators: Announcement of current line in debugger. {breakpoint} is breakpoint alert if set, {line} is line number, {code} is code content.
 #: addon\globalPlugins\python_tutor\ide_tools.py:477
 #, python-brace-format
 msgid "{breakpoint}Line {line}: {code}"
@@ -2767,8 +2789,7 @@ msgstr "{breakpoint}Línea {line}: {code}"
 msgid "Debugging finished. All lines were executed."
 msgstr "Depuración finalizada. Se ejecutaron todas las líneas."
 
-#. Translators: Error during debugger step execution. {line} is line number,
-#. {error} is exception message.
+#. Translators: Error during debugger step execution. {line} is line number, {error} is exception message.
 #: addon\globalPlugins\python_tutor\ide_tools.py:511
 #, python-brace-format
 msgid "Error on line {line}: {error}"
@@ -2798,8 +2819,7 @@ msgstr "Cerrar"
 msgid "The editor is empty. Write unit tests before running."
 msgstr "El editor está vacío. Escribe pruebas unitarias antes de ejecutar."
 
-#. Translators: Error message when executing unit test script fails to load.
-#. {error} is the error message.
+#. Translators: Error message when executing unit test script fails to load. {error} is the error message.
 #: addon\globalPlugins\python_tutor\ide_tools.py:612
 #, python-brace-format
 msgid "Failed to load script: {error}"
@@ -2826,7 +2846,8 @@ msgid ""
 msgstr ""
 "No se encontraron clases heredadas de unittest.TestCase en el código.\n"
 "\n"
-"Para escribir pruebas unitarias accesibles, estructura tu script de esta forma:\n"
+"Para escribir pruebas unitarias accesibles, estructura tu script de esta "
+"forma:\n"
 "\n"
 "import unittest\n"
 "\n"
@@ -2849,26 +2870,23 @@ msgstr "No se detectaron clases de prueba unittest en el editor."
 msgid "No unittest test classes were detected."
 msgstr "No se detectaron clases de prueba unittest."
 
-#. Translators: Unit test success summary. {total} is total tests run,
-#. {passed} is passed tests.
+#. Translators: Unit test success summary. {total} is total tests run, {passed} is passed tests.
 #: addon\globalPlugins\python_tutor\ide_tools.py:658
 #, python-brace-format
 msgid "All tests passed. Total: {total}, Passed: {passed}."
 msgstr "Todas las pruebas superadas. Total: {total}, Exitosas: {passed}."
 
-#. Translators: Unit test failure summary. {total} is total tests run,
-#. {failures} is failed tests, {errors} is errored tests.
+#. Translators: Unit test failure summary. {total} is total tests run, {failures} is failed tests, {errors} is errored tests.
 #: addon\globalPlugins\python_tutor\ide_tools.py:663
 #, python-brace-format
 msgid ""
 "Tests finished with failures. Total: {total}, Failures: {failures}, Errors: "
 "{errors}."
 msgstr ""
-"Pruebas finalizadas con fallos. Total: {total}, Fallos: {failures}, Errores:"
-" {errors}."
+"Pruebas finalizadas con fallos. Total: {total}, Fallos: {failures}, Errores: "
+"{errors}."
 
-#. Translators: Details output format for unit test runner. {summary} is
-#. summary line, {details} is test output stream.
+#. Translators: Details output format for unit test runner. {summary} is summary line, {details} is test output stream.
 #: addon\globalPlugins\python_tutor\ide_tools.py:669
 #, python-brace-format
 msgid ""
@@ -2915,8 +2933,7 @@ msgstr "Python del sistema (PATH)"
 msgid "System Python 3"
 msgstr "Python 3 del sistema"
 
-#. Translators: Label for virtual environment. {env} is directory name (e.g.
-#. .venv, venv).
+#. Translators: Label for virtual environment. {env} is directory name (e.g. .venv, venv).
 #: addon\globalPlugins\python_tutor\ide_tools.py:749
 #, python-brace-format
 msgid "Virtual environment ({env})"
@@ -2935,15 +2952,13 @@ msgstr ""
 msgid "Custom environment"
 msgstr "Entorno personalizado"
 
-#. Translators: List entry for custom environment. {path} is interpreter file
-#. path.
+#. Translators: List entry for custom environment. {path} is interpreter file path.
 #: addon\globalPlugins\python_tutor\ide_tools.py:765
 #, python-brace-format
 msgid "Custom environment: {path}"
 msgstr "Entorno personalizado: {path}"
 
-#. Translators: Confirmation of active Python interpreter. {desc} is
-#. interpreter description.
+#. Translators: Confirmation of active Python interpreter. {desc} is interpreter description.
 #: addon\globalPlugins\python_tutor\ide_tools.py:775
 #, python-brace-format
 msgid "Active interpreter set: {desc}"
@@ -2995,10 +3010,8 @@ msgstr "Botón Cerrar Laboratorio"
 msgid "Statement executed successfully (no return value)."
 msgstr "Instrucción ejecutada con éxito (sin retorno)."
 
-#. Translators: Message shown when an error occurs during code execution in
-#. the REPL dialog.
-#. {error_type} is the exception class name, {error_msg} is the exception
-#. message.
+#. Translators: Message shown when an error occurs during code execution in the REPL dialog.
+#. {error_type} is the exception class name, {error_msg} is the exception message.
 #: addon\globalPlugins\python_tutor\repl_dialog.py:158
 #, python-brace-format
 msgid "Error ({error_type}): {error_msg}"
@@ -3023,26 +3036,21 @@ msgstr ""
 "Comentario: {comment}. La computadora ignora esta línea, sirve como nota "
 "aclaratoria para ti."
 
-#. Translators: Screen reader explanation for print statement with no
-#. arguments.
+#. Translators: Screen reader explanation for print statement with no arguments.
 #: addon\globalPlugins\python_tutor\translator.py:51
 msgid "print instruction: Prints a blank line to console output."
 msgstr ""
 "Instrucción print: Imprime una línea en blanco en la salida de consola."
 
-#. Translators: Screen reader explanation for print statement with text
-#. literal.
+#. Translators: Screen reader explanation for print statement with text literal.
 #: addon\globalPlugins\python_tutor\translator.py:55
 #, python-brace-format
 msgid ""
-"print instruction: Displays on screen and speaks aloud the message: "
-"'{text}'."
+"print instruction: Displays on screen and speaks aloud the message: '{text}'."
 msgstr ""
-"Instrucción print: Muestra en pantalla y lee en voz alta el mensaje "
-"'{text}'."
+"Instrucción print: Muestra en pantalla y lee en voz alta el mensaje '{text}'."
 
-#. Translators: Screen reader explanation for print statement with multiple
-#. comma-separated items.
+#. Translators: Screen reader explanation for print statement with multiple comma-separated items.
 #: addon\globalPlugins\python_tutor\translator.py:58
 #, python-brace-format
 msgid ""
@@ -3052,8 +3060,7 @@ msgstr ""
 "Instrucción print: Muestra varios elementos en pantalla separados por un "
 "espacio: {items}."
 
-#. Translators: Screen reader explanation for print statement with arithmetic
-#. operation.
+#. Translators: Screen reader explanation for print statement with arithmetic operation.
 #: addon\globalPlugins\python_tutor\translator.py:61
 #, python-brace-format
 msgid ""
@@ -3063,8 +3070,7 @@ msgstr ""
 "Instrucción print: Calcula la operación matemática '{operation}' y muestra "
 "su resultado numérico."
 
-#. Translators: Screen reader explanation for print statement with variable or
-#. expression.
+#. Translators: Screen reader explanation for print statement with variable or expression.
 #: addon\globalPlugins\python_tutor\translator.py:64
 #, python-brace-format
 msgid ""
@@ -3110,8 +3116,8 @@ msgid ""
 "For loop: Iterates item by item over '{iterable}', assigning each to "
 "variable '{variable}' on each pass."
 msgstr ""
-"Bucle for: Recorre elemento por elemento '{iterable}', guardando cada uno en"
-" la variable '{variable}'."
+"Bucle for: Recorre elemento por elemento '{iterable}', guardando cada uno en "
+"la variable '{variable}'."
 
 #. Translators: Screen reader explanation for a while loop.
 #: addon\globalPlugins\python_tutor\translator.py:98
@@ -3120,11 +3126,10 @@ msgid ""
 "While loop: Repeats following statements continuously as long as condition "
 "'{condition}' remains true."
 msgstr ""
-"Bucle while: Repite las instrucciones siguientes una y otra vez mientras sea"
-" verdad que '{condition}'."
+"Bucle while: Repite las instrucciones siguientes una y otra vez mientras sea "
+"verdad que '{condition}'."
 
-#. Translators: Part of function definition description when arguments are
-#. present.
+#. Translators: Part of function definition description when arguments are present.
 #: addon\globalPlugins\python_tutor\translator.py:106
 #, python-brace-format
 msgid "with parameters '{params}'"
@@ -3142,8 +3147,7 @@ msgid ""
 msgstr ""
 "Definición de función: Crea una nueva función llamada '{name}' {param_desc}."
 
-#. Translators: Screen reader explanation for return statement returning a
-#. value.
+#. Translators: Screen reader explanation for return statement returning a value.
 #: addon\globalPlugins\python_tutor\translator.py:116
 #, python-brace-format
 msgid "Function return: Ends function execution and returns result: {value}."
@@ -3189,8 +3193,7 @@ msgstr "haciendo división entera con"
 msgid "applying"
 msgstr "aplicándole"
 
-#. Translators: Screen reader explanation for augmented assignment operators
-#. (+-, -=, etc.).
+#. Translators: Screen reader explanation for augmented assignment operators (+-, -=, etc.).
 #: addon\globalPlugins\python_tutor\translator.py:141
 #, python-brace-format
 msgid "Cumulative update: Modifies variable '{variable}' by {op} {value}."
@@ -3272,8 +3275,8 @@ msgstr ""
 #. Translators: Screen reader explanation for general except block.
 #: addon\globalPlugins\python_tutor\translator.py:180
 msgid ""
-"Error handler (except): If any error occurs in the preceding block, executes"
-" this fallback block."
+"Error handler (except): If any error occurs in the preceding block, executes "
+"this fallback block."
 msgstr ""
 "Manejo de error except general: Si ocurre cualquier fallo en el bloque "
 "protegido, ejecutará las instrucciones de este apartado."
@@ -3312,8 +3315,7 @@ msgstr ""
 #. Translators: Screen reader explanation for break statement.
 #: addon\globalPlugins\python_tutor\translator.py:209
 msgid "break statement: Immediately terminates the current loop."
-msgstr ""
-"Sentencia break: Interrumpe y finaliza inmediatamente el bucle actual."
+msgstr "Sentencia break: Interrumpe y finaliza inmediatamente el bucle actual."
 
 #. Translators: Screen reader explanation for continue statement.
 #: addon\globalPlugins\python_tutor\translator.py:212
@@ -3324,8 +3326,7 @@ msgstr ""
 
 #. Translators: Screen reader explanation for pass statement.
 #: addon\globalPlugins\python_tutor\translator.py:215
-msgid ""
-"pass statement: Null operation placeholder reserving space for a block."
+msgid "pass statement: Null operation placeholder reserving space for a block."
 msgstr ""
 "Sentencia pass: Indicador de paso nulo (no realiza ninguna acción, reserva "
 "el espacio de un bloque)."
@@ -3396,12 +3397,25 @@ msgstr "Abriendo página de donaciones en el navegador..."
 msgid "Opens the Python Learning with NVDA environment."
 msgstr "Abre el entorno de Aprendizaje de Python con NVDA."
 
-#. Translators: Error message when Python Tutor interface fails to launch.
-#. {error} is the error message.
+#. Translators: Error message when Python Tutor interface fails to launch. {error} is the error message.
 #: addon\globalPlugins\python_tutor\__init__.py:246
 #, python-brace-format
 msgid "Error launching Python Learning with NVDA: {error}"
 msgstr "Error al iniciar Aprendizaje de Python con NVDA: {error}"
+
+#: addon\docHandler.py:104 addon\docHandler.py:111
+msgid "Opening user guide in browser..."
+msgstr "Abriendo el manual de usuario en el navegador..."
+
+#. Translators: Error message when documentation cannot be opened. {error} is the error details.
+#: addon\docHandler.py:116
+#, python-brace-format
+msgid "Could not open documentation: {error}"
+msgstr "No fue posible abrir la documentación: {error}"
+
+#: addon\docHandler.py:120
+msgid "User guide file was not found."
+msgstr "El archivo del manual de usuario no fue encontrado."
 
 #: buildVars.py:9
 msgid "Aprendizaje de Python con NVDA"
@@ -3410,16 +3424,16 @@ msgstr "Aprendizaje de Python con NVDA"
 #: buildVars.py:10
 msgid ""
 "Herramienta formativa y editor de código adaptado para la programación en "
-"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32"
-" capítulos conceptuales y prácticos (128 lecciones), complementada con un "
+"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 "
+"capítulos conceptuales y prácticos (128 lecciones), complementada con un "
 "entorno de trabajo de doble modalidad: modo tutor guiado y modo editor "
 "autónomo. Integra navegación por elementos de código como funciones y "
 "clases, señales sonoras de sangría y estructura, verificación de "
 "delimitadores y simplificación de mensajes de error."
 msgstr ""
 "Herramienta formativa y editor de código adaptado para la programación en "
-"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32"
-" capítulos conceptuales y prácticos (128 lecciones), complementada con un "
+"Python mediante NVDA. Proporciona una ruta de aprendizaje estructurada en 32 "
+"capítulos conceptuales y prácticos (128 lecciones), complementada con un "
 "entorno de trabajo de doble modalidad: modo tutor guiado y modo editor "
 "autónomo. Integra navegación por elementos de código como funciones y "
 "clases, señales sonoras de sangría y estructura, verificación de "
@@ -3428,27 +3442,45 @@ msgstr ""
 #: buildVars.py:12
 msgid ""
 "Registro de cambios versión 2.0.0:\n"
-"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).\n"
-"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt + Flechas.\n"
-"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y diálogo de símbolos Control + Shift + O).\n"
-"- Salto automático a la línea del error del Traceback con lectura diagnóstica (F4).\n"
+"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional "
+"(Control + M).\n"
+"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt "
+"+ Flechas.\n"
+"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y "
+"diálogo de símbolos Control + Shift + O).\n"
+"- Salto automático a la línea del error del Traceback con lectura "
+"diagnóstica (F4).\n"
 "- Verificador en tiempo real de delimitadores y comillas sin cerrar (F7).\n"
-"- Lectura de consola no invasiva sin perder el foco del editor (Control + Shift + C y Control + 6).\n"
-"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software profesional).\n"
-"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con buscador interactivo.\n"
-"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).\n"
+"- Lectura de consola no invasiva sin perder el foco del editor (Control + "
+"Shift + C y Control + 6).\n"
+"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos "
+"Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software "
+"profesional).\n"
+"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con "
+"buscador interactivo.\n"
+"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo "
+"(Control + J).\n"
 "- Adaptación canónica a la plantilla oficial AddonTemplate 2026.\n"
 "- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."
 msgstr ""
 "Registro de cambios versión 2.0.0:\n"
-"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional (Control + M).\n"
-"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt + Flechas.\n"
-"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y diálogo de símbolos Control + Shift + O).\n"
-"- Salto automático a la línea del error del Traceback con lectura diagnóstica (F4).\n"
+"- Dualidad de uso: Modo Aprendizaje guiado y Modo Solo Editor profesional "
+"(Control + M).\n"
+"- Ejecución ágil con F5 o Control + Enter y navegación de lecciones con Alt "
+"+ Flechas.\n"
+"- Navegación estructural directa por funciones y clases (Alt + N / Alt + P y "
+"diálogo de símbolos Control + Shift + O).\n"
+"- Salto automático a la línea del error del Traceback con lectura "
+"diagnóstica (F4).\n"
 "- Verificador en tiempo real de delimitadores y comillas sin cerrar (F7).\n"
-"- Lectura de consola no invasiva sin perder el foco del editor (Control + Shift + C y Control + 6).\n"
-"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software profesional).\n"
-"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con buscador interactivo.\n"
-"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo (Control + J).\n"
+"- Lectura de consola no invasiva sin perder el foco del editor (Control + "
+"Shift + C y Control + 6).\n"
+"- Plan formativo ampliado a 32 capítulos y 128 micro-pasos con «Conceptos "
+"Primero» (fases conceptual, sintaxis, flujo, modularidad, POO y software "
+"profesional).\n"
+"- Glosario exhaustivo ampliado a 114 términos técnicos de Python con "
+"buscador interactivo.\n"
+"- Linter acústico PEP 8, traductor a lenguaje humano (F1) y REPL interactivo "
+"(Control + J).\n"
 "- Adaptación canónica a la plantilla oficial AddonTemplate 2026.\n"
 "- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.3.0."

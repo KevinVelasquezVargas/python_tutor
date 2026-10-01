@@ -11,6 +11,27 @@ import os
 import webbrowser
 
 try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    import gettext
+    _base = os.path.dirname(os.path.abspath(__file__))
+    _loc = os.path.join(_base, "locale")
+    if not os.path.isdir(_loc):
+        _loc = os.path.join(_base, "addon", "locale")
+    try:
+        _t = gettext.translation("nvda", localedir=_loc, languages=["es"])
+        _ = _t.gettext
+    except Exception:
+        def _(msg):
+            return msg
+
+try:
     import languageHandler
 except ImportError:
     languageHandler = None
@@ -19,6 +40,7 @@ try:
     import ui
 except ImportError:
     ui = None
+
 
 
 def getDocFilePath(fileName="readme.html"):
@@ -79,20 +101,21 @@ def openDoc(fileName="readme.html"):
         try:
             os.startfile(doc_path)
             if ui:
-                ui.message("Abriendo el manual de usuario en el navegador...")
+                ui.message(_("Opening user guide in browser..."))
             return True
         except Exception:
             try:
                 uri = f"file:///{os.path.abspath(doc_path).replace(os.sep, '/')}"
                 webbrowser.open(uri)
                 if ui:
-                    ui.message("Abriendo el manual de usuario en el navegador...")
+                    ui.message(_("Opening user guide in browser..."))
                 return True
             except Exception as e:
                 if ui:
-                    ui.message(f"No fue posible abrir la documentación: {e}")
+                    # Translators: Error message when documentation cannot be opened. {error} is the error details.
+                    ui.message(_("Could not open documentation: {error}").format(error=e))
                 return False
     else:
         if ui:
-            ui.message("El archivo del manual de usuario no fue encontrado.")
+            ui.message(_("User guide file was not found."))
         return False

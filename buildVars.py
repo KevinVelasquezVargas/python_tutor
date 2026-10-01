@@ -35,6 +35,7 @@ addon_info = AddonInfo(
 
 pythonSources: list[str] = [
 	"addon/globalPlugins/python_tutor/*.py",
+	"addon/globalPlugins/python_tutor/curricula/*.py",
 	"addon/*.py",
 ]
 

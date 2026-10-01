@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'python_tutor' '2.0.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-09-30 23:20+0530\n"
+"POT-Creation-Date: 2026-10-01 11:32+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,325 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: addon\globalPlugins\python_tutor\executor.py:55
+msgid ""
+"Keyboard notice: An accent (´) or backtick (`) was detected instead of a "
+"single quote ('). In Python, strings are enclosed in single quotes (') or "
+"double quotes (\")."
+msgstr ""
+"Aviso de teclado: Se detectó el uso de un acento (´) o tilde invertida en "
+"lugar de una comilla simple ('). En Python los textos se encierran con "
+"comillas simples (') o dobles (\")."
+
+#: addon\globalPlugins\python_tutor\executor.py:58
+msgid ""
+"Typography notice: The code contains curly or stylized quotes (“ ”). Python "
+"requires straight programming quotes (' or \")."
+msgstr ""
+"Aviso de tipografía: El código contiene comillas curvas o estilizadas (“ ”)."
+" Python requiere comillas rectas de programación (' o \")."
+
+#: addon\globalPlugins\python_tutor\executor.py:65
+msgid ""
+"Syntax notice: You have placed a semicolon (;) at the end of a structure. In"
+" Python, functions, conditions, and loops must end with a colon (:)."
+msgstr ""
+"Aviso de sintaxis: Has colocado punto y coma (;) al final de una estructura."
+" En Python, las funciones, condiciones y bucles deben finalizar con dos "
+"puntos (:)."
+
+#: addon\globalPlugins\python_tutor\executor.py:69
+msgid ""
+"Character notice: An em dash or en dash (– or —) was detected. For "
+"mathematical subtraction and negative numbers, you must use a standard "
+"hyphen (-)."
+msgstr ""
+"Aviso de caracteres: Se detectó un guion largo (– o —). Para restas "
+"matemáticas y números negativos debes utilizar el guion simple (-)."
+
+#: addon\globalPlugins\python_tutor\executor.py:80
+msgid "(no output printed)"
+msgstr "(sin salida impresa)"
+
+#: addon\globalPlugins\python_tutor\executor.py:83
+msgid "Output comparison:"
+msgstr "Comparación de salida:"
+
+#. Translators: Output comparison expected output. {expected} is the expected
+#. output text.
+#: addon\globalPlugins\python_tutor\executor.py:85
+#, python-brace-format
+msgid "Expected output: {expected}"
+msgstr "Salida esperada: {expected}"
+
+#. Translators: Output comparison actual output. {actual} is the program's
+#. output text.
+#: addon\globalPlugins\python_tutor\executor.py:87
+#, python-brace-format
+msgid "Your program's output: {actual}"
+msgstr "Salida de tu programa: {actual}"
+
+#: addon\globalPlugins\python_tutor\executor.py:91
+msgid ""
+"Pedagogical hint: Your output matches in words, but differs in uppercase or "
+"lowercase letters. Remember that Python is case-sensitive."
+msgstr ""
+"Pista pedagógica: Tu salida coincide en las palabras, pero difiere en "
+"mayúsculas o minúsculas. Recuerda que Python distingue mayúsculas con "
+"exactitud."
+
+#: addon\globalPlugins\python_tutor\executor.py:93
+msgid ""
+"Pedagogical hint: The words match, but the spacing is not exactly the same "
+"as expected."
+msgstr ""
+"Pista pedagógica: Las palabras coinciden, pero la separación de espacios no "
+"es exactamente igual a la esperada."
+
+#: addon\globalPlugins\python_tutor\executor.py:95
+msgid ""
+"Pedagogical hint: Check the punctuation marks (commas or periods); some are "
+"missing or extra compared to the exercise."
+msgstr ""
+"Pista pedagógica: Revisa los signos de puntuación (comas o puntos); faltan o"
+" sobran algunos respecto al ejercicio."
+
+#: addon\globalPlugins\python_tutor\executor.py:97
+msgid ""
+"Pedagogical hint: Check the text and variables requested in the mission "
+"instructions."
+msgstr ""
+"Pista pedagógica: Revisa el texto y variables solicitadas en la consigna de "
+"la misión."
+
+#. Translators: Prefix with line number for keyboard warning. {line} is line
+#. number, {notice} is warning message.
+#: addon\globalPlugins\python_tutor\executor.py:111
+#, python-brace-format
+msgid "On line {line}: {notice}"
+msgstr "En la línea {line}: {notice}"
+
+#. Translators: Friendly explanation for NameError. {line} is the line number.
+#: addon\globalPlugins\python_tutor\executor.py:115
+#, python-brace-format
+msgid ""
+"On line {line}: You have used a name or function that Python does not "
+"recognize yet. Check if it is spelled correctly or if you forgot to define "
+"the variable beforehand."
+msgstr ""
+"En la línea {line}: Has utilizado un nombre o función que Python no reconoce"
+" todavía. Comprueba si está bien escrito o si olvidaste definir la variable "
+"previamente."
+
+#. Translators: Friendly explanation for TypeError. {line} is the line number.
+#: addon\globalPlugins\python_tutor\executor.py:118
+#, python-brace-format
+msgid ""
+"On line {line}: Type incompatibility. An operation was attempted between "
+"data types that do not directly combine (for example, adding text to a "
+"number without converting it first)."
+msgstr ""
+"En la línea {line}: Incompatibilidad de tipos. Se intentó realizar una "
+"operación entre datos que no combinan directamente (por ejemplo, sumar texto"
+" con un número sin convertirlo antes)."
+
+#. Translators: Friendly explanation for SyntaxError. {line} is the line
+#. number.
+#: addon\globalPlugins\python_tutor\executor.py:121
+#, python-brace-format
+msgid ""
+"On line {line}: There is a detail in the code structure that the interpreter"
+" does not understand. Check for missing closing quotes, parentheses, or a "
+"colon at the end of the line."
+msgstr ""
+"En la línea {line}: Hay un detalle en la estructura del código que el "
+"intérprete no comprende. Revisa si faltan comillas de cierre, paréntesis o "
+"los dos puntos al final de la línea."
+
+#. Translators: Friendly explanation for IndentationError. {line} is the line
+#. number.
+#: addon\globalPlugins\python_tutor\executor.py:124
+#, python-brace-format
+msgid ""
+"On line {line}: Indentation error (spaces at line start). In Python, each "
+"indented block must be aligned exactly with 4 physical spaces."
+msgstr ""
+"En la línea {line}: Error de sangría (espacios al inicio). En Python, cada "
+"bloque subordinado debe alinearse de forma exacta con 4 espacios físicos."
+
+#. Translators: Friendly explanation for IndexError. {line} is the line
+#. number.
+#: addon\globalPlugins\python_tutor\executor.py:127
+#, python-brace-format
+msgid ""
+"On line {line}: Position out of range. You tried to access an element in a "
+"list or string that does not exist. Remember that indices start at 0."
+msgstr ""
+"En la línea {line}: Posición fuera de rango. Intentaste acceder a un "
+"elemento en una lista o texto que no existe. Recuerda que las posiciones "
+"empiezan en 0."
+
+#. Translators: Friendly explanation for KeyError. {line} is the line number.
+#: addon\globalPlugins\python_tutor\executor.py:130
+#, python-brace-format
+msgid ""
+"On line {line}: Key not found in dictionary. Verify that the key name "
+"matches the stored data."
+msgstr ""
+"En la línea {line}: Clave no encontrada en el diccionario. Verifica que el "
+"nombre de la clave coincida con los datos registrados."
+
+#. Translators: Friendly explanation for ZeroDivisionError. {line} is the line
+#. number.
+#: addon\globalPlugins\python_tutor\executor.py:133
+#, python-brace-format
+msgid ""
+"On line {line}: Division by zero. The calculation attempted to divide a "
+"quantity by 0, which is mathematically undefined."
+msgstr ""
+"En la línea {line}: División entre cero. El cálculo intentó dividir una "
+"cantidad entre 0, lo cual es matemáticamente indefinido."
+
+#. Translators: Friendly explanation for ValueError. {line} is the line
+#. number.
+#: addon\globalPlugins\python_tutor\executor.py:136
+#, python-brace-format
+msgid ""
+"On line {line}: Inappropriate value. The data type is correct, but the "
+"content cannot be processed (for example, trying to convert a word to an "
+"integer)."
+msgstr ""
+"En la línea {line}: Valor inapropiado. El tipo de dato es correcto, pero el "
+"contenido no se puede procesar (por ejemplo, intentar convertir una palabra "
+"a número entero)."
+
+#: addon\globalPlugins\python_tutor\executor.py:138
+msgid ""
+"Active safety: Execution took more than 3 seconds and was stopped to protect"
+" your screen reader. A 'while' or 'for' loop might be missing an exit "
+"condition."
+msgstr ""
+"Seguridad activa: La ejecución tardó más de 3 segundos y se detuvo para "
+"proteger tu lector de pantalla. Es posible que un bucle 'while' o 'for' no "
+"tenga una condición de salida."
+
+#. Translators: Generic error explanation. {line} is line number, {error_type}
+#. is exception class name, {error_msg} is exception message.
+#: addon\globalPlugins\python_tutor\executor.py:141
+#, python-brace-format
+msgid "On line {line}: An alert of type {error_type} occurred: {error_msg}."
+msgstr ""
+"En la línea {line}: Se produjo un aviso de tipo {error_type}: {error_msg}."
+
+#: addon\globalPlugins\python_tutor\executor.py:166
+msgid "Code executed (no output printed to console)."
+msgstr "Código ejecutado (sin salidas impresas en consola)."
+
+#. Translators: Error output during code execution. {line} is line number,
+#. {error_type} is exception name, {error_msg} is error description.
+#: addon\globalPlugins\python_tutor\executor.py:188
+#, python-brace-format
+msgid "Error on line {line} ({error_type}): {error_msg}"
+msgstr "Error en línea {line} ({error_type}): {error_msg}"
+
+#: addon\globalPlugins\python_tutor\executor.py:216
+msgid "Execution time limit exceeded"
+msgstr "Límite de tiempo excedido"
+
+#: addon\globalPlugins\python_tutor\executor.py:218
+msgid ""
+"Security Error: Execution exceeded the limit of 3.0 seconds.\n"
+"Possible infinite loop detected."
+msgstr ""
+"Error de Seguridad: La ejecución excedió el límite de 3.0 segundos.\n"
+"Posible bucle infinito detectado."
+
+#: addon\globalPlugins\python_tutor\executor.py:222
+msgid "Execution time limit exceeded."
+msgstr "Tiempo de ejecución excedido."
+
+#: addon\globalPlugins\python_tutor\executor.py:230
+msgid "Unknown error during process execution."
+msgstr "Error desconocido durante la ejecución del proceso."
+
+#: addon\globalPlugins\python_tutor\executor.py:232
+msgid "Could not complete script execution."
+msgstr "No fue posible completar la ejecución del script."
+
+#: addon\globalPlugins\python_tutor\executor.py:245
+msgid "parenthesis"
+msgstr "paréntesis"
+
+#: addon\globalPlugins\python_tutor\executor.py:246
+msgid "bracket"
+msgstr "corchete"
+
+#: addon\globalPlugins\python_tutor\executor.py:247
+msgid "brace"
+msgstr "llave"
+
+#: addon\globalPlugins\python_tutor\executor.py:312
+msgid "delimiter"
+msgstr "delimitador"
+
+#. Translators: Delimiter mismatch error when closing delimiter has no
+#. corresponding opener.
+#. {line} is line number, {col} is column, {char} is closing character,
+#. {delimiter} is delimiter name.
+#: addon\globalPlugins\python_tutor\executor.py:315
+#, python-brace-format
+msgid ""
+"Line {line}, col {col}: Found closing '{char}' without a corresponding "
+"opening {delimiter}."
+msgstr ""
+"Línea {line}, col {col}: Se encontró '{char}' de cierre sin un {delimiter} "
+"de apertura correspondiente."
+
+#. Translators: Delimiter mismatch error when closing delimiter does not match
+#. opener.
+#. {line} is line number, {col} is column, {char} is closing char,
+#. {expected_name} is expected delimiter name, {expected_char} is expected
+#. char, {open_line} is line where opener was found.
+#: addon\globalPlugins\python_tutor\executor.py:323
+#, python-brace-format
+msgid ""
+"Line {line}, col {col}: Closed with '{char}', but expected closing "
+"{expected_name} '{expected_char}' opened on line {open_line}."
+msgstr ""
+"Línea {line}, col {col}: Se cerró con '{char}', pero se esperaba cerrar el "
+"{expected_name} '{expected_char}' abierto en la línea {open_line}."
+
+#. Translators: Unclosed quote error at end of line. {line} is line number,
+#. {quote} is quote character.
+#: addon\globalPlugins\python_tutor\executor.py:332
+#, python-brace-format
+msgid "Line {line}: Unclosed string quote {quote} at end of line."
+msgstr ""
+"Línea {line}: Comilla {quote} de texto sin cerrar al final de la línea."
+
+#. Translators: Unclosed triple quote block at end of file. {quotes} is triple
+#. quote string.
+#: addon\globalPlugins\python_tutor\executor.py:338
+#, python-brace-format
+msgid ""
+"Syntax notice: Triple quote block {quotes} open without being closed at the "
+"end of the file."
+msgstr ""
+"Aviso de sintaxis: Bloque de comillas triples {quotes} abierto sin cerrar al"
+" final del archivo."
+
+#. Translators: Unclosed delimiter error at end of code. {line} is line
+#. number, {col} is column, {delimiter} is delimiter name, {char} is delimiter
+#. char.
+#: addon\globalPlugins\python_tutor\executor.py:346
+#, python-brace-format
+msgid ""
+"Line {line}, col {col}: The {delimiter} '{char}' remained open and was not "
+"closed."
+msgstr ""
+"Línea {line}, col {col}: El {delimiter} '{char}' quedó abierto y no fue "
+"cerrado."
 
 #. Translators: Dialog title for text search.
 #: addon\globalPlugins\python_tutor\gui_frame.py:65
@@ -1900,6 +2219,65 @@ msgstr "No fue posible abrir la documentación en el navegador."
 #: addon\globalPlugins\python_tutor\gui_frame.py:2563
 msgid "Opening About documentation in web browser."
 msgstr "Abriendo la documentación de Acerca de en el navegador web."
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:49
+msgid "Quick REPL Testing Lab"
+msgstr "Laboratorio Rápido de Pruebas (REPL)"
+
+#. Entrada de comando
+#: addon\globalPlugins\python_tutor\repl_dialog.py:59
+msgid "Type an expression or command and press Enter to evaluate:"
+msgstr "Escribe una expresión o comando y pulsa Enter para evaluar:"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:60
+msgid "Input instruction"
+msgstr "Instrucción de entrada"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:64
+msgid "Python command line. Type here and press Enter."
+msgstr "Línea de comandos de Python. Escribe aquí y pulsa Enter."
+
+#. Registro de resultados
+#: addon\globalPlugins\python_tutor\repl_dialog.py:68
+msgid "Evaluation history:"
+msgstr "Historial de evaluaciones:"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:72
+msgid "Results history. Navigate with arrow keys."
+msgstr "Historial de resultados. Navega con las flechas de dirección."
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:77
+msgid "Clear History"
+msgstr "Limpiar Historial"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:78
+msgid "Clear History Button"
+msgstr "Botón Limpiar Historial"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:80
+msgid "Close Lab"
+msgstr "Cerrar Laboratorio"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:81
+msgid "Close Lab Button"
+msgstr "Botón Cerrar Laboratorio"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:153
+msgid "Statement executed successfully (no return value)."
+msgstr "Instrucción ejecutada con éxito (sin retorno)."
+
+#. Translators: Message shown when an error occurs during code execution in
+#. the REPL dialog.
+#. {error_type} is the exception class name, {error_msg} is the exception
+#. message.
+#: addon\globalPlugins\python_tutor\repl_dialog.py:158
+#, python-brace-format
+msgid "Error ({error_type}): {error_msg}"
+msgstr "Error ({error_type}): {error_msg}"
+
+#: addon\globalPlugins\python_tutor\repl_dialog.py:183
+msgid "Lab history cleared."
+msgstr "Historial del laboratorio limpiado."
 
 #. Translators: Screen reader explanation for an empty line of code.
 #: addon\globalPlugins\python_tutor\translator.py:32

@@ -5,11 +5,30 @@
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 
+import os
 import sys
 import io
 import threading
 import traceback
 import re
+
+try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    import gettext
+    _loc = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "locale")
+    try:
+        _t = gettext.translation("nvda", localedir=_loc, languages=["es"])
+        _ = _t.gettext
+    except Exception:
+        def _(msg):
+            return msg
 
 
 class ExecutionResult:
@@ -33,21 +52,21 @@ def detectar_errores_teclado_comunes(src):
     """
     # 1. Comillas curvas / acentos tipográficos
     if "´" in src or "`" in src:
-        return "Aviso de teclado: Se detectó el uso de un acento (´) o tilde invertida en lugar de una comilla simple ('). En Python los textos se encierran con comillas simples (') o dobles (\")."
-    
+        return _("Keyboard notice: An accent (´) or backtick (`) was detected instead of a single quote ('). In Python, strings are enclosed in single quotes (') or double quotes (\").")
+
     if any(q in src for q in ["“", "”", "‘", "’"]):
-        return "Aviso de tipografía: El código contiene comillas curvas o estilizadas (“ ”). Python requiere comillas rectas de programación (' o \")."
+        return _("Typography notice: The code contains curly or stylized quotes (“ ”). Python requires straight programming quotes (' or \").")
 
     # 2. Punto y coma al final de declaraciones de bloques
     for linea in src.splitlines():
         limpia = linea.strip()
         palabras_bloque = ("def ", "if ", "elif ", "while ", "for ", "class ", "try:", "except")
         if any(limpia.startswith(p) for p in palabras_bloque) and limpia.endswith(";"):
-            return "Aviso de sintaxis: Has colocado punto y coma (;) al final de una estructura. En Python, las funciones, condiciones y bucles deben finalizar con dos puntos (:)."
+            return _("Syntax notice: You have placed a semicolon (;) at the end of a structure. In Python, functions, conditions, and loops must end with a colon (:).")
 
     # 3. Guion tipográfico largo en lugar del signo menos
     if "–" in src or "—" in src:
-        return "Aviso de caracteres: Se detectó un guion largo (– o —). Para restas matemáticas y números negativos debes utilizar el guion simple (-)."
+        return _("Character notice: An em dash or en dash (– or —) was detected. For mathematical subtraction and negative numbers, you must use a standard hyphen (-).")
 
     return ""
 
@@ -58,21 +77,24 @@ def generar_comparacion_salida(esperado, obtenido):
     """
     esp_clean = esperado.strip()
     obt_clean = obtenido.strip()
+    no_salida = _("(no output printed)")
 
     lineas = [
-        "Comparación de salida:",
-        f"Salida esperada: {esp_clean}",
-        f"Salida de tu programa: {obt_clean if obt_clean else '(sin salida impresa)'}"
+        _("Output comparison:"),
+        # Translators: Output comparison expected output. {expected} is the expected output text.
+        _("Expected output: {expected}").format(expected=esp_clean),
+        # Translators: Output comparison actual output. {actual} is the program's output text.
+        _("Your program's output: {actual}").format(actual=obt_clean if obt_clean else no_salida)
     ]
 
     if esp_clean.lower() == obt_clean.lower() and esp_clean != obt_clean:
-        lineas.append("Pista pedagógica: Tu salida coincide en las palabras, pero difiere en mayúsculas o minúsculas. Recuerda que Python distingue mayúsculas con exactitud.")
+        lineas.append(_("Pedagogical hint: Your output matches in words, but differs in uppercase or lowercase letters. Remember that Python is case-sensitive."))
     elif esp_clean.replace(" ", "") == obt_clean.replace(" ", ""):
-        lineas.append("Pista pedagógica: Las palabras coinciden, pero la separación de espacios no es exactamente igual a la esperada.")
+        lineas.append(_("Pedagogical hint: The words match, but the spacing is not exactly the same as expected."))
     elif esp_clean.replace(",", "").replace(".", "") == obt_clean.replace(",", "").replace(".", ""):
-        lineas.append("Pista pedagógica: Revisa los signos de puntuación (comas o puntos); faltan o sobran algunos respecto al ejercicio.")
+        lineas.append(_("Pedagogical hint: Check the punctuation marks (commas or periods); some are missing or extra compared to the exercise."))
     else:
-        lineas.append("Pista pedagógica: Revisa el texto y variables solicitadas en la consigna de la misión.")
+        lineas.append(_("Pedagogical hint: Check the text and variables requested in the mission instructions."))
 
     return "\n".join(lineas)
 
@@ -85,28 +107,38 @@ def explain_error(error_type, error_msg, linea=1, src=""):
     # Verificación previa de confusiones de teclado
     aviso_teclado = detectar_errores_teclado_comunes(src)
     if aviso_teclado:
-        return f"En la línea {linea}: {aviso_teclado}"
+        # Translators: Prefix with line number for keyboard warning. {line} is line number, {notice} is warning message.
+        return _("On line {line}: {notice}").format(line=linea, notice=aviso_teclado)
 
     if error_type == "NameError":
-        return f"En la línea {linea}: Has utilizado un nombre o función que Python no reconoce todavía. Comprueba si está bien escrito o si olvidaste definir la variable previamente."
+        # Translators: Friendly explanation for NameError. {line} is the line number.
+        return _("On line {line}: You have used a name or function that Python does not recognize yet. Check if it is spelled correctly or if you forgot to define the variable beforehand.").format(line=linea)
     elif error_type == "TypeError":
-        return f"En la línea {linea}: Incompatibilidad de tipos. Se intentó realizar una operación entre datos que no combinan directamente (por ejemplo, sumar texto con un número sin convertirlo antes)."
+        # Translators: Friendly explanation for TypeError. {line} is the line number.
+        return _("On line {line}: Type incompatibility. An operation was attempted between data types that do not directly combine (for example, adding text to a number without converting it first).").format(line=linea)
     elif error_type == "SyntaxError":
-        return f"En la línea {linea}: Hay un detalle en la estructura del código que el intérprete no comprende. Revisa si faltan comillas de cierre, paréntesis o los dos puntos al final de la línea."
+        # Translators: Friendly explanation for SyntaxError. {line} is the line number.
+        return _("On line {line}: There is a detail in the code structure that the interpreter does not understand. Check for missing closing quotes, parentheses, or a colon at the end of the line.").format(line=linea)
     elif error_type == "IndentationError":
-        return f"En la línea {linea}: Error de sangría (espacios al inicio). En Python, cada bloque subordinado debe alinearse de forma exacta con 4 espacios físicos."
+        # Translators: Friendly explanation for IndentationError. {line} is the line number.
+        return _("On line {line}: Indentation error (spaces at line start). In Python, each indented block must be aligned exactly with 4 physical spaces.").format(line=linea)
     elif error_type == "IndexError":
-        return f"En la línea {linea}: Posición fuera de rango. Intentaste acceder a un elemento en una lista o texto que no existe. Recuerda que las posiciones empiezan en 0."
+        # Translators: Friendly explanation for IndexError. {line} is the line number.
+        return _("On line {line}: Position out of range. You tried to access an element in a list or string that does not exist. Remember that indices start at 0.").format(line=linea)
     elif error_type == "KeyError":
-        return f"En la línea {linea}: Clave no encontrada en el diccionario. Verifica que el nombre de la clave coincida con los datos registrados."
+        # Translators: Friendly explanation for KeyError. {line} is the line number.
+        return _("On line {line}: Key not found in dictionary. Verify that the key name matches the stored data.").format(line=linea)
     elif error_type == "ZeroDivisionError":
-        return f"En la línea {linea}: División entre cero. El cálculo intentó dividir una cantidad entre 0, lo cual es matemáticamente indefinido."
+        # Translators: Friendly explanation for ZeroDivisionError. {line} is the line number.
+        return _("On line {line}: Division by zero. The calculation attempted to divide a quantity by 0, which is mathematically undefined.").format(line=linea)
     elif error_type == "ValueError":
-        return f"En la línea {linea}: Valor inapropiado. El tipo de dato es correcto, pero el contenido no se puede procesar (por ejemplo, intentar convertir una palabra a número entero)."
+        # Translators: Friendly explanation for ValueError. {line} is the line number.
+        return _("On line {line}: Inappropriate value. The data type is correct, but the content cannot be processed (for example, trying to convert a word to an integer).").format(line=linea)
     elif error_type == "TimeoutError":
-        return f"Seguridad activa: La ejecución tardó más de 3 segundos y se detuvo para proteger tu lector de pantalla. Es posible que un bucle 'while' o 'for' no tenga una condición de salida."
+        return _("Active safety: Execution took more than 3 seconds and was stopped to protect your screen reader. A 'while' or 'for' loop might be missing an exit condition.")
     else:
-        return f"En la línea {linea}: Se produjo un aviso de tipo {error_type}: {error_msg}."
+        # Translators: Generic error explanation. {line} is line number, {error_type} is exception class name, {error_msg} is exception message.
+        return _("On line {line}: An alert of type {error_type} occurred: {error_msg}.").format(line=linea, error_type=error_type, error_msg=error_msg)
 
 
 def ejecutar_codigo_seguro(src, timeout=3.0):
@@ -131,7 +163,7 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
             exec(compiled, {"__builtins__": __builtins__}, local_ns)
             output = buf.getvalue()
             if not output:
-                output = "Código ejecutado (sin salidas impresas en consola)."
+                output = _("Code executed (no output printed to console).")
             result_holder['res'] = ExecutionResult(
                 output=output,
                 success=True,
@@ -152,8 +184,12 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
             err_msg = str(e)
             friendly = explain_error(err_type, err_msg, linea_error, src)
 
+            # Translators: Error output during code execution. {line} is line number, {error_type} is exception name, {error_msg} is error description.
+            err_output = _("Error on line {line} ({error_type}): {error_msg}").format(
+                line=linea_error, error_type=err_type, error_msg=err_msg
+            )
             result_holder['res'] = ExecutionResult(
-                output=f"Error en línea {linea_error} ({err_type}): {err_msg}",
+                output=err_output,
                 success=False,
                 error_line=linea_error,
                 error_type=err_type,
@@ -177,13 +213,13 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
     sys.stderr = old_stderr
 
     if hilo.is_alive():
-        timeout_explanation = explain_error("TimeoutError", "Límite de tiempo excedido", 1, src)
+        timeout_explanation = explain_error("TimeoutError", _("Execution time limit exceeded"), 1, src)
         return ExecutionResult(
-            output="Error de Seguridad: La ejecución excedió el límite de 3.0 segundos.\nPosible bucle infinito detectado.",
+            output=_("Security Error: Execution exceeded the limit of 3.0 seconds.\nPossible infinite loop detected."),
             success=False,
             error_line=1,
             error_type="TimeoutError",
-            error_msg="Tiempo de ejecución excedido.",
+            error_msg=_("Execution time limit exceeded."),
             friendly_explanation=timeout_explanation,
             timed_out=True
         )
@@ -191,9 +227,9 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
     return result_holder.get(
         'res',
         ExecutionResult(
-            output="Error desconocido durante la ejecución del proceso.",
+            output=_("Unknown error during process execution."),
             success=False,
-            friendly_explanation="No fue posible completar la ejecución del script."
+            friendly_explanation=_("Could not complete script execution.")
         )
     )
 
@@ -205,7 +241,11 @@ def comprobar_balanceo_delimitadores(src):
     """
     pila = []
     mapa_cierre = {')': '(', ']': '[', '}': '{'}
-    nombres_delimitadores = {'(': 'paréntesis', '[': 'corchete', '{': 'llave'}
+    nombres_delimitadores = {
+        '(': _('parenthesis'),
+        '[': _('bracket'),
+        '{': _('brace')
+    }
 
     en_cadena = None  # "'" o '"'
     es_triple = False
@@ -269,26 +309,42 @@ def comprobar_balanceo_delimitadores(src):
             elif c in (')', ']', '}'):
                 esperado = mapa_cierre[c]
                 if not pila:
-                    nombre = nombres_delimitadores.get(esperado, "delimitador")
-                    return f"Línea {num_linea}, col {idx + 1}: Se encontró '{c}' de cierre sin un {nombre} de apertura correspondiente."
+                    nombre = nombres_delimitadores.get(esperado, _("delimiter"))
+                    # Translators: Delimiter mismatch error when closing delimiter has no corresponding opener.
+                    # {line} is line number, {col} is column, {char} is closing character, {delimiter} is delimiter name.
+                    return _("Line {line}, col {col}: Found closing '{char}' without a corresponding opening {delimiter}.").format(
+                        line=num_linea, col=idx + 1, char=c, delimiter=nombre
+                    )
                 ultimo, lin_apertura, col_apertura = pila.pop()
                 if ultimo != esperado:
                     nom_esp = nombres_delimitadores.get(ultimo, ultimo)
-                    return f"Línea {num_linea}, col {idx + 1}: Se cerró con '{c}', pero se esperaba cerrar el {nom_esp} '{ultimo}' abierto en la línea {lin_apertura}."
+                    # Translators: Delimiter mismatch error when closing delimiter does not match opener.
+                    # {line} is line number, {col} is column, {char} is closing char, {expected_name} is expected delimiter name, {expected_char} is expected char, {open_line} is line where opener was found.
+                    return _("Line {line}, col {col}: Closed with '{char}', but expected closing {expected_name} '{expected_char}' opened on line {open_line}.").format(
+                        line=num_linea, col=idx + 1, char=c, expected_name=nom_esp, expected_char=ultimo, open_line=lin_apertura
+                    )
 
             idx += 1
 
         # Si había una cadena simple no cerrada al final de la línea
         if en_cadena and not es_triple:
-            return f"Línea {num_linea}: Comilla {en_cadena} de texto sin cerrar al final de la línea."
+            # Translators: Unclosed quote error at end of line. {line} is line number, {quote} is quote character.
+            return _("Line {line}: Unclosed string quote {quote} at end of line.").format(
+                line=num_linea, quote=en_cadena
+            )
 
     if en_cadena and es_triple:
-        return f"Aviso de sintaxis: Bloque de comillas triples {en_cadena * 3} abierto sin cerrar al final del archivo."
+        # Translators: Unclosed triple quote block at end of file. {quotes} is triple quote string.
+        return _("Syntax notice: Triple quote block {quotes} open without being closed at the end of the file.").format(
+            quotes=en_cadena * 3
+        )
 
     if pila:
         ultimo, lin_apertura, col_apertura = pila[-1]
         nom = nombres_delimitadores.get(ultimo, ultimo)
-        return f"Línea {lin_apertura}, col {col_apertura}: El {nom} '{ultimo}' quedó abierto y no fue cerrado."
+        # Translators: Unclosed delimiter error at end of code. {line} is line number, {col} is column, {delimiter} is delimiter name, {char} is delimiter char.
+        return _("Line {line}, col {col}: The {delimiter} '{char}' remained open and was not closed.").format(
+            line=lin_apertura, col=col_apertura, delimiter=nom, char=ultimo
+        )
 
     return None
-

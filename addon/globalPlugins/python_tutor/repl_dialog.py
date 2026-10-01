@@ -5,10 +5,29 @@
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 
+import os
 import sys
 import io
 import traceback
 import wx
+
+try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    import gettext
+    _loc = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "locale")
+    try:
+        _t = gettext.translation("nvda", localedir=_loc, languages=["es"])
+        _ = _t.gettext
+    except Exception:
+        def _(msg):
+            return msg
 
 try:
     import ui
@@ -27,7 +46,7 @@ class ReplDialog(wx.Dialog):
     un archivo completo.
     """
     def __init__(self, parent):
-        super(ReplDialog, self).__init__(parent, title="Laboratorio Rápido de Pruebas (REPL)", size=(680, 520))
+        super(ReplDialog, self).__init__(parent, title=_("Quick REPL Testing Lab"), size=(680, 520))
 
         self.historial_comandos = []
         self.indice_historial = -1
@@ -37,29 +56,29 @@ class ReplDialog(wx.Dialog):
         vbox = wx.BoxSizer(wx.VERTICAL)
 
         # Entrada de comando
-        lbl_input = wx.StaticText(panel, label="Escribe una expresión o comando y pulsa Enter para evaluar:")
-        lbl_input.SetName("Instrucción de entrada")
+        lbl_input = wx.StaticText(panel, label=_("Type an expression or command and press Enter to evaluate:"))
+        lbl_input.SetName(_("Input instruction"))
         vbox.Add(lbl_input, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.input_ctrl = wx.TextCtrl(panel, style=wx.TE_PROCESS_ENTER)
-        self.input_ctrl.SetName("Línea de comandos de Python. Escribe aquí y pulsa Enter.")
+        self.input_ctrl.SetName(_("Python command line. Type here and press Enter."))
         vbox.Add(self.input_ctrl, proportion=0, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         # Registro de resultados
-        lbl_log = wx.StaticText(panel, label="Historial de evaluaciones:")
+        lbl_log = wx.StaticText(panel, label=_("Evaluation history:"))
         vbox.Add(lbl_log, flag=wx.LEFT | wx.TOP, border=12)
 
         self.log_ctrl = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.log_ctrl.SetName("Historial de resultados. Navega con las flechas de dirección.")
+        self.log_ctrl.SetName(_("Results history. Navigate with arrow keys."))
         vbox.Add(self.log_ctrl, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         # Botones
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_limpiar = wx.Button(panel, label="Limpiar Historial")
-        self.btn_limpiar.SetName("Botón Limpiar Historial")
+        self.btn_limpiar = wx.Button(panel, label=_("Clear History"))
+        self.btn_limpiar.SetName(_("Clear History Button"))
 
-        self.btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label="Cerrar Laboratorio")
-        self.btn_cerrar.SetName("Botón Cerrar Laboratorio")
+        self.btn_cerrar = wx.Button(panel, wx.ID_CANCEL, label=_("Close Lab"))
+        self.btn_cerrar.SetName(_("Close Lab Button"))
 
         hbox.Add(self.btn_limpiar, flag=wx.RIGHT, border=8)
         hbox.Add(self.btn_cerrar)
@@ -131,10 +150,12 @@ class ReplDialog(wx.Dialog):
                 exec(cmd, {"__builtins__": __builtins__}, self.namespace)
                 resultado_str = buf.getvalue().strip()
                 if not resultado_str:
-                    resultado_str = "Instrucción ejecutada con éxito (sin retorno)."
+                    resultado_str = _("Statement executed successfully (no return value).")
         except Exception as e:
             exito = False
-            resultado_str = f"Error ({type(e).__name__}): {e}"
+            # Translators: Message shown when an error occurs during code execution in the REPL dialog.
+            # {error_type} is the exception class name, {error_msg} is the exception message.
+            resultado_str = _("Error ({error_type}): {error_msg}").format(error_type=type(e).__name__, error_msg=e)
         finally:
             sys.stdout = old_stdout
             sys.stderr = old_stderr
@@ -159,4 +180,4 @@ class ReplDialog(wx.Dialog):
         self.log_ctrl.SetValue("")
         self.input_ctrl.SetFocus()
         if ui:
-            ui.message("Historial del laboratorio limpiado.")
+            ui.message(_("Lab history cleared."))

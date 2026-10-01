@@ -6,6 +6,7 @@
 [![Pruebas Unitarias](https://github.com/KevinVelasquezVargas/python_tutor/actions/workflows/unitTests.yml/badge.svg)](https://github.com/KevinVelasquezVargas/python_tutor/actions)
 [![Descargas](https://img.shields.io/github/downloads/KevinVelasquezVargas/python_tutor/total?label=Descargas&color=orange)](https://github.com/KevinVelasquezVargas/python_tutor/releases)
 
+> 🌐 **Idioma / Language:** [Español](README.es.md) | [English](README.md)  
 > 📥 **Descarga Directa del Instalador Oficial:**  
 > [**Descargar python_tutor-2.0.0.nvda-addon (980 KB)**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v2.0.0/python_tutor-2.0.0.nvda-addon)  
 > *(Descarga directa lista para instalar en NVDA simplemente abriendo el archivo o pulsando Enter sobre él)*
@@ -69,7 +70,7 @@ Pulsando `Control + M` (o desde el menú Herramientas) se puede alternar en cual
 * `Control + Shift + S`: Guardar script con un nuevo nombre o ubicación.
 
 ### Ejecución y Diagnóstico
-* `F5`: Ejecutar el script actual en la consola integrada.
+* `F5` o `Control + Enter`: Ejecutar el script actual en la consola integrada.
 * `F4`: Salto inmediato a la línea exacta del fallo del Traceback o error de sintaxis con lectura accesible del problema.
 * `F7`: Verificación en tiempo real de balanceo de delimitadores `()`, `[]`, `{}` y comillas sin cerrar.
 
@@ -101,7 +102,7 @@ Pulsando `Control + M` (o desde el menú Herramientas) se puede alternar en cual
 * `Control + J`: Abrir la consola de pruebas rápidas (REPL).
 * `Control + 1`: Selector de capítulos del temario (con control de desbloqueo progresivo).
 * `Control + R`: Restablecer el código inicial del ejercicio.
-* `F2`: Diálogo con la guía completa de atajos de teclado.
+* `F2` (general): Diálogo con la guía completa de atajos de teclado.
 * `F12`: Abrir el manual accesible en el navegador web.
 * `Escape`: Cerrar la ventana del tutor inmediatamente desde cualquier control.
 
@@ -120,6 +121,7 @@ Para personalizar el comportamiento del complemento, diríjase a **Menú NVDA > 
 * **Efectos sonoros de confirmación y eventos:** Activa o desactiva los tonos al evaluar ejercicios o cambiar de estado.
 * **Avisos sonoros de sangría y estructura:** Controla las señales acústicas de espacios de sangría y apertura de bloques.
 * **Mostrar diálogo de bienvenida:** Configura si se debe mostrar el mensaje informativo al arrancar el complemento.
+* **Soporte y Donaciones:** Botones rápidos para enviar consultas por correo o realizar donaciones voluntarias.
 
 ## 7. Registro de Novedades
 
@@ -130,6 +132,7 @@ Para personalizar el comportamiento del complemento, diríjase a **Menú NVDA > 
 * **Diagnóstico y corrección en tiempo real:** Verificación de balanceo de delimitadores y comillas (`F7`) y salto directo a líneas con error en Tracebacks (`F4`).
 * **Optimización de lectura de consola:** Modos de lectura no invasivos por sintetizador (`Control + Shift + C` y `Control + 6`).
 * **Herramientas profesionales IDE:** Depurador paso a paso (`F9`), ejecutor de tests (`Control + Shift + T`), gestor de intérpretes (`Control + Shift + I`), formateador PEP 8 (`Control + Shift + F`) y refactorización (`F2` / `Control + Shift + X`).
+* **Internacionalización completa (i18n):** Soporte bilingüe en inglés y español acorde con las normas de la NVDA Add-on Store.
 * **Actualización del motor de compatibilidad:** Soporte extendido para versiones modernas de NVDA (hasta 2026.2.0).
 
 ### Versión 1.0.0

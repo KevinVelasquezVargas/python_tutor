@@ -18,6 +18,24 @@ import shutil
 import wx
 
 try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    pass
+
+try:
+    _
+except NameError:
+    import gettext
+    _loc = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "locale")
+    try:
+        _t = gettext.translation("nvda", localedir=_loc, languages=["es"])
+        _ = _t.gettext
+    except Exception:
+        def _(msg):
+            return msg
+
+try:
     import ui
     import speech
 except ImportError:
@@ -29,68 +47,68 @@ from .progress import ProgressManager
 
 # Documentación concisa y accesible para autocompletado y Shift+F1
 DOCS_PYTHON = {
-    "print": "print(*objects, sep=' ', end='\\n'): Imprime objetos en la consola de salida.",
-    "input": "input(prompt=''): Lee una línea de texto introducida por el usuario.",
-    "len": "len(s): Devuelve el número de elementos de una secuencia o colección.",
-    "range": "range(stop) o range(start, stop, step): Genera una secuencia inmutable de números.",
-    "str": "str(object=''): Convierte un objeto a su representación en cadena de texto.",
-    "int": "int(x=0): Convierte un número o cadena a un número entero.",
-    "float": "float(x=0.0): Convierte un número o cadena a número decimal de coma flotante.",
-    "bool": "bool(x=False): Devuelve True o False según el valor de verdad del argumento.",
-    "list": "list(iterable=()): Crea una lista mutable de elementos ordenados.",
-    "dict": "dict(**kwargs): Crea una colección mutable de pares clave-valor.",
-    "set": "set(iterable=()): Crea un conjunto mutable de elementos únicos sin orden.",
-    "tuple": "tuple(iterable=()): Crea una tupla inmutable de elementos ordenados.",
-    "open": "open(file, mode='r', encoding=None): Abre un archivo y devuelve un objeto de flujo.",
-    "type": "type(object): Devuelve el tipo del objeto especificado.",
-    "sum": "sum(iterable, start=0): Suma todos los elementos de un iterable numérico.",
-    "min": "min(iterable): Devuelve el elemento menor de una colección.",
-    "max": "max(iterable): Devuelve el elemento mayor de una colección.",
-    "abs": "abs(x): Devuelve el valor absoluto de un número.",
-    "round": "round(number, ndigits=None): Redondea un número al número de decimales indicado.",
-    "enumerate": "enumerate(iterable, start=0): Devuelve tuplas con índice y elemento.",
-    "zip": "zip(*iterables): Agrupa elementos correspondientes de múltiples iterables.",
-    "isinstance": "isinstance(object, classinfo): Comprueba si un objeto es instancia de una clase.",
-    "append": "lista.append(elemento): Agrega un nuevo elemento al final de la lista.",
-    "extend": "lista.extend(iterable): Extiende la lista agregando todos los elementos del iterable.",
-    "insert": "lista.insert(indice, elemento): Inserta un elemento en la posición indicada.",
-    "pop": "lista.pop([indice]): Quita y devuelve el elemento en el índice (por defecto el último).",
-    "remove": "lista.remove(valor): Elimina la primera aparición del valor en la lista.",
-    "sort": "lista.sort(key=None, reverse=False): Ordena los elementos de la lista en su lugar.",
-    "reverse": "lista.reverse(): Invierte el orden de los elementos de la lista en su lugar.",
-    "keys": "diccionario.keys(): Devuelve una vista de todas las claves del diccionario.",
-    "values": "diccionario.values(): Devuelve una vista de todos los valores del diccionario.",
-    "items": "diccionario.items(): Devuelve una vista de pares (clave, valor) del diccionario.",
-    "get": "diccionario.get(clave, default=None): Devuelve el valor de la clave si existe.",
-    "update": "diccionario.update(otro): Actualiza el diccionario con pares clave-valor de otro.",
-    "split": "cadena.split(sep=None): Divide la cadena en una lista de subcadenas según el separador.",
-    "join": "separador.join(iterable): Concatena los elementos de un iterable con el separador.",
-    "strip": "cadena.strip(): Elimina espacios en blanco al inicio y al final de la cadena.",
-    "lower": "cadena.lower(): Devuelve una copia de la cadena en minúsculas.",
-    "upper": "cadena.upper(): Devuelve una copia de la cadena en mayúsculas.",
-    "replace": "cadena.replace(viejo, nuevo): Reemplaza apariciones de una subcadena por otra.",
-    "startswith": "cadena.startswith(prefijo): Devuelve True si la cadena comienza con el prefijo.",
-    "endswith": "cadena.endswith(sufijo): Devuelve True si la cadena termina con el sufijo.",
-    "def": "def nombre(parametros): Declara una función definida por el usuario.",
-    "return": "return [expresion]: Termina la ejecución de una función y devuelve un resultado.",
-    "if": "if condicion: Ejecuta un bloque de código si la condición es verdadera.",
-    "elif": "elif condicion: Rama condicional alternativa tras un if o elif anterior.",
-    "else": "else: Bloque que se ejecuta si ninguna condición previa fue verdadera.",
-    "for": "for variable in secuencia: Itera sobre los elementos de una colección o rango.",
-    "while": "while condicion: Repite un bloque de código mientras la condición sea verdadera.",
-    "try": "try: Inicia un bloque vigilado para capturar posibles excepciones en tiempo de ejecución.",
-    "except": "except [TipoError]: Maneja una excepción producida dentro del bloque try.",
-    "finally": "finally: Bloque que se ejecuta siempre al finalizar el try, haya o no excepción.",
-    "class": "class NombreClase: Declara una nueva clase para programación orientada a objetos.",
-    "import": "import modulo: Importa un módulo para utilizar sus funciones y clases.",
-    "from": "from modulo import objeto: Importa elementos específicos directamente al espacio de nombres.",
-    "True": "True: Valor booleano verdadero (1).",
-    "False": "False: Valor booleano falso (0).",
-    "None": "None: Objeto especial que representa la ausencia de valor o valor nulo.",
-    "break": "break: Interrumpe y sale inmediatamente del bucle actual for o while.",
-    "continue": "continue: Salta a la siguiente iteración del bucle actual.",
-    "pass": "pass: Instrucción nula que no hace nada, usada como marcador de posición.",
-    "self": "self: Primer parámetro convencional en métodos de instancia que referencia al objeto actual."
+    "print": _("print(*objects, sep=' ', end='\\n'): Prints objects to the output console."),
+    "input": _("input(prompt=''): Reads a line of text entered by the user."),
+    "len": _("len(s): Returns the number of items in a sequence or collection."),
+    "range": _("range(stop) or range(start, stop, step): Generates an immutable sequence of numbers."),
+    "str": _("str(object=''): Converts an object to its string representation."),
+    "int": _("int(x=0): Converts a number or string to an integer."),
+    "float": _("float(x=0.0): Converts a number or string to a floating-point decimal number."),
+    "bool": _("bool(x=False): Returns True or False based on the truth value of the argument."),
+    "list": _("list(iterable=()): Creates a mutable list of ordered items."),
+    "dict": _("dict(**kwargs): Creates a mutable collection of key-value pairs."),
+    "set": _("set(iterable=()): Creates a mutable set of unique unordered items."),
+    "tuple": _("tuple(iterable=()): Creates an immutable tuple of ordered items."),
+    "open": _("open(file, mode='r', encoding=None): Opens a file and returns a stream object."),
+    "type": _("type(object): Returns the type of the specified object."),
+    "sum": _("sum(iterable, start=0): Sums all elements of a numerical iterable."),
+    "min": _("min(iterable): Returns the smallest item in a collection."),
+    "max": _("max(iterable): Returns the largest item in a collection."),
+    "abs": _("abs(x): Returns the absolute value of a number."),
+    "round": _("round(number, ndigits=None): Rounds a number to the given number of decimal places."),
+    "enumerate": _("enumerate(iterable, start=0): Returns tuples with index and item."),
+    "zip": _("zip(*iterables): Groups corresponding elements from multiple iterables."),
+    "isinstance": _("isinstance(object, classinfo): Checks if an object is an instance of a class."),
+    "append": _("list.append(item): Adds a new item to the end of the list."),
+    "extend": _("list.extend(iterable): Extends the list by appending all items from the iterable."),
+    "insert": _("list.insert(index, item): Inserts an item at the specified position."),
+    "pop": _("list.pop([index]): Removes and returns the item at index (default last)."),
+    "remove": _("list.remove(value): Removes the first occurrence of the value from the list."),
+    "sort": _("list.sort(key=None, reverse=False): Sorts the items of the list in place."),
+    "reverse": _("list.reverse(): Reverses the order of the items of the list in place."),
+    "keys": _("dict.keys(): Returns a view of all dictionary keys."),
+    "values": _("dict.values(): Returns a view of all dictionary values."),
+    "items": _("dict.items(): Returns a view of dictionary (key, value) pairs."),
+    "get": _("dict.get(key, default=None): Returns the value of key if it exists."),
+    "update": _("dict.update(other): Updates the dictionary with key-value pairs from another."),
+    "split": _("string.split(sep=None): Splits the string into a list of substrings by separator."),
+    "join": _("separator.join(iterable): Concatenates elements of an iterable with the separator."),
+    "strip": _("string.strip(): Removes leading and trailing whitespace from the string."),
+    "lower": _("string.lower(): Returns a copy of the string in lowercase."),
+    "upper": _("string.upper(): Returns a copy of the string in uppercase."),
+    "replace": _("string.replace(old, new): Replaces occurrences of a substring with another."),
+    "startswith": _("string.startswith(prefix): Returns True if the string starts with the prefix."),
+    "endswith": _("string.endswith(suffix): Returns True if the string ends with the suffix."),
+    "def": _("def name(parameters): Declares a user-defined function."),
+    "return": _("return [expression]: Ends function execution and returns a result."),
+    "if": _("if condition: Executes a block of code if the condition is true."),
+    "elif": _("elif condition: Alternative conditional branch after an earlier if or elif."),
+    "else": _("else: Block executed if no previous condition was true."),
+    "for": _("for variable in sequence: Iterates over items of a collection or range."),
+    "while": _("while condition: Repeats a block of code while condition is true."),
+    "try": _("try: Starts a guarded block to catch potential runtime exceptions."),
+    "except": _("except [TypeError]: Handles an exception raised inside the try block."),
+    "finally": _("finally: Block that always executes upon finishing try, whether exception occurred or not."),
+    "class": _("class ClassName: Declares a new class for object-oriented programming."),
+    "import": _("import module: Imports a module to use its functions and classes."),
+    "from": _("from module import object: Imports specific items directly into namespace."),
+    "True": _("True: Boolean true value (1)."),
+    "False": _("False: Boolean false value (0)."),
+    "None": _("None: Special object representing the absence of a value or null value."),
+    "break": _("break: Immediately interrupts and exits the current for or while loop."),
+    "continue": _("continue: Skips to the next iteration of the current loop."),
+    "pass": _("pass: Null statement that does nothing, used as a placeholder."),
+    "self": _("self: Conventional first parameter in instance methods referencing the current object.")
 }
 
 
@@ -114,7 +132,8 @@ def obtener_documentacion_simbolo(nombre):
     except Exception:
         pass
 
-    return f"Símbolo: {nombre}. Sin documentación adicional disponible."
+    # Translators: Fallback message when no documentation is available for a symbol. {name} is the symbol name.
+    return _("Symbol: {name}. No additional documentation available.").format(name=nombre)
 
 
 def formatear_codigo_pep8(codigo):
@@ -128,13 +147,14 @@ def formatear_codigo_pep8(codigo):
     Verifica que la sintaxis no se altere usando el módulo ast.
     """
     if not codigo.strip():
-        return codigo, "El editor está vacío. No hay código para formatear."
+        return codigo, _("The editor is empty. There is no code to format.")
 
     # Validar sintaxis previa
     try:
         ast.parse(codigo)
     except SyntaxError as e:
-        return codigo, f"No se puede formatear debido a un error de sintaxis en la línea {e.lineno}: {e.msg}"
+        # Translators: Error message when PEP 8 formatting fails due to a syntax error. {line} is the line number, {msg} is the syntax error message.
+        return codigo, _("Cannot format due to a syntax error on line {line}: {msg}").format(line=e.lineno, msg=e.msg)
 
     lineas = codigo.splitlines()
     nuevas_lineas = []
@@ -181,15 +201,16 @@ def formatear_codigo_pep8(codigo):
     try:
         ast.parse(codigo_resultado)
     except Exception:
-        return codigo, "El formateo fue cancelado para preservar la integridad del código."
+        return codigo, _("Formatting was cancelled to preserve code integrity.")
 
-    return codigo_resultado, f"Código formateado según PEP 8. Se ajustaron {ajustes} líneas."
+    # Translators: Success message for PEP 8 formatter. {count} is the number of adjusted lines.
+    return codigo_resultado, _("Code formatted according to PEP 8. {count} lines adjusted.").format(count=ajustes)
 
 
 class AutoCompleteDialog(wx.Dialog):
     """Diálogo accesible de autocompletado inteligente con previsualización de documentación."""
     def __init__(self, parent, prefijo, opciones):
-        super(AutoCompleteDialog, self).__init__(parent, title="Sugerencias de Autocompletado", size=(580, 420))
+        super(AutoCompleteDialog, self).__init__(parent, title=_("Autocomplete Suggestions"), size=(580, 420))
         self.prefijo = prefijo
         self.opciones = opciones
         self.seleccion = ""
@@ -197,26 +218,27 @@ class AutoCompleteDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label=f"Sugerencias para '{prefijo}':")
+        # Translators: Label for autocomplete suggestions dialog. {prefix} is the current typed prefix.
+        lbl = wx.StaticText(panel, label=_("Suggestions for '{prefix}':").format(prefix=prefijo))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.list_box = wx.ListBox(panel, choices=self.opciones)
-        self.list_box.SetName("Lista de sugerencias de autocompletado.")
+        self.list_box.SetName(_("Autocomplete suggestions list."))
         if self.opciones:
             self.list_box.SetSelection(0)
         vbox.Add(self.list_box, proportion=2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
-        lbl_doc = wx.StaticText(panel, label="Documentación:")
+        lbl_doc = wx.StaticText(panel, label=_("Documentation:"))
         vbox.Add(lbl_doc, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.txt_doc = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.txt_doc.SetName("Documentación de la sugerencia seleccionada.")
+        self.txt_doc.SetName(_("Documentation of the selected suggestion."))
         vbox.Add(self.txt_doc, proportion=1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_insertar = wx.Button(panel, wx.ID_OK, label="Insertar")
+        btn_insertar = wx.Button(panel, wx.ID_OK, label=_("Insert"))
         btn_insertar.SetDefault()
-        btn_cancelar = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        btn_cancelar = wx.Button(panel, wx.ID_CANCEL, label=_("Cancel"))
         hbox.Add(btn_insertar, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancelar)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
@@ -265,25 +287,26 @@ class AutoCompleteDialog(wx.Dialog):
 class RenameSymbolDialog(wx.Dialog):
     """Diálogo accesible para renombrar un símbolo en todo el archivo."""
     def __init__(self, parent, simbolo_actual):
-        super(RenameSymbolDialog, self).__init__(parent, title="Renombrar Símbolo", size=(480, 220))
+        super(RenameSymbolDialog, self).__init__(parent, title=_("Rename Symbol"), size=(480, 220))
         self.simbolo_actual = simbolo_actual
         self.nuevo_nombre = ""
 
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label=f"Renombrar '{simbolo_actual}' por:")
+        # Translators: Label for renaming symbol dialog. {symbol} is the current symbol name.
+        lbl = wx.StaticText(panel, label=_("Rename '{symbol}' to:").format(symbol=simbolo_actual))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.txt_nuevo = wx.TextCtrl(panel, value=simbolo_actual)
-        self.txt_nuevo.SetName("Nuevo nombre del símbolo")
+        self.txt_nuevo.SetName(_("New symbol name"))
         self.txt_nuevo.SelectAll()
         vbox.Add(self.txt_nuevo, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_ok = wx.Button(panel, wx.ID_OK, label="Renombrar")
+        btn_ok = wx.Button(panel, wx.ID_OK, label=_("Rename"))
         btn_ok.SetDefault()
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("Cancel"))
         hbox.Add(btn_ok, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
@@ -306,13 +329,14 @@ class RenameSymbolDialog(wx.Dialog):
         val = self.txt_nuevo.GetValue().strip()
         if not val:
             if ui:
-                ui.message("El nombre del símbolo no puede estar vacío.")
+                ui.message(_("Symbol name cannot be empty."))
             return
         if not val.isidentifier():
-            msg = f"'{val}' no es un identificador válido de Python."
+            # Translators: Error when symbol name is not a valid Python identifier. {name} is the invalid name.
+            msg = _("'{name}' is not a valid Python identifier.").format(name=val)
             if ui:
                 ui.message(msg)
-            wx.MessageBox(msg, "Identificador no válido", wx.OK | wx.ICON_WARNING, self)
+            wx.MessageBox(msg, _("Invalid identifier"), wx.OK | wx.ICON_WARNING, self)
             return
         self.nuevo_nombre = val
         self.EndModal(wx.ID_OK)
@@ -321,24 +345,24 @@ class RenameSymbolDialog(wx.Dialog):
 class ExtractFunctionDialog(wx.Dialog):
     """Diálogo accesible para extraer código seleccionado a una nueva función."""
     def __init__(self, parent):
-        super(ExtractFunctionDialog, self).__init__(parent, title="Extraer a Función", size=(480, 220))
+        super(ExtractFunctionDialog, self).__init__(parent, title=_("Extract to Function"), size=(480, 220))
         self.nombre_funcion = ""
 
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label="Nombre de la nueva función:")
+        lbl = wx.StaticText(panel, label=_("New function name:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
-        self.txt_nombre = wx.TextCtrl(panel, value="nueva_funcion")
-        self.txt_nombre.SetName("Nombre de la nueva función")
+        self.txt_nombre = wx.TextCtrl(panel, value=_("new_function"))
+        self.txt_nombre.SetName(_("New function name"))
         self.txt_nombre.SelectAll()
         vbox.Add(self.txt_nombre, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        btn_ok = wx.Button(panel, wx.ID_OK, label="Extraer")
+        btn_ok = wx.Button(panel, wx.ID_OK, label=_("Extract"))
         btn_ok.SetDefault()
-        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label=_("Cancel"))
         hbox.Add(btn_ok, flag=wx.RIGHT, border=8)
         hbox.Add(btn_cancel)
         vbox.Add(hbox, flag=wx.ALIGN_CENTER | wx.ALL, border=12)
@@ -360,10 +384,11 @@ class ExtractFunctionDialog(wx.Dialog):
     def on_ok(self, event=None):
         val = self.txt_nombre.GetValue().strip()
         if not val or not val.isidentifier():
-            msg = f"'{val}' no es un identificador válido para una función."
+            # Translators: Error when function name is not a valid Python identifier. {name} is the invalid name.
+            msg = _("'{name}' is not a valid function identifier.").format(name=val)
             if ui:
                 ui.message(msg)
-            wx.MessageBox(msg, "Nombre no válido", wx.OK | wx.ICON_WARNING, self)
+            wx.MessageBox(msg, _("Invalid name"), wx.OK | wx.ICON_WARNING, self)
             return
         self.nombre_funcion = val
         self.EndModal(wx.ID_OK)
@@ -372,7 +397,7 @@ class ExtractFunctionDialog(wx.Dialog):
 class StepDebuggerDialog(wx.Dialog):
     """Diálogo accesible para la depuración interactiva paso a paso de scripts."""
     def __init__(self, parent, codigo, breakpoints=None):
-        super(StepDebuggerDialog, self).__init__(parent, title="Depurador Interactivo Paso a Paso", size=(720, 560))
+        super(StepDebuggerDialog, self).__init__(parent, title=_("Interactive Step-by-Step Debugger"), size=(720, 560))
         self.codigo = codigo
         self.lineas = codigo.splitlines()
         self.breakpoints = breakpoints or set()
@@ -391,31 +416,31 @@ class StepDebuggerDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self.lbl_estado = wx.StaticText(panel, label="Iniciando depurador...")
+        self.lbl_estado = wx.StaticText(panel, label=_("Starting debugger..."))
         font = self.lbl_estado.GetFont()
         font.SetWeight(wx.FONTWEIGHT_BOLD)
         self.lbl_estado.SetFont(font)
         vbox.Add(self.lbl_estado, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
-        lbl_vars = wx.StaticText(panel, label="Variables locales activas:")
+        lbl_vars = wx.StaticText(panel, label=_("Active local variables:"))
         vbox.Add(lbl_vars, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.txt_vars = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.txt_vars.SetName("Variables locales activas")
+        self.txt_vars.SetName(_("Active local variables"))
         vbox.Add(self.txt_vars, proportion=1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
-        lbl_sal = wx.StaticText(panel, label="Salida de consola:")
+        lbl_sal = wx.StaticText(panel, label=_("Console output:"))
         vbox.Add(lbl_sal, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.txt_salida = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.txt_salida.SetName("Salida de consola del depurador")
+        self.txt_salida.SetName(_("Debugger console output"))
         vbox.Add(self.txt_salida, proportion=1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=12)
 
         hbox = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_paso = wx.Button(panel, label="Paso Siguiente (F10)")
+        self.btn_paso = wx.Button(panel, label=_("Next Step (F10)"))
         self.btn_paso.SetDefault()
-        self.btn_continuar = wx.Button(panel, label="Continuar (F5)")
-        self.btn_detener = wx.Button(panel, wx.ID_CANCEL, label="Detener (Escape)")
+        self.btn_continuar = wx.Button(panel, label=_("Continue (F5)"))
+        self.btn_detener = wx.Button(panel, wx.ID_CANCEL, label=_("Stop (Escape)"))
 
         hbox.Add(self.btn_paso, flag=wx.RIGHT, border=8)
         hbox.Add(self.btn_continuar, flag=wx.RIGHT, border=8)
@@ -434,7 +459,7 @@ class StepDebuggerDialog(wx.Dialog):
 
     def posicionar_inicio(self):
         if not self.lineas_ejecutables:
-            self.lbl_estado.SetLabel("No hay líneas ejecutables en el código.")
+            self.lbl_estado.SetLabel(_("There are no executable lines in the code."))
             self.btn_paso.Disable()
             self.btn_continuar.Disable()
             return
@@ -447,15 +472,16 @@ class StepDebuggerDialog(wx.Dialog):
             linea_num = self.lineas_ejecutables[self.idx_ejecutable] + 1
             codigo_linea = self.lineas[linea_num - 1].strip()
             es_bp = (linea_num in self.breakpoints)
-            marca_bp = "Punto de interrupción, " if es_bp else ""
-            msg = f"{marca_bp}Línea {linea_num}: {codigo_linea}"
+            marca_bp = _("Breakpoint, ") if es_bp else ""
+            # Translators: Announcement of current line in debugger. {breakpoint} is breakpoint alert if set, {line} is line number, {code} is code content.
+            msg = _("{breakpoint}Line {line}: {code}").format(breakpoint=marca_bp, line=linea_num, code=codigo_linea)
             self.lbl_estado.SetLabel(msg)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(msg)
             if ui:
                 ui.message(msg)
         else:
-            msg = "Depuración finalizada. Se ejecutaron todas las líneas."
+            msg = _("Debugging finished. All lines were executed.")
             self.lbl_estado.SetLabel(msg)
             self.btn_paso.Disable()
             self.btn_continuar.Disable()
@@ -481,7 +507,8 @@ class StepDebuggerDialog(wx.Dialog):
             exec(codigo_acumulado, exec_scope)
             self.locales = {k: v for k, v in exec_scope.items() if not k.startswith('__')}
         except Exception as e:
-            salida_err = f"Error en la línea {linea_num}: {e}"
+            # Translators: Error during debugger step execution. {line} is line number, {error} is exception message.
+            salida_err = _("Error on line {line}: {error}").format(line=linea_num, error=e)
             self.salida_acumulada.append(salida_err)
             self.txt_salida.SetValue('\n'.join(self.salida_acumulada))
             if speech and hasattr(speech, 'speakMessage'):
@@ -502,7 +529,7 @@ class StepDebuggerDialog(wx.Dialog):
         if self.locales:
             vars_txt = "\n".join(f"{k} = {repr(v)}" for k, v in self.locales.items())
         else:
-            vars_txt = "(Sin variables declaradas aún)"
+            vars_txt = _("(No variables declared yet)")
         self.txt_vars.SetValue(vars_txt)
 
         self.idx_ejecutable += 1
@@ -531,23 +558,23 @@ class StepDebuggerDialog(wx.Dialog):
 class TestRunnerDialog(wx.Dialog):
     """Diálogo accesible para ejecutar pruebas unitarias con reporte estructurado."""
     def __init__(self, parent, codigo):
-        super(TestRunnerDialog, self).__init__(parent, title="Ejecutor de Pruebas Unitarias", size=(680, 520))
+        super(TestRunnerDialog, self).__init__(parent, title=_("Unit Test Runner"), size=(680, 520))
         self.codigo = codigo
 
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self.lbl_resumen = wx.StaticText(panel, label="Ejecutando pruebas...")
+        self.lbl_resumen = wx.StaticText(panel, label=_("Running tests..."))
         font = self.lbl_resumen.GetFont()
         font.SetWeight(wx.FONTWEIGHT_BOLD)
         self.lbl_resumen.SetFont(font)
         vbox.Add(self.lbl_resumen, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         self.txt_detalles = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
-        self.txt_detalles.SetName("Detalles de resultados de las pruebas unitarias")
+        self.txt_detalles.SetName(_("Unit test results details"))
         vbox.Add(self.txt_detalles, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
-        btn_cerrar = wx.Button(panel, wx.ID_OK, label="Cerrar")
+        btn_cerrar = wx.Button(panel, wx.ID_OK, label=_("Close"))
         btn_cerrar.SetDefault()
         vbox.Add(btn_cerrar, flag=wx.ALIGN_CENTER | wx.BOTTOM, border=12)
 
@@ -566,7 +593,7 @@ class TestRunnerDialog(wx.Dialog):
 
     def ejecutar_pruebas(self):
         if not self.codigo.strip():
-            msg = "El editor está vacío. Escribe pruebas unitarias antes de ejecutar."
+            msg = _("The editor is empty. Write unit tests before running.")
             self.lbl_resumen.SetLabel(msg)
             self.txt_detalles.SetValue(msg)
             if speech and hasattr(speech, 'speakMessage'):
@@ -581,8 +608,9 @@ class TestRunnerDialog(wx.Dialog):
         try:
             exec(self.codigo, scope)
         except Exception as e:
-            resumen = f"Fallo al cargar el script: {e}"
-            self.lbl_resumen.SetLabel("Error en la ejecución del script")
+            # Translators: Error message when executing unit test script fails to load. {error} is the error message.
+            resumen = _("Failed to load script: {error}").format(error=e)
+            self.lbl_resumen.SetLabel(_("Error in script execution"))
             self.txt_detalles.SetValue(resumen)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(resumen)
@@ -593,22 +621,22 @@ class TestRunnerDialog(wx.Dialog):
         test_cases = [obj for obj in scope.values() if isinstance(obj, type) and issubclass(obj, unittest.TestCase)]
 
         if not test_cases:
-            mensaje = (
-                "No se encontraron clases heredadas de unittest.TestCase en el código.\n\n"
-                "Para escribir pruebas unitarias accesibles, estructura tu script de esta forma:\n\n"
+            mensaje = _(
+                "No classes inheriting from unittest.TestCase were found in the code.\n\n"
+                "To write accessible unit tests, structure your script like this:\n\n"
                 "import unittest\n\n"
-                "class PruebasEjemplo(unittest.TestCase):\n"
-                "    def test_suma(self):\n"
+                "class ExampleTests(unittest.TestCase):\n"
+                "    def test_sum(self):\n"
                 "        self.assertEqual(2 + 2, 4)\n\n"
                 "if __name__ == '__main__':\n"
                 "    unittest.main()\n"
             )
-            self.lbl_resumen.SetLabel("Sin clases de prueba unittest")
+            self.lbl_resumen.SetLabel(_("No unittest test classes"))
             self.txt_detalles.SetValue(mensaje)
             if speech and hasattr(speech, 'speakMessage'):
-                speech.speakMessage("No se detectaron clases de prueba unittest en el editor.")
+                speech.speakMessage(_("No unittest test classes were detected in the editor."))
             if ui:
-                ui.message("No se detectaron clases de prueba unittest.")
+                ui.message(_("No unittest test classes were detected."))
             return
 
         suite = unittest.TestSuite()
@@ -626,16 +654,19 @@ class TestRunnerDialog(wx.Dialog):
         exitosas = total - fallos - errores
 
         if resultado.wasSuccessful():
-            resumen = f"Todas las pruebas superadas. Total: {total}, Exitosas: {exitosas}."
+            # Translators: Unit test success summary. {total} is total tests run, {passed} is passed tests.
+            resumen = _("All tests passed. Total: {total}, Passed: {passed}.").format(total=total, passed=exitosas)
             if SoundManager:
                 SoundManager.play('exito')
         else:
-            resumen = f"Pruebas finalizadas con fallos. Total: {total}, Fallos: {fallos}, Errores: {errores}."
+            # Translators: Unit test failure summary. {total} is total tests run, {failures} is failed tests, {errors} is errored tests.
+            resumen = _("Tests finished with failures. Total: {total}, Failures: {failures}, Errors: {errors}.").format(total=total, failures=fallos, errors=errores)
             if SoundManager:
                 SoundManager.play('error')
 
         self.lbl_resumen.SetLabel(resumen)
-        self.txt_detalles.SetValue(f"{resumen}\n\nDetalles del ejecutor:\n{stream.getvalue()}")
+        # Translators: Details output format for unit test runner. {summary} is summary line, {details} is test output stream.
+        self.txt_detalles.SetValue(_("{summary}\n\nRunner details:\n{details}").format(summary=resumen, details=stream.getvalue()))
 
         if speech and hasattr(speech, 'speakMessage'):
             speech.speakMessage(resumen)
@@ -646,7 +677,7 @@ class TestRunnerDialog(wx.Dialog):
 class InterpreterManagerDialog(wx.Dialog):
     """Diálogo accesible para gestionar y seleccionar el intérprete de Python o entorno virtual."""
     def __init__(self, parent):
-        super(InterpreterManagerDialog, self).__init__(parent, title="Gestor de Intérpretes y Entornos Virtuales", size=(680, 440))
+        super(InterpreterManagerDialog, self).__init__(parent, title=_("Interpreter and Virtual Environment Manager"), size=(680, 440))
         self.parent = parent
         self.interpretes_detectados = self.detectar_interpretes()
 
@@ -656,12 +687,12 @@ class InterpreterManagerDialog(wx.Dialog):
         panel = wx.Panel(self, style=wx.TAB_TRAVERSAL)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        lbl = wx.StaticText(panel, label="Selecciona el entorno de Python para ejecutar scripts:")
+        lbl = wx.StaticText(panel, label=_("Select the Python environment to run scripts:"))
         vbox.Add(lbl, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=12)
 
         opciones_txt = [f"{desc}: {path}" for desc, path in self.interpretes_detectados]
         self.list_box = wx.ListBox(panel, choices=opciones_txt)
-        self.list_box.SetName("Lista de intérpretes detectados")
+        self.list_box.SetName(_("List of detected interpreters"))
 
         # Seleccionar el guardado si coincide
         sel_idx = 0
@@ -673,10 +704,10 @@ class InterpreterManagerDialog(wx.Dialog):
         vbox.Add(self.list_box, proportion=1, flag=wx.EXPAND | wx.ALL, border=12)
 
         hbox_btn = wx.BoxSizer(wx.HORIZONTAL)
-        btn_examinar = wx.Button(panel, label="Examinar otro python.exe...")
-        btn_aplicar = wx.Button(panel, wx.ID_OK, label="Establecer como activo")
+        btn_examinar = wx.Button(panel, label=_("Browse for another python.exe..."))
+        btn_aplicar = wx.Button(panel, wx.ID_OK, label=_("Set as active"))
         btn_aplicar.SetDefault()
-        btn_cancelar = wx.Button(panel, wx.ID_CANCEL, label="Cancelar")
+        btn_cancelar = wx.Button(panel, wx.ID_CANCEL, label=_("Cancel"))
 
         hbox_btn.Add(btn_examinar, flag=wx.RIGHT, border=8)
         hbox_btn.Add(btn_aplicar, flag=wx.RIGHT, border=8)
@@ -696,16 +727,16 @@ class InterpreterManagerDialog(wx.Dialog):
     def detectar_interpretes(self):
         encontrados = []
         # 1. Intérprete actual de NVDA / Python en ejecución
-        encontrados.append(("Python integrado de NVDA", sys.executable))
+        encontrados.append((_("Embedded NVDA Python"), sys.executable))
 
         # 2. Python del sistema en PATH
         py_system = shutil.which("python")
         if py_system and py_system.lower() != sys.executable.lower():
-            encontrados.append(("Python del sistema (PATH)", py_system))
+            encontrados.append((_("System Python (PATH)"), py_system))
 
         py3_system = shutil.which("python3")
         if py3_system and py3_system.lower() != sys.executable.lower() and py3_system != py_system:
-            encontrados.append(("Python 3 del sistema", py3_system))
+            encontrados.append((_("System Python 3"), py3_system))
 
         # 3. Entornos virtuales en el directorio actual o carpetas típicas
         dirs_base = [os.getcwd(), os.path.dirname(os.path.abspath(__file__))]
@@ -714,21 +745,24 @@ class InterpreterManagerDialog(wx.Dialog):
             for nv in nombres_venv:
                 cand = os.path.join(base, nv, "Scripts", "python.exe")
                 if os.path.isfile(cand) and cand.lower() not in [p.lower() for _, p in encontrados]:
-                    encontrados.append((f"Entorno virtual ({nv})", cand))
+                    # Translators: Label for virtual environment. {env} is directory name (e.g. .venv, venv).
+                    encontrados.append((_("Virtual environment ({env})").format(env=nv), cand))
 
         return encontrados
 
     def on_examinar(self, event=None):
         dlg = wx.FileDialog(
             self,
-            message="Seleccionar ejecutable de Python",
-            wildcard="Ejecutable de Python (python.exe)|python.exe|Todos los archivos (*.*)|*.*",
+            message=_("Select Python executable"),
+            wildcard=_("Python Executable (python.exe)|python.exe|All files (*.*)|*.*"),
             style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
         )
         if dlg.ShowModal() == wx.ID_OK:
             path = dlg.GetPath()
-            self.interpretes_detectados.append(("Entorno personalizado", path))
-            idx = self.list_box.Append(f"Entorno personalizado: {path}")
+            desc_custom = _("Custom environment")
+            self.interpretes_detectados.append((desc_custom, path))
+            # Translators: List entry for custom environment. {path} is interpreter file path.
+            idx = self.list_box.Append(_("Custom environment: {path}").format(path=path))
             self.list_box.SetSelection(idx)
         dlg.Destroy()
 
@@ -737,7 +771,8 @@ class InterpreterManagerDialog(wx.Dialog):
         if sel != wx.NOT_FOUND:
             desc, path = self.interpretes_detectados[sel]
             ProgressManager.set_setting("custom_python_path", path)
-            msg = f"Intérprete activo establecido: {desc}"
+            # Translators: Confirmation of active Python interpreter. {desc} is interpreter description.
+            msg = _("Active interpreter set: {desc}").format(desc=desc)
             if speech and hasattr(speech, 'speakMessage'):
                 speech.speakMessage(msg)
             if ui:

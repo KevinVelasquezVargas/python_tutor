@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'python_tutor' '2.0.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-10-01 11:32+0530\n"
+"POT-Creation-Date: 2026-10-01 18:35+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2219,6 +2219,729 @@ msgstr "No fue posible abrir la documentación en el navegador."
 #: addon\globalPlugins\python_tutor\gui_frame.py:2563
 msgid "Opening About documentation in web browser."
 msgstr "Abriendo la documentación de Acerca de en el navegador web."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:50
+msgid ""
+"print(*objects, sep=' ', end='\\n'): Prints objects to the output console."
+msgstr ""
+"print(*objects, sep=' ', end='\\n'): Imprime objetos en la consola de "
+"salida."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:51
+msgid "input(prompt=''): Reads a line of text entered by the user."
+msgstr "input(prompt=''): Lee una línea de texto introducida por el usuario."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:52
+msgid "len(s): Returns the number of items in a sequence or collection."
+msgstr "len(s): Devuelve el número de elementos de una secuencia o colección."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:53
+msgid ""
+"range(stop) or range(start, stop, step): Generates an immutable sequence of "
+"numbers."
+msgstr ""
+"range(stop) o range(start, stop, step): Genera una secuencia inmutable de "
+"números."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:54
+msgid "str(object=''): Converts an object to its string representation."
+msgstr ""
+"str(object=''): Convierte un objeto a su representación en cadena de texto."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:55
+msgid "int(x=0): Converts a number or string to an integer."
+msgstr "int(x=0): Convierte un número o cadena a un número entero."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:56
+msgid ""
+"float(x=0.0): Converts a number or string to a floating-point decimal "
+"number."
+msgstr ""
+"float(x=0.0): Convierte un número o cadena a número decimal de coma "
+"flotante."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:57
+msgid ""
+"bool(x=False): Returns True or False based on the truth value of the "
+"argument."
+msgstr ""
+"bool(x=False): Devuelve True o False según el valor de verdad del argumento."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:58
+msgid "list(iterable=()): Creates a mutable list of ordered items."
+msgstr "list(iterable=()): Crea una lista mutable de elementos ordenados."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:59
+msgid "dict(**kwargs): Creates a mutable collection of key-value pairs."
+msgstr "dict(**kwargs): Crea una colección mutable de pares clave-valor."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:60
+msgid "set(iterable=()): Creates a mutable set of unique unordered items."
+msgstr ""
+"set(iterable=()): Crea un conjunto mutable de elementos únicos sin orden."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:61
+msgid "tuple(iterable=()): Creates an immutable tuple of ordered items."
+msgstr "tuple(iterable=()): Crea una tupla inmutable de elementos ordenados."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:62
+msgid ""
+"open(file, mode='r', encoding=None): Opens a file and returns a stream "
+"object."
+msgstr ""
+"open(file, mode='r', encoding=None): Abre un archivo y devuelve un objeto de"
+" flujo."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:63
+msgid "type(object): Returns the type of the specified object."
+msgstr "type(object): Devuelve el tipo del objeto especificado."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:64
+msgid "sum(iterable, start=0): Sums all elements of a numerical iterable."
+msgstr ""
+"sum(iterable, start=0): Suma todos los elementos de un iterable numérico."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:65
+msgid "min(iterable): Returns the smallest item in a collection."
+msgstr "min(iterable): Devuelve el elemento menor de una colección."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:66
+msgid "max(iterable): Returns the largest item in a collection."
+msgstr "max(iterable): Devuelve el elemento mayor de una colección."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:67
+msgid "abs(x): Returns the absolute value of a number."
+msgstr "abs(x): Devuelve el valor absoluto de un número."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:68
+msgid ""
+"round(number, ndigits=None): Rounds a number to the given number of decimal "
+"places."
+msgstr ""
+"round(number, ndigits=None): Redondea un número al número de decimales "
+"indicado."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:69
+msgid "enumerate(iterable, start=0): Returns tuples with index and item."
+msgstr "enumerate(iterable, start=0): Devuelve tuplas con índice y elemento."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:70
+msgid ""
+"zip(*iterables): Groups corresponding elements from multiple iterables."
+msgstr ""
+"zip(*iterables): Agrupa elementos correspondientes de múltiples iterables."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:71
+msgid ""
+"isinstance(object, classinfo): Checks if an object is an instance of a "
+"class."
+msgstr ""
+"isinstance(object, classinfo): Comprueba si un objeto es instancia de una "
+"clase."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:72
+msgid "list.append(item): Adds a new item to the end of the list."
+msgstr ""
+"lista.append(elemento): Agrega un nuevo elemento al final de la lista."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:73
+msgid ""
+"list.extend(iterable): Extends the list by appending all items from the "
+"iterable."
+msgstr ""
+"lista.extend(iterable): Extiende la lista agregando todos los elementos del "
+"iterable."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:74
+msgid "list.insert(index, item): Inserts an item at the specified position."
+msgstr ""
+"lista.insert(indice, elemento): Inserta un elemento en la posición indicada."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:75
+msgid ""
+"list.pop([index]): Removes and returns the item at index (default last)."
+msgstr ""
+"lista.pop([indice]): Quita y devuelve el elemento en el índice (por defecto "
+"el último)."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:76
+msgid ""
+"list.remove(value): Removes the first occurrence of the value from the list."
+msgstr ""
+"lista.remove(valor): Elimina la primera aparición del valor en la lista."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:77
+msgid ""
+"list.sort(key=None, reverse=False): Sorts the items of the list in place."
+msgstr ""
+"lista.sort(key=None, reverse=False): Ordena los elementos de la lista en su "
+"lugar."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:78
+msgid "list.reverse(): Reverses the order of the items of the list in place."
+msgstr ""
+"lista.reverse(): Invierte el orden de los elementos de la lista en su lugar."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:79
+msgid "dict.keys(): Returns a view of all dictionary keys."
+msgstr ""
+"diccionario.keys(): Devuelve una vista de todas las claves del diccionario."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:80
+msgid "dict.values(): Returns a view of all dictionary values."
+msgstr ""
+"diccionario.values(): Devuelve una vista de todos los valores del "
+"diccionario."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:81
+msgid "dict.items(): Returns a view of dictionary (key, value) pairs."
+msgstr ""
+"diccionario.items(): Devuelve una vista de pares (clave, valor) del "
+"diccionario."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:82
+msgid "dict.get(key, default=None): Returns the value of key if it exists."
+msgstr ""
+"diccionario.get(clave, default=None): Devuelve el valor de la clave si "
+"existe."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:83
+msgid ""
+"dict.update(other): Updates the dictionary with key-value pairs from "
+"another."
+msgstr ""
+"diccionario.update(otro): Actualiza el diccionario con pares clave-valor de "
+"otro."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:84
+msgid ""
+"string.split(sep=None): Splits the string into a list of substrings by "
+"separator."
+msgstr ""
+"cadena.split(sep=None): Divide la cadena en una lista de subcadenas según el"
+" separador."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:85
+msgid ""
+"separator.join(iterable): Concatenates elements of an iterable with the "
+"separator."
+msgstr ""
+"separador.join(iterable): Concatena los elementos de un iterable con el "
+"separador."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:86
+msgid ""
+"string.strip(): Removes leading and trailing whitespace from the string."
+msgstr ""
+"cadena.strip(): Elimina espacios en blanco al inicio y al final de la "
+"cadena."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:87
+msgid "string.lower(): Returns a copy of the string in lowercase."
+msgstr "cadena.lower(): Devuelve una copia de la cadena en minúsculas."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:88
+msgid "string.upper(): Returns a copy of the string in uppercase."
+msgstr "cadena.upper(): Devuelve una copia de la cadena en mayúsculas."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:89
+msgid ""
+"string.replace(old, new): Replaces occurrences of a substring with another."
+msgstr ""
+"cadena.replace(viejo, nuevo): Reemplaza apariciones de una subcadena por "
+"otra."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:90
+msgid ""
+"string.startswith(prefix): Returns True if the string starts with the "
+"prefix."
+msgstr ""
+"cadena.startswith(prefijo): Devuelve True si la cadena comienza con el "
+"prefijo."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:91
+msgid ""
+"string.endswith(suffix): Returns True if the string ends with the suffix."
+msgstr ""
+"cadena.endswith(sufijo): Devuelve True si la cadena termina con el sufijo."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:92
+msgid "def name(parameters): Declares a user-defined function."
+msgstr "def nombre(parametros): Declara una función definida por el usuario."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:93
+msgid "return [expression]: Ends function execution and returns a result."
+msgstr ""
+"return [expresion]: Termina la ejecución de una función y devuelve un "
+"resultado."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:94
+msgid "if condition: Executes a block of code if the condition is true."
+msgstr ""
+"if condicion: Ejecuta un bloque de código si la condición es verdadera."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:95
+msgid ""
+"elif condition: Alternative conditional branch after an earlier if or elif."
+msgstr ""
+"elif condicion: Rama condicional alternativa tras un if o elif anterior."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:96
+msgid "else: Block executed if no previous condition was true."
+msgstr ""
+"else: Bloque que se ejecuta si ninguna condición previa fue verdadera."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:97
+msgid ""
+"for variable in sequence: Iterates over items of a collection or range."
+msgstr ""
+"for variable in secuencia: Itera sobre los elementos de una colección o "
+"rango."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:98
+msgid "while condition: Repeats a block of code while condition is true."
+msgstr ""
+"while condicion: Repite un bloque de código mientras la condición sea "
+"verdadera."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:99
+msgid "try: Starts a guarded block to catch potential runtime exceptions."
+msgstr ""
+"try: Inicia un bloque vigilado para capturar posibles excepciones en tiempo "
+"de ejecución."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:100
+msgid "except [TypeError]: Handles an exception raised inside the try block."
+msgstr ""
+"except [TipoError]: Maneja una excepción producida dentro del bloque try."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:101
+msgid ""
+"finally: Block that always executes upon finishing try, whether exception "
+"occurred or not."
+msgstr ""
+"finally: Bloque que se ejecuta siempre al finalizar el try, haya o no "
+"excepción."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:102
+msgid "class ClassName: Declares a new class for object-oriented programming."
+msgstr ""
+"class NombreClase: Declara una nueva clase para programación orientada a "
+"objetos."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:103
+msgid "import module: Imports a module to use its functions and classes."
+msgstr ""
+"import modulo: Importa un módulo para utilizar sus funciones y clases."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:104
+msgid ""
+"from module import object: Imports specific items directly into namespace."
+msgstr ""
+"from modulo import objeto: Importa elementos específicos directamente al "
+"espacio de nombres."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:105
+msgid "True: Boolean true value (1)."
+msgstr "True: Valor booleano verdadero (1)."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:106
+msgid "False: Boolean false value (0)."
+msgstr "False: Valor booleano falso (0)."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:107
+msgid ""
+"None: Special object representing the absence of a value or null value."
+msgstr ""
+"None: Objeto especial que representa la ausencia de valor o valor nulo."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:108
+msgid "break: Immediately interrupts and exits the current for or while loop."
+msgstr "break: Interrumpe y sale inmediatamente del bucle actual for o while."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:109
+msgid "continue: Skips to the next iteration of the current loop."
+msgstr "continue: Salta a la siguiente iteración del bucle actual."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:110
+msgid "pass: Null statement that does nothing, used as a placeholder."
+msgstr ""
+"pass: Instrucción nula que no hace nada, usada como marcador de posición."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:111
+msgid ""
+"self: Conventional first parameter in instance methods referencing the "
+"current object."
+msgstr ""
+"self: Primer parámetro convencional en métodos de instancia que referencia "
+"al objeto actual."
+
+#. Translators: Fallback message when no documentation is available for a
+#. symbol. {name} is the symbol name.
+#: addon\globalPlugins\python_tutor\ide_tools.py:136
+#, python-brace-format
+msgid "Symbol: {name}. No additional documentation available."
+msgstr "Símbolo: {name}. Sin documentación adicional disponible."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:150
+msgid "The editor is empty. There is no code to format."
+msgstr "El editor está vacío. No hay código para formatear."
+
+#. Translators: Error message when PEP 8 formatting fails due to a syntax
+#. error. {line} is the line number, {msg} is the syntax error message.
+#: addon\globalPlugins\python_tutor\ide_tools.py:157
+#, python-brace-format
+msgid "Cannot format due to a syntax error on line {line}: {msg}"
+msgstr ""
+"No se puede formatear debido a un error de sintaxis en la línea {line}: "
+"{msg}"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:204
+msgid "Formatting was cancelled to preserve code integrity."
+msgstr "El formateo fue cancelado para preservar la integridad del código."
+
+#. Translators: Success message for PEP 8 formatter. {count} is the number of
+#. adjusted lines.
+#: addon\globalPlugins\python_tutor\ide_tools.py:207
+#, python-brace-format
+msgid "Code formatted according to PEP 8. {count} lines adjusted."
+msgstr "Código formateado según PEP 8. Se ajustaron {count} líneas."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:213
+msgid "Autocomplete Suggestions"
+msgstr "Sugerencias de Autocompletado"
+
+#. Translators: Label for autocomplete suggestions dialog. {prefix} is the
+#. current typed prefix.
+#: addon\globalPlugins\python_tutor\ide_tools.py:222
+#, python-brace-format
+msgid "Suggestions for '{prefix}':"
+msgstr "Sugerencias para '{prefix}':"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:226
+msgid "Autocomplete suggestions list."
+msgstr "Lista de sugerencias de autocompletado."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:231
+msgid "Documentation:"
+msgstr "Documentación:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:235
+msgid "Documentation of the selected suggestion."
+msgstr "Documentación de la sugerencia seleccionada."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:239
+msgid "Insert"
+msgstr "Insertar"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:241
+#: addon\globalPlugins\python_tutor\ide_tools.py:309
+#: addon\globalPlugins\python_tutor\ide_tools.py:365
+#: addon\globalPlugins\python_tutor\ide_tools.py:710
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:290
+msgid "Rename Symbol"
+msgstr "Renombrar Símbolo"
+
+#. Translators: Label for renaming symbol dialog. {symbol} is the current
+#. symbol name.
+#: addon\globalPlugins\python_tutor\ide_tools.py:298
+#, python-brace-format
+msgid "Rename '{symbol}' to:"
+msgstr "Renombrar '{symbol}' por:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:302
+msgid "New symbol name"
+msgstr "Nuevo nombre del símbolo"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:307
+msgid "Rename"
+msgstr "Renombrar"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:332
+msgid "Symbol name cannot be empty."
+msgstr "El nombre del símbolo no puede estar vacío."
+
+#. Translators: Error when symbol name is not a valid Python identifier.
+#. {name} is the invalid name.
+#: addon\globalPlugins\python_tutor\ide_tools.py:336
+#, python-brace-format
+msgid "'{name}' is not a valid Python identifier."
+msgstr "'{name}' no es un identificador válido de Python."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:339
+msgid "Invalid identifier"
+msgstr "Identificador no válido"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:348
+msgid "Extract to Function"
+msgstr "Extraer a Función"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:354
+msgid "New function name:"
+msgstr "Nombre de la nueva función:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:357
+msgid "new_function"
+msgstr "nueva_funcion"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:358
+msgid "New function name"
+msgstr "Nombre de la nueva función"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:363
+msgid "Extract"
+msgstr "Extraer"
+
+#. Translators: Error when function name is not a valid Python identifier.
+#. {name} is the invalid name.
+#: addon\globalPlugins\python_tutor\ide_tools.py:388
+#, python-brace-format
+msgid "'{name}' is not a valid function identifier."
+msgstr "'{name}' no es un identificador válido para una función."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:391
+msgid "Invalid name"
+msgstr "Nombre no válido"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:400
+msgid "Interactive Step-by-Step Debugger"
+msgstr "Depurador Interactivo Paso a Paso"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:419
+msgid "Starting debugger..."
+msgstr "Iniciando depurador..."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:425
+msgid "Active local variables:"
+msgstr "Variables locales activas:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:429
+msgid "Active local variables"
+msgstr "Variables locales activas"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:432
+msgid "Console output:"
+msgstr "Salida de consola:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:436
+msgid "Debugger console output"
+msgstr "Salida de consola del depurador"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:440
+msgid "Next Step (F10)"
+msgstr "Paso Siguiente (F10)"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:442
+msgid "Continue (F5)"
+msgstr "Continuar (F5)"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:443
+msgid "Stop (Escape)"
+msgstr "Detener (Escape)"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:462
+msgid "There are no executable lines in the code."
+msgstr "No hay líneas ejecutables en el código."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:475
+msgid "Breakpoint, "
+msgstr "Punto de interrupción, "
+
+#. Translators: Announcement of current line in debugger. {breakpoint} is
+#. breakpoint alert if set, {line} is line number, {code} is code content.
+#: addon\globalPlugins\python_tutor\ide_tools.py:477
+#, python-brace-format
+msgid "{breakpoint}Line {line}: {code}"
+msgstr "{breakpoint}Línea {line}: {code}"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:484
+msgid "Debugging finished. All lines were executed."
+msgstr "Depuración finalizada. Se ejecutaron todas las líneas."
+
+#. Translators: Error during debugger step execution. {line} is line number,
+#. {error} is exception message.
+#: addon\globalPlugins\python_tutor\ide_tools.py:511
+#, python-brace-format
+msgid "Error on line {line}: {error}"
+msgstr "Error en la línea {line}: {error}"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:532
+msgid "(No variables declared yet)"
+msgstr "(Sin variables declaradas aún)"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:561
+msgid "Unit Test Runner"
+msgstr "Ejecutor de Pruebas Unitarias"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:567
+msgid "Running tests..."
+msgstr "Ejecutando pruebas..."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:574
+msgid "Unit test results details"
+msgstr "Detalles de resultados de las pruebas unitarias"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:577
+msgid "Close"
+msgstr "Cerrar"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:596
+msgid "The editor is empty. Write unit tests before running."
+msgstr "El editor está vacío. Escribe pruebas unitarias antes de ejecutar."
+
+#. Translators: Error message when executing unit test script fails to load.
+#. {error} is the error message.
+#: addon\globalPlugins\python_tutor\ide_tools.py:612
+#, python-brace-format
+msgid "Failed to load script: {error}"
+msgstr "Fallo al cargar el script: {error}"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:613
+msgid "Error in script execution"
+msgstr "Error en la ejecución del script"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:625
+msgid ""
+"No classes inheriting from unittest.TestCase were found in the code.\n"
+"\n"
+"To write accessible unit tests, structure your script like this:\n"
+"\n"
+"import unittest\n"
+"\n"
+"class ExampleTests(unittest.TestCase):\n"
+"    def test_sum(self):\n"
+"        self.assertEqual(2 + 2, 4)\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    unittest.main()\n"
+msgstr ""
+"No se encontraron clases heredadas de unittest.TestCase en el código.\n"
+"\n"
+"Para escribir pruebas unitarias accesibles, estructura tu script de esta forma:\n"
+"\n"
+"import unittest\n"
+"\n"
+"class PruebasEjemplo(unittest.TestCase):\n"
+"    def test_suma(self):\n"
+"        self.assertEqual(2 + 2, 4)\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    unittest.main()\n"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:634
+msgid "No unittest test classes"
+msgstr "Sin clases de prueba unittest"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:637
+msgid "No unittest test classes were detected in the editor."
+msgstr "No se detectaron clases de prueba unittest en el editor."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:639
+msgid "No unittest test classes were detected."
+msgstr "No se detectaron clases de prueba unittest."
+
+#. Translators: Unit test success summary. {total} is total tests run,
+#. {passed} is passed tests.
+#: addon\globalPlugins\python_tutor\ide_tools.py:658
+#, python-brace-format
+msgid "All tests passed. Total: {total}, Passed: {passed}."
+msgstr "Todas las pruebas superadas. Total: {total}, Exitosas: {passed}."
+
+#. Translators: Unit test failure summary. {total} is total tests run,
+#. {failures} is failed tests, {errors} is errored tests.
+#: addon\globalPlugins\python_tutor\ide_tools.py:663
+#, python-brace-format
+msgid ""
+"Tests finished with failures. Total: {total}, Failures: {failures}, Errors: "
+"{errors}."
+msgstr ""
+"Pruebas finalizadas con fallos. Total: {total}, Fallos: {failures}, Errores:"
+" {errors}."
+
+#. Translators: Details output format for unit test runner. {summary} is
+#. summary line, {details} is test output stream.
+#: addon\globalPlugins\python_tutor\ide_tools.py:669
+#, python-brace-format
+msgid ""
+"{summary}\n"
+"\n"
+"Runner details:\n"
+"{details}"
+msgstr ""
+"{summary}\n"
+"\n"
+"Detalles del ejecutor:\n"
+"{details}"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:680
+msgid "Interpreter and Virtual Environment Manager"
+msgstr "Gestor de Intérpretes y Entornos Virtuales"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:690
+msgid "Select the Python environment to run scripts:"
+msgstr "Selecciona el entorno de Python para ejecutar scripts:"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:695
+msgid "List of detected interpreters"
+msgstr "Lista de intérpretes detectados"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:707
+msgid "Browse for another python.exe..."
+msgstr "Examinar otro python.exe..."
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:708
+msgid "Set as active"
+msgstr "Establecer como activo"
+
+#. 1. Intérprete actual de NVDA / Python en ejecución
+#: addon\globalPlugins\python_tutor\ide_tools.py:730
+msgid "Embedded NVDA Python"
+msgstr "Python integrado de NVDA"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:735
+msgid "System Python (PATH)"
+msgstr "Python del sistema (PATH)"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:739
+msgid "System Python 3"
+msgstr "Python 3 del sistema"
+
+#. Translators: Label for virtual environment. {env} is directory name (e.g.
+#. .venv, venv).
+#: addon\globalPlugins\python_tutor\ide_tools.py:749
+#, python-brace-format
+msgid "Virtual environment ({env})"
+msgstr "Entorno virtual ({env})"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:756
+msgid "Select Python executable"
+msgstr "Seleccionar ejecutable de Python"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:757
+msgid "Python Executable (python.exe)|python.exe|All files (*.*)|*.*"
+msgstr ""
+"Ejecutable de Python (python.exe)|python.exe|Todos los archivos (*.*)|*.*"
+
+#: addon\globalPlugins\python_tutor\ide_tools.py:762
+msgid "Custom environment"
+msgstr "Entorno personalizado"
+
+#. Translators: List entry for custom environment. {path} is interpreter file
+#. path.
+#: addon\globalPlugins\python_tutor\ide_tools.py:765
+#, python-brace-format
+msgid "Custom environment: {path}"
+msgstr "Entorno personalizado: {path}"
+
+#. Translators: Confirmation of active Python interpreter. {desc} is
+#. interpreter description.
+#: addon\globalPlugins\python_tutor\ide_tools.py:775
+#, python-brace-format
+msgid "Active interpreter set: {desc}"
+msgstr "Intérprete activo establecido: {desc}"
 
 #: addon\globalPlugins\python_tutor\repl_dialog.py:49
 msgid "Quick REPL Testing Lab"

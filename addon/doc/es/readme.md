@@ -150,4 +150,5 @@ Si este complemento te ha sido de utilidad en tu proceso de aprendizaje o enseñ
 
 ---
 
-Copyright © 2026 Kevin Andrés Velasquez Vargas.
+Copyright © 2026 Kevin Andrés Velasquez Vargas.  
+Internacionalización (i18n) y traducción del temario al inglés por MisterK-Dev (desarrollado con Google Antigravity 2.0).

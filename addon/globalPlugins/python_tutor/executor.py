@@ -2,6 +2,8 @@
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/executor.py
 # Propósito: Ejecución segura con watchdog y diagnóstico pedagógico accesible.
+# Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

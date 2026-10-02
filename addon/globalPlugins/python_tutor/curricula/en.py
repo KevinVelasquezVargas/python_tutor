@@ -3,6 +3,8 @@
 # Module: globalPlugins/python_tutor/curricula/en.py
 # Purpose: Accessible educational curriculum of 32 chapters with conceptual
 #          foundations, practical challenges with clean code, and strict validations.
+# Author: Kevin Andrés Velasquez Vargas
+# Translation into English: MisterK-Dev (developed with Google Antigravity 2.0)
 # License: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

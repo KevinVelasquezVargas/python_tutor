@@ -153,4 +153,5 @@ If this add-on has helped you in your learning or teaching journey and you would
 
 ---
 
-Copyright © 2026 Kevin Andrés Velasquez Vargas.
+Copyright © 2026 Kevin Andrés Velasquez Vargas.  
+Internationalization (i18n) and translation of curriculum into English by MisterK-Dev (developed with Google Antigravity 2.0).

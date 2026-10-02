@@ -2,6 +2,8 @@
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/repl_dialog.py
 # Propósito: Laboratorio Rápido REPL interactivo accesible para pruebas inmediatas.
+# Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

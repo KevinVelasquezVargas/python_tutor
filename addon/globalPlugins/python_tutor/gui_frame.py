@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-# ======# Módulo: globalPlugins/python_tutor/gui_frame.py
+# ============================================================================
+# Módulo: globalPlugins/python_tutor/gui_frame.py
 # Propósito: Interfaz gráfica accesible, estructurada y con funciones avanzadas de edición.
 # Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
-# ======
+# ============================================================================
 import os
 import re
 import urllib.parse

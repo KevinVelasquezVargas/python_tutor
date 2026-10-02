@@ -4,6 +4,7 @@
 # Complemento: Aprendizaje de Python con NVDA
 # Versión: 2.0.0
 # Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # Compatibilidad: NVDA 2022.1.0 hasta 2026.3.0
 # ============================================================================

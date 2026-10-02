@@ -2,6 +2,8 @@
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/curriculum.py
 # Propósito: Enrutador dinámico de contenidos curriculares según el idioma de NVDA.
+# Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización y enrutador (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 # NOTA PARA KEVIN VELÁSQUEZ Y FUTUROS DESARROLLADORES / MAINTAINERS:

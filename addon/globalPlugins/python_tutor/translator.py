@@ -3,6 +3,7 @@
 # Módulo: globalPlugins/python_tutor/translator.py
 # Propósito: Traductor de sintaxis Python a Lenguaje Humano para accesibilidad.
 # Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

@@ -4,6 +4,7 @@
 # Propósito: Localización y apertura accesible de la documentación HTML del complemento.
 # Plantilla: Adaptado al estándar canónico oficial AddonTemplate de NVDA.
 # Autor: Kevin Andrés Velasquez Vargas
+# Internacionalización (i18n): MisterK-Dev (desarrollado con Google Antigravity 2.0)
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 

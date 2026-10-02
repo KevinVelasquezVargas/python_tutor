@@ -7,7 +7,7 @@ from site_scons.site_tools.NVDATool.utils import _
 addon_info = AddonInfo(
 	addon_name="python_tutor",
 	addon_summary=_("Python Learning with NVDA"),
-	addon_description=_("""Training tool and code editor tailored for Python programming with NVDA. Provides a structured learning curriculum across 32 conceptual and practical chapters (128 lessons) (32 capítulos conceptuales y prácticos (128 lecciones)), complemented by a dual-mode workspace: guided tutor mode and standalone editor mode. Features code structure navigation across functions and classes, acoustic indentation and structure cues, delimiter verification, and simplified error diagnostic messages."""),
+	addon_description=_("""Training tool and code editor tailored for Python programming with NVDA. Provides a structured learning curriculum across 32 conceptual and practical chapters (128 lessons / 32 capítulos conceptuales y prácticos (128 lecciones)), complemented by a dual-mode workspace: guided tutor mode and standalone editor mode. Features code structure navigation across functions and classes, acoustic indentation and structure cues, delimiter verification, and simplified error diagnostic messages."""),
 	addon_version="2.0.0",
 	addon_changelog=_("""Changelog version 2.0.0:
 - Dual usage modes: Guided Learning Mode and professional standalone Editor Mode (Control + M).

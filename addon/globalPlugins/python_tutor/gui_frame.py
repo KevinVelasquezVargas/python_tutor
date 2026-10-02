@@ -1311,6 +1311,7 @@ class TutorFrame(wx.Frame):
         self._last_linter_line = -1
         self._last_linter_indent = -1
 
+        superado = ProgressManager.is_step_completed(self.cap_idx, self.paso_idx)
         # Translators: Step status label: Passed / Completed.
         # Translators: Step status label: Pending.
         marca_estado = _("Completed") if superado else _("Pending")
@@ -1552,6 +1553,7 @@ class TutorFrame(wx.Frame):
 
     def on_pista(self, event=None):
         cap = CURRICULUM[self.cap_idx]
+        paso = cap["pasos"][self.paso_idx]
         # Translators: Default fallback hint if no hints are defined in the step.
         default_hint = _("Review the lesson description at the top and try running again.")
         pistas = paso.get("pistas", [default_hint])

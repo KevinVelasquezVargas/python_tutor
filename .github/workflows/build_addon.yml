@@ -1,0 +1,78 @@
+name: build addon
+
+on:
+  push:
+    tags: ["*"]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    if: github.repository != 'nvaccess/addonTemplate'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y gettext
+        uv sync
+
+    - name: Code checks
+      run: export PREK_SKIP=no-commit-to-branch; uv run prek run --all-files || true
+
+    - name: building addon
+      run: |
+        uv run scons
+        git archive --format=zip --output=python_tutor-source-v1.0.0.zip HEAD
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: packaged_addon
+        path: |
+          ./*.nvda-addon
+          ./*.zip
+
+  upload_release:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    needs: ["build"]
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: .
+        merge-multiple: true
+
+    - name: Display structure of downloaded files
+      run: ls -R
+
+    - name: Calculate sha256
+      run: |
+        echo -e "\nSHA256: " >> changelog.md
+        sha256sum *.nvda-addon >> changelog.md
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          *.nvda-addon
+          *.zip
+        body_path: changelog.md
+        fail_on_unmatched_files: false
+        prerelease: ${{ contains(github.ref, '-') }}

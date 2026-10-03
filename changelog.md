@@ -1,0 +1,44 @@
+# Registro de cambios de Aprendizaje de Python con NVDA
+
+## Versión 1.0.0
+
+- **Plan Formativo Integral de 40 Capítulos (160 Lecciones progresivas):**
+  - Estructurado bajo la metodología pedagógica *«Conceptos Primero»*, iniciando con fundamentos computacionales, hardware, software, algoritmos y pensamiento lógico sin necesidad de escribir código en las primeras etapas.
+  - Progresión sistemática desde sintaxis básica, tipos de datos y estructuras de control hasta Programación Orientada a Objetos (POO), manejo de archivos, excepciones, base de datos SQLite3, formatos JSON/CSV y biblioteca estándar (`math`, `random`, `datetime`, `urllib`).
+- **Dualidad de Modalidad de Trabajo (Modo Aprendizaje guiado vs. Modo Editor autónomo):**
+  - Conmutación instantánea mediante el atajo exclusivo <kbd>Control + M</kbd> o desde el menú *Herramientas*.
+  - Anuncios acústicos diferenciados con síntesis y campanas armónicas de transición.
+  - *Modo Aprendizaje:* Entorno guiado paso a paso con consignas pedagógicas, pistas escalonadas y evaluación automatizada de ejercicios.
+  - *Modo Editor autónomo:* Entorno profesional de trabajo sin paneles didácticos, con navegación fluida y directa entre el área de edición, consola de salida y controles principales.
+  - Opción configurable en las preferencias de NVDA para iniciar por defecto en el modo deseado.
+- **Interfaz Adaptativa por Contexto Pedagógico:**
+  - Ocultación automática del editor de código en lecciones puramente teóricas y en cuestionarios de autoevaluación.
+  - Selector nativo accesible (`wx.ListBox`) para preguntas de opción múltiple, con retroalimentación inmediata sobre la opción seleccionada.
+- **Asistente Pedagógico con Inteligencia Artificial (Google Gemini API):**
+  - Integración accesible de consultas didácticas contextuales mediante la tecla <kbd>F1</kbd>.
+  - Clave de API configurable de forma segura a través del panel de preferencias de NVDA.
+- **Soporte Multilingüe Oficial (Español e Inglés):**
+  - Localización completa de la interfaz de usuario, menús, diálogos, atajos de teclado y mensajes del sistema.
+  - Código inicial y ejercicios bilingües (*Learning Python with NVDA*).
+  - Título dinámico del panel de configuración de NVDA según el idioma activo.
+- **Diálogos de Bienvenida y Donaciones Accesibles:**
+  - Diálogo cordial de bienvenida sin cuadros de texto invasivos que entorpezcan la lectura.
+  - Invitación opcional para apoyar el desarrollo continuo mediante donaciones voluntarias vía PayPal.
+- **Herramientas de Edición y Navegación Accesible:**
+  - Atajos de teclado únicos y limpios sin duplicaciones redundantes.
+  - Ejecución de código mediante <kbd>Control + Enter</kbd>.
+  - Lectura de consigna o misión pedagógica mediante <kbd>F3</kbd>.
+  - Comentar y descomentar líneas mediante <kbd>Control + /</kbd>.
+  - Desplazamiento rápido entre funciones y clases con <kbd>Alt + N</kbd> y <kbd>Alt + P</kbd>.
+  - Diálogo accesible de búsqueda de símbolos con <kbd>Control + Shift + O</kbd>.
+  - Salto directo a la línea de error del Traceback con <kbd>F4</kbd>.
+  - Comprobación preventiva y balanceador de delimitadores con <kbd>F7</kbd>.
+  - Linter acústico en tiempo real para sangría PEP 8 y advertencias de sintaxis.
+  - Salida de consola verbalizable sin perder el foco del editor con <kbd>Control + Shift + C</kbd>.
+- **Documentación Accesible en Navegador Web:**
+  - Apertura directa de la guía y manual de usuario en el navegador web predeterminado mediante la tecla <kbd>F12</kbd>.
+- **Ciclo de Vida y Persistencia de Usuario Limpia:**
+  - Reinicio automático del progreso al desinstalar y reinstalar el complemento.
+  - Manejo robusto de datos de usuario en el perfil de configuración de NVDA.
+- **Compatibilidad Extensa:**
+  - Soporte garantizado desde NVDA 2022.1.0 hasta la versión actual 2026.2.0.

@@ -1,0 +1,68 @@
+# English translations for python_tutor add-on.
+# Copyright (C) 2026 Kevin Andrés Velasquez Vargas
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: python_tutor 3.0.0\n"
+"POT-Creation-Date: 2026-09-29 12:00-0500\n"
+"PO-Revision-Date: 2026-09-29 12:00-0500\n"
+"Last-Translator: Kevin Andrés Velasquez Vargas <kevinvelasquezvargas@gmail.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Aprendizaje de Python con NVDA"
+msgstr "Learning Python with NVDA"
+
+msgid "Desbloquea el poder de la programación: aprende Python desde cero con lecciones guiadas por voz y desarrolla tus propios proyectos en un editor diseñado exclusivamente para la accesibilidad con NVDA."
+msgstr "Unlock the power of programming: learn Python from scratch with voice-guided lessons and build your own projects in an editor designed exclusively for accessibility with NVDA."
+
+msgid "Registro de cambios versión 1.0.0:\n- Plan formativo integral de 40 capítulos estructurados desde fundamentos hasta la biblioteca estándar.\n- Interfaz adaptativa según el contexto pedagógico (ocultando el editor en lecciones conceptuales y quizzes).\n- Widget nativo accesible de selección para cuestionarios de evaluación conceptual.\n- Soporte multilingüe integral con localización completa al inglés (Learning Python with NVDA).\n- Diálogo accesible de bienvenida e invitación cordial para donaciones voluntarias vía PayPal.\n- Apertura accesible de la documentación en el navegador web mediante F12.\n- Ciclo de vida limpio: reinicio de progreso al desinstalar y reinstalar el complemento.\n- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.2.0."
+msgstr "Version 1.0.0 Changelog:\n- Comprehensive 40-chapter structured syllabus from foundations to advanced standard library.\n- Context-adaptive interface automatically concealing editor during conceptual reading and quizzes.\n- Native accessible radio box selector for multiple-choice assessments.\n- Full bilingual localization (Spanish/English: Learning Python with NVDA).\n- Accessible welcome onboarding guide and polite voluntary donation sequence.\n- Browser-based accessible documentation via F12.\n- Clean lifecycle resetting progress on reinstall and uninstall.\n- Certified compatibility from NVDA 2022.1.0 to 2026.2.0."
+
+msgid "Abre el entorno interactivo de aprendizaje de Python"
+msgstr "Opens the interactive Python learning environment"
+
+msgid "&Aprendizaje de Python con NVDA"
+msgstr "&Learning Python with NVDA"
+
+msgid "Aprendizaje de Python con NVDA..."
+msgstr "Learning Python with NVDA..."
+
+msgid "Realizar una donación..."
+msgstr "Support project (Donate)..."
+
+msgid "Soporte y contacto..."
+msgstr "Support and contact..."
+
+msgid "Idioma de la interfaz y lecciones:"
+msgstr "Interface and curriculum language:"
+
+msgid "Automático (según NVDA)"
+msgstr "Automatic (follow NVDA)"
+
+msgid "Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)"
+msgstr "Start directly in Standalone Editor Mode"
+
+msgid "Efectos sonoros de confirmación y eventos"
+msgstr "Sound confirmation effects and events"
+
+msgid "Avisos sonoros de sangría y estructura"
+msgstr "Auditory indentation cues (PEP 8)"
+
+msgid "Habilitar Asistente de IA para tecla F1 (opcional, requiere clave API de Gemini)"
+msgstr "Enable AI Assistant for F1 key (optional, requires Gemini API key)"
+
+msgid "Clave de API de Google Gemini (opcional):"
+msgstr "Google Gemini API Key (optional):"
+
+msgid "Nota: Por defecto, la tecla F1 ofrece explicaciones 100% locales sin conexión y de forma privada."
+msgstr "Note: By default, F1 provides 100% offline, private local explanations."
+
+msgid "Enviar mensaje de soporte"
+msgstr "Send support email"
+
+msgid "Realizar donación voluntaria"
+msgstr "Support project (Donate)"

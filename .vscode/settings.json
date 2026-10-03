@@ -1,0 +1,12 @@
+{
+    "editor.accessibilitySupport": "on",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.insertSpaces": false,
+    "python.analysis.stubPath": "${workspaceFolder}/.vscode/typings",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/addon",
+        "${workspaceFolder}/addon/globalPlugins"
+    ]
+}
+

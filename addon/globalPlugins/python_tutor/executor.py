@@ -123,12 +123,12 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
     old_stderr = sys.stderr
 
     def worker():
-        local_ns = {}
+        local_ns = {"__builtins__": __builtins__}
         try:
             sys.stdout = buf
             sys.stderr = buf
             compiled = compile(src, "<string>", "exec")
-            exec(compiled, {"__builtins__": __builtins__}, local_ns)
+            exec(compiled, local_ns)
             output = buf.getvalue()
             if not output:
                 output = "Código ejecutado (sin salidas impresas en consola)."

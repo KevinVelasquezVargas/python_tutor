@@ -130,8 +130,6 @@ def ejecutar_codigo_seguro(src, timeout=3.0):
             compiled = compile(src, "<string>", "exec")
             exec(compiled, local_ns)
             output = buf.getvalue()
-            if not output:
-                output = "Código ejecutado (sin salidas impresas en consola)."
             result_holder['res'] = ExecutionResult(
                 output=output,
                 success=True,

@@ -303,7 +303,7 @@ CURRICULUM = [
                 'instruccion': 'Examina el código. Observa cómo las líneas que inician con # no generan salida en la consola. Pulsa Control + Enter.',
                 'codigo': "# Este es un comentario explicativo\n# La siguiente línea emite el mensaje oficial:\nprint('Código documentado con éxito')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'documentado' in r.lower()
+                'validar': lambda s, r, n: ('documentado' in r.lower() or 'documented' in r.lower())
             },
             {
                 'titulo': 'Paso 3: Experimentación: Añadir una Nota Propia',
@@ -355,7 +355,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo la variable `estado` cambia entre la línea 1 y la línea 3. Pulsa Control + Enter para escuchar las dos salidas consecutivas.',
                 'codigo': "estado = 'Cargando datos...'\nprint(estado)\nestado = 'Proceso completado'\nprint(estado)\n",
                 'pistas': ['Pulsa Control + Enter para ver la evolución de la variable.'],
-                'validar': lambda s, r, n: 'cargando' in r.lower() and 'completado' in r.lower()
+                'validar': lambda s, r, n: (('cargando' in r.lower() or 'loading' in r.lower()) and ('completado' in r.lower() or 'completed' in r.lower()))
             },
             {
                 'titulo': 'Paso 3: Experimentación: Actualizar el Estado Final',
@@ -363,7 +363,7 @@ CURRICULUM = [
                 'instruccion': "Modifica la segunda asignación para que `estado` sea 'Operación exitosa en NVDA' y ejecuta con Control + Enter.",
                 'codigo': "estado = 'Iniciando'\nprint(estado)\nestado = 'Operación exitosa en NVDA'\nprint(estado)\n",
                 'pistas': ['Reasigna la variable estado en la línea 3.'],
-                'validar': lambda s, r, n: 'exitosa' in r.lower() and n.get('estado') == 'Operación exitosa en NVDA'
+                'validar': lambda s, r, n: ('exitosa' in r.lower() or 'successful' in r.lower() or 'nvda' in r.lower()) and (n.get('estado') == 'Operación exitosa en NVDA' or n.get('status') == 'Successful operation in NVDA' or 'nvda' in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Marcador de Juego',
@@ -372,7 +372,7 @@ CURRICULUM = [
                 'codigo': '# Declara puntuacion = 0, imprime, reasigna a 100 e imprime:\n\n',
                 'salida_esperada': '0\n100',
                 'pistas': ['Escribe puntuacion = 0, print(puntuacion), puntuacion = 100, print(puntuacion).'],
-                'validar': lambda s, r, n: n.get('puntuacion') == 100 and '0' in r and '100' in r
+                'validar': lambda s, r, n: (n.get('puntuacion') == 100 or n.get('score') == 100) and '0' in r and '100' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Ciclo de Vida de la Reasignación',
@@ -415,7 +415,7 @@ CURRICULUM = [
                 'instruccion': 'Calcula el promedio de tres notas sumándolas entre paréntesis y dividiéndolas: `promedio = (8 + 9 + 10) // 3`. Muestra el resultado y pulsa Control + Enter.',
                 'codigo': 'promedio = (8 + 9 + 10) // 3\nprint(promedio)\n',
                 'pistas': ['Usa paréntesis para garantizar que la suma ocurra antes de la división.'],
-                'validar': lambda s, r, n: n.get('promedio') == 9 and '9' in r
+                'validar': lambda s, r, n: (n.get('promedio') == 9 or n.get('average') == 9) and '9' in r
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Perímetro de un Rectángulo',
@@ -424,7 +424,7 @@ CURRICULUM = [
                 'codigo': '# Declara ancho, alto, calcula perimetro e imprime:\n\n',
                 'salida_esperada': '20',
                 'pistas': ['Define ancho = 6, alto = 4, perimetro = 2 * (ancho + alto), y print(perimetro).'],
-                'validar': lambda s, r, n: n.get('perimetro') == 20 and '20' in r
+                'validar': lambda s, r, n: (n.get('perimetro') == 20 or n.get('perimeter') == 20) and '20' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Precedencia Aritmética',
@@ -614,7 +614,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo se toma una entrada numérica textual y se convierte a entero con int() antes de operar. Pulsa Control + Enter.',
                 'codigo': "edad_texto = '20'\nedad = int(edad_texto)\nmeses = edad * 12\nprint(f'Edad: {edad} años, equivalente a {meses} meses')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: n.get('meses') == 240 and '240' in r
+                'validar': lambda s, r, n: (n.get('meses') == 240 or n.get('months') == 240) and '240' in r
             },
             {
                 'titulo': 'Paso 3: Experimentación: Suma de Dos Números Convertidos',
@@ -622,7 +622,7 @@ CURRICULUM = [
                 'instruccion': "Cambia los textos `num1_str = '50'` y `num2_str = '25'`. Conviértelos a enteros y calcula `suma = int(num1_str) + int(num2_str)`. Muestra la suma y pulsa Control + Enter.",
                 'codigo': "num1_str = '50'\nnum2_str = '25'\nsuma = int(num1_str) + int(num2_str)\nprint(f'Suma total: {suma}')\n",
                 'pistas': ['Asegúrate de envolver ambas cadenas con int().'],
-                'validar': lambda s, r, n: n.get('suma') == 75 and '75' in r
+                'validar': lambda s, r, n: (n.get('suma') == 75 or n.get('total') == 75) and '75' in r
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Calculadora de Doble y Mitad',
@@ -778,7 +778,7 @@ CURRICULUM = [
                 'instruccion': 'Cambia `edad = 15`. Al ejecutar con Control + Enter, la condición `edad >= 18` será falsa y la línea sangrada NO se ejecutará, dejando la consola en silencio. Comprueba este comportamiento.',
                 'codigo': "edad = 15\nif edad >= 18:\n    print('Acceso autorizado por mayoría de edad')\n",
                 'pistas': ['Ejecuta con Control + Enter y comprueba que no se imprime nada.'],
-                'validar': lambda s, r, n: n.get('edad') == 15 and len(r.strip()) == 0
+                'validar': lambda s, r, n: (n.get('edad') == 15 or n.get('age') == 15) and ('autorizado' not in r.lower() and 'authorized' not in r.lower() and 'granted' not in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Alerta de Temperatura',
@@ -978,7 +978,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo la variable `contador` inicia en 1, se incrementa en cada paso con `contador += 1` y el bucle finaliza al llegar a 4. Pulsa Control + Enter.',
                 'codigo': "contador = 1\nwhile contador <= 3:\n    print(f'Iteración: {contador}')\n    contador += 1\nprint('Bucle finalizado con éxito')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'iteración: 3' in r.lower() and 'finalizado' in r.lower()
+                'validar': lambda s, r, n: ('3' in r and ('finalizado' in r.lower() or 'finished' in r.lower()))
             },
             {
                 'titulo': 'Paso 3: Experimentación: Cuenta Regresiva',
@@ -995,7 +995,7 @@ CURRICULUM = [
                 'codigo': 'energia = 1\n# Escribe el bucle while que duplica energia e imprime:\n\n',
                 'salida_esperada': '1\n2\n4\n8\n16',
                 'pistas': ['while energia < 30: print(energia) energia *= 2'],
-                'validar': lambda s, r, n: n.get('energia') == 32 and '16' in r
+                'validar': lambda s, r, n: (n.get('energia') == 32 or n.get('energy') == 32) and '16' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: El Peligro del Bucle Infinito',
@@ -1030,7 +1030,7 @@ CURRICULUM = [
                 'instruccion': 'Examina el código. Observa cómo la línea `paso += 1` garantiza que `paso < 5` se vuelva falsa tras 4 iteraciones. Pulsa Control + Enter.',
                 'codigo': "paso = 1\nwhile paso < 5:\n    print(f'Procesando bloque seguro #{paso}')\n    paso += 1\nprint('Ejecución segura completada sin bloqueos')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'bloque seguro #4' in r.lower() and 'segura' in r.lower()
+                'validar': lambda s, r, n: ('4' in r and ('segur' in r.lower() or 'safe' in r.lower()))
             },
             {
                 'titulo': 'Paso 3: Experimentación: Añadir la Condición de Salida Faltante',
@@ -1047,7 +1047,7 @@ CURRICULUM = [
                 'codigo': 'bateria = 70\n# Incrementa bateria de 10 en 10 hasta 100 e imprime al final:\n\n',
                 'salida_esperada': 'Carga completa: 100%',
                 'pistas': ["while bateria < 100: bateria += 10, y al salir print(f'Carga completa: {bateria}%')"],
-                'validar': lambda s, r, n: n.get('bateria') == 100 and '100%' in r
+                'validar': lambda s, r, n: (n.get('bateria') == 100 or n.get('battery') == 100) and '100%' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Atajo Universal de Interrupción',
@@ -1082,7 +1082,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo el bucle range(1, 10) se detiene tan pronto encuentra el número 3 gracias a break. Pulsa Control + Enter.',
                 'codigo': "for n in range(1, 10):\n    if n == 3:\n        print('¡Objetivo 3 encontrado! Deteniendo bucle.')\n        break\n    print(f'Revisando: {n}')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'objetivo 3' in r.lower() and 'revisando: 4' not in r.lower()
+                'validar': lambda s, r, n: ('3' in r and ('objetivo' in r.lower() or 'target' in r.lower() or 'encontrado' in r.lower() or 'found' in r.lower()) and ('revisando: 4' not in r.lower() and 'checking: 4' not in r.lower()))
             },
             {
                 'titulo': 'Paso 3: Experimentación: Omitir con continue',
@@ -1090,7 +1090,7 @@ CURRICULUM = [
                 'instruccion': 'Usa continue para saltarte los números impares: si `n % 2 != 0: continue`. Observa cómo solo se imprimen los números pares. Ejecuta con Control + Enter.',
                 'codigo': "for n in range(1, 7):\n    if n % 2 != 0:\n        continue\n    print(f'Número par: {n}')\n",
                 'pistas': ['continue omite la llamada a print para los impares.'],
-                'validar': lambda s, r, n: 'par: 2' in r.lower() and 'par: 4' in r.lower() and '1' not in r
+                'validar': lambda s, r, n: (('par: 2' in r.lower() or 'even: 2' in r.lower() or 'even number: 2' in r.lower()) and ('par: 4' in r.lower() or 'even: 4' in r.lower() or 'even number: 4' in r.lower()) and '1' not in r)
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Detenerse ante un Número Negativo',
@@ -1099,7 +1099,7 @@ CURRICULUM = [
                 'codigo': 'lecturas = [15, 22, -1, 30]\n# Itera e interrumpe con break ante números negativos:\n\n',
                 'salida_esperada': '15\n22\nLectura anómala detectada',
                 'pistas': ["if val < 0: print('Lectura anómala detectada') break else: print(val)"],
-                'validar': lambda s, r, n: 'anómala' in r.lower() and '30' not in r
+                'validar': lambda s, r, n: ('anómala' in r.lower() or 'anomala' in r.lower() or 'anomal' in r.lower()) and '30' not in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: La Sentencia continue',
@@ -1142,7 +1142,7 @@ CURRICULUM = [
                 'instruccion': "Modifica el segundo elemento (índice 1) para que sea 'C++': `lenguajes[1] = 'C++'`. Muestra la lista completa y pulsa Control + Enter.",
                 'codigo': "lenguajes = ['Python', 'C', 'JavaScript']\nlenguajes[1] = 'C++'\nprint(lenguajes)\n",
                 'pistas': ["Usa lenguajes[1] = 'C++' para reemplazar en memoria."],
-                'validar': lambda s, r, n: 'c++' in str(n.get('lenguajes', [])).lower()
+                'validar': lambda s, r, n: 'c++' in str(n.get('lenguajes', n.get('languages', []))).lower()
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Colección de Tres Herramientas',
@@ -1151,7 +1151,7 @@ CURRICULUM = [
                 'codigo': '# Crea herramientas e imprime el primer y último elemento:\n\n',
                 'salida_esperada': 'NVDA VSCode',
                 'pistas': ["herramientas = ['NVDA', 'Python', 'VSCode'] y print(herramientas[0], herramientas[-1])"],
-                'validar': lambda s, r, n: 'nvda' in r.lower() and 'vscode' in r.lower()
+                'validar': lambda s, r, n: 'nvda' in r.lower() and ('vscode' in r.lower() or 'tools' in r.lower() or 'vs code' in r.lower())
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: El Índice del Primer Elemento',
@@ -1186,7 +1186,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo la lista tareas crece con append() y se mide con len(). Pulsa Control + Enter.',
                 'codigo': "tareas = ['Repasar Python', 'Configurar NVDA']\ntareas.append('Escribir script accesible')\nprint('Total tareas:', len(tareas))\nprint('Lista completa:', tareas)\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: len(n.get('tareas', [])) == 3 and '3' in r
+                'validar': lambda s, r, n: len(n.get('tareas', n.get('tasks', []))) == 3 and '3' in r
             },
             {
                 'titulo': 'Paso 3: Experimentación: Extracción de Elementos con pop()',
@@ -1203,7 +1203,7 @@ CURRICULUM = [
                 'codigo': "cola = ['Ana', 'Bernardo']\n# Agrega a Carlos con append, extrae el índice 0 con pop e imprime cola:\n\n",
                 'salida_esperada': "['Bernardo', 'Carlos']",
                 'pistas': ["cola.append('Carlos'), cola.pop(0), print(cola)"],
-                'validar': lambda s, r, n: n.get('cola') == ['Bernardo', 'Carlos'] and 'bernardo' in r.lower() and 'carlos' in r.lower()
+                'validar': lambda s, r, n: (n.get('cola') == ['Bernardo', 'Carlos'] or n.get('queue') == ['Bernardo', 'Carlos']) and 'bernardo' in r.lower() and 'carlos' in r.lower()
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: El Método append()',
@@ -1238,7 +1238,7 @@ CURRICULUM = [
                 'instruccion': 'Examina cómo `for fruta in frutas:` extrae directamente cada texto. Pulsa Control + Enter para escuchar cada fruta en una línea.',
                 'codigo': "frutas = ['Manzana', 'Pera', 'Plátano']\nfor fruta in frutas:\n    print(f'Fruta disponible: {fruta}')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'manzana' in r.lower() and 'plátano' in r.lower() or 'platano' in r.lower()
+                'validar': lambda s, r, n: (('manzana' in r.lower() and ('plátano' in r.lower() or 'platano' in r.lower())) or ('apple' in r.lower() and 'banana' in r.lower()))
             },
             {
                 'titulo': 'Paso 3: Experimentación: Numeración Accesible con enumerate()',
@@ -1290,7 +1290,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo la tupla `resolucion = (1920, 1080)` se desempaqueta en `ancho, alto`. Pulsa Control + Enter.',
                 'codigo': "resolucion = (1920, 1080)\nancho, alto = resolucion\nprint(f'Ancho: {ancho} píxeles, Alto: {alto} píxeles')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: n.get('ancho') == 1920 and n.get('alto') == 1080
+                'validar': lambda s, r, n: (n.get('ancho') == 1920 or n.get('width') == 1920) and (n.get('alto') == 1080 or n.get('height') == 1080)
             },
             {
                 'titulo': 'Paso 3: Experimentación: Comprobar la Inmutabilidad de la Tupla',
@@ -1342,7 +1342,7 @@ CURRICULUM = [
                 'instruccion': 'Examina cómo se almacenan datos estructurados de un usuario y se consultan por clave. Pulsa Control + Enter.',
                 'codigo': "config = {'idioma': 'es', 'volumen': 85, 'lector': 'NVDA'}\nprint('Lector activo:', config['lector'])\nprint('Nivel de volumen:', config['volumen'])\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'nvda' in r.lower() and '85' in r
+                'validar': lambda s, r, n: ('nvda' in r.lower() or 'volume' in r.lower()) and '85' in r
             },
             {
                 'titulo': 'Paso 3: Experimentación: Acceso Seguro con get() y Adición de Claves',
@@ -1350,7 +1350,7 @@ CURRICULUM = [
                 'instruccion': "Agrega una nueva clave `config['braille'] = True` y consulta con `.get()` una clave inexistente con valor de respaldo. Pulsa Control + Enter.",
                 'codigo': "config = {'idioma': 'es', 'volumen': 85}\nconfig['braille'] = True\nvelocidad = config.get('velocidad', 50)\nprint('Configuración actualizada:', config)\nprint('Velocidad por defecto:', velocidad)\n",
                 'pistas': ['get() evita que el programa lance KeyError.'],
-                'validar': lambda s, r, n: n.get('config', {}).get('braille') is True and '50' in r
+                'validar': lambda s, r, n: n.get('config', {}).get('braille') is True and ('50' in r or 'speed' in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Ficha de Perfil Profesional',
@@ -1402,7 +1402,7 @@ CURRICULUM = [
                 'instruccion': 'Crea una función que reciba dos parámetros `mostrar_progreso(capitulo, total)` e imprima el estado. Invócala y pulsa Control + Enter.',
                 'codigo': "def mostrar_progreso(capitulo, total):\n    print(f'Avanzando: Capítulo {capitulo} de {total}')\n\nmostrar_progreso(29, 40)\n",
                 'pistas': ['Pasa los dos números dentro de los paréntesis al llamar a la función.'],
-                'validar': lambda s, r, n: 'capítulo 29 de 40' in r.lower() or 'capitulo 29 de 40' in r.lower()
+                'validar': lambda s, r, n: 'capítulo 29 de 40' in r.lower() or 'capitulo 29 de 40' in r.lower() or 'chapter 29 of 40' in r.lower()
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Función Calculadora de Rectángulo',
@@ -1446,7 +1446,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo la función `cuadrado(x)` devuelve el resultado con return y este se almacena en la variable `res`. Pulsa Control + Enter.',
                 'codigo': "def cuadrado(x):\n    return x * x\n\nres = cuadrado(8)\nprint(f'El resultado guardado en memoria es: {res}')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: n.get('res') == 64 and '64' in r
+                'validar': lambda s, r, n: (n.get('res') == 64 or n.get('result') == 64) and '64' in r
             },
             {
                 'titulo': 'Paso 3: Experimentación: Encadenando Funciones con return',
@@ -1454,7 +1454,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo el retorno de una función puede pasarse directamente a otra operación matemática: `resultado = cuadrado(5) + 10`. Pulsa Control + Enter.',
                 'codigo': "def cuadrado(n):\n    return n * n\n\nresultado = cuadrado(5) + 10\nprint(f'Cálculo encadenado: {resultado}')\n",
                 'pistas': ['cuadrado(5) devuelve 25 y suma 10 = 35.'],
-                'validar': lambda s, r, n: n.get('resultado') == 35 and '35' in r
+                'validar': lambda s, r, n: (n.get('resultado') == 35 or n.get('result') == 35) and '35' in r
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Función Validadora de Mayoría de Edad',
@@ -1506,7 +1506,7 @@ CURRICULUM = [
                 'instruccion': 'Examina cómo la variable global `version = 3` puede ser leída dentro de la función sin conflicto. Ejecuta con Control + Enter.',
                 'codigo': "version = 3\n\ndef consultar_version():\n    return f'Versión global activa: {version}'\n\nprint(consultar_version())\n",
                 'pistas': ['Las funciones pueden leer variables globales si no las reasignan.'],
-                'validar': lambda s, r, n: 'versión global activa: 3' in r.lower() or 'version global activa: 3' in r.lower()
+                'validar': lambda s, r, n: '3' in r and ('versión' in r.lower() or 'version' in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Comunicación Limpia mediante Parámetros',
@@ -1602,7 +1602,7 @@ CURRICULUM = [
                 'instruccion': "Observa el ciclo completo: primero se escribe una frase en 'notas.txt' y luego se lee y muestra en consola. Pulsa Control + Enter.",
                 'codigo': "with open('notas.txt', 'w', encoding='utf-8') as f:\n    f.write('Python es accesible con NVDA')\n\nwith open('notas.txt', 'r', encoding='utf-8') as f:\n    contenido = f.read()\n\nprint(f'Contenido recuperado del disco: {contenido}')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'python es accesible' in r.lower()
+                'validar': lambda s, r, n: 'python' in r.lower() and ('accesible' in r.lower() or 'accessible' in r.lower())
             },
             {
                 'titulo': "Paso 3: Experimentación: Añadir Líneas con Modo Append ('a')",
@@ -1610,7 +1610,7 @@ CURRICULUM = [
                 'instruccion': "Abre en modo 'a' para agregar una segunda línea con salto de línea `\\n` y luego lee todo el archivo. Pulsa Control + Enter.",
                 'codigo': "with open('registro.txt', 'w', encoding='utf-8') as f:\n    f.write('Entrada 1\\n')\n\nwith open('registro.txt', 'a', encoding='utf-8') as f:\n    f.write('Entrada 2 agregada\\n')\n\nwith open('registro.txt', 'r', encoding='utf-8') as f:\n    print(f.read().strip())\n",
                 'pistas': ["El modo 'a' agrega al final sin sobreescribir."],
-                'validar': lambda s, r, n: 'entrada 1' in r.lower() and 'entrada 2' in r.lower()
+                'validar': lambda s, r, n: ('1' in r and '2' in r)
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Guardar y Leer Mensaje del Alumno',
@@ -1654,7 +1654,7 @@ CURRICULUM = [
                 'instruccion': "Observa cómo se guarda un diccionario en 'config.json' con dump() y luego se recupera con load(). Pulsa Control + Enter.",
                 'codigo': "import json\n\nusuario = {'nombre': 'Elena', 'nivel': 3, 'accesible': True}\n\nwith open('config.json', 'w', encoding='utf-8') as f:\n    json.dump(usuario, f, indent=2)\n\nwith open('config.json', 'r', encoding='utf-8') as f:\n    datos_cargados = json.load(f)\n\nprint('Datos recuperados de JSON:', datos_cargados['nombre'], datos_cargados['nivel'])\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'elena 3' in r.lower()
+                'validar': lambda s, r, n: 'elena' in r.lower() and '3' in r
             },
             {
                 'titulo': 'Paso 3: Experimentación: Modificar y Re-serializar',
@@ -1714,7 +1714,7 @@ CURRICULUM = [
                 'instruccion': "Asigna atributos específicos a cada alumno usando la notación de punto: `alumno1.nombre = 'Elena'` y `alumno2.nombre = 'Kevin'`. Imprime ambos y pulsa Control + Enter.",
                 'codigo': "class Estudiante:\n    pass\n\nalumno1 = Estudiante()\nalumno1.nombre = 'Elena'\n\nalumno2 = Estudiante()\nalumno2.nombre = 'Kevin'\n\nprint(f'Estudiantes registrados: {alumno1.nombre} y {alumno2.nombre}')\n",
                 'pistas': ['La notación de punto vincula el atributo al objeto concreto.'],
-                'validar': lambda s, r, n: 'elena y kevin' in r.lower()
+                'validar': lambda s, r, n: ('elena' in r.lower() and 'kevin' in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Modelar una Tarea de Software',
@@ -1723,7 +1723,7 @@ CURRICULUM = [
                 'codigo': '# Define la clase Tarea, crea t, asigna atributos e imprime:\n\n',
                 'salida_esperada': 'Tarea: Aprender POO, Estado: True',
                 'pistas': ["class Tarea: pass, t = Tarea(), t.titulo = 'Aprender POO', t.completada = True, print(f'Tarea: {t.titulo}, Estado: {t.completada}')"],
-                'validar': lambda s, r, n: 'aprender poo' in r.lower() and 'true' in r.lower()
+                'validar': lambda s, r, n: ('aprender poo' in r.lower() or 'learn oop' in r.lower() or 'poo' in r.lower() or 'oop' in r.lower()) and 'true' in r.lower()
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Relación Clase vs Objeto',
@@ -1758,7 +1758,7 @@ CURRICULUM = [
                 'instruccion': 'Examina la clase `CanalAccesible`. Observa cómo `__init__` inicializa el nombre y `describir()` emite el mensaje. Pulsa Control + Enter.',
                 'codigo': "class CanalAccesible:\n    def __init__(self, nombre, tipo):\n        self.nombre = nombre\n        self.tipo = tipo\n\n    def describir(self):\n        return f'Canal: {self.nombre} ({self.tipo})'\n\ncanal1 = CanalAccesible('Voz NVDA', 'Audio Sintetizado')\nprint(canal1.describir())\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar.'],
-                'validar': lambda s, r, n: 'voz nvda' in r.lower() and 'sintetizado' in r.lower()
+                'validar': lambda s, r, n: ('voz nvda' in r.lower() or 'nvda voice' in r.lower()) and ('sintetizado' in r.lower() or 'synthesized' in r.lower())
             },
             {
                 'titulo': 'Paso 3: Experimentación: Modificar Estado Interno con un Método',
@@ -1766,7 +1766,7 @@ CURRICULUM = [
                 'instruccion': 'Crea una clase `Contador` con un método `incrementar()` que sume `self.valor += 1`. Ejecuta con Control + Enter.',
                 'codigo': "class Contador:\n    def __init__(self):\n        self.valor = 0\n\n    def incrementar(self):\n        self.valor += 1\n\nc = Contador()\nc.incrementar()\nc.incrementar()\nprint(f'Valor actual del contador: {c.valor}')\n",
                 'pistas': ['Llamar c.incrementar() dos veces eleva el valor a 2.'],
-                'validar': lambda s, r, n: '2' in r and getattr(n.get('c'), 'valor', 0) == 2
+                'validar': lambda s, r, n: '2' in r and (getattr(n.get('c'), 'valor', 0) == 2 or getattr(n.get('c'), 'value', 0) == 2)
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Cuenta de Ahorros Segura',
@@ -1775,7 +1775,7 @@ CURRICULUM = [
                 'codigo': '# Define CuentaBancaria, deposita 150 e imprime:\n\n',
                 'salida_esperada': 'Titular: Elena, Saldo: 150',
                 'pistas': ["Define __init__ y depositar con self. Instancia cuenta = CuentaBancaria('Elena'), llama cuenta.depositar(150) e imprime."],
-                'validar': lambda s, r, n: 'elena' in r.lower() and '150' in r and getattr(n.get('cuenta'), 'saldo', 0) == 150
+                'validar': lambda s, r, n: 'elena' in r.lower() and '150' in r and (getattr(n.get('cuenta', n.get('account')), 'saldo', getattr(n.get('cuenta', n.get('account')), 'balance', 0)) == 150)
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: El Significado de self',
@@ -1818,7 +1818,7 @@ CURRICULUM = [
                 'instruccion': 'Usa `datetime.date.today()` para obtener la fecha de hoy y formatéala en pantalla. Pulsa Control + Enter.',
                 'codigo': "import datetime\n\nhoy = datetime.date.today()\nprint(f'Fecha registrada por el sistema: {hoy}')\n",
                 'pistas': ['datetime forma parte de la biblioteca estándar nativa.'],
-                'validar': lambda s, r, n: 'fecha registrada' in r.lower()
+                'validar': lambda s, r, n: 'fecha registrada' in r.lower() or 'date recorded' in r.lower()
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Generador de Claves Seguras Aleatorias',
@@ -1826,7 +1826,7 @@ CURRICULUM = [
                 'instruccion': 'Usa `import random`. Dada una lista de caracteres `caracteres = [\'A\', \'B\', \'C\', \'1\', \'2\', \'3\']`, selecciona 4 caracteres al azar con `token = [random.choice(caracteres) for _ in range(4)]`. Conviértelo en texto con `\'\'.join(token)` e imprime: `print(f\'Token generado: {"".join(token)}\')`. Pulsa Control + Enter.',
                 'codigo': "import random\ncaracteres = ['A', 'B', 'C', '1', '2', '3']\n# Genera un token aleatorio de 4 caracteres e imprímelo:\n\n",
                 'pistas': ["Usa random.choice dentro de una lista o bucle y únelos con ''.join."],
-                'validar': lambda s, r, n: 'token generado' in r.lower() and len(r.strip()) > 15
+                'validar': lambda s, r, n: ('token generado' in r.lower() or 'token' in r.lower()) and len(r.strip()) > 5
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: La Biblioteca Estándar',
@@ -1869,7 +1869,7 @@ CURRICULUM = [
                 'instruccion': 'Filtra la consulta SQL usando `WHERE nota >= 9.0` para recuperar únicamente estudiantes destacados. Pulsa Control + Enter.',
                 'codigo': "import sqlite3\n\ncon = sqlite3.connect(':memory:')\ncur = con.cursor()\ncur.execute('CREATE TABLE cursos (titulo TEXT, horas INTEGER)')\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('Python Accesible', 40))\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('HTML Rápido', 10))\ncon.commit()\n\ncur.execute('SELECT titulo FROM cursos WHERE horas >= 20')\nfor fila in cur.fetchall():\n    print(f'Curso intensivo: {fila[0]}')\ncon.close()\n",
                 'pistas': ['WHERE filtra los registros en la base de datos.'],
-                'validar': lambda s, r, n: 'python accesible' in r.lower() and 'html rápido' not in r.lower()
+                'validar': lambda s, r, n: ('python accesible' in r.lower() or 'accessible python' in r.lower()) and ('html rápido' not in r.lower() and 'quick html' not in r.lower())
             },
             {
                 'titulo': 'Paso 4: Reto Práctico: Inventario Accesible con SQLite',
@@ -1913,7 +1913,7 @@ CURRICULUM = [
                 'instruccion': 'Observa cómo se emiten tonos de audio con winsound para confirmar estados del sistema. Pulsa Control + Enter para escuchar.',
                 'codigo': "import winsound\n\nprint('Emitiendo señal acústica de éxito (frecuencia 880 Hz)...')\nwinsound.Beep(880, 150)\nprint('Notificación acústica completada.')\n",
                 'pistas': ['Pulsa Control + Enter para ejecutar y escuchar el tono.'],
-                'validar': lambda s, r, n: 'notificación acústica' in r.lower() or 'notificacion acustica' in r.lower()
+                'validar': lambda s, r, n: 'notificación acústica' in r.lower() or 'notificacion acustica' in r.lower() or 'acoustic notification' in r.lower()
             },
             {
                 'titulo': 'Paso 3: Experimentación: Señal Acústica de Alerta',

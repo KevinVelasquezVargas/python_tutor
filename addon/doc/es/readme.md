@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/KevinVelasquezVargas/python_tutor/releases/latest">
-    <img src="https://img.shields.io/badge/Versi%C3%B3n-1.0.0-0078D4.svg?style=for-the-badge&logo=github" alt="Versión 1.0.0 Oficial">
+    <img src="https://img.shields.io/badge/Versi%C3%B3n-3.0.0-0078D4.svg?style=for-the-badge&logo=github" alt="Versión 3.0.0 Oficial">
   </a>
   <a href="https://www.gnu.org/licenses/gpl-3.0.html">
     <img src="https://img.shields.io/badge/Licencia-GNU%20GPLv3-28a745.svg?style=for-the-badge" alt="Licencia GNU General Public License v3.0">
@@ -51,11 +51,11 @@ Construido bajo una filosofía pedagógica de **«Conceptos Primero»**, el ento
 ### Descarga del Paquete Oficial
 El complemento se distribuye empaquetado en formato canónico para NVDA:
 
-* 📦 **Paquete Listo para Instalar:** [**Descargar python_tutor-1.0.0.nvda-addon**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v1.0.0/python_tutor-1.0.0.nvda-addon) *(689 KB)*
-* 📂 **Código Fuente Completo:** [**Descargar python_tutor-source-v1.0.0.zip**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v1.0.0/python_tutor-source-v1.0.0.zip)
+* 📦 **Paquete Listo para Instalar:** [**Descargar python_tutor-3.0.0.nvda-addon**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v3.0.0/python_tutor-3.0.0.nvda-addon) *(689 KB)*
+* 📂 **Código Fuente Completo:** [**Descargar python_tutor-source-v3.0.0.zip**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v3.0.0/python_tutor-source-v3.0.0.zip)
 
 ### Pasos de Instalación
-1. Descarga el archivo `python_tutor-1.0.0.nvda-addon`.
+1. Descarga el archivo `python_tutor-3.0.0.nvda-addon`.
 2. Pulsa <kbd>Enter</kbd> sobre el archivo descargado para que NVDA inicie el gestor de instalación.
 3. Confirma la instalación y reinicia NVDA cuando el sistema lo solicite.
 4. Pulsa el atajo global **<kbd>NVDA + Ctrl + Shift + P</kbd>** en cualquier momento para iniciar el entorno.

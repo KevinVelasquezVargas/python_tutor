@@ -51,8 +51,7 @@ Construido bajo una filosofía pedagógica de **«Conceptos Primero»**, el ento
 ### Descarga del Paquete Oficial
 El complemento se distribuye empaquetado en formato canónico para NVDA:
 
-* 📦 **Paquete Listo para Instalar:** [**Descargar python_tutor-3.0.0.nvda-addon**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v3.0.0/python_tutor-3.0.0.nvda-addon) *(689 KB)*
-* 📂 **Código Fuente Completo:** [**Descargar python_tutor-source-v3.0.0.zip**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v3.0.0/python_tutor-source-v3.0.0.zip)
+* 📦 **Paquete Oficial para NVDA:** [**Descargar python_tutor-3.0.0.nvda-addon**](https://github.com/KevinVelasquezVargas/python_tutor/releases/download/v3.0.0/python_tutor-3.0.0.nvda-addon) *(694 KB)*
 
 ### Pasos de Instalación
 1. Descarga el archivo `python_tutor-3.0.0.nvda-addon`.

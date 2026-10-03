@@ -179,7 +179,7 @@ class TestAddonMetadata(unittest.TestCase):
             content = f.read()
 
         self.assertIn("name = python_tutor", content)
-        self.assertIn("version = 3.0.0", content)
+        self.assertIn("version = 1.0.0", content)
         self.assertIn("minimumNVDAVersion = 2022.1.0", content)
         self.assertIn("lastTestedNVDAVersion = 2026.2.0", content)
         self.assertIn("Kevin Andrés Velasquez Vargas", content)
@@ -212,17 +212,17 @@ class TestAudioAssets(unittest.TestCase):
 
 
 class TestAddonFeatures(unittest.TestCase):
-    """Pruebas unitarias para las funcionalidades avanzadas y la versión 3.0.0."""
+    """Pruebas unitarias para las funcionalidades avanzadas y la versión 1.0.0."""
 
-    def test_version_3_0_0(self):
-        """Verifica que los manifiestos y la configuración certifiquen la versión 3.0.0."""
+    def test_version_1_0_0(self):
+        """Verifica que los manifiestos y la configuración certifiquen la versión 1.0.0."""
         import buildVars
-        self.assertEqual(buildVars.addon_info["addon_version"], "3.0.0")
+        self.assertEqual(buildVars.addon_info["addon_version"], "1.0.0")
 
         manifest_path = os.path.join(BASE_DIR, "addon", "manifest.ini")
         with open(manifest_path, "r", encoding="utf-8") as f:
             content = f.read()
-        self.assertIn("version = 3.0.0", content)
+        self.assertIn("version = 1.0.0", content)
 
     def test_compatibility_versions(self):
         """Verifica que el rango de compatibilidad de NVDA sea estrictamente 2022.1.0 a 2026.2.0."""

@@ -8,12 +8,12 @@ addon_info = AddonInfo(
 	addon_name="python_tutor",
 	addon_summary=_("Aprendizaje de Python con NVDA"),
 	addon_description=_("""Desbloquea el poder de la programación: aprende Python desde cero con lecciones guiadas por voz y desarrolla tus propios proyectos en un editor diseñado exclusivamente para la accesibilidad con NVDA."""),
-	addon_version="3.0.0",
-	addon_changelog=_("""Registro de cambios versión 3.0.0:
-- Plan formativo insignia de 40 capítulos (160 lecciones) con metodología pedagógica Conceptos Primero.
+	addon_version="1.0.0",
+	addon_changelog=_("""Registro de cambios versión 1.0.0:
+- Plan formativo integral de 40 capítulos (160 lecciones) con metodología pedagógica Conceptos Primero.
 - Dualidad operativa: alternancia fluida entre Modo Tutor guiado y Modo Editor autónomo (Control + M).
-- Interfaz adaptativa: ocultación contextual del editor en lecciones teóricas y selector accesible de quizes.
-- Selector de capítulos (F6) con navegación flexible y desbloqueo de acceso directo.
+- Interfaz adaptativa: ocultación contextual del editor en lecciones teóricas y selector accesible de quizes (wx.RadioBox).
+- Selector de capítulos con navegación flexible y desbloqueo de acceso directo.
 - Localización bilingüe oficial en español e inglés (Learning Python with NVDA).
 - Asistente explicador local offline (F1) e integración opcional con Google Gemini API (Control + Shift + I).
 - Independencia técnica total: basado 100% en la biblioteca estándar de Python (sqlite3, json, math, random).

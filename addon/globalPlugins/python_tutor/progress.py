@@ -132,14 +132,9 @@ class ProgressManager:
 
     @classmethod
     def is_chapter_unlocked(cls, chapter_idx):
-        """El capítulo 0 siempre está disponible; el capítulo N requiere haber completado el N-1."""
-        if chapter_idx <= 0:
-            return True
+        """Todos los capítulos están disponibles y desbloqueados para permitir navegación libre."""
         from .curriculum import CURRICULUM
-        if chapter_idx >= len(CURRICULUM):
-            return False
-        prev_cap = CURRICULUM[chapter_idx - 1]
-        return cls.is_chapter_completed(chapter_idx - 1, len(prev_cap.get("pasos", [])))
+        return 0 <= chapter_idx < len(CURRICULUM)
 
     @classmethod
     def unlock_up_to_chapter(cls, target_chapter_idx):

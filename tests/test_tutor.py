@@ -364,7 +364,12 @@ class TestAddonFeatures(unittest.TestCase):
         self.assertTrue(hasattr(json, 'dumps'))
         self.assertTrue(hasattr(math, 'sqrt'))
         self.assertTrue(hasattr(random, 'randint'))
-        self.assertTrue(hasattr(datetime, 'datetime'))
+    def test_all_chapters_unlocked(self):
+        """Verifica que todos los capítulos estén desbloqueados para navegación libre."""
+        from python_tutor.progress import ProgressManager
+        from python_tutor.curriculum import CURRICULUM
+        for i in range(len(CURRICULUM)):
+            self.assertTrue(ProgressManager.is_chapter_unlocked(i), f"Capítulo {i} debe estar desbloqueado")
 
 
 if __name__ == "__main__":

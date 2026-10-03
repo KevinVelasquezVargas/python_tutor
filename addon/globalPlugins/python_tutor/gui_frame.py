@@ -208,14 +208,12 @@ class ChapterSelectDialog(wx.Dialog):
         for i, cap in enumerate(CURRICULUM):
             total_pasos = len(cap.get("pasos", []))
             completado = ProgressManager.is_chapter_completed(i, total_pasos)
-            desbloqueado = ProgressManager.is_chapter_unlocked(i)
+            desbloqueado = True
             self.cap_estados.append((desbloqueado, completado))
             if completado:
                 estado_str = "Passed, " if is_en else "Superado, "
-            elif desbloqueado:
-                estado_str = "Available, " if is_en else "Disponible, "
             else:
-                estado_str = "Locked, " if is_en else "Bloqueado, "
+                estado_str = "Available, " if is_en else "Disponible, "
             cap_title = cap.get("titulo_en" if is_en and "titulo_en" in cap else "titulo", f"Chapter {i+1}" if is_en else f"Capítulo {i+1}")
             self.opciones.append(f"{estado_str}{cap_title}")
 
@@ -247,23 +245,6 @@ class ChapterSelectDialog(wx.Dialog):
             event.Skip()
 
     def on_ok(self, event):
-        sel = self.list_box.GetSelection()
-        is_en = (obtener_idioma_actual() == "en")
-        if sel != wx.NOT_FOUND:
-            desbloqueado, _ = self.cap_estados[sel]
-            if not desbloqueado:
-                msg = (
-                    "This chapter is currently locked in your sequential progress. Do you want to unlock it and access it anyway?"
-                    if is_en else
-                    "Este capítulo no figura como desbloqueado en tu avance secuencial. ¿Deseas desbloquearlo y acceder de todos modos?"
-                )
-                box_title = "Unlock Chapter" if is_en else "Desbloquear capítulo"
-                dlg = wx.MessageDialog(self, msg, box_title, wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-                res = dlg.ShowModal()
-                dlg.Destroy()
-                if res != wx.ID_YES:
-                    return
-                ProgressManager.unlock_up_to_chapter(sel)
         self.EndModal(wx.ID_OK)
 
     def get_selected_index(self):
@@ -2655,18 +2636,6 @@ class TutorFrame(wx.Frame):
             self.dar_foco_adecuado()
         else:
             if self.cap_idx < len(CURRICULUM) - 1:
-                if not ProgressManager.is_chapter_completed(self.cap_idx, total_pasos):
-                    is_en = (obtener_idioma_actual() == "en")
-                    msg = (
-                        "To advance to the next chapter, you must complete all steps of the current chapter."
-                        if is_en else
-                        "Para avanzar al siguiente capítulo, debes completar todos los pasos del capítulo actual."
-                    )
-                    if speech and hasattr(speech, 'speakMessage'):
-                        speech.speakMessage(msg)
-                    if ui:
-                        ui.message(msg)
-                    return
                 self.cap_idx += 1
                 self.paso_idx = 0
                 if self.sonidos_activos:

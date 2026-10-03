@@ -1,4 +1,4 @@
-# Aprendizaje de Python con NVDA [![Versión](https://img.shields.io/badge/Versi%C3%B3n-1.0.0-blue.svg)](https://github.com/KevinVelasquezVargas/python_tutor/releases) [![Compatibilidad](https://img.shields.io/badge/NVDA-2022.1%20a%202026.2-brightgreen.svg)](https://www.nvaccess.org/) [![Licencia](https://img.shields.io/badge/Licencia-GPLv3-blue.svg)](LICENSE)
+# Aprendizaje de Python con NVDA [![Versión](https://img.shields.io/badge/Versi%C3%B3n-3.0.0-blue.svg)](https://github.com/KevinVelasquezVargas/python_tutor/releases/latest) [![Compatibilidad](https://img.shields.io/badge/NVDA-2022.1%20a%202026.2-brightgreen.svg)](https://www.nvaccess.org/) [![Licencia](https://img.shields.io/badge/Licencia-GPLv3-blue.svg)](LICENSE)
 
 Entorno accesible de desarrollo y formación para el aprendizaje de Python mediante el lector de pantallas NVDA. Estructurado en un plan formativo de 40 capítulos y una modalidad dual que combina un tutor interactivo con un editor autónomo sin barreras visuales.
 

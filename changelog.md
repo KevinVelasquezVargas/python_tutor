@@ -1,6 +1,6 @@
 # Registro de cambios de Aprendizaje de Python con NVDA
 
-## Versión 1.0.0 (Lanzamiento Oficial)
+## Versión 3.0.0 (Lanzamiento Insignia)
 
 - **Plan Formativo Integral de 40 Capítulos (160 Lecciones Progresivas):**
   - Estructurado bajo la rigurosa metodología pedagógica *«Conceptos Primero»*, iniciando con fundamentos computacionales, arquitectura de hardware, sistema binario, ciclo de ejecución de la CPU e interacción tiflotécnica antes de avanzar hacia la sintaxis formal.
@@ -34,3 +34,22 @@
   - Basado 100% en la biblioteca estándar de Python, prescindiendo de compiladores de C/C++ o librerías externas propensas a incompatibilidades.
 - **Compatibilidad Extensa Certificada:**
   - Soporte garantizado desde NVDA 2022.1.0 hasta la versión actual 2026.2.0.
+
+## Versión 2.0.0
+
+- **Modalidad Dual de Trabajo:**
+  - Incorporación del Modo Editor Autónomo (`Ctrl + M`) para desarrollo de scripts libres sin restricciones didácticas.
+- **Ampliación Curricular:**
+  - Expansión del plan de estudios cubriendo estructuras condicionales, bucles `for` y `while`, funciones y colecciones.
+- **Herramientas de Productividad Accesible:**
+  - Navegación estructural entre clases y funciones, depurador guiado interactivo y comprobaciones acústicas preliminares.
+- **Compatibilidad:**
+  - NVDA 2022.1 hasta 2026.2.
+
+## Versión 1.0.0 (Lanzamiento Inicial)
+
+- **Lanzamiento Fundacional:**
+  - Primer entorno accesible diseñado exclusivamente para el aprendizaje interactivo de Python con NVDA.
+  - Lecciones básicas estructuradas con instrucciones por voz.
+  - Consola integrada accesible para ejecución de código y verificación de retos.
+  - Atajos esenciales de teclado y ayuda guiada.

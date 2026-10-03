@@ -8,8 +8,8 @@ addon_info = AddonInfo(
 	addon_name="python_tutor",
 	addon_summary=_("Aprendizaje de Python con NVDA"),
 	addon_description=_("""Desbloquea el poder de la programación: aprende Python desde cero con lecciones guiadas por voz y desarrolla tus propios proyectos en un editor diseñado exclusivamente para la accesibilidad con NVDA."""),
-	addon_version="1.0.0",
-	addon_changelog=_("""Registro de cambios versión 1.0.0:
+	addon_version="3.0.0",
+	addon_changelog=_("""Registro de cambios versión 3.0.0:
 - Plan formativo integral de 40 capítulos (160 lecciones) con metodología pedagógica Conceptos Primero.
 - Dualidad operativa: alternancia fluida entre Modo Tutor guiado y Modo Editor autónomo (Control + M).
 - Interfaz adaptativa: ocultación contextual del editor en lecciones teóricas y selector accesible de quizes (wx.RadioBox).

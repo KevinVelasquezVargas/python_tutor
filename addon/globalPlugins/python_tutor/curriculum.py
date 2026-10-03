@@ -943,7 +943,7 @@ CURRICULUM = [
                 'codigo': 'total = 0\n# Itera con for sumando a total e imprime total al final:\n\n',
                 'salida_esperada': '15',
                 'pistas': ['1 + 2 + 3 + 4 + 5 = 15. Asegúrate de imprimir total fuera del bucle (sin sangría).'],
-                'validar': lambda s, r, n: n.get('total') == 15 and '15' in r.strip()
+                'validar': lambda s, r, n: (n.get('total') == 15 or n.get('suma') == 15 or n.get('sum') == 15) and '15' in r.strip()
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Límite Superior de range()',
@@ -1047,7 +1047,7 @@ CURRICULUM = [
                 'codigo': 'bateria = 70\n# Incrementa bateria de 10 en 10 hasta 100 e imprime al final:\n\n',
                 'salida_esperada': 'Carga completa: 100%',
                 'pistas': ["while bateria < 100: bateria += 10, y al salir print(f'Carga completa: {bateria}%')"],
-                'validar': lambda s, r, n: (n.get('bateria') == 100 or n.get('battery') == 100) and '100%' in r
+                'validar': lambda s, r, n: (n.get('bateria') == 100 or n.get('battery') == 100) and '100' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Atajo Universal de Interrupción',
@@ -1255,7 +1255,7 @@ CURRICULUM = [
                 'codigo': 'precios = [12.50, 8.00, 24.50]\ntotal = 0.0\n# Itera con for sumando a total e imprime el total al final:\n\n',
                 'salida_esperada': 'Total compra: 45.0',
                 'pistas': ["for p in precios: total += p, y al salir print(f'Total compra: {total}')"],
-                'validar': lambda s, r, n: abs(n.get('total', 0) - 45.0) < 0.01 and '45' in r
+                'validar': lambda s, r, n: (abs(n.get('total', n.get('suma', 0)) - 45.0) < 0.01) and '45' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: La Función enumerate()',
@@ -1515,7 +1515,7 @@ CURRICULUM = [
                 'codigo': '# Define calcular_iva con subtotal como parámetro y retorna el 19%:\n\n',
                 'salida_esperada': '38.0',
                 'pistas': ['def calcular_iva(subtotal): return subtotal * 0.19, iva = calcular_iva(200), print(iva)'],
-                'validar': lambda s, r, n: abs(n.get('iva', 0) - 38.0) < 0.01 and '38' in r
+                'validar': lambda s, r, n: (abs(n.get('iva', n.get('vat', n.get('tax', 0))) - 38.0) < 0.01) and '38' in r
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: Ciclo de Vida de Variables Locales',
@@ -1567,7 +1567,7 @@ CURRICULUM = [
                 'codigo': '# Define convertir_a_entero con try/except ValueError, asigna a res e imprime:\n\n',
                 'salida_esperada': 'None',
                 'pistas': ['def convertir_a_entero(texto): try: return int(texto) except ValueError: return None'],
-                'validar': lambda s, r, n: n.get('res') is None and 'none' in r.lower()
+                'validar': lambda s, r, n: (n.get('res') is None or n.get('result') is None) and 'none' in r.lower()
             },
             {
                 'titulo': 'Paso 5: Verificación Conceptual: El Bloque finally',

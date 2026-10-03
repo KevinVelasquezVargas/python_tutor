@@ -253,15 +253,17 @@ class ChapterSelectDialog(wx.Dialog):
             desbloqueado, _ = self.cap_estados[sel]
             if not desbloqueado:
                 msg = (
-                    "This chapter is locked. You must complete all steps of the previous chapter to unlock it."
+                    "This chapter is currently locked in your sequential progress. Do you want to unlock it and access it anyway?"
                     if is_en else
-                    "Este capítulo está bloqueado. Debes completar todos los pasos del capítulo anterior para desbloquearlo."
+                    "Este capítulo no figura como desbloqueado en tu avance secuencial. ¿Deseas desbloquearlo y acceder de todos modos?"
                 )
-                box_title = "Chapter Locked" if is_en else "Capítulo bloqueado"
-                if ui:
-                    ui.message(msg)
-                wx.MessageBox(msg, box_title, wx.OK | wx.ICON_WARNING, self)
-                return
+                box_title = "Unlock Chapter" if is_en else "Desbloquear capítulo"
+                dlg = wx.MessageDialog(self, msg, box_title, wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+                res = dlg.ShowModal()
+                dlg.Destroy()
+                if res != wx.ID_YES:
+                    return
+                ProgressManager.unlock_up_to_chapter(sel)
         self.EndModal(wx.ID_OK)
 
     def get_selected_index(self):

@@ -26,23 +26,37 @@ class ProgressManager:
         if cls._file_path:
             return cls._file_path
 
-        # Limpiar archivo huérfano de versiones previas si existiera en la raíz de configuración
+        # Almacenar en la carpeta de configuración persistente de NVDA
         if globalVars and hasattr(globalVars, 'appArgs') and hasattr(globalVars.appArgs, 'configPath') and globalVars.appArgs.configPath:
-            legacy_path = os.path.join(globalVars.appArgs.configPath, "python_tutor_user_progress.json")
-            if os.path.isfile(legacy_path):
-                try:
-                    os.remove(legacy_path)
-                except Exception:
-                    pass
+            base_dir = os.path.join(globalVars.appArgs.configPath, "python_tutor")
+        else:
+            base_dir = os.path.join(os.path.expanduser("~"), ".python_tutor")
 
-        # Almacenar dentro del propio complemento para que al desinstalarlo se elimine por completo
-        base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "user_data")
         try:
             os.makedirs(base_dir, exist_ok=True)
         except Exception:
             pass
 
-        cls._file_path = os.path.join(base_dir, "progress.json")
+        target_path = os.path.join(base_dir, "progress.json")
+
+        # Migración segura: si el archivo destino no existe, migrar desde ubicaciones anteriores
+        if not os.path.exists(target_path):
+            legacy_candidates = []
+            if globalVars and hasattr(globalVars, 'appArgs') and hasattr(globalVars.appArgs, 'configPath') and globalVars.appArgs.configPath:
+                legacy_candidates.append(os.path.join(globalVars.appArgs.configPath, "python_tutor_user_progress.json"))
+            addon_dir = os.path.dirname(os.path.abspath(__file__))
+            legacy_candidates.append(os.path.join(addon_dir, "user_data", "progress.json"))
+
+            for candidate in legacy_candidates:
+                if os.path.isfile(candidate):
+                    try:
+                        import shutil
+                        shutil.copy2(candidate, target_path)
+                        break
+                    except Exception:
+                        pass
+
+        cls._file_path = target_path
         return cls._file_path
 
     @classmethod
@@ -126,6 +140,20 @@ class ProgressManager:
             return False
         prev_cap = CURRICULUM[chapter_idx - 1]
         return cls.is_chapter_completed(chapter_idx - 1, len(prev_cap.get("pasos", [])))
+
+    @classmethod
+    def unlock_up_to_chapter(cls, target_chapter_idx):
+        """Desbloquea los capítulos previos completando sus pasos para permitir acceso directo."""
+        from .curriculum import CURRICULUM
+        progress = cls.load_progress()
+        for idx in range(min(target_chapter_idx, len(CURRICULUM))):
+            cap_key = f"cap_{idx}"
+            total_pasos = len(CURRICULUM[idx].get("pasos", []))
+            progress.setdefault("completed_steps", {})[cap_key] = list(range(total_pasos))
+            if idx not in progress.setdefault("completed_chapters", []):
+                progress["completed_chapters"].append(idx)
+        cls.save_progress(progress)
+        return progress
 
     @classmethod
     def get_setting(cls, key, default_value=True):

@@ -35,14 +35,12 @@ jobs:
     - name: building addon
       run: |
         uv run scons
-        git archive --format=zip --output=python_tutor-source-v1.0.0.zip HEAD
 
     - uses: actions/upload-artifact@v4
       with:
         name: packaged_addon
         path: |
           ./*.nvda-addon
-          ./*.zip
 
   upload_release:
     runs-on: ubuntu-latest
@@ -72,7 +70,6 @@ jobs:
       with:
         files: |
           *.nvda-addon
-          *.zip
         body_path: changelog.md
         fail_on_unmatched_files: false
         prerelease: ${{ contains(github.ref, '-') }}

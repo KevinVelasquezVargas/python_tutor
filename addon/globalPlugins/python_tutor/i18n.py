@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/i18n.py
-# Propósito: Sistema central de internacionalización bilingüe (Español / Inglés).
+# Propósito: Sistema central de internacionalización. Interfaz ES/EN con
+#            detección generalizada a cualquier catálogo lessons/<idioma>.json.
 # Autor: Kevin Andrés Velasquez Vargas
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
@@ -45,7 +46,7 @@ DICCIONARIO = {
         "ai_consult_menu": "Consultar al Asistente de IA...\tCtrl+Shift+I",
         "pip_manager_title": "Gestor accesible de paquetes (pip)...",
         "project_manager_title": "Explorador de proyectos multi-archivo...\tCtrl+Shift+E",
-        "language_menu": "Cambiar idioma (Español / English)...",
+        "language_menu": "Cambiar idioma...",
         "settings_lang_label": "Idioma de la interfaz y lecciones:",
         "settings_lang_auto": "Automático (según NVDA)",
         "settings_lang_es": "Español",
@@ -99,7 +100,7 @@ DICCIONARIO = {
         "ai_consult_menu": "Ask AI Assistant...\tCtrl+Shift+I",
         "pip_manager_title": "Accessible Package Manager (pip)...",
         "project_manager_title": "Multi-file Project Explorer...\tCtrl+Shift+E",
-        "language_menu": "Switch Language (English / Español)...",
+        "language_menu": "Switch Language...",
         "settings_lang_label": "Interface and curriculum language:",
         "settings_lang_auto": "Automatic (follow NVDA)",
         "settings_lang_es": "Español (Spanish)",
@@ -124,8 +125,92 @@ DICCIONARIO = {
         "import_stmt": "'Import' statement: Loads module or library '{mod}' to utilize its features.",
         "try_block": "'Try' block: Attempts to execute the following code safely.",
         "except_block": "'Except' block: Catches and handles exception '{exc}' if an error occurred in try block."
+    },
+    "pt": {
+        "app_title": "Aprendizagem de Python com NVDA",
+        "app_subtitle": "Ambiente formativo e editor acessível de Python",
+        "menu_file": "&Ficheiro",
+        "menu_edit": "&Editar",
+        "menu_tools": "Ferramen&tas",
+        "menu_settings": "&Configuração",
+        "menu_glossary": "&Glossário",
+        "menu_help": "&Ajuda",
+        "btn_run": "Executar (F5)",
+        "btn_explain": "Explicar linha (F1)",
+        "btn_ask_ai": "Consultar a IA (Ctrl+Shift+I)",
+        "mode_learning": "Modo Aprendizagem",
+        "mode_editor": "Modo Editor Autónomo",
+        "switched_to_editor": "Modo Editor Autónomo ativado.",
+        "switched_to_learning": "Modo Aprendizagem ativado.",
+        "syntax_ok": "Sintaxe verificada com sucesso.",
+        "syntax_error": "Erro de sintaxe detetado.",
+        "new_script": "Novo script iniciado.",
+        "file_opened": "Ficheiro carregado com sucesso: {name}",
+        "file_saved": "Guardado com sucesso em: {name}",
+        "shortcuts_title": "Guia de Atalhos de Teclado",
+        "about_title": "Acerca de Aprendizagem de Python com NVDA",
+        "ai_assistant_title": "Assistente de Inteligência Artificial",
+        "ai_config_title": "Configuração do Assistente de IA...",
+        "ai_consult_menu": "Consultar o Assistente de IA...\tCtrl+Shift+I",
+        "pip_manager_title": "Gestor acessível de pacotes (pip)...",
+        "project_manager_title": "Explorador de projetos multificheiro...\tCtrl+Shift+E",
+        "language_menu": "Mudar idioma...",
+        "settings_lang_label": "Idioma da interface e lições:",
+        "settings_lang_auto": "Automático (segundo o NVDA)",
+        "settings_lang_es": "Espanhol (Español)",
+        "settings_lang_en": "Inglês (English)",
+        "settings_ai_f1_label": "Ativar Assistente de IA para F1 (opcional, requer chave API)",
+        "settings_ai_key_label": "Chave API do Google Gemini (opcional):",
+        "settings_ai_note": "Por predefinição, a tecla F1 funciona de forma local e privada, sem ligação.",
+        "settings_open_pip": "Abrir Gestor de Pacotes pip...",
+        "settings_open_projects": "Abrir Explorador de Projetos...",
+        "line_empty": "Linha vazia.",
+        "comment_line": "Comentário: {comment}. Os computadores ignoram esta linha; serve como nota explicativa.",
+        "print_empty": "Instrução print: Imprime uma linha em branco na saída da consola.",
+        "print_text": "Instrução print: Mostra no ecrã e lê em voz alta a mensagem: '{text}'.",
+        "if_cond": "Condicional 'se' (if): Verifica se '{cond}' se cumpre. Se for verdadeira, executa as instruções indentadas seguintes.",
+        "elif_cond": "Condição alternativa (elif): Se a condição anterior foi falsa mas '{cond}' for verdadeira, executa este bloco.",
+        "else_cond": "Bloco alternativo final (else): Executa-se se nenhuma das condições anteriores se cumpriu.",
+        "for_loop": "Ciclo for: Itera e repete o bloco de código percorrendo '{target}'.",
+        "while_loop": "Ciclo while: Repete as instruções indentadas enquanto a condição '{cond}' continuar verdadeira.",
+        "def_func": "Definição de função (def): Declara uma função chamada '{name}' com os parâmetros '{params}'.",
+        "class_def": "Definição de classe (class): Cria um modelo de objetos chamado '{name}'.",
+        "return_stmt": "Instrução return: Termina a função e devolve o valor '{val}'.",
+        "import_stmt": "Importação (import): Carrega o módulo ou biblioteca '{mod}' para usar as suas funções.",
+        "try_block": "Bloco de controlo try: Tenta executar as instruções seguintes de forma segura.",
+        "except_block": "Captura de erro (except): Trata a exceção '{exc}' se ocorreu um erro no bloco try."
     }
 }
+
+
+def _normalizar_idioma_soportado(lang):
+    """Mapea un código bruto ('pt_PT', 'en-US') al idioma soportado más cercano.
+
+    Prioriza los catálogos de lecciones (lessons_loader.normalizar_idioma)
+    y aplica como respaldo los prefijos de la interfaz (DICCIONARIO).
+    Devuelve None si no hay idioma adecuado.
+    """
+    if not lang:
+        return None
+    normalizar = None
+    try:
+        from .lessons_loader import normalizar_idioma as normalizar
+    except ImportError:
+        try:
+            from lessons_loader import normalizar_idioma as normalizar
+        except ImportError:
+            normalizar = None
+    if normalizar is not None:
+        try:
+            codigo = normalizar(lang)
+            if codigo:
+                return codigo
+        except Exception:
+            pass
+    prefijo = str(lang).strip().lower().replace("-", "_").split("_")[0]
+    if prefijo in DICCIONARIO:
+        return prefijo
+    return None
 
 
 def detectar_idioma_preferido():
@@ -135,30 +220,29 @@ def detectar_idioma_preferido():
     try:
         from .progress import ProgressManager
         saved = ProgressManager.get_setting("language", "auto")
-        if saved in ("es", "en"):
-            _IDIOMA_ACTUAL = saved
-            return saved
+        if saved and saved != "auto":
+            codigo = _normalizar_idioma_soportado(saved)
+            if codigo:
+                _IDIOMA_ACTUAL = codigo
+                return codigo
     except Exception:
         pass
 
     if languageHandler:
         try:
-            lang = languageHandler.getLanguage()
-            if lang and (lang.lower().startswith("en") or "english" in lang.lower()):
-                _IDIOMA_ACTUAL = "en"
-                return "en"
-            elif lang and (lang.lower().startswith("es") or "spanish" in lang.lower()):
-                _IDIOMA_ACTUAL = "es"
-                return "es"
+            codigo = _normalizar_idioma_soportado(languageHandler.getLanguage())
+            if codigo:
+                _IDIOMA_ACTUAL = codigo
+                return codigo
         except Exception:
             pass
 
     import locale
     try:
-        loc = locale.getlocale()[0]
-        if loc and loc.lower().startswith("en"):
-            _IDIOMA_ACTUAL = "en"
-            return "en"
+        codigo = _normalizar_idioma_soportado(locale.getlocale()[0])
+        if codigo:
+            _IDIOMA_ACTUAL = codigo
+            return codigo
     except Exception:
         pass
 
@@ -167,12 +251,9 @@ def detectar_idioma_preferido():
 
 
 def establecer_idioma(lang_code):
-    """Establece manualmente el idioma del complemento ('es' o 'en')."""
+    """Establece manualmente el idioma del complemento (código de catálogo disponible)."""
     global _IDIOMA_ACTUAL
-    if lang_code in DICCIONARIO:
-        _IDIOMA_ACTUAL = lang_code
-    else:
-        _IDIOMA_ACTUAL = "es"
+    _IDIOMA_ACTUAL = _normalizar_idioma_soportado(lang_code) or "es"
 
     try:
         import sys
@@ -205,7 +286,7 @@ def establecer_idioma(lang_code):
 
 
 def obtener_idioma_actual():
-    """Devuelve el código del idioma activo ('es' o 'en')."""
+    """Devuelve el código del idioma activo (p. ej. 'es', 'en', 'pt')."""
     return _IDIOMA_ACTUAL
 
 

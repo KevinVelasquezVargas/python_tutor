@@ -120,7 +120,7 @@ Ruta de acceso: **Menú NVDA > Preferencias > Opciones > Aprendizaje de Python c
 
 Los currículos traducidos viven en catálogos JSON independientes del código (`addon/locale/<idioma>/lessons.json`), junto al resto de la localización del complemento. Al recompilar, el idioma nuevo aparece automáticamente en el selector de idioma, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible).
 
-1. Genere los catálogos base desde el código fuente:
+1. Genere el catálogo base en español desde el código fuente:
 
    ```bash
    uv run python tools/extract_lessons.py

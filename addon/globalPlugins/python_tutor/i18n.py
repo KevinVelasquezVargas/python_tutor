@@ -2,7 +2,7 @@
 # ============================================================================
 # Módulo: globalPlugins/python_tutor/i18n.py
 # Propósito: Sistema central de internacionalización. Interfaz ES/EN con
-#            detección generalizada a cualquier catálogo lessons/<idioma>.json.
+#            detección generalizada a cualquier catálogo locale/<idioma>/lessons.json.
 # Autor: Kevin Andrés Velasquez Vargas
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================

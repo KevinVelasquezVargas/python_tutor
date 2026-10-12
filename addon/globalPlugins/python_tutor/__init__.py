@@ -75,7 +75,7 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
         )
         settingsSizer.Add(lbl_lang, flag=wx.LEFT | wx.TOP, border=6)
 
-        # Idiomas dinámicos: uno por catálogo lessons/<idioma>.json disponible
+        # Idiomas dinámicos: uno por catálogo locale/<idioma>/lessons.json disponible
         codigos = idiomas_disponibles()
         nombres_idioma = {
             "es": "Español (Spanish)",

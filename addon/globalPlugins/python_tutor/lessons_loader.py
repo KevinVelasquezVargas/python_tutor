@@ -3,13 +3,13 @@
 # Módulo: globalPlugins/python_tutor/lessons_loader.py
 # Propósito: Catálogos de lecciones por idioma (JSON externos) y fusión con el
 #            currículo base. Añadir un idioma nuevo es tan simple como añadir
-#            un archivo lessons/<idioma>.json y recompilar el complemento.
+#            un archivo locale/<idioma>/lessons.json y recompilar el complemento.
 # Licencia: GNU General Public License v3.0 (GPLv3)
 # ============================================================================
 """
 Sistema de catálogos de lecciones en JSON.
 
-Cada archivo ``lessons/<idioma>.json`` contiene los campos traducibles del
+Cada catálogo ``locale/<idioma>/lessons.json`` contiene los campos traducibles del
 currículo (títulos, instrucciones, pistas, preguntas, código de ejemplo...).
 La lógica pedagógica (validadores, tipos de paso, respuestas correctas)
 permanece en ``curriculum.py`` y nunca se traduce.
@@ -19,7 +19,8 @@ se usa como respaldo parcial, de modo que un catálogo puede estar traducido
 solo parcialmente (capítulo a capítulo, campo a campo) sin romper nada.
 
 Para añadir un idioma nuevo:
-1. Copia ``lessons/es.json`` a ``lessons/<idioma>.json`` (p. ej. ``pt.json``).
+1. Copia ``locale/es/lessons.json`` a ``locale/<idioma>/lessons.json``
+   (p. ej. ``locale/fr/lessons.json``).
 2. Traduce los valores (las claves permanecen en español).
    Importante: en los desafíos de código, mantén las cadenas de salida que
    exigen los validadores (estos aceptan español e inglés).
@@ -39,20 +40,25 @@ _CAMPOS_PASO = (
 _IDIOMA_BASE = "es"
 
 
-def _ruta_lecciones():
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "lessons")
+def _ruta_catalogos():
+    # addon/globalPlugins/python_tutor -> addon/locale
+    return os.path.normpath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locale")
+    )
 
 
 def idiomas_disponibles():
     """Devuelve los códigos de idioma con catálogo JSON (orden alfabético).
 
     El idioma base ('es') siempre se incluye porque vive en curriculum.py.
+    Cada catálogo reside en ``locale/<idioma>/lessons.json``.
     """
     idiomas = {_IDIOMA_BASE}
     try:
-        for nombre in os.listdir(_ruta_lecciones()):
-            if nombre.endswith(".json"):
-                idiomas.add(os.path.splitext(nombre)[0])
+        base = _ruta_catalogos()
+        for nombre in os.listdir(base):
+            if os.path.isfile(os.path.join(base, nombre, "lessons.json")):
+                idiomas.add(nombre)
     except OSError:
         pass
     return sorted(idiomas)
@@ -79,7 +85,7 @@ def cargar_catalogo(idioma):
     """Carga el catálogo JSON de un idioma. Devuelve None si no existe."""
     if idioma == _IDIOMA_BASE:
         return None
-    ruta = os.path.join(_ruta_lecciones(), f"{idioma}.json")
+    ruta = os.path.join(_ruta_catalogos(), idioma, "lessons.json")
     try:
         with open(ruta, "r", encoding="utf-8") as f:
             return json.load(f)

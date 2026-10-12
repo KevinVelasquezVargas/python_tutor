@@ -2125,7 +2125,7 @@ GLOSARIO = {
     'zen_python': 'Colección de 19 principios de diseño e ingeniería que definen la filosofía del lenguaje Python.',
 }
 
-# Integración de catálogos de lecciones por idioma (lessons/*.json)
+# Integración de catálogos de lecciones por idioma (locale/*/lessons.json)
 # y reexportación del glosario bilingüe.
 try:
     from .curriculum_translations import obtener_glosario  # noqa: F401

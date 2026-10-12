@@ -3,7 +3,7 @@
 Glosario bilingüe del complemento.
 
 Las traducciones de los capítulos y lecciones ya no viven aquí: se cargan
-desde los catálogos JSON en lessons/<idioma>.json (ver lessons_loader.py).
+desde los catálogos JSON en locale/<idioma>/lessons.json (ver lessons_loader.py).
 Este módulo conserva el glosario en inglés y su selector por idioma.
 """
 

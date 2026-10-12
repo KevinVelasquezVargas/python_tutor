@@ -10,7 +10,7 @@ addon_info = AddonInfo(
 	addon_description=_("""Desbloquea el poder de la programación: aprende Python desde cero con lecciones guiadas por voz y desarrolla tus propios proyectos en un editor diseñado exclusivamente para la accesibilidad con NVDA."""),
 	addon_version="3.1.0",
 	addon_changelog=_("""Registro de cambios versión 3.1.0:
-- Sistema de catálogos de lecciones en JSON: añadir un idioma nuevo es tan simple como añadir lessons/<idioma>.json y recompilar; el idioma aparece automáticamente en preferencias y en la detección del idioma de NVDA.
+- Sistema de catálogos de lecciones en JSON: añadir un idioma nuevo es tan simple como añadir locale/<idioma>/lessons.json y recompilar; el idioma aparece automáticamente en preferencias y en la detección del idioma de NVDA.
 - Portugués (PT-PT) oficial completo: los 40 capítulos (190 lecciones), interfaz, menús y localización gettext íntegros.
 - Respaldo parcial capítulo a capítulo: lo no traducido se muestra en español.
 - Selector de idioma dinámico basado en los catálogos disponibles (normaliza variantes como pt_BR o en_US).

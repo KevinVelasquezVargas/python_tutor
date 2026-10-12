@@ -3,7 +3,7 @@
 ## Versión 3.1.0 (Soporte Multilingüe Ampliable)
 
 - **Sistema de Catálogos de Lecciones en JSON:**
-  - Los currículos traducidos viven ahora en archivos `lessons/<idioma>.json` independientes del código; la lógica pedagógica (validadores, respuestas correctas) permanece en `curriculum.py` sin traducirse.
+  - Los currículos traducidos viven ahora en catálogos `addon/locale/<idioma>/lessons.json` independientes del código, junto al resto de la localización; la lógica pedagógica (validadores, respuestas correctas) permanece en `curriculum.py` sin traducirse.
   - Añadir un idioma nuevo es tan simple como añadir un catálogo JSON y recompilar: el idioma aparece automáticamente en el selector de preferencias, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (normalización de variantes como `pt_BR` o `en_US`).
   - Respaldo parcial capítulo a capítulo: lo que no esté traducido se muestra en español.
 - **Portugués (PT-PT) Oficial Completo:**

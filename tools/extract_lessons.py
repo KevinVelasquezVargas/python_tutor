@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Genera los catálogos JSON de lecciones (lessons/es.json y lessons/en.json)
-a partir de los diccionarios Python del complemento (curriculum.py y
-curriculum_translations.py).
+Genera los catálogos JSON de lecciones (locale/es/lessons.json y
+locale/en/lessons.json) a partir de los diccionarios Python del complemento
+(curriculum.py y curriculum_translations.py).
 
 Uso (desde la raíz del repositorio):
     uv run python tools/extract_lessons.py
@@ -11,7 +11,7 @@ Los catálogos contienen únicamente los campos traducibles. La lógica
 (validadores, tipos de paso, índices de respuesta correcta) permanece en
 curriculum.py y nunca se traduce.
 
-Formato de cada catálogo lessons/<idioma>.json:
+Formato de cada catálogo locale/<idioma>/lessons.json:
 {
   "<id_capitulo>": {
     "titulo": "...",
@@ -31,8 +31,9 @@ Formato de cada catálogo lessons/<idioma>.json:
   }
 }
 
-Para añadir un nuevo idioma: copia lessons/es.json, traduce los valores
-(mantén las claves en español) y guárdalo como lessons/<idioma>.json.
+Para añadir un nuevo idioma: copia locale/es/lessons.json, traduce los
+valores (mantén las claves en español) y guárdalo como
+locale/<idioma>/lessons.json.
 """
 import json
 import os
@@ -40,7 +41,7 @@ import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLUGIN_DIR = os.path.join(REPO_ROOT, "addon", "globalPlugins", "python_tutor")
-LESSONS_DIR = os.path.join(PLUGIN_DIR, "lessons")
+LOCALE_DIR = os.path.join(REPO_ROOT, "addon", "locale")
 
 CAMPOS_CAPITULO = ("titulo", "resumen")
 CAMPOS_PASO = (
@@ -98,8 +99,9 @@ def extraer_en(curriculum, translations):
 
 
 def guardar(catalogo, idioma):
-    os.makedirs(LESSONS_DIR, exist_ok=True)
-    ruta = os.path.join(LESSONS_DIR, f"{idioma}.json")
+    dir_idioma = os.path.join(LOCALE_DIR, idioma)
+    os.makedirs(dir_idioma, exist_ok=True)
+    ruta = os.path.join(dir_idioma, "lessons.json")
     with open(ruta, "w", encoding="utf-8", newline="\n") as f:
         json.dump(catalogo, f, ensure_ascii=False, indent=2)
         f.write("\n")

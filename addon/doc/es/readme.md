@@ -109,7 +109,7 @@ Entorno accesible de desarrollo y formación para el aprendizaje de Python media
 
 Ruta de acceso: **Menú NVDA > Preferencias > Opciones > Aprendizaje de Python con NVDA**
 
-* **Idioma del entorno:** Automático (según el idioma de NVDA), Español, Inglés o Portugués. Los idiomas disponibles se detectan automáticamente a partir de los catálogos de `lessons/`.
+* **Idioma del entorno:** Automático (según el idioma de NVDA), Español, Inglés o Portugués. Los idiomas disponibles se detectan automáticamente a partir de los catálogos `addon/locale/<idioma>/lessons.json`.
 * **Modo de inicio:** Modo Aprendizaje Guiado o Modo Editor Autónomo.
 * **Señales acústicas:** Habilitación de sonificación de sangría PEP 8 y alertas.
 * **Clave API de Gemini:** Configuración opcional para consultas de IA.
@@ -118,7 +118,7 @@ Ruta de acceso: **Menú NVDA > Preferencias > Opciones > Aprendizaje de Python c
 
 ## Añadir un Nuevo Idioma de Lecciones
 
-Los currículos traducidos viven en catálogos JSON independientes del código (`addon/globalPlugins/python_tutor/lessons/`). Al recompilar el complemento, el idioma nuevo aparece automáticamente en el selector de idioma, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible).
+Los currículos traducidos viven en catálogos JSON independientes del código (`addon/locale/<idioma>/lessons.json`), junto al resto de la localización del complemento. Al recompilar, el idioma nuevo aparece automáticamente en el selector de idioma, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible).
 
 1. Genere los catálogos base desde el código fuente:
 
@@ -126,7 +126,7 @@ Los currículos traducidos viven en catálogos JSON independientes del código (
    uv run python tools/extract_lessons.py
    ```
 
-2. Copie `lessons/es.json` a `lessons/<idioma>.json` (por ejemplo, `fr.json`) y traduzca los valores. Las claves permanecen en español. La traducción puede ser parcial (capítulo a capítulo): todo lo que falte se mostrará en español como respaldo.
+2. Copie `addon/locale/es/lessons.json` a `addon/locale/<idioma>/lessons.json` (por ejemplo, `addon/locale/fr/lessons.json`) y traduzca los valores. Las claves permanecen en español. La traducción puede ser parcial (capítulo a capítulo): todo lo que falte se mostrará en español como respaldo.
 
 3. Respete estas reglas en los desafíos de código (los validadores viven en `curriculum.py` y nunca se traducen):
    * `salida_esperada`: debe permanecer byte-idéntica al original.

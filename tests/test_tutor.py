@@ -170,6 +170,86 @@ class TestIDETools(unittest.TestCase):
         self.assertTrue("función" in doc_def.lower() or "funcion" in doc_def.lower())
 
 
+class TestLessonsCatalogs(unittest.TestCase):
+    """Pruebas del sistema de catálogos de lecciones JSON por idioma."""
+
+    @classmethod
+    def setUpClass(cls):
+        from python_tutor.lessons_loader import (
+            idiomas_disponibles, normalizar_idioma, cargar_catalogo,
+            aplicar_traducciones, leer_texto,
+        )
+        from python_tutor import i18n
+        cls.idiomas_disponibles = staticmethod(idiomas_disponibles)
+        cls.normalizar_idioma = staticmethod(normalizar_idioma)
+        cls.cargar_catalogo = staticmethod(cargar_catalogo)
+        cls.aplicar_traducciones = staticmethod(aplicar_traducciones)
+        cls.leer_texto = staticmethod(leer_texto)
+        cls.i18n = i18n
+        from python_tutor.curriculum import CURRICULUM
+        cls.curriculum = CURRICULUM
+
+    def setUp(self):
+        self._idioma_previo = self.i18n._IDIOMA_ACTUAL
+        self.addCleanup(setattr, self.i18n, "_IDIOMA_ACTUAL", self._idioma_previo)
+
+    def test_idiomas_disponibles(self):
+        """Verifica la detección de catálogos: español base + en + pt."""
+        idiomas = self.idiomas_disponibles()
+        self.assertIn("es", idiomas)
+        self.assertIn("en", idiomas)
+        self.assertIn("pt", idiomas)
+        self.assertEqual(idiomas, sorted(idiomas))
+
+    def test_normalizar_idioma(self):
+        """Verifica el mapeo de variantes de NVDA al catálogo disponible."""
+        self.assertEqual(self.normalizar_idioma("pt_PT"), "pt")
+        self.assertEqual(self.normalizar_idioma("pt-BR"), "pt")
+        self.assertEqual(self.normalizar_idioma("en_US"), "en")
+        self.assertEqual(self.normalizar_idioma("es"), "es")
+        self.assertIsNone(self.normalizar_idioma("fr"))
+        self.assertIsNone(self.normalizar_idioma(None))
+
+    def test_cargar_catalogo(self):
+        """El español base vive en curriculum.py (None); pt es un catálogo real."""
+        self.assertIsNone(self.cargar_catalogo("es"))
+        self.assertIsNone(self.cargar_catalogo("fr"))
+        catalogo_pt = self.cargar_catalogo("pt")
+        self.assertIsInstance(catalogo_pt, dict)
+        self.assertEqual(len(catalogo_pt), 40)
+
+    def test_estructura_catalogo_pt(self):
+        """El catálogo portugués cubre los 40 capítulos con los mismos pasos."""
+        catalogo_pt = self.cargar_catalogo("pt")
+        for cap in self.curriculum:
+            cid = str(cap["id"])
+            self.assertIn(cid, catalogo_pt, f"Falta el capítulo {cid} en pt.json")
+            self.assertEqual(
+                len(catalogo_pt[cid]["pasos"]), len(cap["pasos"]),
+                f"El capítulo {cid} difiere en número de pasos",
+            )
+
+    def test_aplicar_traducciones_idempotente(self):
+        """Inyecta campos con sufijo _pt sin tocar los campos base y es idempotente."""
+        cap = self.curriculum[0]
+        titulo_base = cap["titulo"]
+        self.aplicar_traducciones(self.curriculum)
+        self.assertIn("titulo_pt", cap)
+        self.assertEqual(cap["titulo"], titulo_base)
+        self.assertIn("instruccion_pt", cap["pasos"][0])
+
+    def test_leer_texto_con_respaldo(self):
+        """Lee en el idioma activo y cae al español base si falta el campo."""
+        cap = self.curriculum[0]
+        self.i18n._IDIOMA_ACTUAL = "pt"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo_pt"])
+        self.i18n._IDIOMA_ACTUAL = "en"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo_en"])
+        self.i18n._IDIOMA_ACTUAL = "es"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo"])
+        self.assertEqual(self.leer_texto(cap, "campo_inexistente", default="DEF"), "DEF")
+
+
 class TestAddonMetadata(unittest.TestCase):
     """Pruebas de consistencia de metadatos del complemento y empaquetado."""
 

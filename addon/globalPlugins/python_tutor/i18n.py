@@ -272,15 +272,16 @@ def establecer_idioma(lang_code):
 
     try:
         import sys
+        titulo = _t("app_title")
         for mod_name in ('globalPlugins.python_tutor', 'addon.globalPlugins.python_tutor', 'python_tutor'):
             mod = sys.modules.get(mod_name)
             if mod:
                 panel = getattr(mod, 'PythonTutorSettingsPanel', None)
                 if panel:
-                    panel.title = "Learning Python with NVDA" if _IDIOMA_ACTUAL == "en" else "Aprendizaje de Python con NVDA"
+                    panel.title = titulo
                 plugin = getattr(mod, 'GlobalPlugin', None)
                 if plugin:
-                    plugin.scriptCategory = "Learning Python with NVDA" if _IDIOMA_ACTUAL == "en" else "Aprendizaje de Python con NVDA"
+                    plugin.scriptCategory = titulo
     except Exception:
         pass
 

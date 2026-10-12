@@ -1,0 +1,69 @@
+# Portuguese translations for python_tutor add-on.
+# Copyright (C) 2026 Kevin Andrés Velasquez Vargas
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: python_tutor 3.0.1\n"
+"POT-Creation-Date: 2026-09-29 12:00-0500\n"
+"PO-Revision-Date: 2026-10-12 10:00+0100\n"
+"Last-Translator: Nuno Costa\n"
+"Language-Team: Portuguese\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Aprendizaje de Python con NVDA"
+msgstr "Aprendizagem de Python com NVDA"
+
+msgid "Desbloquea el poder de la programación: aprende Python desde cero con lecciones guiadas por voz y desarrolla tus propios proyectos en un editor diseñado exclusivamente para la accesibilidad con NVDA."
+msgstr "Desbloqueia o poder da programação: aprende Python desde o zero com lições guiadas por voz e desenvolve os teus próprios projetos num editor desenhado exclusivamente para a acessibilidade com NVDA."
+
+msgid "Registro de cambios versión 1.0.0:\n- Plan formativo integral de 40 capítulos estructurados desde fundamentos hasta la biblioteca estándar.\n- Interfaz adaptativa según el contexto pedagógico (ocultando el editor en lecciones conceptuales y quizzes).\n- Widget nativo accesible de selección para cuestionarios de evaluación conceptual.\n- Soporte multilingüe integral con localización completa al inglés (Learning Python with NVDA).\n- Diálogo accesible de bienvenida e invitación cordial para donaciones voluntarias vía PayPal.\n- Apertura accesible de la documentación en el navegador web mediante F12.\n- Ciclo de vida limpio: reinicio de progreso al desinstalar y reinstalar el complemento.\n- Compatibilidad garantizada desde NVDA 2022.1.0 hasta 2026.2.0."
+msgstr "Registo de alterações versão 1.0.0:\n- Plano formativo integral de 40 capítulos estruturados desde os fundamentos até à biblioteca padrão.\n- Interface adaptativa conforme o contexto pedagógico (ocultando o editor em lições conceptuais e questionários).\n- Widget nativo acessível de seleção para questionários de avaliação conceptual.\n- Suporte multilingue integral com localização completa para inglês (Learning Python with NVDA).\n- Diálogo acessível de boas-vindas e convite cordial para donativos voluntários via PayPal.\n- Abertura acessível da documentação no navegador web através de F12.\n- Ciclo de vida limpo: reinício do progresso ao desinstalar e reinstalar o complemento.\n- Compatibilidade garantida desde NVDA 2022.1.0 até 2026.2.0."
+
+msgid "Abre el entorno interactivo de aprendizaje de Python"
+msgstr "Abre o ambiente interativo de aprendizagem de Python"
+
+msgid "&Aprendizaje de Python con NVDA"
+msgstr "&Aprendizagem de Python com NVDA"
+
+msgid "Aprendizaje de Python con NVDA..."
+msgstr "Aprendizagem de Python com NVDA..."
+
+msgid "Realizar una donación..."
+msgstr "Fazer um donativo..."
+
+msgid "Soporte y contacto..."
+msgstr "Suporte e contacto..."
+
+msgid "Idioma de la interfaz y lecciones:"
+msgstr "Idioma da interface e lições:"
+
+msgid "Automático (según NVDA)"
+msgstr "Automático (conforme o NVDA)"
+
+msgid "Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)"
+msgstr "Iniciar em Modo Editor autónomo (ocultar as lições do tutor)"
+
+msgid "Efectos sonoros de confirmación y eventos"
+msgstr "Efeitos sonoros de confirmação e eventos"
+
+msgid "Avisos sonoros de sangría y estructura"
+msgstr "Avisos sonoros de indentação e estrutura"
+
+msgid "Habilitar Asistente de IA para tecla F1 (opcional, requiere clave API de Gemini)"
+msgstr "Ativar Assistente de IA para a tecla F1 (opcional, requer chave API de Gemini)"
+
+msgid "Clave de API de Google Gemini (opcional):"
+msgstr "Chave de API do Google Gemini (opcional):"
+
+msgid "Nota: Por defecto, la tecla F1 ofrece explicaciones 100% locales sin conexión y de forma privada."
+msgstr "Nota: Por predefinição, a tecla F1 oferece explicações 100% locais, sem ligação e de forma privada."
+
+msgid "Enviar mensaje de soporte"
+msgstr "Enviar mensagem de suporte"
+
+msgid "Realizar donación voluntaria"
+msgstr "Fazer donativo voluntário"

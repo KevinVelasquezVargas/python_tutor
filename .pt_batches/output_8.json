@@ -1,0 +1,164 @@
+{
+  "38": {
+    "titulo": "Capítulo 38: Bases de Dados Relacionais com SQLite (sqlite3): Tabelas e Consultas Parametrizadas",
+    "resumen": "Aprende a gerir bases de dados relacionais SQL profissionais utilizando o motor sqlite3 integrado, sem instalar servidores.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Bases de Dados Relacionais e o Motor sqlite3",
+        "instruccion": "Quando uma aplicação gere milhares de registos relacionados (clientes, faturas, produtos), guardar tudo em ficheiros de texto ou JSON torna-se ineficiente e lento. Para isto, a indústria utiliza **Bases de Dados Relacionais** através da linguagem de consultas **SQL** (*Structured Query Language*). Python inclui de forma 100% nativa o **SQLite**, o motor de base de dados SQL mais utilizado do mundo (presente em telefones, navegadores e no próprio NVDA). Vantagens do SQLite: - Configuração zero: não requer instalar MySQL, Postgres nem servidores externos. Toda a base de dados reside num único ficheiro local (ou até em memória RAM com `':memory:'`). - Consultas SQL Parametrizadas: para evitar ataques de segurança (*Injeção SQL*), NUNCA concatenamos variáveis com strings; usamos o marcador de posição `?` para passar tuplos de dados de forma blindada. Prime Enter ou Alt + Seta Direita para ver o SQLite em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Criar Tabela e Inserir Registos",
+        "instruccion": "Examina como nos ligamos ao sqlite3 em memória, criamos uma tabela de alunos e consultamos com SELECT. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import sqlite3\n\nconexion = sqlite3.connect(':memory:')\ncursor = conexion.cursor()\n\ncursor.execute('CREATE TABLE alumnos (id INTEGER PRIMARY KEY, nombre TEXT, nota REAL)')\ncursor.execute('INSERT INTO alumnos (nombre, nota) VALUES (?, ?)', ('Elena', 9.5))\ncursor.execute('INSERT INTO alumnos (nombre, nota) VALUES (?, ?)', ('Kevin', 9.0))\nconexion.commit()\n\ncursor.execute('SELECT nombre, nota FROM alumnos')\nfor fila in cursor.fetchall():\n    print(f'Alumno: {fila[0]}, Nota: {fila[1]}')\n\nconexion.close()\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Filtrar Registos com a Cláusula WHERE",
+        "instruccion": "Filtra a consulta SQL usando `WHERE nota >= 9.0` para recuperar apenas estudantes destacados. Prime Control + Enter.",
+        "pistas": [
+          "WHERE filtra os registos na base de dados."
+        ],
+        "codigo": "import sqlite3\n\ncon = sqlite3.connect(':memory:')\ncur = con.cursor()\ncur.execute('CREATE TABLE cursos (titulo TEXT, horas INTEGER)')\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('Python Accesible', 40))\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('HTML Rápido', 10))\ncon.commit()\n\ncur.execute('SELECT titulo FROM cursos WHERE horas >= 20')\nfor fila in cur.fetchall():\n    print(f'Curso intensivo: {fila[0]}')\ncon.close()\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Inventário Acessível com SQLite",
+        "instruccion": "Liga-te a `:memory:`, cria a tabela `articulos (nombre TEXT, cantidad INTEGER)`. Insere com parâmetros `('Teclado', 15)`. Faz um `SELECT nombre, cantidad FROM articulos` e imprime: 'Teclado: 15 unidades'. Fecha a ligação e executa com Control + Enter.",
+        "pistas": [
+          "cursor.execute('INSERT INTO articulos VALUES (?, ?)', ('Teclado', 15)), depois fetchall() e print."
+        ],
+        "codigo": "import sqlite3\n# Cria a base de dados em memória, insere o artigo e imprime:\n\n",
+        "salida_esperada": "Teclado: 15 unidades"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Inserção Parametrizada com ?",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na segurança contra ataques informáticos."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é obrigatório, em software profissional, usar marcadores ? em vez de concatenar cadeias em instruções SQL?",
+        "opciones": [
+          "Para prevenir vulnerabilidades graves de injeção SQL (SQL Injection) e garantir a segurança.",
+          "Porque os computadores não sabem ler aspas em SQL.",
+          "Para que a base de dados ocupe metade do espaço em disco."
+        ],
+        "explicacion": "As consultas parametrizadas separam a instrução de código dos dados do utilizador, neutralizando qualquer tentativa de injeção maliciosa."
+      }
+    ]
+  },
+  "39": {
+    "titulo": "Capítulo 39: Tiflotecnologia e Desenvolvimento Acessível por Software: Integração com NVDA e Síntese de Voz",
+    "resumen": "Aprende como o software interage com leitores de ecrã, síntese de voz e sinais acústicas para criar interfaces inclusivas.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Tiflotecnologia e a Acessibilidade na Arquitetura de Software",
+        "instruccion": "A 'Tiflotecnologia' é o ramo da engenharia dedicado a desenhar tecnologias e adaptações para pessoas cegas ou com baixa visão. Quando desenvolves uma aplicação acessível, não basta que o código funcione; a experiência de utilizador deve comunicar o estado do sistema com clareza meridiana através de dois canais sensoriais principais: 1. Canal de Voz (Síntese de voz / Speech): mensagens descritivas, concisas e não redundantes que informam que ação foi concluída ou que opção está selecionada. 2. Canal Acústico (Tons de Áudio / Earcons): bipes curtos e subtis com frequências distintas que confirmam eventos instantaneamente sem interromper a voz (por exemplo, um tom agudo para sucesso e um tom grave para erro). No Windows e dentro do NVDA, o Python pode emitir tons acústicos nativos através da biblioteca padrão `winsound` com `winsound.Beep(frecuencia, duracion)`. Desenhar software acessível desde o primeiro dia é uma das marcas distintivas dos melhores engenheiros do mundo. Prime Enter ou Alt + Seta Direita para ouvir sinais auditivos acessíveis.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Emissão de Sinais Acústicas Acessíveis",
+        "instruccion": "Observa como são emitidos tons de áudio com winsound para confirmar estados do sistema. Prime Control + Enter para ouvir.",
+        "pistas": [
+          "Prime Control + Enter para executar e ouvir o tom."
+        ],
+        "codigo": "import winsound\n\nprint('Emitiendo señal acústica de éxito (frecuencia 880 Hz)...')\nwinsound.Beep(880, 150)\nprint('Notificación acústica completada.')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Sinal Acústica de Alerta",
+        "instruccion": "Emite um sinal de advertência com um tom mais grave (440 Hz) e de maior duração (250 ms). Prime Control + Enter.",
+        "pistas": [
+          "winsound.Beep(440, 250) emite um tom mais grave."
+        ],
+        "codigo": "import winsound\n\nprint('Señal de advertencia acústica (440 Hz):')\nwinsound.Beep(440, 250)\nprint('Aviso emitido.')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Função Notificadora Acessível",
+        "instruccion": "Define uma função `notificar(tipo_evento, mensaje):` que imprima `f'[{tipo_evento.upper()}]: {mensaje}'`. Se `tipo_evento == 'exito'` deve emitir `winsound.Beep(880, 100)`; se não, `winsound.Beep(440, 100)`. Testa-a com `notificar('exito', 'Datos guardados correctamente')`. Prime Control + Enter.",
+        "pistas": [
+          "def notificar(tipo_evento, mensaje): print(f'[{tipo_evento.upper()}]: {mensaje}') if tipo_evento == 'exito': winsound.Beep(880, 100) else: winsound.Beep(440, 100) notificar('exito', 'Datos guardados correctamente')"
+        ],
+        "codigo": "import winsound\n# Define notificar com tom diferenciado e testa-a:\n\n",
+        "salida_esperada": "[EXITO]: Datos guardados correctamente"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Benefício da Retroalimentação Auditiva",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na velocidade e em evitar a fadiga auditiva."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a principal vantagem de combinar síntese de voz com tons de áudio (earcons) em software acessível?",
+        "opciones": [
+          "Permite confirmações instantâneas de estado sem saturar a atenção do utilizador com mensagens de voz excessivas.",
+          "Faz com que o processador gaste menos eletricidade.",
+          "Obriga o utilizador a memorizar números matemáticos."
+        ],
+        "explicacion": "Os earcons ou tons acústicos transmitem confirmação instantânea sem atrasos nem sobrecarga cognitiva da voz."
+      }
+    ]
+  },
+  "40": {
+    "titulo": "Capítulo 40: Projeto Integrador Final: Criação de um Gestor Acessível de Informação e Tarefas",
+    "resumen": "Integra todos os conhecimentos do curso: arquitetura em camadas, POO, persistência estruturada, controlo de erros e saída acessível.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Arquitetura Limpa por Camadas",
+        "instruccion": "Parabéns por chegares ao capítulo culminante da tua formação! Para te tornares um profissional de software, deves saber como montar todas as peças que aprendeste numa **Arquitetura Limpa** (*Clean Architecture*). Um software profissional nunca mistura tudo num único ficheiro revolto; divide-se em quatro camadas de responsabilidade: 1. Camada de Domínio / Modelo: classes que representam as entidades do negócio (exemplo: `Tarea`, com título, data e estado). 2. Camada de Persistência: lógica encarregada de guardar e carregar dados em disco (usando JSON ou SQLite) de forma segura com `with open()`. 3. Camada de Serviços / Negócio: lógica que valida, adiciona, elimina e procura elementos evitando duplicados. 4. Camada de Interface e Acessibilidade: comunicação respeitosa com o utilizador através da voz do NVDA e confirmações auditivas. Prime Enter ou Alt + Seta Direita para ver o Gestor Integrador a funcionar.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Inspeção do Gestor Acessível",
+        "instruccion": "Examina a arquitetura completa do Gestor. Observa a classe Tarea, o guardado em JSON e o relatório final. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import json\n\nclass Tarea:\n    def __init__(self, id_tarea, titulo):\n        self.id_tarea = id_tarea\n        self.titulo = titulo\n        self.completada = False\n\n    def to_dict(self):\n        return {'id': self.id_tarea, 'titulo': self.titulo, 'completada': self.completada}\n\nclass GestorTareas:\n    def __init__(self):\n        self.tareas = []\n\n    def agregar(self, titulo):\n        nueva = Tarea(len(self.tareas) + 1, titulo)\n        self.tareas.append(nueva)\n        return nueva\n\n    def guardar_json(self, ruta):\n        datos = [t.to_dict() for t in self.tareas]\n        with open(ruta, 'w', encoding='utf-8') as f:\n            json.dump(datos, f, indent=2)\n\ngestor = GestorTareas()\ngestor.agregar('Completar curso de Python con NVDA')\ngestor.guardar_json('tareas_final.json')\nprint(f'Sistema integrado activo: {len(gestor.tareas)} tareas gestionadas con éxito.')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Marcar Tarefa como Concluída",
+        "instruccion": "Acrescenta um método `completar()` na classe Tarea e verifica que o seu estado muda para True. Executa com Control + Enter.",
+        "pistas": [
+          "t.completada deve ser True."
+        ],
+        "codigo": "class Tarea:\n    def __init__(self, titulo):\n        self.titulo = titulo\n        self.completada = False\n\n    def completar(self):\n        self.completada = True\n\nt = Tarea('Graduación en Python')\nt.completar()\nprint(f'Estado final de la tarea: {t.titulo} -> Completada: {t.completada}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Arranque do Sistema Completo",
+        "instruccion": "Cria uma classe `Proyecto` com `__init__(self, nombre)` que inicialize `self.nombre = nombre` e uma lista vazia `self.modulos = []`. Acrescenta um método `agregar_modulo(self, mod)` que faça `append`. Instancia `p = Proyecto('Sistema Accesible')`, adiciona 'Núcleo Python' e 'Lector NVDA'. Imprime: `print(f'Proyecto {p.nombre} con {len(p.modulos)} módulos activos')`. Prime Control + Enter.",
+        "pistas": [
+          "class Proyecto com __init__ e agregar_modulo. Instancia p, adiciona os dois módulos e imprime com a f-string pedida."
+        ],
+        "codigo": "# Desenvolve a classe Proyecto e integra os módulos:\n\n",
+        "salida_esperada": "Proyecto Sistema Accesible con 2 módulos activos"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Separação de Responsabilidades",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa no princípio de modularidade e manutenção."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é fundamental, em engenharia de software profissional, separar a lógica de negócio da interface de utilizador?",
+        "opciones": [
+          "Permite modificar, testar e tornar acessível a interface sem partir as regras de cálculo internas do programa.",
+          "Faz com que o ficheiro Python pese exatamente 1 kilobyte.",
+          "É um requisito legal exclusivo dos bancos."
+        ],
+        "explicacion": "A separação de responsabilidades (Separation of Concerns) garante manutenibilidade, escalabilidade e acessibilidade a longo prazo."
+      }
+    ]
+  }
+}

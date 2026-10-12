@@ -1,0 +1,2074 @@
+{
+  "1": {
+    "titulo": "Capítulo 1: Arquitetura do Computador: O Sistema Binário, a CPU e a Memória RAM",
+    "resumen": "Compreende o que acontece fisicamente dentro do computador antes de programar: o processador, a memória de trabalho e o sistema binário.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Modelo Mental: O Hardware do Computador",
+        "instruccion": "Antes de escrever código, é indispensável compreender o que é um computador. Um computador compõe-se de três peças fundamentais: 1. A CPU (Unidade Central de Processamento): é o cérebro executor. Não improvisa, não hesita e não tem intuição; apenas executa milhões de instruções sequenciais por segundo a velocidade eletrónica. 2. A Memória RAM (Memória de Acesso Aleatório): é o espaço de trabalho rápido e volátil do sistema. Imagina-a como uma grande mesa onde se colocam os dados com os quais o programa está a trabalhar neste preciso instante. Se o computador se desligar ou o programa se fechar, tudo o que estava na RAM apaga-se de imediato. 3. O Armazenamento Secundário (Disco Rígido ou SSD): é o arquivo permanente. Guarda os teus ficheiros, programas e o sistema operativo de forma duradoura, mesmo sem corrente elétrica. Quando abres um programa, este viaja do disco até à memória RAM para que a CPU possa processar as suas instruções. Prime Enter ou Alt + Seta Direita para avançar para o conceito seguinte.",
+        "pistas": [
+          "Lê a explicação com as setas e prime Enter ou Alt + Seta Direita para continuar."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Modelo Mental: O Sistema Binário e os Bits",
+        "instruccion": "Os seres humanos comunicam através de linguagens naturais como o português ou o inglês, utilizando alfabetos de dezenas de letras e o sistema decimal (algarismos de 0 a 9). No entanto, os processadores eletrónicos são formados por microscópicos transístores que só podem adotar dois estados físicos: ligado (passa corrente elétrica) ou desligado (não passa corrente). A este estado elementar chama-se Bit (Binary Digit ou Dígito Binário): um 1 representa ligado e um 0 representa desligado. Agrupando 8 bits consecutivos forma-se um Byte, capaz de representar 256 combinações distintas (suficiente para codificar qualquer letra, número ou símbolo do teclado no padrão ASCII ou Unicode). Tudo o que ouves através do NVDA — cada palavra, cada som e cada instrução de software — é, no seu nível mais profundo, uma sinfonia de zeros e uns coordenada pelo processador. Prime Enter ou Alt + Seta Direita para verificar a tua compreensão no passo seguinte.",
+        "pistas": [
+          "Prime Enter ou Alt + Seta Direita para ir à pergunta conceptual."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 3: Verificação Conceptual: Arquitetura do Computador",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda a analogia da mesa de trabalho temporária."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a função principal da Memória RAM durante a execução de um programa?",
+        "opciones": [
+          "Armazenar dados e instruções temporárias a alta velocidade enquanto o programa está ativo.",
+          "Guardar permanentemente os ficheiros quando o computador se desliga.",
+          "Gerar o sinal elétrico para que os altifalantes funcionem."
+        ],
+        "explicacion": "A Memória RAM é o espaço de trabalho rápido e volátil onde residem os dados ativos. Ao desligar-se o equipamento, o seu conteúdo desaparece."
+      }
+    ]
+  },
+  "2": {
+    "titulo": "Capítulo 2: O Software e as Linguagens de Programação: A Ponte Humano-Máquina",
+    "resumen": "Descobre o que é o software, porque não falamos em linguagem natural com o computador e a diferença entre linguagens compiladas e interpretadas.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Modelo Mental: Porque É que Existem as Linguagens de Programação?",
+        "instruccion": "O hardware sem software é um conjunto inerte de silício e cobre. O software é o conjunto de ordens lógicas que indicam ao hardware o que fazer. Porque é que não podemos simplesmente dizer ao computador em português: 'Por favor, calcula os salários do mês'? Porque a linguagem humana está cheia de ambiguidade, duplos sentidos, contexto e omissões implícitas. Os computadores, pelo contrário, exigem uma precisão absoluta e matemática. Nos primeiros anos da informática, os engenheiros programavam diretamente em código máquina (longas séries de zeros e uns) ou em linguagem assembly, o que era exaustivo e propenso a erros catastróficos. Para resolver isto, a ciência da computação inventou as 'Linguagens de Alto Nível'. São linguagens que utilizam palavras legíveis por humanos (geralmente em inglês) com uma gramática estrita para expressar algoritmos com total clareza. Prime Enter ou Alt + Seta Direita para avançar para o conceito seguinte.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Modelo Mental: Compiladores versus Intérpretes",
+        "instruccion": "Para que a CPU possa executar um programa escrito numa linguagem de alto nível, esse texto tem de ser traduzido para código máquina binário. Existem duas formas principais de fazer esta tradução: 1. Compilação (Linguagens Compiladas como C, C++ ou Rust): um programa especial chamado 'compilador' recebe todo o ficheiro de código fonte, analisa-o por completo de uma só vez e gera um ficheiro executável binário independente (como um ficheiro .exe em Windows). É análogo a um tradutor que traduz um livro inteiro do inglês para o português e o imprime: uma vez impresso, não precisas de ter o tradutor presente para o ler. 2. Interpretação (Linguagens Interpretadas como Python ou JavaScript): um programa chamado 'intérprete' lê o teu código fonte linha por linha e traduz-o e executa-o em tempo real, à medida que avança. É análogo a um intérprete diplomático numa conferência: ouve uma frase, traduz-a de imediato e continua para a seguinte. Python é uma linguagem interpretada. Isto significa que podemos escrever uma instrução, executá-la no instante e ouvir o resultado com o nosso leitor de ecrã sem esperar longas compilações. Prime Enter ou Alt + Seta Direita para passar à verificação conceptual.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 3: Verificação Conceptual: Intérprete de Python",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda a analogia do tradutor simultâneo ao vivo."
+        ],
+        "codigo": "",
+        "pregunta": "Como é que o intérprete de Python processa o código que escrevemos?",
+        "opciones": [
+          "Lê, traduz e executa as instruções linha por linha em tempo real.",
+          "Imprime o código em folhas de papel antes de funcionar.",
+          "Traduz todo o código para um ficheiro .exe fechado que não pode ser modificado."
+        ],
+        "explicacion": "O intérprete de Python lê e executa as instruções sucessivamente à medida que avança, permitindo uma resposta rápida e interativa."
+      }
+    ]
+  },
+  "3": {
+    "titulo": "Capítulo 3: O que é Python?: História, Filosofia do Zen de Python e Ecossistema",
+    "resumen": "Conhece as origens de Python com Guido van Rossum, os princípios de desenho que o tornam único e o seu impacto na acessibilidade e na indústria.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Modelo Mental: A Origem e o Propósito de Python",
+        "instruccion": "No final de 1989, o engenheiro de software neerlandês Guido van Rossum propôs-se criar uma linguagem de programação diferente. Naquela altura, linguagens como C exigiam escrever dezenas de linhas repletas de chavetas, pontos e vírgulas e detalhes mecânicos para tarefas simples. Guido concebeu Python com um objetivo revolucionário: priorizar a legibilidade e a produtividade humana acima da complexidade técnica. O nome 'Python' não vem da serpente, mas do grupo humorístico britânico 'Monty Python', refletindo que programar não deve ser uma experiência rígida nem esmagadora. Hoje em dia, Python é uma das linguagens mais utilizadas do planeta. É o motor por trás da Inteligência Artificial, da astronomia na NASA, da análise de dados massivos e, fundamentalmente, é a linguagem com que está construída grande parte do leitor de ecrã NVDA. Prime Enter ou Alt + Seta Direita para descobrir os princípios filosóficos de Python.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Modelo Mental: O Zen de Python",
+        "instruccion": "Ao contrário de outras linguagens, Python orienta-se por um conjunto explícito de princípios de engenharia conhecido como 'O Zen de Python' (escrito por Tim Peters). Os seus aforismos mais célebres são: 1. 'Belo é melhor que feio': o código deve ser limpo e agradável de ler e auditar. 2. 'Explícito é melhor que implícito': as intenções do programador devem expressar-se com clareza, sem truques ocultos. 3. 'Simples é melhor que complexo': se uma solução simples resolve o problema, não acrescentes complicações desnecessárias. 4. 'A legibilidade conta': o código lê-se muito mais vezes do que se escreve; por isso, escrevê-lo pensando em quem o vai ler (incluindo o teu leitor de ecrã) é uma regra de ouro. Neste ambiente aprenderás a programar sob estes mesmos princípios profissionais. Prime Enter ou Alt + Seta Direita para avançar para o questionário de verificação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 3: Verificação Conceptual: Filosofia de Python",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na facilidade de leitura e manutenção."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é um dos princípios orientadores essenciais do Zen de Python?",
+        "opciones": [
+          "A legibilidade conta: o código deve ser claro e simples de entender por humanos.",
+          "Escrever tudo numa única linha compridíssima para poupar espaço em disco.",
+          "Ocultar as intenções do programa para que ninguém o consiga entender."
+        ],
+        "explicacion": "'A legibilidade conta' é um dos pilares fundacionais de Python, tornando-o na linguagem mais acessível e limpa do mundo."
+      }
+    ]
+  },
+  "4": {
+    "titulo": "Capítulo 4: Programação Acessível: Como Programa uma Pessoa Cega com NVDA",
+    "resumen": "Desmistifica o código: como se interage com o código através de texto simples, navegação por teclado e o conceito espacial da indentação.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Modelo Mental: O Código é Texto Simples Puro",
+        "instruccion": "Existe o mito popular de que os programadores trabalham diante de ecrãs gráficos cheios de gráficos misteriosos e janelas visuais incompreensíveis. A realidade técnica é muito mais simples e acessível: um programa informático é, na sua essência mais pura, um ficheiro de texto simples (como um documento do Bloco de Notas) que termina na extensão '.py'. Para programar não é preciso o rato nem a vista. Uma pessoa cega utiliza exatamente as mesmas ferramentas que os engenheiros de software mais avançados: 1. Um editor de texto para redigir as instruções. 2. As teclas de direção (setas acima, abaixo, esquerda e direita) para explorar linha por linha e carácter por carácter. 3. O atalho Control + Seta para saltar de palavra em palavra. 4. O leitor de ecrã NVDA configurado para verbalizar sinais de pontuação essenciais como aspas, parênteses e dois pontos. Prime Enter ou Alt + Seta Direita para conhecer o conceito espacial da indentação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Modelo Mental: A Indentação e a Perceção Tiflotécnica",
+        "instruccion": "Na maioria das linguagens como C ou Java, os blocos de código delimitam-se com chavetas visuais '{' e '}'. O Python tomou uma decisão magistral: os blocos definem-se mediante a Indentação (espaços em branco no início da linha). Por norma oficial (PEP 8), cada nível subordinado de código indenta-se com exatamente 4 espaços. Como é que uma pessoa cega perceciona isto? O NVDA dispõe de funções nativas de acessibilidade tiflotécnica: - Ao movimentares-te verticalmente com as setas, o NVDA anuncia: 'indentação de 4 espaços', 'indentação de 8 espaços' ou 'sem indentação'. - Também podes ativar tons audíveis no NVDA (Opções do NVDA -> Formato do documento -> Notificar indentação com tons): um tom mais agudo indica um nível mais profundo e um tom mais grave indica o regresso ao nível exterior. Neste tutor, além disso, integramos avisos acústicos automáticos para que tenhas sempre a certeza absoluta da hierarquia do teu código. Prime Enter ou Alt + Seta Direita para avançar para o questionário de verificação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 3: Verificação Conceptual: Estrutura do Código em Python",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda os 4 espaços anunciados pelo NVDA."
+        ],
+        "codigo": "",
+        "pregunta": "Como é que o Python define quais instruções pertencem a um bloco subordinado?",
+        "opciones": [
+          "Mediante a indentação ou espaços em branco no início da linha (4 espaços por nível).",
+          "Mudando a cor do texto para azul ou vermelho no ecrã.",
+          "Desenhando um círculo com o rato à volta das linhas."
+        ],
+        "explicacion": "O Python utiliza a indentação estrita (4 espaços em branco) para definir os blocos lógicos de código, tornando-a perfeitamente mensurável e audível por leitores de ecrã."
+      }
+    ]
+  },
+  "5": {
+    "titulo": "Capítulo 5: Pensamento Algorítmico, Decomposição de Problemas e Psicologia do Erro",
+    "resumen": "Aprende a decompor problemas complexos em passos finitos, compreende o ciclo universal do software e aprende a ver os erros como valiosos diagnósticos.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Modelo Mental: O Algoritmo e o Ciclo Universal do Software",
+        "instruccion": "Um algoritmo é uma série ordenada, não ambígua e finita de instruções para resolver um problema ou atingir um objetivo. Todos os programas informáticos do mundo, desde uma calculadora simples até um sistema de navegação por satélite, obedecem ao 'Ciclo Universal do Software': 1. Entrada (Input): receção de dados do exterior (pressões de teclas, ficheiros de áudio ou informação de rede). 2. Memória: armazenamento temporário dos dados em variáveis dentro da memória RAM. 3. Processamento: transformação matemática e lógica desses dados por parte da CPU (somas, comparações, decisões). 4. Saída (Output): emissão dos resultados processados para o exterior (texto na consola, som nos altifalantes ou gravação em disco). Programar consiste em desenhar com exatidão o que acontece em cada uma destas quatro fases. Prime Enter ou Alt + Seta Direita para aprender sobre a psicologia do erro.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Modelo Mental: A Psicologia do Erro em Programação",
+        "instruccion": "O maior obstáculo de quem aprende a programar não é a matemática nem a sintaxe: é a frustração perante as mensagens de erro. É comum pensar: 'Deu-me um erro, isto não é para mim ou estraguei o programa'. Na engenharia de software profissional, um erro nunca é um fracasso nem uma falta de inteligência: é um relatório diagnóstico de alta precisão. Quando o Python não compreende uma linha, interrompe a execução e emite uma mensagem chamada 'Traceback' (registo de erro), indicando: - O ficheiro e o número exato da linha onde parou. - O tipo de erro (por exemplo, SyntaxError se esqueceste de fechar uma aspa ou NameError se nomeaste uma variável que não existe). Neste ambiente, a tecla F4 posiciona o cursor diretamente na linha do erro para que possas corrigi-lo sem perder tempo. Os programadores experientes cometem erros a cada minuto; a diferença é que sabem ler a mensagem de erro com calma para perceber o que o intérprete precisa. Prime Enter ou Alt + Seta Direita para avançar para o questionário de verificação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 3: Verificação Conceptual: Ciclo do Software",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa no erro como um relatório técnico de ajuda."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a atitude correta de um programador perante uma mensagem de erro do intérprete?",
+        "opciones": [
+          "Ler a mensagem com calma como um relatório diagnóstico para saber em que linha intervir.",
+          "Assumir que o computador está avariado e desligar o equipamento.",
+          "Apagar todo o código escrito e começar do zero sem ler a falha."
+        ],
+        "explicacion": "Uma mensagem de erro é informação de diagnóstico precisa que nos orienta para corrigir e aperfeiçoar o software."
+      }
+    ]
+  },
+  "6": {
+    "titulo": "Capítulo 6: A Saída Padrão: A Nossa Primeira Comunicação (print)",
+    "resumen": "Aprende a emitir dados para a consola de saída e compreende a anatomia formal de uma chamada a função em Python.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Anatomia da Função print()",
+        "instruccion": "Agora que compreendes como funciona o intérprete, vais escrever a tua primeira instrução formal. Para comunicarmos do programa para o utilizador, utilizamos o canal de 'Saída Padrão' (stdout). Em Python, isto consegue-se invocando a função integrada `print()`. Analisemos a sua anatomia: 1. O nome do comando: `print` indica ao intérprete que ação executar. 2. Os parênteses `(` e `)`: são os operadores de chamada ou invocação. Tudo o que estiver dentro dos parênteses é o argumento ou dado que a função deve processar. 3. As aspas simples `'` ou duplas `\"`: indicam ao Python que o que está dentro é texto literal (cadeia de caracteres). Se te esqueceres das aspas, o Python pensará que estás a tentar procurar uma variável em memória e falhará com um erro `NameError`. Prime Enter ou Alt + Seta Direita para ver o primeiro código em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Emitindo a tua Primeira Mensagem",
+        "instruccion": "Examina o código no editor. Observa o uso de aspas e parênteses. Prime Control + Enter para o executar e ouvires a saída no NVDA.",
+        "pistas": [
+          "Prime Control + Enter para executar o script."
+        ],
+        "codigo": "print('Hola, mundo accesible')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Saudação Personalizada",
+        "instruccion": "Modifica o texto dentro das aspas para que saude com o teu nome ou profissão (por exemplo: 'Hola, estudiante de programación') e prime Control + Enter.",
+        "pistas": [
+          "Certifica-te de que conservas as aspas simples no princípio e no fim do texto."
+        ],
+        "codigo": "print('Hola, estudiante de programación')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Saída em Duas Linhas Independentes",
+        "instruccion": "Escreve duas instruções print() independentes: na primeira mostra 'Iniciando sistema' e na segunda 'Sistema listo'. Executa com Control + Enter para comprovar.",
+        "pistas": [
+          "Usa uma linha para print('Iniciando sistema') e a seguinte para print('Sistema listo')."
+        ],
+        "codigo": "# Escreve aqui as tuas duas instruções print:\n\n",
+        "salida_esperada": "Iniciando sistema\nSistema listo"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Delimitadores de Texto",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Distingue entre texto literal e identificadores de memória."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é obrigatório rodear com aspas o texto dentro de print('Hola')?",
+        "opciones": [
+          "Para indicar ao Python que é texto literal e não o nome de uma variável em memória.",
+          "Porque as aspas aceleram a velocidade do processador.",
+          "É opcional; em Python as aspas não são necessárias."
+        ],
+        "explicacion": "Sem aspas, o Python procura um identificador ou variável com esse nome na memória RAM e lança um NameError se não existir."
+      }
+    ]
+  },
+  "7": {
+    "titulo": "Capítulo 7: A Memória do Computador: Variáveis e o Operador de Atribuição",
+    "resumen": "Compreende como se armazenam dados na memória RAM utilizando variáveis e a convenção de nomenclatura snake_case.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Variável como Etiqueta em Memória",
+        "instruccion": "Um programa que só imprime textos fixos não tem utilidade real. Para processar dados, precisamos de os guardar na memória RAM. Uma variável é um nome simbólico que aponta para um endereço da memória onde reside um dado. Imagina a memória RAM como um cacifo gigante: criar uma variável é colocar uma etiqueta legível numa gaveta para recuperares o seu conteúdo quando precisares. Para guardar um dado, utiliza-se o 'Operador de Atribuição', representado pelo sinal de igual `=`. Regra vital: em programação, `=` NÃO significa igualdade matemática; significa: 'Avalia o que está à direita e guarda-o na variável da esquerda'. Convenção oficial (PEP 8): os nomes das variáveis escrevem-se em minúsculas separando as palavras com sublinhado (por exemplo, `nome_utilizador`), convenção chamada `snake_case`. Prime Enter ou Alt + Seta Direita para avançar para o código de observação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Atribuição e Leitura de Variáveis",
+        "instruccion": "Observa como se cria a variável `herramienta` e depois se passa ao print() sem aspas. Executa com Control + Enter para ouvires o resultado.",
+        "pistas": [
+          "Repara que ao imprimir a variável não se usam aspas."
+        ],
+        "codigo": "herramienta = 'NVDA'\nprint(herramienta)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Modificar o Valor Guardado",
+        "instruccion": "Muda o texto atribuído a `herramienta` para 'Lector de pantalla accesible' e executa com Control + Enter.",
+        "pistas": [
+          "Mantém a atribuição à variável herramienta."
+        ],
+        "codigo": "herramienta = 'Lector de pantalla accesible'\nprint(herramienta)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Perfil de Estudante",
+        "instruccion": "Cria uma variável chamada `estudiante` com o teu nome como texto. Na linha seguinte, mostra o conteúdo da variável usando print(). Executa com Control + Enter.",
+        "pistas": [
+          "Escreve: estudiante = 'O teu nome' e abaixo print(estudiante)."
+        ],
+        "codigo": "# Cria a variável estudiante e imprime-a:\n\n"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Operador =",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda que = não é comparação matemática."
+        ],
+        "codigo": "",
+        "pregunta": "Que operação realiza a instrução: edad = 20?",
+        "opciones": [
+          "Atribui o valor 20 à variável chamada edad na memória RAM.",
+          "Verifica se a variável edad é matematicamente igual a 20.",
+          "Apaga o número 20 do computador."
+        ],
+        "explicacion": "O operador = realiza uma atribuição destrutiva para a esquerda: avalia o dado da direita e armazena-o na variável."
+      }
+    ]
+  },
+  "8": {
+    "titulo": "Capítulo 8: Documentação e Legibilidade: Comentários com #",
+    "resumen": "Aprende a documentar as tuas intenções no código com comentários ignorados pelo intérprete mas vitais para a compreensão.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Carácter Cardinal (#)",
+        "instruccion": "O código fonte não é lido apenas pelo computador; é lido principalmente por seres humanos. Muitas vezes precisamos de deixar notas explicativas para recordar porque escrevemos uma determinada lógica ou para orientar outros programadores. Em Python, qualquer texto que comece com o símbolo cardinal `#` (número ou hash) é um 'Comentário'. O intérprete do Python ignora por completo tudo o que estiver à direita do `#` até ao fim dessa linha. Como é que o NVDA interage com os comentários? O teu leitor de ecrã verbalizará a palavra 'cardinal' ou 'comentário' seguida do texto, permitindo-te auditar o propósito de cada secção sem alterar a execução do programa. Prime Enter ou Alt + Seta Direita para ver os comentários em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Código Documentado",
+        "instruccion": "Examina o código. Observa como as linhas que começam com # não geram qualquer saída na consola. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "# Este é um comentário explicativo\n# A linha seguinte emite a mensagem oficial:\nprint('Código documentado con éxito')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Acrescentar uma Nota Própria",
+        "instruccion": "Acrescenta uma nova linha acima com o teu próprio comentário (por exemplo: '# Autor: o meu nome') e executa com Control + Enter.",
+        "pistas": [
+          "Começa a linha com o símbolo #."
+        ],
+        "codigo": "# Autor: Kevin\nprint('Comentarios activos')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Desativar Código Obsoleto",
+        "instruccion": "No editor há duas instruções print(). Coloca um símbolo # no início da primeira linha para a desativar (comentá-la), de modo que só execute a segunda. Prime Control + Enter.",
+        "pistas": [
+          "Acrescenta # ao início da primeira linha: # print('Mensaje antiguo...')"
+        ],
+        "codigo": "print('Mensaje antiguo que debe ser desactivado')\nprint('Mensaje vigente')\n",
+        "salida_esperada": "Mensaje vigente"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Comportamento dos Comentários",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda que o intérprete omite estas linhas."
+        ],
+        "codigo": "",
+        "pregunta": "Que ação realiza o intérprete do Python quando encontra o símbolo #?",
+        "opciones": [
+          "Ignora todo o texto restante nessa linha e continua para a seguinte.",
+          "Lança um erro SyntaxError e interrompe o programa.",
+          "Imprime o comentário na consola com som grave."
+        ],
+        "explicacion": "Os comentários são invisíveis para a execução da CPU; existem exclusivamente para orientar os humanos."
+      }
+    ]
+  },
+  "9": {
+    "titulo": "Capítulo 9: Reatribuição de Variáveis e Fluxo Sequencial em Memória",
+    "resumen": "Aprende como o intérprete executa de cima para baixo e como a reatribuição atualiza o estado das variáveis na memória RAM.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Fluxo de Cima para Baixo e a Sobrescritura",
+        "instruccion": "O intérprete de Python lê e executa as instruções em rigorosa ordem sequencial: de cima para baixo e da esquerda para a direita. As variáveis em memória são dinâmicas. Se atribuíres um novo valor a uma variável existente mediante `=`, o valor anterior descarta-se da memória e é substituído pelo novo dado. Por exemplo: se na linha 1 escreveres `puntos = 10` e na linha 3 escreveres `puntos = 20`, ao chegar à linha 4 a variável `puntos` valerá 20. Acompanhar mentalmente como os valores mudam à medida que as linhas avançam é uma das competências analíticas mais importantes de um programador profissional. Prime Enter ou Alt + Seta Direita para observar a reatribuição em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Dois Estados no Tempo",
+        "instruccion": "Observa como a variável `estado` muda entre a linha 1 e a linha 3. Prime Control + Enter para ouvir as duas saídas consecutivas.",
+        "pistas": [
+          "Prime Control + Enter para ver a evolução da variável."
+        ],
+        "codigo": "estado = 'Cargando datos...'\nprint(estado)\nestado = 'Proceso completado'\nprint(estado)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Atualizar o Estado Final",
+        "instruccion": "Modifica a segunda atribuição para que `estado` seja 'Operación exitosa en NVDA' e executa com Control + Enter.",
+        "pistas": [
+          "Reatribui a variável estado na linha 3."
+        ],
+        "codigo": "estado = 'Iniciando'\nprint(estado)\nestado = 'Operación exitosa en NVDA'\nprint(estado)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Marcador de Jogo",
+        "instruccion": "Cria uma variável `puntuacion = 0`. Imprime o seu valor. Depois reatribui `puntuacion = 100` e imprime novamente o seu valor. Executa com Control + Enter.",
+        "pistas": [
+          "Escreve puntuacion = 0, print(puntuacion), puntuacion = 100, print(puntuacion)."
+        ],
+        "codigo": "# Declara puntuacion = 0, imprime, reatribui a 100 e imprime:\n\n",
+        "salida_esperada": "0\n100"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Ciclo de Vida da Reatribuição",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na sobrescritura do conteúdo da posição de memória."
+        ],
+        "codigo": "",
+        "pregunta": "Se uma variável x vale 5 na linha 1 e lhe atribuis x = 12 na linha 2, que valor tem x na linha 3?",
+        "opciones": [
+          "Vale 12, porque a última atribuição substitui o valor anterior.",
+          "Vale 17, porque o Python soma automaticamente todos os valores anteriores.",
+          "Vale 5, porque as variáveis nunca podem mudar de valor."
+        ],
+        "explicacion": "As variáveis em Python retêm o valor da atribuição mais recente executada no fluxo temporal."
+      }
+    ]
+  },
+  "10": {
+    "titulo": "Capítulo 10: Números Inteiros (int) e Operadores Aritméticos",
+    "resumen": "Aprende a realizar cálculos matemáticos com números inteiros e compreende as regras de precedência de operadores (PEMDAS).",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Tipo int e Operações Básicas",
+        "instruccion": "Em Python, os números sem parte decimal pertencem ao tipo `int` (inteiro). Podem ser positivos, negativos ou zero. Para operar com números, o Python oferece operadores aritméticos diretos: - Adição: `+` - Subtração: `-` - Multiplicação: `*` (asterisco) - Potência ou expoente: `**` (asterisco duplo, ex.: `2 ** 3` é 8). Regra de Precedência (PEMDAS): tal como em matemática, o Python avalia primeiro os Parênteses, depois os Expoentes, depois a Multiplicação e a Divisão e, por fim, a Adição e a Subtração. Por exemplo: em `2 + 3 * 4`, multiplica-se primeiro `3 * 4 = 12` e depois soma-se 2, dando 14. Se quiseres que a soma ocorra primeiro, usas parênteses: `(2 + 3) * 4 = 20`. Prime Enter ou Alt + Seta Direita para ver o cálculo em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Cálculo e Precedência",
+        "instruccion": "Observa como a variável `area` é calculada e mostrada na consola. Prime Control + Enter para ouvir a saída.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "base = 10\naltura = 5\narea = base * altura\nprint(area)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Parênteses para Alterar a Precedência",
+        "instruccion": "Calcula a média de três notas somando-as entre parênteses e dividindo-as: `promedio = (8 + 9 + 10) // 3`. Mostra o resultado e prime Control + Enter.",
+        "pistas": [
+          "Usa parênteses para garantir que a soma ocorra antes da divisão."
+        ],
+        "codigo": "promedio = (8 + 9 + 10) // 3\nprint(promedio)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Perímetro de um Retângulo",
+        "instruccion": "Declara `ancho = 6` e `alto = 4`. Calcula o perímetro usando a fórmula `perimetro = 2 * (ancho + alto)`. Imprime `perimetro` e executa com Control + Enter.",
+        "pistas": [
+          "Define ancho = 6, alto = 4, perimetro = 2 * (ancho + alto) e print(perimetro)."
+        ],
+        "codigo": "# Declara ancho, alto, calcula perimetro e imprime:\n\n",
+        "salida_esperada": "20"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Precedência Aritmética",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Calcula 2 * 3 primeiro."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é o resultado de avaliar a expressão: 5 + 2 * 3?",
+        "opciones": [
+          "11, porque a multiplicação (2 * 3 = 6) tem maior precedência do que a soma (+ 5).",
+          "21, porque se avalia da esquerda para a direita sem importar o operador.",
+          "10, porque se arredonda ao múltiplo mais próximo."
+        ],
+        "explicacion": "Em Python e na matemática padrão, a multiplicação executa-se antes da soma, a menos que se usem parênteses."
+      }
+    ]
+  },
+  "11": {
+    "titulo": "Capítulo 11: Números Decimais de Vírgula Flutuante (float) e Divisões",
+    "resumen": "Distingue inteiros de decimais e domina as três modalidades de divisão em Python: real (/), inteira (//) e resto (%).",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Tipo float e os Três Operadores de Divisão",
+        "instruccion": "Quando um número contém parte fracionária (decimal), o Python representa-o como `float` (vírgula flutuante). Nota para leitores de ecrã: na programação internacional usa-se sempre o PONTO `.` decimal e nunca a vírgula `,` (por exemplo, `3.14`). A vírgula reserva-se exclusivamente para separar elementos em listas ou argumentos. O Python tem três operadores distintos para dividir: 1. Divisão Real ou Verdadeira `/`: devolve sempre um `float`, mesmo que o resultado seja exato. Por exemplo: `10 / 2` produz `5.0`. 2. Divisão Inteira ou Truncada `//`: descarta a parte decimal e entrega unicamente o cociente inteiro. Por exemplo: `10 // 3` produz `3`. 3. Módulo ou Resto `%`: entrega o que sobra de uma divisão inteira. Por exemplo: `10 % 3` produz `1` (porque 3 cabe 3 vezes em 10 e sobra 1). O módulo é fundamental na informática para determinar se um número é par ou ímpar. Prime Enter ou Alt + Seta Direita para ouvir as três divisões em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Comparando as Três Divisões",
+        "instruccion": "Executa o código com Control + Enter e ouve com atenção como cada operador produz um resultado diferente para os mesmos números.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "print('División real:', 15 / 4)\nprint('División entera:', 15 // 4)\nprint('Residuo o módulo:', 15 % 4)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Cálculo com Preços Flutuantes",
+        "instruccion": "Calcula o preço final com desconto: `precio = 49.99`, `descuento = 10.50`, `total = precio - descuento`. Mostra `total` com print() e executa com Control + Enter.",
+        "pistas": [
+          "Executa com Control + Enter para ver a subtração decimal."
+        ],
+        "codigo": "precio = 49.99\ndescuento = 10.50\ntotal = precio - descuento\nprint(total)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Reparto Equitativo de Doces",
+        "instruccion": "Tens `dulces = 23` e `ninos = 5`. Calcula quantos doces inteiros cabem a cada criança (`por_nino = dulces // ninos`) e quantos sobram (`sobrantes = dulces % ninos`). Imprime ambos os valores e executa com Control + Enter.",
+        "pistas": [
+          "Usa // para por_nino e % para sobrantes, depois print(por_nino) e print(sobrantes)."
+        ],
+        "codigo": "# Calcula por_nino e sobrantes e imprime-os:\n\n"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Operador Módulo (%)",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Multiplica 5 * 3 e vê quanto falta para 17."
+        ],
+        "codigo": "",
+        "pregunta": "Que resultado devolve a expressão: 17 % 5?",
+        "opciones": [
+          "2, porque 5 cabe 3 vezes em 17 (15) e sobram 2.",
+          "3.4, porque é o resultado exato com decimais.",
+          "0, porque não há resto."
+        ],
+        "explicacion": "O operador % entrega exclusivamente o resto da divisão inteira."
+      }
+    ]
+  },
+  "12": {
+    "titulo": "Capítulo 12: Cadeias de Caracteres (str): Delimitadores, Caracteres de Escape e Saltos de Linha",
+    "resumen": "Domina a manipulação de cadeias de caracteres (str), aspas internas e sequências de escape especiais como \\n e \\t.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Caracteres Especiais e Barra Invertida",
+        "instruccion": "Em Python, qualquer sequência de caracteres rodeada por aspas simples `'...'` ou duplas `\"...\"` é um objeto do tipo `str` (string). O que acontece se quiseres que o teu texto inclua aspas internas? Se abrires a cadeia com aspas duplas, podes usar aspas simples lá dentro sem conflito: `\"Disse 'olá' e sorriu\"`. Sequências de Escape com a Barra Invertida `\\`: a barra invertida `\\` é o carácter de escape. Avisa o Python de que o carácter seguinte tem um significado especial: - `\\n` (barra n): insere um Salto de Linha imediato no texto, obrigando o leitor de ecrã a iniciar uma nova linha. - `\\t` (barra t): insere uma Tabulação ou avanço horizontal. - `\\'` ou `\\\"`: permite escrever uma aspa literal sem fechar a cadeia. Prime Enter ou Alt + Seta Direita para observar os saltos de linha em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Salto de Linha com \\n",
+        "instruccion": "Observa como um único print() gera duas linhas independentes graças a \\n. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para ouvir as duas linhas."
+        ],
+        "codigo": "print('Línea superior accesible\\nLínea inferior procesada')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Aspas Mistas",
+        "instruccion": "Imprime uma frase que contenha aspas internas utilizando aspas duplas externas: `print(\"El lenguaje 'Python' es accesible\")`. Executa com Control + Enter.",
+        "pistas": [
+          "Usa aspas duplas nas pontas e simples lá dentro."
+        ],
+        "codigo": "print(\"El lenguaje 'Python' es accesible\")\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Menu em Três Linhas",
+        "instruccion": "Cria uma variável chamada `menu` que contenha um texto com três opções separadas por `\\n`: '1. Abrir\\n2. Guardar\\n3. Salir'. Depois mostra-a com print(menu). Executa com Control + Enter.",
+        "pistas": [
+          "Escreve menu = '1. Abrir\\n2. Guardar\\n3. Salir' e depois print(menu)."
+        ],
+        "codigo": "# Cria menu com saltos de linha e imprime-o:\n\n",
+        "salida_esperada": "1. Abrir\n2. Guardar\n3. Salir"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Sequências de Escape",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa no n de 'newline' precedido pela barra invertida."
+        ],
+        "codigo": "",
+        "pregunta": "Que carácter de controlo se utiliza para criar um salto de linha dentro de um string?",
+        "opciones": [
+          "\\n (barra invertida seguida da letra n)",
+          "/enter (barra normal com enter)",
+          "#linea (cardinal com linea)"
+        ],
+        "explicacion": "O \\n é o padrão universal de salto de linha nas linguagens derivadas de C e em Python."
+      }
+    ]
+  },
+  "13": {
+    "titulo": "Capítulo 13: Interpolação Moderna de Cadeias: As F-Strings",
+    "resumen": "Aprende o padrão profissional moderno para combinar texto e variáveis sem conversões enfadonhas usando f-strings.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Letra f e as Chavetas {}",
+        "instruccion": "Nas versões antigas do Python, combinar variáveis e texto exigia concatenar com `+` e converter números com `str()` (exemplo: `'Idade: ' + str(edad)`), o que era tedioso e propenso a erros `TypeError`. A partir do Python 3.6, a indústria adotou as **Formatted String Literals** ou simplesmente **f-strings**. Como funciona uma f-string? 1. Colocas a letra `f` minúscula imediatamente antes de abrir as aspas: `f'...'`. 2. Dentro do texto, colocas chavetas `{}` à volta de qualquer variável ou expressão. 3. O intérprete avalia automaticamente o que está dentro das chavetas, converte-o em texto e substitui-o no seu lugar exato. Exemplo: se `nombre = 'Kevin'`, escrever `f'Bem-vindo, {nombre}'` produz `'Bem-vindo, Kevin'`. As f-strings são o padrão oficial de legibilidade no código moderno. Prime Enter ou Alt + Seta Direita para as ver em funcionamento.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Interpolando Múltiplas Variáveis",
+        "instruccion": "Observa como se misturam texto, números e variáveis dentro de uma única f-string. Prime Control + Enter para executar.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "usuario = 'Elena'\ncapitulo = 13\nprint(f'Estudiante {usuario} cursando el Capítulo {capitulo}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Expressões Matemáticas Dentro das Chavetas",
+        "instruccion": "Dentro das chavetas podes colocar operações matemáticas diretas. Modifica o código para calcular o dobro: `f'El doble de {valor} es {valor * 2}'`. Executa com Control + Enter.",
+        "pistas": [
+          "Escreve a operação valor * 2 dentro das segundas chavetas."
+        ],
+        "codigo": "valor = 25\nprint(f'El doble de {valor} es {valor * 2}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Resumo Financeiro com F-Strings",
+        "instruccion": "Cria `producto = 'Teclado'`, `precio = 35` e `cantidad = 2`. Mostra com uma única f-string: 'Producto: Teclado, Total: 70' calculando `precio * cantidad` dentro das chavetas. Executa com Control + Enter.",
+        "pistas": [
+          "Usa print(f'Producto: {producto}, Total: {precio * cantidad}')"
+        ],
+        "codigo": "# Declara producto, precio, cantidad e imprime com f-string:\n\n",
+        "salida_esperada": "Producto: Teclado, Total: 70"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Sintaxe de F-Strings",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "É a inicial de 'format'."
+        ],
+        "codigo": "",
+        "pregunta": "Que letra deve colocar-se imediatamente antes das aspas para ativar uma f-string?",
+        "opciones": [
+          "A letra f (minúscula ou maiúscula)",
+          "A letra p (de print)",
+          "O sinal de percentagem %"
+        ],
+        "explicacion": "O prefixo f (de formatted string) indica ao analisador do Python que avalie as chavetas dentro do texto."
+      }
+    ]
+  },
+  "14": {
+    "titulo": "Capítulo 14: Entrada de Dados (input) e Conversão Explícita de Tipos (Casting)",
+    "resumen": "Aprende a pausar o programa para captar dados do utilizador e domina a conversão de tipos com int(), float() e str().",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Regra de Ouro de input() e o Type Casting",
+        "instruccion": "Para interagir com o utilizador, o Python oferece a função `input()`. Quando o intérprete chega a uma linha com `input('Escribe algo: ')`, suspende a execução do programa e espera pacientemente que o utilizador escreva no teclado e prima a tecla Enter. **A Regra de Ouro de input():** Não importa o que o utilizador escreva (mesmo que escreva números como `25` ou `100`), a função `input()` devolve SEMPRE um dado do tipo cadeia de texto (`str`). Se tentares somar matematicamente o resultado de um `input()`, o Python falhará com um erro `TypeError` porque não se podem somar textos e números diretamente. Conversão Explícita de Tipos (*Type Casting*): Para transformar um dado de um tipo noutro, utilizamos funções construtoras: - `int('25')`: converte o texto '25' no número inteiro 25. - `float('19.99')`: converte o texto '19.99' no número decimal 19.99. - `str(100)`: converte o número 100 na cadeia de texto '100'. Prime Enter ou Alt + Seta Direita para ver o casting em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Conversão de Texto em Número",
+        "instruccion": "Observa como se captura uma entrada numérica em texto e se converte para inteiro com int() antes de operar. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "edad_texto = '20'\nedad = int(edad_texto)\nmeses = edad * 12\nprint(f'Edad: {edad} años, equivalente a {meses} meses')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Soma de Dois Números Convertidos",
+        "instruccion": "Altera os textos `num1_str = '50'` e `num2_str = '25'`. Converte-os em inteiros e calcula `suma = int(num1_str) + int(num2_str)`. Mostra a soma e prime Control + Enter.",
+        "pistas": [
+          "Garante que envolves ambas as cadeias com int()."
+        ],
+        "codigo": "num1_str = '50'\nnum2_str = '25'\nsuma = int(num1_str) + int(num2_str)\nprint(f'Suma total: {suma}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Calculadora de Dobro e Metade",
+        "instruccion": "Dada a variável `entrada = '80'`, converte-a em número inteiro em `numero`. Depois calcula `doble = numero * 2` e `mitad = numero // 2`. Imprime ambos os resultados numa f-string: 'Doble: 160, Mitad: 40'. Prime Control + Enter.",
+        "pistas": [
+          "numero = int(entrada), doble = numero * 2, mitad = numero // 2, print(f'Doble: {doble}, Mitad: {mitad}')"
+        ],
+        "codigo": "entrada = '80'\n# Converte para int, calcula dobro e metade e imprime com f-string:\n\n",
+        "salida_esperada": "Doble: 160, Mitad: 40"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Tipo Devolvido por input()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda a regra de ouro de input()."
+        ],
+        "codigo": "",
+        "pregunta": "Que tipo de dados devolve SEMPRE a função input() do Python?",
+        "opciones": [
+          "str (cadeia de texto), mesmo que o utilizador escreva dígitos numéricos.",
+          "int (número inteiro) automaticamente se não houver letras.",
+          "bool (verdadeiro ou falso)."
+        ],
+        "explicacion": "A função input() captura a sequência de teclas como caracteres de texto puros; por isso é sempre necessário converter com int() ou float() se for precisa aritmética."
+      }
+    ]
+  },
+  "15": {
+    "titulo": "Capítulo 15: O Tipo Booleano (bool) e Operadores Relacionais de Comparação",
+    "resumen": "Aprende os dois estados da verdade digital (True e False) e domina os seis operadores de comparação.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Verdade Binária e os Operadores Relacionais",
+        "instruccion": "Toda a decisão que um computador toma se resume a uma pergunta lógica que só pode ter duas respostas possíveis: Verdadeiro ou Falso. Em Python, este tipo de dados chama-se `bool` (booleano, em honra do matemático George Boole) e só admite dois valores literais com maiúscula inicial: `True` e `False`. Para comparar valores e obter um booleano, utilizamos os 'Operadores Relacionais': - `==` (duplo igual): verifica se dois valores são iguais. (Atenção!: um único `=` atribui em memória; dois `==` comparam igualdade). - `!=` (sinal de exclamação e igual): verifica se dois valores são diferentes ou desiguais. - `<` (menor que) e `>` (maior que). - `<=` (menor ou igual que) e `>=` (maior ou igual que). Prime Enter ou Alt + Seta Direita para ver estas comparações em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Avaliando Comparações",
+        "instruccion": "Executa o código com Control + Enter e ouve como o Python avalia cada comparação como True ou False.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "print('¿10 es mayor que 5?:', 10 > 5)\nprint('¿4 es igual a 9?:', 4 == 9)\nprint('¿7 es diferente de 7?:', 7 != 7)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Verificação de Maioridade",
+        "instruccion": "Cria `edad = 20`. Avalia a condição booleana `es_mayor = edad >= 18` e imprime `es_mayor`. Prime Control + Enter.",
+        "pistas": [
+          "Utiliza o operador >= para comparar com 18."
+        ],
+        "codigo": "edad = 20\nes_mayor = edad >= 18\nprint(f'¿Es mayor de edad?: {es_mayor}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Validador de Acesso com Palavra-passe",
+        "instruccion": "Tens `clave_guardada = 'python2026'` e `clave_ingresada = 'python2026'`. Compara se ambas são exatamente iguais numa variável booleana `acceso_concedido = (clave_guardada == clave_ingresada)`. Mostra o resultado com print(acceso_concedido) e executa com Control + Enter.",
+        "pistas": [
+          "acceso_concedido = (clave_guardada == clave_ingresada), depois print(acceso_concedido)."
+        ],
+        "codigo": "clave_guardada = 'python2026'\nclave_ingresada = 'python2026'\n# Compara com == e imprime acceso_concedido:\n\n",
+        "salida_esperada": "True"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Diferença entre = e ==",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda que um único igual atribui."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a diferença técnica fundamental entre = e == em Python?",
+        "opciones": [
+          "= atribui um valor a uma variável em memória; == compara se dois valores são iguais.",
+          "São idênticos e podem usar-se indistintamente.",
+          "= é para números e == é para texto."
+        ],
+        "explicacion": "Confundir o operador de atribuição (=) com o de comparação relacional (==) é um erro comum; o Python mantém uma distinção estrita."
+      }
+    ]
+  },
+  "16": {
+    "titulo": "Capítulo 16: Operadores Lógicos (and, or, not) e Tabelas de Verdade",
+    "resumen": "Aprende a ligar múltiplas condições através de conjunções, disjunções e negações com avaliação em curto-circuito.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Conectores Lógicos e Curto-Circuito",
+        "instruccion": "Na vida real, as decisões raramente dependem de um único fator. Para avaliar múltiplas condições ao mesmo tempo, o Python dispõe de três palavras reservadas lógicas: 1. `and` (E lógico): exige que AMBAS as condições sejam verdadeiras para dar `True`. Se pelo menos uma for falsa, o resultado total é `False`. 2. `or` (OU lógico): requer que PELO MENOS UMA das condições seja verdadeira para dar `True`. Só dará `False` se ambas forem falsas. 3. `not` (Negação): inverte o valor lógico. Se uma condição é `True`, `not True` produz `False`, e vice-versa. Avaliação em Curto-Circuito (*Short-Circuit Evaluation*): o Python é muito inteligente: numa expressão `A and B`, se `A` for falso, o Python já sabe que o resultado final será falso e nem sequer perde tempo a avaliar `B`. Da mesma forma, em `A or B`, se `A` for verdadeiro, não avalia `B`. Prime Enter ou Alt + Seta Direita para ver os operadores lógicos em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Tabelas de Verdade em Ação",
+        "instruccion": "Executa o código com Control + Enter e analisa como o and exige cumprimento simultâneo enquanto o or é mais flexível.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "tiene_llave = True\nsabe_clave = False\nprint('¿Entra con and (llave Y clave)?:', tiene_llave and sabe_clave)\nprint('¿Entra con or (llave O clave)?:', tiene_llave or sabe_clave)\nprint('Negación de sabe_clave con not:', not sabe_clave)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Negação com not",
+        "instruccion": "Verifica se um sistema está desocupado: `bloqueado = False`, `disponible = not bloqueado`. Mostra `disponible` com print() e prime Control + Enter.",
+        "pistas": [
+          "not False converte-se em True."
+        ],
+        "codigo": "bloqueado = False\ndisponible = not bloqueado\nprint(f'¿Sistema disponible?: {disponible}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Verificação de Bolsa Universitária",
+        "instruccion": "Um estudante qualifica-se para uma bolsa se a sua média for maior ou igual a 90 E a sua assiduidade for maior ou igual a 85%. Declara `promedio = 92`, `asistencia = 90` e avalia `obtiene_beca = (promedio >= 90) and (asistencia >= 85)`. Imprime `obtiene_beca` e executa com Control + Enter.",
+        "pistas": [
+          "Utiliza o operador and para unir as duas comparações."
+        ],
+        "codigo": "# Declara promedio, asistencia, avalia obtiene_beca e imprime:\n\n",
+        "salida_esperada": "True"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Avaliação do Operador and",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Ambas as condições têm de cumprir-se simultaneamente."
+        ],
+        "codigo": "",
+        "pregunta": "Que resultado produz a expressão booleana: True and False?",
+        "opciones": [
+          "False, porque o operador and exige que ambas as partes sejam verdadeiras.",
+          "True, porque pelo menos uma parte é verdadeira.",
+          "None, porque há um empate lógico."
+        ],
+        "explicacion": "O operador and só produz True quando absolutamente todos os seus operandos são True."
+      }
+    ]
+  },
+  "17": {
+    "titulo": "Capítulo 17: Bifurcação Condicional: A Estrutura if e a Indentação de 4 Espaços",
+    "resumen": "Aprende a bifurcar a execução do programa e domina a regra de ouro do Python: os dois pontos (:) e a indentação obrigatória.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Estrutura if e os Dois Pontos (:)",
+        "instruccion": "Até agora, os nossos programas foram completamente lineares. Uma bifurcação permite que o programa tome caminhos diferentes conforme os dados. A instrução fundamental para bifurcar é `if` (que significa 'se condicional'). Anatomia de um bloco if: 1. Escreves a palavra `if` seguida de uma condição booleana. 2. No fim da linha colocas obrigatoriamente o carácter Dois Pontos `:`. 3. As linhas de código que queres que se executem SÓ quando a condição for verdadeira indentam-se com exatamente 4 espaços à direita. Como auditar a indentação com o NVDA? Quando desces com a seta vertical até uma linha dentro do `if`, o NVDA anunciará: 'indentação de 4 espaços' (ou emitirá um tom agudo). Se te esqueceres dos 4 espaços ou dos dois pontos, o Python lançará um `IndentationError` ou um `SyntaxError`. Prime Enter ou Alt + Seta Direita para ver o primeiro if em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Execução Condicional e Indentação",
+        "instruccion": "Observa os 4 espaços de indentação na linha 2. Executa com Control + Enter para ouvir a mensagem autorizada.",
+        "pistas": [
+          "Repara nos dois pontos no fim da linha do if."
+        ],
+        "codigo": "edad = 20\nif edad >= 18:\n    print('Acceso autorizado por mayoría de edad')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Condição Não Cumprida",
+        "instruccion": "Altera `edad = 15`. Ao executar com Control + Enter, a condição `edad >= 18` será falsa e a linha indentada NÃO se executará, deixando a consola em silêncio. Comprova este comportamento.",
+        "pistas": [
+          "Executa com Control + Enter e comprova que não se imprime nada."
+        ],
+        "codigo": "edad = 15\nif edad >= 18:\n    print('Acceso autorizado por mayoría de edad')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Alerta de Temperatura",
+        "instruccion": "Cria `temperatura = 35`. Escreve uma instrução if que verifique se `temperatura > 30:`. Dentro do bloco indentado com 4 espaços, imprime: 'Alerta: Temperatura elevada'. Prime Control + Enter.",
+        "pistas": [
+          "if temperatura > 30: seguido na linha seguinte de 4 espaços e print('Alerta: Temperatura elevada')."
+        ],
+        "codigo": "temperatura = 35\n# Escreve o if com indentação de 4 espaços:\n\n",
+        "salida_esperada": "Alerta: Temperatura elevada"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Carácter no Fim do if",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Abre a porta ao bloco indentado."
+        ],
+        "codigo": "",
+        "pregunta": "Que carácter de pontuação é obrigatório no fim da linha de cabeçalho do if?",
+        "opciones": [
+          "Dois pontos (:)",
+          "Ponto e vírgula (;)",
+          "Sinal de interrogação (?)"
+        ],
+        "explicacion": "Em Python, todos os cabeçalhos de blocos compostos (if, else, for, while, def, class) têm de terminar estritamente com dois pontos (:)."
+      }
+    ]
+  },
+  "18": {
+    "titulo": "Capítulo 18: O Caminho Alternativo: A Cláusula else",
+    "resumen": "Aprende a definir o caminho de contingência quando uma condição não se cumpre utilizando o bloco else.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Decisão Binária Completa",
+        "instruccion": "Um `if` solitário só age se a condição for verdadeira; se for falsa, o programa simplesmente segue em frente. No entanto, a maioria dos processos requer um 'Plano B': 'Se ocorrer A, faz isto; CASO CONTRÁRIO, faz aquilo'. Para isto utilizamos a cláusula `else:` (que significa 'caso contrário' ou 'se não'). Regras da cláusula else: 1. Alinha-se ao mesmo nível que o `if` (sem indentação relativamente ao `if`). 2. Termina obrigatoriamente com dois pontos `:`. 3. As suas instruções internas indentam-se com 4 espaços à direita. 4. O bloco `else` NUNCA leva condição; executa-se de forma automática quando a condição do `if` foi falsa. Prime Enter ou Alt + Seta Direita para ver o if/else em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: A Bifurcação Binária",
+        "instruccion": "Examina a estrutura if/else. Como edad é 16, a condição falha e executa-se o bloco else. Executa com Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "edad = 16\nif edad >= 18:\n    print('Acceso permitido')\nelse:\n    print('Acceso denegado: debes ser mayor de 18')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Mudar o Fluxo para o if",
+        "instruccion": "Modifica `edad = 25`. Ao executar com Control + Enter, agora ativar-se-á o primeiro ramo ('Acceso permitido') e o bloco else será ignorado.",
+        "pistas": [
+          "Altera edad para 25 e prime Control + Enter."
+        ],
+        "codigo": "edad = 25\nif edad >= 18:\n    print('Acceso permitido')\nelse:\n    print('Acceso denegado: debes ser mayor de 18')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Classificador de Número Par ou Ímpar",
+        "instruccion": "Dado `numero = 14`, utiliza o operador módulo `% 2 == 0` para verificar se é par. Se for par imprime: 'El número es par'. Se não (else), imprime: 'El número es impar'. Prime Control + Enter.",
+        "pistas": [
+          "if numero % 2 == 0: print('El número es par') else: print('El número es impar')"
+        ],
+        "codigo": "numero = 14\n# Comprova se numero % 2 == 0 com if/else:\n\n",
+        "salida_esperada": "El número es par"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Momento de Execução do else",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "É o plano de contingência."
+        ],
+        "codigo": "",
+        "pregunta": "Quando é que se executam as instruções contidas dentro de um bloco else?",
+        "opciones": [
+          "Somente quando a condição do if anterior avaliou como False.",
+          "Sempre, não importando o que ocorreu no if.",
+          "Só se houver um erro de sintaxe no ficheiro."
+        ],
+        "explicacion": "O bloco else é o caminho alternativo automático que dispara quando o teste do if resulta falso."
+      }
+    ]
+  },
+  "19": {
+    "titulo": "Capítulo 19: Decisões Múltiplas Encadeadas: Blocos elif",
+    "resumen": "Aprende a classificar situações complexas com múltiplas alternativas mutuamente exclusivas usando elif.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Cascata de Decisões com elif",
+        "instruccion": "O que acontece se tivermos mais de duas alternativas possíveis? Por exemplo: um semáforo pode estar verde, amarelo ou vermelho. Em vez de aninhar múltiplos if confusos, Python oferece a palavra reservada `elif` (abreviatura de *else if*, ou seja, 'se não, verifica se...'). Fluxo de uma cascata `if / elif / else`: 1. Python avalia o primeiro `if`. Se for verdadeiro, executa o seu bloco e TERMINA toda a estrutura (salta até ao final sem avaliar os restantes). 2. Se o primeiro `if` foi falso, salta para o `elif` seguinte e avalia a sua condição. 3. Podes encadear todos os `elif` que precisares. 4. Se nenhum `if` nem `elif` se cumpriu, executa-se o bloco `else` final como rede de segurança. Prime Enter ou Alt + Seta Direita para ver uma classificação com elif.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Classificação de Notas",
+        "instruccion": "Examina a cascata. Como puntaje é 75, o primeiro if (>= 90) falha e entra no elif (>= 70). Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "puntaje = 75\nif puntaje >= 90:\n    print('Calificación: Sobresaliente')\nelif puntaje >= 70:\n    print('Calificación: Aprobado')\nelse:\n    print('Calificación: Requiere refuerzo')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Ativar o Ramo Sobressaliente",
+        "instruccion": "Modifica `puntaje = 95`. Executa com Control + Enter e observa como se ativa o primeiro ramo sem avaliar os seguintes.",
+        "pistas": [
+          "Muda puntaje para 95 e executa."
+        ],
+        "codigo": "puntaje = 95\nif puntaje >= 90:\n    print('Calificación: Sobresaliente')\nelif puntaje >= 70:\n    print('Calificación: Aprobado')\nelse:\n    print('Calificación: Requiere refuerzo')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Classificador Térmico em Três Níveis",
+        "instruccion": "Dado `temp = 22`: se `temp > 28` imprime 'Clima cálido'; elif `temp >= 15` imprime 'Clima templado'; else imprime 'Clima frío'. Executa com Control + Enter.",
+        "pistas": [
+          "if temp > 28: print('Clima cálido') elif temp >= 15: print('Clima templado') else: print('Clima frío')"
+        ],
+        "codigo": "temp = 22\n# Escreve a estrutura if / elif / else com indentação de 4 espaços:\n\n",
+        "salida_esperada": "Clima templado"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Comportamento do elif",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda que só se toma um caminho."
+        ],
+        "codigo": "",
+        "pregunta": "Se a primeira condição de um if for verdadeira numa cadeia com vários elif, o que acontece aos elif posteriores?",
+        "opciones": [
+          "Omitem-se por completo e a execução continua depois da estrutura condicional.",
+          "Executam-se todos obrigatoriamente um após o outro.",
+          "O programa reinicia desde a linha 1."
+        ],
+        "explicacion": "Os ramos if/elif são mutuamente exclusivos: assim que um ramo se cumpre, todos os outros são descartados."
+      }
+    ]
+  },
+  "20": {
+    "titulo": "Capítulo 20: Repetição Definida: O Ciclo for e a Função range()",
+    "resumen": "Aprende a automatizar tarefas repetitivas percorrendo sequências numéricas com o ciclo for e range().",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Iteração e a Função range()",
+        "instruccion": "Uma das maiores virtudes de um computador é a sua capacidade para repetir uma tarefa milhões de vezes sem se cansar nem cometer erros. Um 'Ciclo' é uma estrutura que repete um bloco de código. O ciclo `for` utiliza-se quando sabemos de antemão quantas vezes queremos repetir algo ou quando queremos percorrer uma coleção de elementos. A Função `range()`: `range()` gera uma sequência imutável de números inteiros. - `range(stop)`: inicia em 0 e avança até `stop - 1`. Exemplo: `range(5)` produz 0, 1, 2, 3, 4. - `range(start, stop)`: inicia em `start` e termina em `stop - 1`. Exemplo: `range(1, 6)` produz 1, 2, 3, 4, 5. - `range(start, stop, step)`: o terceiro parâmetro define o passo ou incremento. Exemplo: `range(0, 10, 2)` produz números pares: 0, 2, 4, 6, 8. Em cada repetição (iteração), a variável do ciclo toma o valor seguinte da sequência e executa o bloco indentado com 4 espaços. Prime Enter ou Alt + Seta Direita para ver o ciclo for em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Repetir com for e range()",
+        "instruccion": "Observa como o ciclo repete o print() cinco vezes variando a variável `i`. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "for i in range(1, 6):\n    print(f'Paso número: {i}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Salto de Dois em Dois",
+        "instruccion": "Gera números pares usando o parâmetro step: `range(2, 11, 2)`. Mostra cada número e prime Control + Enter.",
+        "pistas": [
+          "O intervalo vai de 2 a 10 com saltos de 2."
+        ],
+        "codigo": "for n in range(2, 11, 2):\n    print(f'Par: {n}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Acumulador de Soma",
+        "instruccion": "Inicializa `total = 0`. Através de um ciclo `for n in range(1, 6):`, soma cada número ao acumulador com `total += n` (ou `total = total + n`). No fim do ciclo (sem indentação), imprime: print(total). Prime Control + Enter.",
+        "pistas": [
+          "1 + 2 + 3 + 4 + 5 = 15. Garante que imprimes total fora do ciclo (sem indentação)."
+        ],
+        "codigo": "total = 0\n# Itera com for somando a total e imprime total no final:\n\n",
+        "salida_esperada": "15"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Limite Superior de range()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "O número final fica de fora."
+        ],
+        "codigo": "",
+        "pregunta": "Que sequência de números inteiros gera exatamente a chamada range(1, 5)?",
+        "opciones": [
+          "1, 2, 3, 4 (o limite superior 5 nunca se inclui)",
+          "1, 2, 3, 4, 5 (incluindo o 5)",
+          "0, 1, 2, 3, 4, 5"
+        ],
+        "explicacion": "Em Python, os intervalos e índices são sempre semiabertos [início, fim): o valor de stop fica estritamente excluído."
+      }
+    ]
+  },
+  "21": {
+    "titulo": "Capítulo 21: Repetição Condicional: O Ciclo while",
+    "resumen": "Aprende a repetir instruções baseadas em condições dinâmicas usando o ciclo while e variáveis de controlo.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Ciclo Baseado em Condição",
+        "instruccion": "Enquanto o ciclo `for` se utiliza para sequências de tamanho conhecido, o ciclo `while` (que significa 'enquanto') usa-se quando não sabemos quantas vezes teremos de repetir algo. O ciclo `while` avalia uma condição booleana antes de cada iteração: - Se a condição for `True`, executa o bloco de código indentado. - Volta a subir e avalia a condição novamente. - No instante em que a condição se torna `False`, o ciclo termina e o programa continua com as linhas seguintes. Componentes indispensáveis de um ciclo while: 1. Inicialização: definir uma variável de controlo antes do ciclo (exemplo: `contador = 1`). 2. Condição: o teste que se avalia (exemplo: `while contador <= 5:`). 3. Atualização ou Passo: modificar a variável de controlo dentro do bloco (exemplo: `contador += 1`). Se te esqueceres deste passo, a condição será sempre verdadeira e o programa ficará preso para sempre num ciclo infinito. Prime Enter ou Alt + Seta Direita para ver o ciclo while em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Contagem Progressiva Controlada",
+        "instruccion": "Observa como a variável `contador` inicia em 1, incrementa a cada passo com `contador += 1` e o ciclo termina ao chegar a 4. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "contador = 1\nwhile contador <= 3:\n    print(f'Iteración: {contador}')\n    contador += 1\nprint('Bucle finalizado con éxito')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Contagem Decrescente",
+        "instruccion": "Cria uma contagem decrescente que inicie em `cuenta = 5`, subtraia com `cuenta -= 1` enquanto `cuenta > 0` e, ao sair, imprima '¡Despegue!'. Prime Control + Enter.",
+        "pistas": [
+          "Garante que decrementas cuenta em cada volta."
+        ],
+        "codigo": "cuenta = 5\nwhile cuenta > 0:\n    print(f'T menos {cuenta}')\n    cuenta -= 1\nprint('¡Despegue!')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Duplicador Exponencial",
+        "instruccion": "Inicia `energia = 1`. Com um ciclo `while energia < 30:`, imprime `energia` e duplica-a em cada volta com `energia *= 2` (ou `energia = energia * 2`). Executa com Control + Enter.",
+        "pistas": [
+          "while energia < 30: print(energia) energia *= 2"
+        ],
+        "codigo": "energia = 1\n# Escreve o ciclo while que duplica energia e imprime:\n\n",
+        "salida_esperada": "1\n2\n4\n8\n16"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Perigo do Ciclo Infinito",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa numa condição que nunca muda."
+        ],
+        "codigo": "",
+        "pregunta": "O que acontece se, dentro do corpo de um ciclo while, te esqueceres de atualizar a variável de controlo?",
+        "opciones": [
+          "A condição nunca passará a False e o ciclo repetir-se-á indefinidamente (ciclo infinito).",
+          "Python desliga o ecrã do computador de imediato.",
+          "O ciclo transforma-se magicamente num ciclo for."
+        ],
+        "explicacion": "Sem atualização do estado de controlo, a condição permanece perpetuamente verdadeira, consumindo ciclos de CPU."
+      }
+    ]
+  },
+  "22": {
+    "titulo": "Capítulo 22: Prevenção de Ciclos Infinitos e Como Parar a Execução",
+    "resumen": "Aprende a diagnosticar ciclos infinitos, compreende os mecanismos de segurança por tempo limite (timeout) e como cancelar execuções.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Anatomia de um Ciclo Infinito e Temporizadores de Segurança",
+        "instruccion": "Um ciclo infinito ocorre quando a condição de saída de um ciclo nunca chega a cumprir-se. Por exemplo: `while True:` ou um contador que, em vez de somar, diminui afastando-se da meta. Quando isto ocorre, a CPU satura-se executando milhares de milhões de instruções repetitivas, fazendo com que a aplicação deixe de responder e congele a interface. Mecanismos de Proteção em Ambientes Profissionais: para evitar que um erro congele o NVDA ou o teu sistema operativo, este ambiente formativo inclui um 'Temporizador de Segurança Isolado' (*Execution Timeout*). Se um script demorar mais de 4 segundos sem terminar, o executor seguro interrompe o processo à força e informa-te de imediato por voz: 'Tiempo límite de ejecución excedido (posible bucle infinito)'. Numa consola do sistema operativo, o atalho padrão para interromper um processo descontrolado é `Control + C`. Prime Enter ou Alt + Seta Direita para ver como se corrige um ciclo defeituoso.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Correção de um Ciclo Defeituoso",
+        "instruccion": "Examina o código. Observa como a linha `paso += 1` garante que `paso < 5` se torna falsa após 4 iterações. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "paso = 1\nwhile paso < 5:\n    print(f'Procesando bloque seguro #{paso}')\n    paso += 1\nprint('Ejecución segura completada sin bloqueos')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Acrescentar a Condição de Saída em Falta",
+        "instruccion": "No código do editor, acrescenta a linha `nivel += 1` dentro do while para que o ciclo avance até ao limite 4 e termine limpidamente. Executa com Control + Enter.",
+        "pistas": [
+          "Garante que nivel += 1 está indentado com 4 espaços."
+        ],
+        "codigo": "nivel = 1\nwhile nivel <= 4:\n    print(f'Nivel auditivo: {nivel}')\n    # Acrescenta aqui a linha: nivel += 1\n    nivel += 1\nprint('Niveles completados')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Carregamento de Bateria Seguro",
+        "instruccion": "Simula o carregamento de um dispositivo: `bateria = 70`. Através de um ciclo `while bateria < 100:`, incrementa `bateria += 10`. Ao sair do ciclo (sem indentação), imprime: print(f'Carga completa: {bateria}%'). Executa com Control + Enter.",
+        "pistas": [
+          "while bateria < 100: bateria += 10, e ao sair print(f'Carga completa: {bateria}%')"
+        ],
+        "codigo": "bateria = 70\n# Incrementa bateria de 10 em 10 até 100 e imprime no final:\n\n",
+        "salida_esperada": "Carga completa: 100%"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Atalho Universal de Interrupção",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "É o atalho universal de cancelamento em terminais."
+        ],
+        "codigo": "",
+        "pregunta": "Que combinação de teclas envia um sinal de interrupção (KeyboardInterrupt) a um script bloqueado num terminal?",
+        "opciones": [
+          "Control + C",
+          "Alt + F4",
+          "Barra de espaços"
+        ],
+        "explicacion": "Control + C gera uma exceção KeyboardInterrupt padrão que para a execução nas consolas dos sistemas operativos."
+      }
+    ]
+  },
+  "23": {
+    "titulo": "Capítulo 23: Controlo Fino de Ciclos: As Instruções break, continue e else em Ciclos",
+    "resumen": "Aprende a interromper pesquisas antecipadamente com break e a saltar iterações seletivas com continue.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Interrupção com break e Omissão com continue",
+        "instruccion": "Muitas vezes precisamos de um controlo mais cirúrgico dentro de um ciclo, sem esperar que ele termine de percorrer toda a sequência. Python fornece duas instruções-chave: 1. `break` (quebrar): cancela e interrompe o ciclo de imediato. Assim que Python executa `break`, salta fora do ciclo e continua com a primeira linha que não esteja indentada. Utiliza-se tipicamente em algoritmos de pesquisa: quando encontras o que procuravas, não faz sentido continuar a gastar tempo de processador. 2. `continue` (continuar): omite o resto da iteração atual e salta de imediato para a iteração seguinte do ciclo. Tudo o que estiver abaixo de `continue` nessa volta não se executa. Cláusula `else` em ciclos: uma característica exclusiva e elegante de Python: podes acrescentar um bloco `else:` a um ciclo for ou while. Este bloco executa-se ÚNICAMENTE se o ciclo terminou de forma natural, sem ter sido interrompido por um `break`. Prime Enter ou Alt + Seta Direita para ver estas instruções em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Pesquisa Antecipada com break",
+        "instruccion": "Observa como o ciclo range(1, 10) pára assim que encontra o número 3, graças ao break. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "for n in range(1, 10):\n    if n == 3:\n        print('¡Objetivo 3 encontrado! Deteniendo bucle.')\n        break\n    print(f'Revisando: {n}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Omitir com continue",
+        "instruccion": "Usa continue para saltar os números ímpares: se `n % 2 != 0: continue`. Observa como só se imprimem os números pares. Executa com Control + Enter.",
+        "pistas": [
+          "continue omite a chamada a print para os ímpares."
+        ],
+        "codigo": "for n in range(1, 7):\n    if n % 2 != 0:\n        continue\n    print(f'Número par: {n}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Parar perante um Número Negativo",
+        "instruccion": "Dada a lista `lecturas = [15, 22, -1, 30]`, percorre cada elemento com um ciclo `for val in lecturas:`. Se `val < 0`, imprime 'Lectura anómala detectada' e sai com `break`. Caso contrário, imprime `val`. Prime Control + Enter.",
+        "pistas": [
+          "if val < 0: print('Lectura anómala detectada') break else: print(val)"
+        ],
+        "codigo": "lecturas = [15, 22, -1, 30]\n# Itera e interrompe com break perante números negativos:\n\n",
+        "salida_esperada": "15\n22\nLectura anómala detectada"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: A Instrução continue",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Distingue entre cancelar o ciclo inteiro e saltar uma volta."
+        ],
+        "codigo": "",
+        "pregunta": "O que acontece quando o intérprete executa a instrução continue dentro de um ciclo?",
+        "opciones": [
+          "Omite as linhas restantes da volta atual e salta para o início da iteração seguinte.",
+          "Cancela e destrói o ciclo permanentemente.",
+          "Imprime uma mensagem de erro e desliga o leitor de ecrã."
+        ],
+        "explicacion": "continue não destrói o ciclo (isso faz-o o break); apenas salta o resto da iteração presente."
+      }
+    ]
+  },
+  "24": {
+    "titulo": "Capítulo 24: Listas (list): Coleções Ordenadas, Índices e Mutabilidade",
+    "resumen": "Aprende a agrupar múltiplos dados ordenados em memória usando parênteses retos [], indexação baseada em zero e índices negativos.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Lista como Contentor Sequencial Mutável",
+        "instruccion": "Até agora, cada variável armazenava um único dado (um número ou um texto). O que acontece se precisares de gerir uma lista de 100 alunos ou 500 artigos de uma loja? Criar 500 variáveis individuais seria insustentável. Uma **Lista** (`list`) é uma coleção ordenada e mutável de elementos agrupados entre parênteses retos `[` e `]`, separados por vírgulas. Propriedades fundamentais das listas: 1. Ordenadas por Posição (Índices baseados em 0): o primeiro elemento encontra-se no índice `0`, o segundo no `1`, o terceiro no `2`, etc. Exemplo: se `frutas = ['manzana', 'pera']`, `frutas[0]` é `'manzana'`. 2. Índices Negativos: o Python permite aceder desde o fim para trás: o índice `-1` é sempre o último elemento, `-2` o penúltimo. 3. Mutabilidade: ao contrário das cadeias de texto, as listas são mutáveis. Podes alterar qualquer elemento no seu lugar atribuindo ao seu índice: `frutas[0] = 'fresa'`. Prime Enter ou Alt + Seta Direita para ver listas em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Acesso por Índice Positivo e Negativo",
+        "instruccion": "Examina a lista de linguagens. Observa como `lenguajes[0]` acede ao primeiro e `lenguajes[-1]` ao último. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "lenguajes = ['Python', 'C', 'JavaScript', 'Rust']\nprint('Primer lenguaje:', lenguajes[0])\nprint('Último lenguaje:', lenguajes[-1])\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Mutar um Elemento da Lista",
+        "instruccion": "Modifica o segundo elemento (índice 1) para que seja 'C++': `lenguajes[1] = 'C++'`. Mostra a lista completa e prime Control + Enter.",
+        "pistas": [
+          "Usa lenguajes[1] = 'C++' para substituir em memória."
+        ],
+        "codigo": "lenguajes = ['Python', 'C', 'JavaScript']\nlenguajes[1] = 'C++'\nprint(lenguajes)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Coleção de Três Ferramentas",
+        "instruccion": "Cria uma lista chamada `herramientas` com três textos: 'NVDA', 'Python', 'VSCode'. Depois imprime com um único print() o primeiro elemento e o último separados por uma vírgula: `print(herramientas[0], herramientas[-1])`. Executa com Control + Enter.",
+        "pistas": [
+          "herramientas = ['NVDA', 'Python', 'VSCode'] e print(herramientas[0], herramientas[-1])"
+        ],
+        "codigo": "# Cria herramientas e imprime o primeiro e o último elemento:\n\n",
+        "salida_esperada": "NVDA VSCode"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Índice do Primeiro Elemento",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "A contagem começa sempre no zero."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é o índice que referencia o primeiro elemento de qualquer lista em Python?",
+        "opciones": [
+          "0 (zero)",
+          "1 (um)",
+          "-0"
+        ],
+        "explicacion": "O Python utiliza indexação baseada em zero: o deslocamento desde o início do vetor para o primeiro elemento é 0."
+      }
+    ]
+  },
+  "25": {
+    "titulo": "Capítulo 25: Métodos Fundamentais de Listas (append, insert, pop, remove, len)",
+    "resumen": "Aprende a adicionar elementos, eliminá-los da memória e medir o tamanho de listas com os seus métodos integrados.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Métodos de Mutação de Listas",
+        "instruccion": "Uma lista não tem um tamanho estático; pode crescer ou encolher dinamicamente conforme as necessidades do programa. Para modificar listas, o Python oferece métodos específicos utilizando a notação de ponto (`lista.metodo()`): - `lista.append(elemento)`: adiciona um novo elemento ao final da lista. - `lista.insert(posicion, elemento)`: insere um elemento num índice específico, deslocando os restantes para a direita. - `lista.pop()`: extrai e elimina o último elemento. Se lhe passares um índice (`lista.pop(0)`), elimina o elemento nessa posição. - `lista.remove(valor)`: procura e elimina a primeira ocorrência do valor exato indicado. Se não existir, gera um `ValueError`. - `len(lista)`: função que devolve a quantidade total de elementos que a lista contém. Prime Enter ou Alt + Seta Direita para ver estes métodos em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Crescimento e Medição com append() e len()",
+        "instruccion": "Observa como a lista tareas cresce com append() e é medida com len(). Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "tareas = ['Repasar Python', 'Configurar NVDA']\ntareas.append('Escribir script accesible')\nprint('Total tareas:', len(tareas))\nprint('Lista completa:', tareas)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Extração de Elementos com pop()",
+        "instruccion": "Extrai o último elemento da lista com `eliminado = tareas.pop()` e imprime `eliminado` e a lista resultante. Executa com Control + Enter.",
+        "pistas": [
+          "pop() devolve o elemento retirado."
+        ],
+        "codigo": "tareas = ['Lección 1', 'Lección 2', 'Lección 3']\neliminado = tareas.pop()\nprint('Tarea extraída:', eliminado)\nprint('Tareas restantes:', tareas)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Fila de Espera Dinâmica",
+        "instruccion": "Inicia `cola = ['Ana', 'Bernardo']`. Adiciona 'Carlos' ao final com append(). Depois extrai o primeiro cliente atendido usando `cola.pop(0)`. Imprime `cola` e executa com Control + Enter.",
+        "pistas": [
+          "cola.append('Carlos'), cola.pop(0), print(cola)"
+        ],
+        "codigo": "cola = ['Ana', 'Bernardo']\n# Adiciona o Carlos com append, extrai o índice 0 com pop e imprime cola:\n\n",
+        "salida_esperada": "['Bernardo', 'Carlos']"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Método append()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Adicionar à fila."
+        ],
+        "codigo": "",
+        "pregunta": "Em que posição da lista coloca o método append(x) o novo elemento?",
+        "opciones": [
+          "No final da lista, incrementando o seu comprimento em 1.",
+          "No início da lista, no índice 0.",
+          "Numa posição aleatória escolhida pelo computador."
+        ],
+        "explicacion": "append() adiciona sempre ao final da coleção em tempo constante O(1)."
+      }
+    ]
+  },
+  "26": {
+    "titulo": "Capítulo 26: Percurso e Iteração sobre Listas (for ... in e enumerate())",
+    "resumen": "Aprende o padrão idiomático para percorrer listas elemento a elemento e utiliza enumerate() para numerar elementos.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Padrão for ... in e a Função enumerate()",
+        "instruccion": "Noutras linguagens antigas, percorrer um vetor exigia criar um contador manual `i = 0` e consultar `lista[i]`. O Python desenhou uma sintaxe infinitamente mais limpa e idiomática: `for elemento in lista:`. O intérprete encarrega-se de extrair automaticamente cada elemento da coleção, um por um, até chegar ao fim. A Função `enumerate()`: o que acontece se precisares do elemento E também do seu número de posição (índice)? Envolver a lista com `enumerate(lista, start=1)` entrega em cada volta um par: `indice, elemento`. Isto é especialmente útil em software acessível para apresentar listas numeradas verbalizadas com total clareza para leitores de ecrã. Prime Enter ou Alt + Seta Direita para ver o percurso em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Percurso Sequencial Limpo",
+        "instruccion": "Examina como `for fruta in frutas:` extrai diretamente cada texto. Prime Control + Enter para ouvir cada fruta numa linha.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "frutas = ['Manzana', 'Pera', 'Plátano']\nfor fruta in frutas:\n    print(f'Fruta disponible: {fruta}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Numeração Acessível com enumerate()",
+        "instruccion": "Usa `enumerate(canales, start=1)` para numerar canais acessíveis a partir do 1. Executa com Control + Enter.",
+        "pistas": [
+          "Observa como start=1 numera desde o 1 em vez de 0."
+        ],
+        "codigo": "canales = ['Audio sintetizado', 'Línea Braille', 'Consola interactiva']\nfor num, canal in enumerate(canales, start=1):\n    print(f'{num}. Canal: {canal}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Soma de Preços de um Carrinho",
+        "instruccion": "Dada a lista `precios = [12.50, 8.00, 24.50]`, inicia `total = 0.0`. Percorre a lista com um ciclo for somando cada preço a `total`. No fim do ciclo, imprime: print(f'Total compra: {total}'). Executa com Control + Enter.",
+        "pistas": [
+          "for p in precios: total += p, e ao sair print(f'Total compra: {total}')"
+        ],
+        "codigo": "precios = [12.50, 8.00, 24.50]\ntotal = 0.0\n# Itera com for somando a total e imprime o total no final:\n\n",
+        "salida_esperada": "Total compra: 45.0"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: A Função enumerate()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Devolve a posição e o dado."
+        ],
+        "codigo": "",
+        "pregunta": "Que dois valores entrega enumerate(iterable) em cada volta do ciclo?",
+        "opciones": [
+          "O número do índice e o elemento correspondente.",
+          "O primeiro elemento e o último elemento.",
+          "O tipo de dado e o seu tamanho em memória."
+        ],
+        "explicacion": "enumerate() produz pares (índice, elemento), evitando a necessidade de gerir contadores manuais."
+      }
+    ]
+  },
+  "27": {
+    "titulo": "Capítulo 27: Tuplos (tuple): Imutabilidade, Segurança de Dados e Desempacotamento",
+    "resumen": "Aprende a proteger dados críticos mediante coleções de apenas leitura (tuplos) e domina o desempacotamento de variáveis.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Tuplos versus Listas e Imutabilidade",
+        "instruccion": "Em muitas situações de engenharia de software, permitir que uma coleção seja modificável é um risco de segurança. Por exemplo: as coordenadas geográficas de um sensor, os códigos de erro do sistema ou as dimensões fixas de uma janela. Um **Tuplo** (`tuple`) é uma coleção ordenada e IMUTÁVEL delimitada por parênteses `(` e `)`. Diferença fundamental face às listas: uma vez criado um tuplo, os seus elementos ficam selados: não podes adicionar, apagar nem modificar valores. Tentar fazer `tupla[0] = 5` lançará um erro `TypeError`. Desempacotamento Elegante (*Tuple Unpacking*): o Python permite extrair todos os elementos de um tuplo para variáveis individuais numa única linha: `lat, lon = (4.71, -74.07)`. Isto cria um código extremamente limpo, rápido e seguro. Prime Enter ou Alt + Seta Direita para ver os tuplos em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Criação e Desempacotamento de Tuplos",
+        "instruccion": "Observa como o tuplo `resolucion = (1920, 1080)` se desempacota em `ancho, alto`. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "resolucion = (1920, 1080)\nancho, alto = resolucion\nprint(f'Ancho: {ancho} píxeles, Alto: {alto} píxeles')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Comprovar a Imutabilidade do Tuplo",
+        "instruccion": "Acede por índice ao primeiro elemento de `coordenadas = (10, 25)` e imprime-o com `print(coordenadas[0])`. Executa com Control + Enter.",
+        "pistas": [
+          "Os tuplos admitem leitura por parênteses retos [0] mas não modificação."
+        ],
+        "codigo": "coordenadas = (10, 25)\nprint(f'Eje X inmutable: {coordenadas[0]}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Desempacotar um Registo de Utilizador",
+        "instruccion": "Dado o tuplo `usuario = ('Elena', 'Desarrolladora', 2026)`, desempacota-o em três variáveis: `nombre, rol, anio = usuario`. Imprime com uma f-string: 'Elena es Desarrolladora desde 2026'. Prime Control + Enter.",
+        "pistas": [
+          "nombre, rol, anio = usuario e print(f'{nombre} es {rol} desde {anio}')"
+        ],
+        "codigo": "usuario = ('Elena', 'Desarrolladora', 2026)\n# Desempacota e imprime com f-string:\n\n",
+        "salida_esperada": "Elena es Desarrolladora desde 2026"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Imutabilidade de Tuplos",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "A imutabilidade protege contra modificações."
+        ],
+        "codigo": "",
+        "pregunta": "O que acontece se tentares modificar um elemento de um tuplo mediante atribuição (exemplo: mi_tupla[0] = 99)?",
+        "opciones": [
+          "O Python gera um erro TypeError indicando que os tuplos não admitem atribuição de elementos.",
+          "O tuplo modifica-se sem problemas.",
+          "O elemento adiciona-se ao final do tuplo."
+        ],
+        "explicacion": "Os tuplos são imutáveis por desenho; qualquer tentativa de modificar a sua estrutura gera uma exceção TypeError."
+      }
+    ]
+  },
+  "28": {
+    "titulo": "Capítulo 28: Dicionários (dict): O Mapeamento Chave-Valor",
+    "resumen": "Aprende a estrutura associativa mais poderosa do Python: procura ultrarrápida por chave em chavetas {} e o método seguro get().",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Mapeamentos Associativos e Tabelas Hash",
+        "instruccion": "Numa lista, os dados recuperam-se pela sua posição numérica (`lista[0]`, `lista[1]`). Mas no mundo real, os dados associam-se por significado: um documento de identidade associa-se a um nome, uma palavra à sua definição ou uma configuração ao seu parâmetro. Um **Dicionário** (`dict`) é uma coleção associativa delimitada por chavetas `{` e `}` que armazena pares de `clave: valor`. Regras chave dos dicionários: 1. Acesso por Chave: em vez de um índice numérico, colocas a chave entre parênteses retos: `persona['nombre']`. 2. Chaves Únicas: cada chave é única; se atribuíres a uma chave existente, o seu valor atualiza-se. 3. Acesso Seguro com `.get()`: se tentares aceder a uma chave que não existe mediante `d['inexistente']`, o Python lança um erro `KeyError`. Com `d.get('clave', 'Valor por defecto')`, evitas a falha e recebes um valor predefinido seguro se a chave faltar. Prime Enter ou Alt + Seta Direita para ver os dicionários em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Criação e Consulta de Dicionários",
+        "instruccion": "Examina como se armazenam dados estruturados de um utilizador e se consultam por chave. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "config = {'idioma': 'es', 'volumen': 85, 'lector': 'NVDA'}\nprint('Lector activo:', config['lector'])\nprint('Nivel de volumen:', config['volumen'])\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Acesso Seguro com get() e Adição de Chaves",
+        "instruccion": "Adiciona uma nova chave `config['braille'] = True` e consulta com `.get()` uma chave inexistente com valor predefinido. Prime Control + Enter.",
+        "pistas": [
+          "get() evita que o programa lance KeyError."
+        ],
+        "codigo": "config = {'idioma': 'es', 'volumen': 85}\nconfig['braille'] = True\nvelocidad = config.get('velocidad', 50)\nprint('Configuración actualizada:', config)\nprint('Velocidad por defecto:', velocidad)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Ficha de Perfil Profissional",
+        "instruccion": "Cria um dicionário `perfil` com as chaves: `'nombre': 'Elena'`, `'rol': 'Programadora'` e `'experiencia': 3`. Depois imprime numa única f-string: 'Elena es Programadora con 3 años de experiencia'. Prime Control + Enter.",
+        "pistas": [
+          "perfil = {'nombre': 'Elena', 'rol': 'Programadora', 'experiencia': 3}, print(f\"{perfil['nombre']} es {perfil['rol']} con {perfil['experiencia']} años de experiencia\")"
+        ],
+        "codigo": "# Cria o dicionário perfil e imprime com f-string:\n\n",
+        "salida_esperada": "Elena es Programadora con 3 años de experiencia"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Vantagem do Método get()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na prevenção de falhas do software."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é uma prática profissional preferível usar dicionario.get('clave') em vez de dicionario['clave']?",
+        "opciones": [
+          "Porque se a chave não existir, get() devolve None ou um valor predefinido sem partir o programa com um KeyError.",
+          "Porque get() apaga a chave automaticamente depois de a consultar.",
+          "Porque get() só funciona com números inteiros."
+        ],
+        "explicacion": "O método get() proporciona tolerância a falhas e previne exceções KeyError face a chaves ausentes ou dinâmicas."
+      }
+    ]
+  },
+  "29": {
+    "titulo": "Capítulo 29: Funções Próprias com def: Princípio DRY e Reutilização",
+    "resumen": "Aprende a criar as tuas próprias funções com def, empacotar blocos de código reutilizáveis e aplicar o princípio DRY.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Princípio DRY e a Anatomia de def",
+        "instruccion": "À medida que os programas crescem, repetir o mesmo bloco de 10 linhas em cinco lugares distintos é uma péssima prática de engenharia. O princípio fundamental do desenho de software chama-se **DRY** (*Don't Repeat Yourself* ou 'Não te repitas'): cada porção de lógica deve existir num único lugar. Para encapsular e reutilizar código, definimos as nossas próprias **Funções** mediante a palavra reservada `def`. Anatomia de uma função: 1. A palavra `def` seguida do nome da função em `snake_case`. 2. Parênteses `(` e `)` que podem conter parâmetros (variáveis que a função espera receber para trabalhar). 3. Dois pontos obrigatórios `:` no final do cabeçalho. 4. O corpo da função com indentação de 4 espaços. Definir uma função apenas ensina uma receita ao intérprete; a função não será executada até que a 'invoques' ou 'chames' pelo seu nome com os seus parênteses numa linha posterior. Prime Enter ou Alt + Seta Direita para ver uma função em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Definição e Invocação",
+        "instruccion": "Examina a função `saludar_usuario(nombre)`. Observa como se define primeiro e depois se invoca duas vezes com argumentos distintos. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "def saludar_usuario(nombre):\n    print(f'Hola, {nombre}. Bienvenido al entorno accesible.')\n\nsaludar_usuario('Elena')\nsaludar_usuario('Kevin')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Função com Múltiplos Parâmetros",
+        "instruccion": "Cria uma função que receba dois parâmetros `mostrar_progreso(capitulo, total)` e imprima o estado. Invoca-a e prime Control + Enter.",
+        "pistas": [
+          "Passa os dois números dentro dos parênteses ao chamar a função."
+        ],
+        "codigo": "def mostrar_progreso(capitulo, total):\n    print(f'Avanzando: Capítulo {capitulo} de {total}')\n\nmostrar_progreso(29, 40)\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Função Calculadora de Retângulo",
+        "instruccion": "Define uma função chamada `calcular_area(base, altura):` que calcule `area = base * altura` e imprima `print(f'Área calculada: {area}')`. Depois invoca-a com os valores 7 e 6. Prime Control + Enter.",
+        "pistas": [
+          "def calcular_area(base, altura): area = base * altura print(f'Área calculada: {area}') calcular_area(7, 6)"
+        ],
+        "codigo": "# Define calcular_area e invoca-a com 7 e 6:\n\n",
+        "salida_esperada": "Área calculada: 42"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: A Palavra Reservada def",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "É uma palavra de 3 letras."
+        ],
+        "codigo": "",
+        "pregunta": "Que palavra reservada se utiliza em Python para declarar uma nova função?",
+        "opciones": [
+          "def (abreviatura de define)",
+          "function",
+          "fn"
+        ],
+        "explicacion": "Python utiliza exclusivamente a palavra def de 3 letras para definir funções e métodos."
+      }
+    ]
+  },
+  "30": {
+    "titulo": "Capítulo 30: O Retorno de Valores (return) versus print()",
+    "resumen": "Compreende a diferença vital entre emitir som no ecrã com print() e entregar um dado processado à memória com return.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Porque É Que return não é print()?",
+        "instruccion": "Este é o erro conceptual mais difundido entre quem inicia na programação: confundir `print()` com `return`. Compreende bem a distinção: - `print()`: é um ato de comunicação externa. Recebe um dado e envia-o para o ecrã e para o sintetizador de voz do NVDA. Mas esse dado NÃO se conserva no fluxo de execução; a função não entrega nada ao programa (devolve o valor vazio `None`). - `return`: é um ato de entrega interna à memória do programa. Finaliza a função de imediato e entrega o resultado processado no ponto exato onde a função foi chamada, permitindo guardar esse dado numa variável ou usá-lo noutros cálculos. Regra mnemónica: se queres que o utilizador humano ouça algo, usas `print()`; se queres que o teu próprio software use o resultado para continuar a calcular, usas `return`. Prime Enter ou Alt + Seta Direita para ver o valor de return.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Capturar o Resultado de return",
+        "instruccion": "Observa como a função `cuadrado(x)` devolve o resultado com return e este se armazena na variável `res`. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "def cuadrado(x):\n    return x * x\n\nres = cuadrado(8)\nprint(f'El resultado guardado en memoria es: {res}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Encadear Funções com return",
+        "instruccion": "Observa como o retorno de uma função pode passar-se diretamente a outra operação matemática: `resultado = cuadrado(5) + 10`. Prime Control + Enter.",
+        "pistas": [
+          "cuadrado(5) devolve 25 e soma 10 = 35."
+        ],
+        "codigo": "def cuadrado(n):\n    return n * n\n\nresultado = cuadrado(5) + 10\nprint(f'Cálculo encadenado: {resultado}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Função Validadora de Maioridade",
+        "instruccion": "Define uma função `es_adulto(edad):` que retorne com `return` o valor booleano de `edad >= 18`. Guarda o resultado de `es_adulto(21)` numa variável `autorizado` e mostra-a com print(autorizado). Executa com Control + Enter.",
+        "pistas": [
+          "def es_adulto(edad): return edad >= 18, autorizado = es_adulto(21), print(autorizado)"
+        ],
+        "codigo": "# Define es_adulto com return, atribui a autorizado e imprime:\n\n",
+        "salida_esperada": "True"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Retorno Implícito",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na palavra inglesa para 'nenhum'."
+        ],
+        "codigo": "",
+        "pregunta": "Que valor devolve em memória uma função de Python que só contém instruções print() e não tem return?",
+        "opciones": [
+          "None (o objeto que representa a ausência de valor em Python)",
+          "O número 0",
+          "Uma cadeia de texto vazia ''"
+        ],
+        "explicacion": "Toda a função sem instrução return explícita conclui entregando implicitamente None."
+      }
+    ]
+  },
+  "31": {
+    "titulo": "Capítulo 31: Âmbito de Variáveis (Scope): Variáveis Locais vs Globais (Regra LEGB)",
+    "resumen": "Aprende o ciclo de vida e a visibilidade das variáveis: porque é que as variáveis locais nascem e morrem dentro da sua função.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Âmbito Léxico e o Isolamento de Memória",
+        "instruccion": "O 'Âmbito' (*Scope*) é a região do programa onde uma variável é visível e acessível. Python divide o âmbito em duas categorias principais: 1. Âmbito Local: toda a variável criada dentro do corpo de uma função é LOCAL a essa função. Nasce quando a função começa e destrói-se na memória assim que a função termina. O resto do programa NÃO consegue ver nem modificar essa variável local. 2. Âmbito Global: uma variável criada no corpo principal do script (sem indentação) é GLOBAL e pode ser lida de qualquer lugar. Porque é que existe este isolamento? Porque se todas as variáveis fossem globais, duas funções criadas por programadores diferentes que usassem o nome `contador` interfeririam na memória uma da outra, causando erros imprevisíveis. Regra LEGB de Python: para procurar uma variável, Python olha primeiro para o Local, depois Enclosing, depois Global e finalmente Built-in. Prime Enter ou Alt + Seta Direita para ver o isolamento local em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Variáveis Locais Protegidas",
+        "instruccion": "Observa como `mensaje_local` só existe dentro da função e se entrega ao exterior mediante return. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "def generar_reporte():\n    mensaje_local = 'Reporte interno seguro'\n    return mensaje_local\n\nreporte = generar_reporte()\nprint(reporte)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Variáveis Globais vs Locais",
+        "instruccion": "Examina como a variável global `version = 3` pode ser lida dentro da função sem conflito. Executa com Control + Enter.",
+        "pistas": [
+          "As funções podem ler variáveis globais se não as reatribuírem."
+        ],
+        "codigo": "version = 3\n\ndef consultar_version():\n    return f'Versión global activa: {version}'\n\nprint(consultar_version())\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Comunicação Limpa mediante Parâmetros",
+        "instruccion": "Evita variáveis globais. Cria uma função `calcular_iva(subtotal)` que calcule e retorne `subtotal * 0.19`. Guarda o IVA de um subtotal de 200 em `iva` e imprime `iva`. Executa com Control + Enter.",
+        "pistas": [
+          "def calcular_iva(subtotal): return subtotal * 0.19, iva = calcular_iva(200), print(iva)"
+        ],
+        "codigo": "# Define calcular_iva com subtotal como parâmetro e retorna os 19%:\n\n",
+        "salida_esperada": "38.0"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Ciclo de Vida das Variáveis Locais",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "As variáveis locais têm vida efémera."
+        ],
+        "codigo": "",
+        "pregunta": "O que acontece a uma variável criada dentro de uma função quando essa função termina a sua execução?",
+        "opciones": [
+          "Destrói-se e desaparece da memória RAM automaticamente.",
+          "Guarda-se permanentemente no disco rígido.",
+          "Transforma-se numa variável global acessível em todo o ficheiro."
+        ],
+        "explicacion": "O mecanismo de recolha de lixo de Python liberta a memória das variáveis locais ao concluir a moldura de execução da função."
+      }
+    ]
+  },
+  "32": {
+    "titulo": "Capítulo 32: Manipulação Profissional de Exceções: try, except, finally e Leitura do Traceback com F4",
+    "resumen": "Aprende a antecipar erros em tempo de execução para evitar falhas do software e domina a leitura acessível de rastreios de erro.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Erros Previstos e a Estrutura try / except",
+        "instruccion": "No mundo real, os programas deparam-se com situações imprevistas: o utilizador escreve letras onde se esperava um número, um ficheiro solicitado não existe ou perde-se a ligação de rede. Se não protegermos o nosso código, Python lança uma 'Exceção' e o programa colapsa abruptamente. Para construir software tolerante a falhas, utilizamos a estrutura `try / except`: 1. Bloco `try:`: colocas aí as instruções 'arriscadas' que podem falhar. 2. Bloco `except TipoDeErro:`: se ocorrer esse erro específico dentro do try, Python salta de imediato para aqui sem partir o programa, permitindo-nos emitir uma mensagem amigável ou tomar um caminho alternativo. 3. Bloco `finally:` (opcional): executa-se SEMPRE, tenha ocorrido ou não um erro (ideal para fechar ficheiros ou ligações). Diagnóstico com a Tecla F4: neste ambiente, quando ocorre uma exceção não controlada, premir F4 coloca o teu cursor diretamente na linha exata da falha para que a possas examinar de imediato. Prime Enter ou Alt + Seta Direita para ver o controlo de erros em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Captura de ZeroDivisionError",
+        "instruccion": "Observa como dividir por zero não parte o programa graças ao bloco except. Prime Control + Enter para ouvir a mensagem controlada.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "try:\n    divisor = 0\n    resultado = 100 / divisor\n    print(resultado)\nexcept ZeroDivisionError:\n    print('Aviso seguro: No es posible dividir por cero.')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Captura de Conversão Inválida (ValueError)",
+        "instruccion": "Tenta converter um texto não numérico dentro de um try e captura o `ValueError` para avisar o utilizador. Prime Control + Enter.",
+        "pistas": [
+          "O ValueError dispara-se quando int() recebe letras."
+        ],
+        "codigo": "entrada_usuario = 'veinte'\ntry:\n    numero = int(entrada_usuario)\n    print(numero)\nexcept ValueError:\n    print('Error de formato: La entrada no contiene dígitos numéricos válidos.')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Função de Conversão Segura",
+        "instruccion": "Define uma função `convertir_a_entero(texto):` que tente `return int(texto)` dentro de um bloco try. Se ocorrer `ValueError`, captura o erro e devolve `None`. Testa com `res = convertir_a_entero('abc')` e imprime `res`. Prime Control + Enter.",
+        "pistas": [
+          "def convertir_a_entero(texto): try: return int(texto) except ValueError: return None"
+        ],
+        "codigo": "# Define convertir_a_entero com try/except ValueError, atribui a res e imprime:\n\n",
+        "salida_esperada": "None"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Bloco finally",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "É a garantia final incondicional."
+        ],
+        "codigo": "",
+        "pregunta": "Em que circunstâncias se executam as instruções colocadas dentro de uma cláusula finally?",
+        "opciones": [
+          "Executam-se SEMPRE de forma garantida, tenha ocorrido ou não uma exceção no try.",
+          "Apenas se ocorreu um erro no try.",
+          "Só se não ocorreu nenhum erro no try."
+        ],
+        "explicacion": "A cláusula finally garante a execução do código de limpeza e de fecho de recursos independentemente do resultado do bloco try."
+      }
+    ]
+  },
+  "33": {
+    "titulo": "Capítulo 33: Entrada e Saída de Ficheiros de Texto: open() e o Gestor de Contexto with",
+    "resumen": "Aprende a ler e escrever ficheiros no disco rígido de forma segura, garantindo o fecho de recursos com with open().",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Persistência em Disco e Gestores de Contexto",
+        "instruccion": "Até agora, todos os nossos dados residiam na memória RAM e desapareciam ao terminar o programa. Para que os dados sobrevivam a reinícios do computador, devemos guardá-los no disco rígido sob a forma de ficheiros. Em Python, interagimos com ficheiros mediante a função `open()`. Principais modos de abertura: - `'w'` (*write* ou escrita): cria um ficheiro novo ou SOBREESCREVE por completo o ficheiro existente se já existia. - `'r'` (*read* ou leitura): abre um ficheiro existente para ler o seu conteúdo; se não existir, lança `FileNotFoundError`. - `'a'` (*append* ou adição): escreve no final do ficheiro sem apagar o que já continha. O Gestor de Contexto `with`: em vez de abrir e lembrar-nos de chamar `f.close()`, usamos: `with open('archivo.txt', 'w', encoding='utf-8') as f:`. A instrução `with` garante que o ficheiro se fecha automaticamente ao sair do bloco, mesmo que ocorra um erro inesperado, protegendo contra fugas de recursos no sistema operativo. Prime Enter ou Alt + Seta Direita para ver a escrita e a leitura em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Escrita e Leitura Seguras",
+        "instruccion": "Observa o ciclo completo: primeiro escreve-se uma frase em 'notas.txt' e depois lê-se e mostra-se na consola. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "with open('notas.txt', 'w', encoding='utf-8') as f:\n    f.write('Python es accesible con NVDA')\n\nwith open('notas.txt', 'r', encoding='utf-8') as f:\n    contenido = f.read()\n\nprint(f'Contenido recuperado del disco: {contenido}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Acrescentar Linhas com o Modo Append ('a')",
+        "instruccion": "Abre em modo 'a' para acrescentar uma segunda linha com salto de linha `\\n` e depois lê todo o ficheiro. Prime Control + Enter.",
+        "pistas": [
+          "O modo 'a' acrescenta no final sem sobreescrever."
+        ],
+        "codigo": "with open('registro.txt', 'w', encoding='utf-8') as f:\n    f.write('Entrada 1\\n')\n\nwith open('registro.txt', 'a', encoding='utf-8') as f:\n    f.write('Entrada 2 agregada\\n')\n\nwith open('registro.txt', 'r', encoding='utf-8') as f:\n    print(f.read().strip())\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Guardar e Ler a Mensagem do Aluno",
+        "instruccion": "Escreve no ficheiro 'mensaje.txt' a frase 'Estudiante activo en NVDA'. Depois abre-o em modo 'r', lê o seu texto para `texto_leido` e imprime `print(texto_leido)`. Executa com Control + Enter.",
+        "pistas": [
+          "with open('mensaje.txt', 'w', encoding='utf-8') as f: f.write('Estudiante activo en NVDA') e depois abrir em 'r' e ler."
+        ],
+        "codigo": "# Escreve em mensaje.txt e depois lê e imprime:\n\n",
+        "salida_esperada": "Estudiante activo en NVDA"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Vantagem de with open()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa no fecho automático garantido."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que usar with open() em vez de f = open() e f.close() é uma regra de engenharia de software?",
+        "opciones": [
+          "Garante que o ficheiro se fecha e é libertado da memória automaticamente mesmo que ocorra um erro.",
+          "Torna o ficheiro invisível para outros utilizadores.",
+          "Converte automaticamente o texto num ficheiro de áudio MP3."
+        ],
+        "explicacion": "O gestor de contexto with invoca o método __exit__ garantindo a libertação dos descritores de ficheiro no sistema operativo."
+      }
+    ]
+  },
+  "34": {
+    "titulo": "Capítulo 34: Persistência de Dados Estruturados com JSON (json.dump e json.load)",
+    "resumen": "Aprende o padrão mundial de intercâmbio e armazenamento estruturado de dados (JSON) usando a biblioteca padrão nativa.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Padrão JSON e a Serialização",
+        "instruccion": "Guardar texto simples solto num ficheiro é útil para notas, mas insuficiente para estruturas complexas como dicionários, listas de utilizadores ou configurações do sistema. **JSON** (*JavaScript Object Notation*) é o padrão universal mais utilizado do planeta para guardar e trocar informação estruturada entre aplicações. O fascinante do JSON é que a sua sintaxe é praticamente idêntica aos dicionários e listas nativas de Python: usa chavetas `{}` para pares chave-valor e parênteses retos `[]` para listas. O módulo padrão `json` de Python oferece duas funções-chave: - `json.dump(dados, ficheiro, indent=2)`: 'Despeja' ou serializa um dicionário/lista de Python diretamente para um ficheiro de disco em formato JSON legível. - `json.load(ficheiro)`: lê um ficheiro JSON e reconstrói-o em memória RAM como um dicionário nativo de Python pronto a operar. Por fazer parte da biblioteca padrão, NÃO requer instalar nada externo. Prime Enter ou Alt + Seta Direita para ver a persistência com JSON.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Guardar e Carregar Estruturas com json",
+        "instruccion": "Observa como se guarda um dicionário em 'config.json' com dump() e depois se recupera com load(). Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import json\n\nusuario = {'nombre': 'Elena', 'nivel': 3, 'accesible': True}\n\nwith open('config.json', 'w', encoding='utf-8') as f:\n    json.dump(usuario, f, indent=2)\n\nwith open('config.json', 'r', encoding='utf-8') as f:\n    datos_cargados = json.load(f)\n\nprint('Datos recuperados de JSON:', datos_cargados['nombre'], datos_cargados['nivel'])\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Modificar e Re-serializar",
+        "instruccion": "Modifica um dado do dicionário carregado e volta a guardá-lo no disco. Prime Control + Enter.",
+        "pistas": [
+          "Confirma que a versão atualiza para 3.0."
+        ],
+        "codigo": "import json\n\ndatos = {'app': 'Python Tutor', 'version': 2.0}\ndatos['version'] = 3.0\n\nwith open('app_meta.json', 'w', encoding='utf-8') as f:\n    json.dump(datos, f)\n\nwith open('app_meta.json', 'r', encoding='utf-8') as f:\n    print(json.load(f))\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Lista de Tarefas Persistente em JSON",
+        "instruccion": "Cria uma lista `mis_tareas = ['Aprender JSON', 'Dominar NVDA']`. Guarda-a em 'tareas.json' com `json.dump()`. Depois lê-a com `json.load()` para `tareas_recuperadas` e imprime a primeira tarefa com `print(tareas_recuperadas[0])`. Prime Control + Enter.",
+        "pistas": [
+          "json.dump(mis_tareas, f) em modo 'w', depois tareas_recuperadas = json.load(f) em 'r' e print(tareas_recuperadas[0])."
+        ],
+        "codigo": "import json\n\nmis_tareas = ['Aprender JSON', 'Dominar NVDA']\n# Guarda em tareas.json, lê para tareas_recuperadas e imprime o primeiro elemento:\n\n",
+        "salida_esperada": "Aprender JSON"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: A Função json.load()",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa em carregar do disco para a memória."
+        ],
+        "codigo": "",
+        "pregunta": "O que faz a função json.load(ficheiro) em Python?",
+        "opciones": [
+          "Lê um ficheiro formatado em JSON e transforma-o num dicionário ou lista nativa em memória.",
+          "Descarrega automaticamente um ficheiro da internet.",
+          "Apaga o ficheiro JSON do disco."
+        ],
+        "explicacion": "json.load desserializa texto JSON de um objeto ficheiro para estruturas de dados nativas de Python."
+      }
+    ]
+  },
+  "35": {
+    "titulo": "Capítulo 35: Paradigma Orientado a Objetos (POO): Classes, Instâncias e Atributos",
+    "resumen": "Aprende o paradigma da Programação Orientada a Objetos: modela entidades do mundo real usando classes como moldes e objetos concretos.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Modelo Mental da Classe e do Objeto",
+        "instruccion": "Até agora programámos de forma 'procedimental' (variáveis soltas e funções que as processam). A **Programação Orientada a Objetos** (POO) é um paradigma onde agrupamos dados (atributos) e comportamentos (métodos) dentro de uma única entidade chamada **Objeto**. A grande analogia: 1. A **Classe** (`class`): é a planta arquitetónica ou a forma das bolachas. Define que propriedades terá um tipo de entidade, mas a classe em si não é uma bolacha física. 2. O **Objeto** ou **Instância**: é a bolacha saída do forno ou o edifício construído a partir da planta. Podes construir 100 edifícios independentes a partir da mesma planta; cada um terá a sua própria morada e estado interno na memória RAM. Para definir uma classe em Python usamos a palavra reservada `class`, seguida do nome com inicial maiúscula no formato `PascalCase` (exemplo: `class Usuario:`). Prime Enter ou Alt + Seta Direita para ver classes e instâncias em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Definição de Classe e Instanciação",
+        "instruccion": "Observa como se define a classe `Estudiante` e depois se criam dois objetos independentes: `alumno1` e `alumno2`. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "class Estudiante:\n    institucion = 'Academia Accesible NVDA'\n\nalumno1 = Estudiante()\nalumno2 = Estudiante()\n\nprint('Alumno 1 pertenece a:', alumno1.institucion)\nprint('Alumno 2 pertenece a:', alumno2.institucion)\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Atribuir Atributos Próprios a uma Instância",
+        "instruccion": "Atribui atributos específicos a cada aluno usando a notação de ponto: `alumno1.nombre = 'Elena'` e `alumno2.nombre = 'Kevin'`. Imprime ambos e prime Control + Enter.",
+        "pistas": [
+          "A notação de ponto liga o atributo ao objeto concreto."
+        ],
+        "codigo": "class Estudiante:\n    pass\n\nalumno1 = Estudiante()\nalumno1.nombre = 'Elena'\n\nalumno2 = Estudiante()\nalumno2.nombre = 'Kevin'\n\nprint(f'Estudiantes registrados: {alumno1.nombre} y {alumno2.nombre}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Modelar uma Tarefa de Software",
+        "instruccion": "Cria uma classe vazia `class Tarea: pass`. Instancia um objeto `t = Tarea()`. Atribui `t.titulo = 'Aprender POO'` e `t.completada = True`. Imprime numa f-string: 'Tarea: Aprender POO, Estado: True'. Prime Control + Enter.",
+        "pistas": [
+          "class Tarea: pass, t = Tarea(), t.titulo = 'Aprender POO', t.completada = True, print(f'Tarea: {t.titulo}, Estado: {t.completada}')"
+        ],
+        "codigo": "# Define a classe Tarea, cria t, atribui os atributos e imprime:\n\n",
+        "salida_esperada": "Tarea: Aprender POO, Estado: True"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Relação Classe vs Objeto",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda a analogia da planta arquitetónica e do edifício construído."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a relação conceptual entre uma Classe e um Objeto em programação orientada a objetos?",
+        "opciones": [
+          "A classe é o molde ou planta conceptual; o objeto é a entidade concreta instanciada em memória.",
+          "São idênticos e significam exatamente o mesmo.",
+          "A classe só guarda números e o objeto só guarda texto."
+        ],
+        "explicacion": "Uma classe é a definição abstrata de estrutura e comportamento; um objeto é a manifestação concreta criada a partir dela."
+      }
+    ]
+  },
+  "36": {
+    "titulo": "Capítulo 36: O Construtor __init__, o Parâmetro self e Métodos de Instância",
+    "resumen": "Aprende a inicializar objetos automaticamente com o construtor __init__, desmistifica self e define comportamentos com métodos de instância.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: O Construtor __init__ e o Parâmetro self",
+        "instruccion": "Atribuir atributos à mão, um a um (`objeto.x = 1`), é cansativo e perigoso. Em POO profissional, cada objeto deve nascer completamente configurado desde o primeiro milissegundo da sua existência. Para isso usamos o método construtor especial `__init__()` (com duplo underscore no início e no fim, conhecido como método mágico ou *dunder init*). A desmistificar o parâmetro `self`: o primeiro parâmetro de qualquer método dentro de uma classe chama-se SEMPRE `self`. `self` (que significa 'eu próprio') é uma referência que o objeto tem da sua própria identidade na memória RAM. Quando escreves `self.nombre = nombre`, dizes ao Python: 'Guarda este dado dentro do MEU próprio corpo de objeto, não numa variável solta'. Os métodos são simplesmente funções que vivem dentro da classe e recebem `self` para consultar ou modificar o estado interno do objeto. Prime Enter ou Alt + Seta Direita para ver o construtor em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Classe com __init__ e Método de Instância",
+        "instruccion": "Examina a classe `CanalAccesible`. Observa como `__init__` inicializa o nome e `describir()` emite a mensagem. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "class CanalAccesible:\n    def __init__(self, nombre, tipo):\n        self.nombre = nombre\n        self.tipo = tipo\n\n    def describir(self):\n        return f'Canal: {self.nombre} ({self.tipo})'\n\ncanal1 = CanalAccesible('Voz NVDA', 'Audio Sintetizado')\nprint(canal1.describir())\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Modificar o Estado Interno com um Método",
+        "instruccion": "Cria uma classe `Contador` com um método `incrementar()` que some `self.valor += 1`. Executa com Control + Enter.",
+        "pistas": [
+          "Chamar c.incrementar() duas vezes eleva o valor para 2."
+        ],
+        "codigo": "class Contador:\n    def __init__(self):\n        self.valor = 0\n\n    def incrementar(self):\n        self.valor += 1\n\nc = Contador()\nc.incrementar()\nc.incrementar()\nprint(f'Valor actual del contador: {c.valor}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Conta Poupança Segura",
+        "instruccion": "Define `class CuentaBancaria:`. Em `__init__(self, titular):` atribui `self.titular = titular` e `self.saldo = 0`. Acrescenta um método `depositar(self, monto):` que some `self.saldo += monto`. Instancia `cuenta = CuentaBancaria('Elena')`, deposita 150 e imprime: `print(f'Titular: {cuenta.titular}, Saldo: {cuenta.saldo}')`. Executa com Control + Enter.",
+        "pistas": [
+          "Define __init__ e depositar com self. Instancia cuenta = CuentaBancaria('Elena'), chama cuenta.depositar(150) e imprime."
+        ],
+        "codigo": "# Define CuentaBancaria, deposita 150 e imprime:\n\n",
+        "salida_esperada": "Titular: Elena, Saldo: 150"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: O Significado de self",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "self refere-se ao próprio objeto individual."
+        ],
+        "codigo": "",
+        "pregunta": "O que representa o primeiro parâmetro convencional self nos métodos de uma classe?",
+        "opciones": [
+          "Representa a instância ou objeto concreto sobre o qual o método está a ser invocado.",
+          "É uma palavra secreta para ligar à internet.",
+          "Representa o número da linha do código fonte."
+        ],
+        "explicacion": "self liga o método à memória individual do objeto concreto, permitindo aceder e modificar os seus próprios atributos."
+      }
+    ]
+  },
+  "37": {
+    "titulo": "Capítulo 37: A Biblioteca Padrão de Python (math, random, datetime, pathlib)",
+    "resumen": "Descobre as 'baterias incluídas' de Python: ferramentas profissionais pré-instaladas de fábrica sem necessidade de gestores externos.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: As Baterias Incluídas de Python",
+        "instruccion": "Uma das razões pelas quais Python domina a indústria de software é a sua filosofia de 'Baterias Incluídas' (*Batteries Included*). Ao contrário de outros ecossistemas onde precisas de descarregar dezenas de pacotes instáveis da internet, Python vem de fábrica com centenas de módulos profissionais prontos a usar apenas com escrever `import`. Módulos essenciais da Biblioteca Padrão: - `math`: funções matemáticas de alta precisão: raízes quadradas (`math.sqrt`), trigonometria, constantes como `math.pi`. - `random`: geração de números pseudoaleatórios, simulações e escolhas ao acaso (`random.randint`, `random.choice`). - `datetime`: manipulação de datas, calendários, marcas de tempo e cronómetros. - `pathlib`: gestão de caminhos de ficheiros do sistema operativo de forma multiplataforma e segura. Tudo isto está disponível de forma nativa em qualquer instalação de Python e dentro do NVDA com zero falhas de dependências. Prime Enter ou Alt + Seta Direita para ver estes módulos em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Módulos math e random",
+        "instruccion": "Examina como importamos math e random sem instalar nada externo. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import math\nimport random\n\nraiz = math.sqrt(64)\ndado = random.randint(1, 6)\n\nprint(f'Raíz cuadrada de 64: {raiz}')\nprint(f'Tirada de dado aleatoria: {dado}')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Marcas de Tempo com datetime",
+        "instruccion": "Usa `datetime.date.today()` para obter a data de hoje e formata-a no ecrã. Prime Control + Enter.",
+        "pistas": [
+          "datetime faz parte da biblioteca padrão nativa."
+        ],
+        "codigo": "import datetime\n\nhoy = datetime.date.today()\nprint(f'Fecha registrada por el sistema: {hoy}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Gerador de Chaves Seguras Aleatórias",
+        "instruccion": "Usa `import random`. Dada uma lista de caracteres `caracteres = ['A', 'B', 'C', '1', '2', '3']`, seleciona 4 caracteres ao acaso com `token = [random.choice(caracteres) for _ in range(4)]`. Converte-a em texto com `''.join(token)` e imprime: `print(f'Token generado: {\"\".join(token)}')`. Prime Control + Enter.",
+        "pistas": [
+          "Usa random.choice dentro de uma lista ou ciclo e une-os com ''.join."
+        ],
+        "codigo": "import random\ncaracteres = ['A', 'B', 'C', '1', '2', '3']\n# Gera um token aleatório de 4 caracteres e imprime-o:\n\n"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: A Biblioteca Padrão",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Recorda a filosofia das 'baterias incluídas'."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que os módulos da Biblioteca Padrão (como math, random, json ou sqlite3) não requerem instalação com pip?",
+        "opciones": [
+          "Porque vêm pré-instalados e integrados de fábrica com qualquer intérprete de Python ('baterias incluídas').",
+          "Porque se descarregam em segredo cada vez que executas um print.",
+          "Porque só funcionam em computadores da NASA."
+        ],
+        "explicacion": "A Biblioteca Padrão faz parte indivisível do runtime oficial de Python em qualquer plataforma."
+      }
+    ]
+  },
+  "38": {
+    "titulo": "Capítulo 38: Bases de Dados Relacionais com SQLite (sqlite3): Tabelas e Consultas Parametrizadas",
+    "resumen": "Aprende a gerir bases de dados relacionais SQL profissionais utilizando o motor sqlite3 integrado, sem instalar servidores.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Bases de Dados Relacionais e o Motor sqlite3",
+        "instruccion": "Quando uma aplicação gere milhares de registos relacionados (clientes, faturas, produtos), guardar tudo em ficheiros de texto ou JSON torna-se ineficiente e lento. Para isto, a indústria utiliza **Bases de Dados Relacionais** através da linguagem de consultas **SQL** (*Structured Query Language*). Python inclui de forma 100% nativa o **SQLite**, o motor de base de dados SQL mais utilizado do mundo (presente em telefones, navegadores e no próprio NVDA). Vantagens do SQLite: - Configuração zero: não requer instalar MySQL, Postgres nem servidores externos. Toda a base de dados reside num único ficheiro local (ou até em memória RAM com `':memory:'`). - Consultas SQL Parametrizadas: para evitar ataques de segurança (*Injeção SQL*), NUNCA concatenamos variáveis com strings; usamos o marcador de posição `?` para passar tuplos de dados de forma blindada. Prime Enter ou Alt + Seta Direita para ver o SQLite em ação.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Criar Tabela e Inserir Registos",
+        "instruccion": "Examina como nos ligamos ao sqlite3 em memória, criamos uma tabela de alunos e consultamos com SELECT. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import sqlite3\n\nconexion = sqlite3.connect(':memory:')\ncursor = conexion.cursor()\n\ncursor.execute('CREATE TABLE alumnos (id INTEGER PRIMARY KEY, nombre TEXT, nota REAL)')\ncursor.execute('INSERT INTO alumnos (nombre, nota) VALUES (?, ?)', ('Elena', 9.5))\ncursor.execute('INSERT INTO alumnos (nombre, nota) VALUES (?, ?)', ('Kevin', 9.0))\nconexion.commit()\n\ncursor.execute('SELECT nombre, nota FROM alumnos')\nfor fila in cursor.fetchall():\n    print(f'Alumno: {fila[0]}, Nota: {fila[1]}')\n\nconexion.close()\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Filtrar Registos com a Cláusula WHERE",
+        "instruccion": "Filtra a consulta SQL usando `WHERE nota >= 9.0` para recuperar apenas estudantes destacados. Prime Control + Enter.",
+        "pistas": [
+          "WHERE filtra os registos na base de dados."
+        ],
+        "codigo": "import sqlite3\n\ncon = sqlite3.connect(':memory:')\ncur = con.cursor()\ncur.execute('CREATE TABLE cursos (titulo TEXT, horas INTEGER)')\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('Python Accesible', 40))\ncur.execute('INSERT INTO cursos VALUES (?, ?)', ('HTML Rápido', 10))\ncon.commit()\n\ncur.execute('SELECT titulo FROM cursos WHERE horas >= 20')\nfor fila in cur.fetchall():\n    print(f'Curso intensivo: {fila[0]}')\ncon.close()\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Inventário Acessível com SQLite",
+        "instruccion": "Liga-te a `:memory:`, cria a tabela `articulos (nombre TEXT, cantidad INTEGER)`. Insere com parâmetros `('Teclado', 15)`. Faz um `SELECT nombre, cantidad FROM articulos` e imprime: 'Teclado: 15 unidades'. Fecha a ligação e executa com Control + Enter.",
+        "pistas": [
+          "cursor.execute('INSERT INTO articulos VALUES (?, ?)', ('Teclado', 15)), depois fetchall() e print."
+        ],
+        "codigo": "import sqlite3\n# Cria a base de dados em memória, insere o artigo e imprime:\n\n",
+        "salida_esperada": "Teclado: 15 unidades"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Inserção Parametrizada com ?",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na segurança contra ataques informáticos."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é obrigatório, em software profissional, usar marcadores ? em vez de concatenar cadeias em instruções SQL?",
+        "opciones": [
+          "Para prevenir vulnerabilidades graves de injeção SQL (SQL Injection) e garantir a segurança.",
+          "Porque os computadores não sabem ler aspas em SQL.",
+          "Para que a base de dados ocupe metade do espaço em disco."
+        ],
+        "explicacion": "As consultas parametrizadas separam a instrução de código dos dados do utilizador, neutralizando qualquer tentativa de injeção maliciosa."
+      }
+    ]
+  },
+  "39": {
+    "titulo": "Capítulo 39: Tiflotecnologia e Desenvolvimento Acessível por Software: Integração com NVDA e Síntese de Voz",
+    "resumen": "Aprende como o software interage com leitores de ecrã, síntese de voz e sinais acústicas para criar interfaces inclusivas.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: A Tiflotecnologia e a Acessibilidade na Arquitetura de Software",
+        "instruccion": "A 'Tiflotecnologia' é o ramo da engenharia dedicado a desenhar tecnologias e adaptações para pessoas cegas ou com baixa visão. Quando desenvolves uma aplicação acessível, não basta que o código funcione; a experiência de utilizador deve comunicar o estado do sistema com clareza meridiana através de dois canais sensoriais principais: 1. Canal de Voz (Síntese de voz / Speech): mensagens descritivas, concisas e não redundantes que informam que ação foi concluída ou que opção está selecionada. 2. Canal Acústico (Tons de Áudio / Earcons): bipes curtos e subtis com frequências distintas que confirmam eventos instantaneamente sem interromper a voz (por exemplo, um tom agudo para sucesso e um tom grave para erro). No Windows e dentro do NVDA, o Python pode emitir tons acústicos nativos através da biblioteca padrão `winsound` com `winsound.Beep(frecuencia, duracion)`. Desenhar software acessível desde o primeiro dia é uma das marcas distintivas dos melhores engenheiros do mundo. Prime Enter ou Alt + Seta Direita para ouvir sinais auditivos acessíveis.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Emissão de Sinais Acústicas Acessíveis",
+        "instruccion": "Observa como são emitidos tons de áudio com winsound para confirmar estados do sistema. Prime Control + Enter para ouvir.",
+        "pistas": [
+          "Prime Control + Enter para executar e ouvir o tom."
+        ],
+        "codigo": "import winsound\n\nprint('Emitiendo señal acústica de éxito (frecuencia 880 Hz)...')\nwinsound.Beep(880, 150)\nprint('Notificación acústica completada.')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Sinal Acústica de Alerta",
+        "instruccion": "Emite um sinal de advertência com um tom mais grave (440 Hz) e de maior duração (250 ms). Prime Control + Enter.",
+        "pistas": [
+          "winsound.Beep(440, 250) emite um tom mais grave."
+        ],
+        "codigo": "import winsound\n\nprint('Señal de advertencia acústica (440 Hz):')\nwinsound.Beep(440, 250)\nprint('Aviso emitido.')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Função Notificadora Acessível",
+        "instruccion": "Define uma função `notificar(tipo_evento, mensaje):` que imprima `f'[{tipo_evento.upper()}]: {mensaje}'`. Se `tipo_evento == 'exito'` deve emitir `winsound.Beep(880, 100)`; se não, `winsound.Beep(440, 100)`. Testa-a com `notificar('exito', 'Datos guardados correctamente')`. Prime Control + Enter.",
+        "pistas": [
+          "def notificar(tipo_evento, mensaje): print(f'[{tipo_evento.upper()}]: {mensaje}') if tipo_evento == 'exito': winsound.Beep(880, 100) else: winsound.Beep(440, 100) notificar('exito', 'Datos guardados correctamente')"
+        ],
+        "codigo": "import winsound\n# Define notificar com tom diferenciado e testa-a:\n\n",
+        "salida_esperada": "[EXITO]: Datos guardados correctamente"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Benefício da Retroalimentação Auditiva",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa na velocidade e em evitar a fadiga auditiva."
+        ],
+        "codigo": "",
+        "pregunta": "Qual é a principal vantagem de combinar síntese de voz com tons de áudio (earcons) em software acessível?",
+        "opciones": [
+          "Permite confirmações instantâneas de estado sem saturar a atenção do utilizador com mensagens de voz excessivas.",
+          "Faz com que o processador gaste menos eletricidade.",
+          "Obriga o utilizador a memorizar números matemáticos."
+        ],
+        "explicacion": "Os earcons ou tons acústicos transmitem confirmação instantânea sem atrasos nem sobrecarga cognitiva da voz."
+      }
+    ]
+  },
+  "40": {
+    "titulo": "Capítulo 40: Projeto Integrador Final: Criação de um Gestor Acessível de Informação e Tarefas",
+    "resumen": "Integra todos os conhecimentos do curso: arquitetura em camadas, POO, persistência estruturada, controlo de erros e saída acessível.",
+    "pasos": [
+      {
+        "titulo": "Passo 1: Fundamento: Arquitetura Limpa por Camadas",
+        "instruccion": "Parabéns por chegares ao capítulo culminante da tua formação! Para te tornares um profissional de software, deves saber como montar todas as peças que aprendeste numa **Arquitetura Limpa** (*Clean Architecture*). Um software profissional nunca mistura tudo num único ficheiro revolto; divide-se em quatro camadas de responsabilidade: 1. Camada de Domínio / Modelo: classes que representam as entidades do negócio (exemplo: `Tarea`, com título, data e estado). 2. Camada de Persistência: lógica encarregada de guardar e carregar dados em disco (usando JSON ou SQLite) de forma segura com `with open()`. 3. Camada de Serviços / Negócio: lógica que valida, adiciona, elimina e procura elementos evitando duplicados. 4. Camada de Interface e Acessibilidade: comunicação respeitosa com o utilizador através da voz do NVDA e confirmações auditivas. Prime Enter ou Alt + Seta Direita para ver o Gestor Integrador a funcionar.",
+        "pistas": [
+          "Avança com Enter ou Alt + Seta Direita."
+        ],
+        "codigo": ""
+      },
+      {
+        "titulo": "Passo 2: Observação: Inspeção do Gestor Acessível",
+        "instruccion": "Examina a arquitetura completa do Gestor. Observa a classe Tarea, o guardado em JSON e o relatório final. Prime Control + Enter.",
+        "pistas": [
+          "Prime Control + Enter para executar."
+        ],
+        "codigo": "import json\n\nclass Tarea:\n    def __init__(self, id_tarea, titulo):\n        self.id_tarea = id_tarea\n        self.titulo = titulo\n        self.completada = False\n\n    def to_dict(self):\n        return {'id': self.id_tarea, 'titulo': self.titulo, 'completada': self.completada}\n\nclass GestorTareas:\n    def __init__(self):\n        self.tareas = []\n\n    def agregar(self, titulo):\n        nueva = Tarea(len(self.tareas) + 1, titulo)\n        self.tareas.append(nueva)\n        return nueva\n\n    def guardar_json(self, ruta):\n        datos = [t.to_dict() for t in self.tareas]\n        with open(ruta, 'w', encoding='utf-8') as f:\n            json.dump(datos, f, indent=2)\n\ngestor = GestorTareas()\ngestor.agregar('Completar curso de Python con NVDA')\ngestor.guardar_json('tareas_final.json')\nprint(f'Sistema integrado activo: {len(gestor.tareas)} tareas gestionadas con éxito.')\n"
+      },
+      {
+        "titulo": "Passo 3: Experimentação: Marcar Tarefa como Concluída",
+        "instruccion": "Acrescenta um método `completar()` na classe Tarea e verifica que o seu estado muda para True. Executa com Control + Enter.",
+        "pistas": [
+          "t.completada deve ser True."
+        ],
+        "codigo": "class Tarea:\n    def __init__(self, titulo):\n        self.titulo = titulo\n        self.completada = False\n\n    def completar(self):\n        self.completada = True\n\nt = Tarea('Graduación en Python')\nt.completar()\nprint(f'Estado final de la tarea: {t.titulo} -> Completada: {t.completada}')\n"
+      },
+      {
+        "titulo": "Passo 4: Desafio Prático: Arranque do Sistema Completo",
+        "instruccion": "Cria uma classe `Proyecto` com `__init__(self, nombre)` que inicialize `self.nombre = nombre` e uma lista vazia `self.modulos = []`. Acrescenta um método `agregar_modulo(self, mod)` que faça `append`. Instancia `p = Proyecto('Sistema Accesible')`, adiciona 'Núcleo Python' e 'Lector NVDA'. Imprime: `print(f'Proyecto {p.nombre} con {len(p.modulos)} módulos activos')`. Prime Control + Enter.",
+        "pistas": [
+          "class Proyecto com __init__ e agregar_modulo. Instancia p, adiciona os dois módulos e imprime com a f-string pedida."
+        ],
+        "codigo": "# Desenvolve a classe Proyecto e integra os módulos:\n\n",
+        "salida_esperada": "Proyecto Sistema Accesible con 2 módulos activos"
+      },
+      {
+        "titulo": "Passo 5: Verificação Conceptual: Separação de Responsabilidades",
+        "instruccion": "Seleciona a opção correta com as setas e prime Enter para comprovar.",
+        "pistas": [
+          "Pensa no princípio de modularidade e manutenção."
+        ],
+        "codigo": "",
+        "pregunta": "Porque é que é fundamental, em engenharia de software profissional, separar a lógica de negócio da interface de utilizador?",
+        "opciones": [
+          "Permite modificar, testar e tornar acessível a interface sem partir as regras de cálculo internas do programa.",
+          "Faz com que o ficheiro Python pese exatamente 1 kilobyte.",
+          "É um requisito legal exclusivo dos bancos."
+        ],
+        "explicacion": "A separação de responsabilidades (Separation of Concerns) garante manutenibilidade, escalabilidade e acessibilidade a longo prazo."
+      }
+    ]
+  }
+}

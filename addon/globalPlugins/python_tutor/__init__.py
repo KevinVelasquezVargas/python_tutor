@@ -39,6 +39,7 @@ from .audio_manager import SoundManager
 from .gui_frame import TutorFrame
 from .progress import ProgressManager
 from .i18n import _t, _, detectar_idioma_preferido, establecer_idioma, obtener_idioma_actual
+from .lessons_loader import idiomas_disponibles
 from .ai_assistant import obtener_config_ia, guardar_config_ia
 
 _BasePlugin = globalPluginHandler.GlobalPlugin if globalPluginHandler else object
@@ -48,7 +49,7 @@ _BaseSettingsPanel = SettingsPanel if SettingsPanel else object
 class _SettingsPanelMeta(type(_BaseSettingsPanel)):
     @property
     def title(cls):
-        return "Learning Python with NVDA" if obtener_idioma_actual() == "en" else "Aprendizaje de Python con NVDA"
+        return _t("app_title")
 
     @title.setter
     def title(cls, value):
@@ -60,7 +61,7 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
 
     @property
     def title(self):
-        return "Learning Python with NVDA" if obtener_idioma_actual() == "en" else "Aprendizaje de Python con NVDA"
+        return _t("app_title")
 
     def makeSettings(self, settingsSizer):
         prog = ProgressManager.load_progress()
@@ -74,17 +75,24 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
         )
         settingsSizer.Add(lbl_lang, flag=wx.LEFT | wx.TOP, border=6)
 
+        # Idiomas dinámicos: uno por catálogo lessons/<idioma>.json disponible
+        codigos = idiomas_disponibles()
+        nombres_idioma = {
+            "es": "Español (Spanish)",
+            "en": "English",
+            "pt": "Português",
+            "fr": "Français",
+            "de": "Deutsch",
+            "it": "Italiano",
+        }
         lang_choices = [
-            "Automatic (follows NVDA language)" if is_en else "Automático (según el idioma de NVDA)",
-            "Español (Spanish)",
-            "English"
-        ]
+            "Automatic (follows NVDA language)" if is_en else "Automático (según el idioma de NVDA)"
+        ] + [nombres_idioma.get(c, c) for c in codigos]
         self.choice_lang = wx.Choice(self, choices=lang_choices)
+        self._lang_codes = codigos
         saved_lang = ProgressManager.get_setting("language", "auto")
-        if saved_lang == "es":
-            self.choice_lang.SetSelection(1)
-        elif saved_lang == "en":
-            self.choice_lang.SetSelection(2)
+        if saved_lang in codigos:
+            self.choice_lang.SetSelection(codigos.index(saved_lang) + 1)
         else:
             self.choice_lang.SetSelection(0)
         settingsSizer.Add(self.choice_lang, flag=wx.ALL, border=6)
@@ -147,12 +155,10 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
 
     def onSave(self):
         sel_idx = self.choice_lang.GetSelection()
-        if sel_idx == 1:
-            establecer_idioma("es")
-            ProgressManager.set_setting("language", "es")
-        elif sel_idx == 2:
-            establecer_idioma("en")
-            ProgressManager.set_setting("language", "en")
+        if 0 < sel_idx <= len(self._lang_codes):
+            lang = self._lang_codes[sel_idx - 1]
+            establecer_idioma(lang)
+            ProgressManager.set_setting("language", lang)
         else:
             ProgressManager.set_setting("language", "auto")
             detectar_idioma_preferido()
@@ -171,7 +177,7 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
         guardar_config_ia({"api_key": key, "provider": "gemini", "activa": activa})
 
         # Actualizar títulos de forma reactiva
-        panel_title = "Learning Python with NVDA" if obtener_idioma_actual() == "en" else "Aprendizaje de Python con NVDA"
+        panel_title = _t("app_title")
         PythonTutorSettingsPanel.title = panel_title
         GlobalPlugin.scriptCategory = panel_title
 

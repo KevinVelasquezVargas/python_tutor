@@ -24,6 +24,7 @@ from .executor import (
     comprobar_balanceo_delimitadores
 )
 from .curriculum import CURRICULUM, GLOSARIO, obtener_glosario
+from .lessons_loader import leer_texto, idiomas_disponibles
 from .progress import ProgressManager
 from .repl_dialog import ReplDialog
 from .translator import traducir_linea_codigo
@@ -214,7 +215,7 @@ class ChapterSelectDialog(wx.Dialog):
                 estado_str = "Passed, " if is_en else "Superado, "
             else:
                 estado_str = "Available, " if is_en else "Disponible, "
-            cap_title = cap.get("titulo_en" if is_en and "titulo_en" in cap else "titulo", f"Chapter {i+1}" if is_en else f"Capítulo {i+1}")
+            cap_title = leer_texto(cap, "titulo", default=f"Chapter {i+1}" if is_en else f"Capítulo {i+1}")
             self.opciones.append(f"{estado_str}{cap_title}")
 
         self.list_box = wx.ListBox(panel, choices=self.opciones)
@@ -1621,7 +1622,7 @@ class TutorFrame(wx.Frame):
             else:
                 cap = CURRICULUM[self.cap_idx]
                 paso = cap["pasos"][self.paso_idx]
-                cod = paso.get("codigo_en" if is_en and "codigo_en" in paso else "codigo", "")
+                cod = leer_texto(paso, "codigo", default="")
                 self.edicion.SetValue(cod)
             if self.sonidos_activos:
                 SoundManager.play('modo_aprendizaje')
@@ -1692,8 +1693,8 @@ class TutorFrame(wx.Frame):
         is_en = (obtener_idioma_actual() == "en")
         marca_estado = ("Passed" if superado else "Pending") if is_en else ("Superado" if superado else "Pendiente")
 
-        titulo_paso = paso.get("titulo_en" if is_en and "titulo_en" in paso else "titulo", f"Step {self.paso_idx + 1}" if is_en else f"Paso {self.paso_idx + 1}")
-        titulo_cap = cap.get("titulo_en" if is_en and "titulo_en" in cap else "titulo", "Chapter" if is_en else "Capítulo")
+        titulo_paso = leer_texto(paso, "titulo", default=f"Step {self.paso_idx + 1}" if is_en else f"Paso {self.paso_idx + 1}")
+        titulo_cap = leer_texto(cap, "titulo", default="Chapter" if is_en else "Capítulo")
 
         texto_encabezado = (
             f"{titulo_cap}, Step {self.paso_idx + 1} of {total_pasos}: {titulo_paso}, {marca_estado}"
@@ -1702,15 +1703,15 @@ class TutorFrame(wx.Frame):
         )
         self.lbl_estado.SetLabel(texto_encabezado)
 
-        instruccion = paso.get("instruccion_en" if is_en and "instruccion_en" in paso else "instruccion", "")
+        instruccion = leer_texto(paso, "instruccion", default="")
         if not instruccion and tipo == "quiz":
-            instruccion = paso.get("pregunta_en" if is_en and "pregunta_en" in paso else "pregunta", "")
+            instruccion = leer_texto(paso, "pregunta", default="")
 
         instruccion_limpia = instruccion.replace("\r\n", "\n")
         self.mision_ctrl.SetValue(instruccion_limpia)
 
         if not self.modo_editor:
-            cod = paso.get("codigo_en" if is_en and "codigo_en" in paso else "codigo", "")
+            cod = leer_texto(paso, "codigo", default="")
             self.edicion.SetValue(cod)
         self.salida.SetValue("")
 
@@ -1743,8 +1744,8 @@ class TutorFrame(wx.Frame):
                 self.btn_traductor.Hide()
                 self.btn_continuar_concepto.Hide()
 
-                preg = paso.get("pregunta_en" if is_en and "pregunta_en" in paso else "pregunta", "")
-                opciones = paso.get("opciones_en" if is_en and "opciones_en" in paso else "opciones", [])
+                preg = leer_texto(paso, "pregunta", default="")
+                opciones = leer_texto(paso, "opciones", default=[])
 
                 self.lbl_quiz_pregunta.SetLabel(preg)
                 self.quiz_list.Clear()
@@ -1804,7 +1805,7 @@ class TutorFrame(wx.Frame):
             return
 
         correcta = paso.get("correcta", 0)
-        explicacion = paso.get("explicacion_en" if is_en and "explicacion_en" in paso else "explicacion", "")
+        explicacion = leer_texto(paso, "explicacion", default="")
 
         if sel == correcta:
             self._quiz_superado = True
@@ -1985,7 +1986,7 @@ class TutorFrame(wx.Frame):
             digits = re.findall(r'\d+', val_clean)
             if len(digits) == 1 and digits[0] == cor:
                 aprobado = True
-                exp_txt = paso.get("explicacion_en" if is_en and "explicacion_en" in paso else "explicacion", "Correct answer." if is_en else "Respuesta correcta.")
+                exp_txt = leer_texto(paso, "explicacion", default="Correct answer." if is_en else "Respuesta correcta.")
                 reporte_pruebas.append(f"{'Correct:' if is_en else 'Correcto:'} {exp_txt}")
             else:
                 aprobado = False
@@ -2071,8 +2072,9 @@ class TutorFrame(wx.Frame):
             anuncio_succ = "Challenge completed! Press Alt + Right Arrow to advance." if is_en else "¡Misión superada! Pulsa Alt + Flecha Derecha para avanzar."
             self.anunciar(anuncio_succ)
         else:
-            if paso.get("salida_esperada"):
-                comp = generar_comparacion_salida(paso["salida_esperada"], res_output)
+            salida_esperada = leer_texto(paso, "salida_esperada")
+            if salida_esperada:
+                comp = generar_comparacion_salida(salida_esperada, res_output)
                 lineas_reporte.append("Comparison with expected output:" if is_en else "Comparación con la salida esperada:")
                 lineas_reporte.append(comp)
                 lineas_reporte.append("")
@@ -2104,7 +2106,7 @@ class TutorFrame(wx.Frame):
         cap = CURRICULUM[self.cap_idx]
         paso = cap["pasos"][self.paso_idx]
         def_hint = ["Review the lesson instructions above and try running the code again."] if is_en else ["Revisa el enunciado de la lección en la parte superior e intenta ejecutar nuevamente."]
-        pistas = paso.get("pistas_en" if is_en and "pistas_en" in paso else "pistas", def_hint)
+        pistas = leer_texto(paso, "pistas", default=def_hint)
 
         if self.sonidos_activos:
             SoundManager.play('pista')
@@ -2182,11 +2184,17 @@ class TutorFrame(wx.Frame):
             wx.MessageBox(f"Error al cargar el archivo: {e}", "Error", wx.ICON_ERROR, self)
 
     def on_cambiar_idioma(self, event=None):
-        """Alterna el idioma del tutor entre Español e Inglés y actualiza la interfaz al instante."""
+        """Rota el idioma del tutor entre los catálogos disponibles y actualiza la interfaz al instante."""
+        disponibles = idiomas_disponibles()
         actual = obtener_idioma_actual()
-        nuevo = "en" if actual == "es" else "es"
+        try:
+            pos = disponibles.index(actual)
+        except ValueError:
+            pos = -1
+        nuevo = disponibles[(pos + 1) % len(disponibles)] if disponibles else "es"
         establecer_idioma(nuevo)
-        nombre_idioma = "English" if nuevo == "en" else "Español"
+        nombres_idioma = {"es": "Español", "en": "English", "pt": "Português"}
+        nombre_idioma = nombres_idioma.get(nuevo, nuevo)
         self.crear_barra_menus()
         self.actualizar_textos_interfaz()
         self.cargar_paso_actual(anunciar_voz=False)
@@ -2694,7 +2702,7 @@ class TutorFrame(wx.Frame):
         cap = CURRICULUM[self.cap_idx]
         paso = cap["pasos"][self.paso_idx]
         is_en = (obtener_idioma_actual() == "en")
-        cod = paso.get("codigo_en" if is_en and "codigo_en" in paso else "codigo", "")
+        cod = leer_texto(paso, "codigo", default="")
         self.edicion.SetValue(cod)
         self.salida.SetValue("")
         self.edicion.SetFocus()

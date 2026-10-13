@@ -130,6 +130,8 @@ Os currículos traduzidos vivem em catálogos JSON independentes do código (`ad
 
 2. Copie `addon/locale/es/lessons.json` para `addon/locale/<idioma>/lessons.json` (por exemplo, `addon/locale/fr/lessons.json`) e traduza os valores. As chaves permanecem em espanhol. A tradução pode ser parcial (capítulo a capítulo): tudo o que faltar será mostrado em espanhol como recurso.
 
+   O glossário técnico segue o mesmo mecanismo: copie `addon/locale/es/glossary.json` para `addon/locale/<idioma>/glossary.json` e traduza as definições; os termos que faltarem serão mostrados em espanhol e também pode acrescentar termos novos editando o JSON.
+
 3. Respeite estas regras nos desafios de código (os validadores vivem em `curriculum.py` e nunca são traduzidos):
    * `salida_esperada`: deve permanecer byte-idêntica ao original.
    * `codigo`: só os comentários `#` são traduzidos; os literais de cadeia devem coincidir exatamente com o original.

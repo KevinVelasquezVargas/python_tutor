@@ -1,149 +1,76 @@
 # -*- coding: utf-8 -*-
 """
-Glosario bilingüe del complemento.
+Glosario técnico del complemento (catálogos JSON por idioma).
 
-Las traducciones de los capítulos y lecciones ya no viven aquí: se cargan
-desde los catálogos JSON en locale/<idioma>/lessons.json (ver lessons_loader.py).
-Este módulo conserva el glosario en inglés y su selector por idioma.
+Cada catálogo ``locale/<idioma>/glossary.json`` es un mapa simple
+``término -> definición``. Añadir términos nuevos (o idiomas nuevos)
+es tan fácil como editar el JSON, sin tocar Python.
+
+El español base vive en ``curriculum.py`` (GLOSARIO) y se fusiona con
+``locale/es/glossary.json``; los demás idiomas se superponen encima, de
+modo que un catálogo parcial muestra en español los términos que falten
+(fallback término a término, igual que las lecciones).
 """
 
-GLOSARIO_EN = {
-    'algoritmo': 'Ordered, unambiguous, finite sequence of logical instructions designed to solve a problem.',
-    'ambito': 'Region of source code where an identifier is visible and resolved (local, global, built-in).',
-    'and': 'Logical operator returning True strictly when all evaluated conditions are true.',
-    'append': 'Method appending a new element to the tail of a list in constant amortized time.',
-    'argumento': 'Actual value supplied between parentheses to a function invocation.',
-    'aritmetica': 'Fundamental arithmetic operations (+, -, *, /, //, %, **) evaluated under precedence rules.',
-    'array': 'Contiguous memory structure storing sequential homogeneous items.',
-    'ascii': 'Numerical character encoding mapping 128 characters to 7-bit binary numbers.',
-    'asignacion': 'Operation using = that computes the right-hand expression and stores it into the left-hand variable.',
-    'asincronia': 'Non-blocking concurrency paradigm allowing systems to handle multiple asynchronous events.',
-    'atributo': 'Named variable bound to the internal state of a class or concrete instance.',
-    'autocompletado': 'IDE accessibility tool suggesting symbols and keywords to minimize typing effort.',
-    'binario': 'Base-2 numeral system used internally by the CPU, consisting exclusively of zeros and ones.',
-    'bit': 'Binary digit representing the fundamental unit of information (0 or 1) in an electronic circuit.',
-    'booleano': 'Primitive data type that can only evaluate to True or False.',
-    'braille': 'Tactile reading and writing system interfaced through refreshable braille displays.',
-    'break': 'Jump statement immediately terminating the innermost loop construct.',
-    'bucle': 'Control flow structure executing a statement block repeatedly.',
-    'byte': 'Standard unit of digital information consisting of a contiguous sequence of 8 bits.',
-    'call_stack': 'LIFO call stack in memory tracking active execution frames.',
-    'capstone': 'Comprehensive integration project demonstrating all competencies acquired throughout a curriculum.',
-    'casting': 'Explicit conversion of a value across types using constructors like int(), float(), str().',
-    'clase': 'Blueprint or architectural template defining object attributes and behavior.',
-    'codigo_fuente': 'Human-readable instructions written in a formal programming language.',
-    'coleccion': 'Data structure capable of grouping multiple items under a single variable.',
-    'comentario': 'Source line prefixed with #, completely skipped by the interpreter for human guidance.',
-    'compilador': 'Program translating complete source code into executable binary machine code prior to execution.',
-    'concatenacion': 'Operation joining two or more character sequences into a unified string.',
-    'condicion': 'Logical proposition evaluating to a boolean value (True or False).',
-    'consola': 'Text-based standard input/output stream where programs receive commands and emit output.',
-    'constructor': 'Special initializer method (__init__) executed automatically upon object instantiation.',
-    'context_manager': 'Resource management protocol governed by with that guarantees deterministic cleanup.',
-    'continue': 'Jump statement skipping the remainder of the current iteration to advance to the next.',
-    'cpu': 'Central Processing Unit responsible for fetching, decoding, and executing machine instructions at high speed.',
-    'debugging': 'Methodical engineering process of isolating, diagnosing, and resolving software faults.',
-    'def': 'Reserved keyword used to declare functions and methods in Python.',
-    'delimitador': 'Paired grouping characters (quotes, parentheses, brackets, braces) structuring code.',
-    'desempaquetado': 'Idiomatic syntax extracting tuple or list elements directly into discrete variables.',
-    'diccionario': 'Associative hash map storing unique key-value pairs with O(1) average lookup.',
-    'dry': 'Don’t Repeat Yourself: fundamental software engineering principle prohibiting logic duplication.',
-    'earcon': 'Short acoustic auditory cue communicating software state without cognitive voice latency.',
-    'elif': 'Short for else if: chained conditional clause evaluating secondary alternative predicates.',
-    'else': 'Default fallback branch executing when all preceding conditions evaluate to false.',
-    'encapsulamiento': 'OOP principle concealing internal state mechanics to protect object integrity.',
-    'enumerate': 'Built-in routine yielding sequential (index, item) pairs across iterations.',
-    'es_par': 'Algorithm using modulo % 2 == 0 to determine exact divisibility by two.',
-    'escape': 'Backslash (\\) mechanism conferring special control meaning to characters in strings.',
-    'estado': 'Current snapshot of values residing in memory at a specific execution timestamp.',
-    'excepcion': 'Anomalous runtime event interrupting normal execution, caught via try/except.',
-    'f_string': 'String literal prefixed with f that interpolates variables enclosed in braces {}.',
-    'finally': 'Defensive block in try/except executing unconditionally regardless of fault status.',
-    'float': 'Numeric data type representing real numbers with fractional floating-point parts.',
-    'for': 'Definite iteration loop traversing sequences and collection items.',
-    'funcion': 'Encapsulated modular routine invoked by name that accepts arguments and yields returns.',
-    'hardware': 'Physical electronic machinery and components forming a computing platform.',
-    'identificador': 'Symbolic token naming variables, routines, and classes under snake_case conventions.',
-    'if': 'Conditional branching statement executing indented blocks when predicates evaluate to true.',
-    'inmutabilidad': 'Property of data types (like tuples and strings) prohibiting in-place mutation after creation.',
-    'input': 'Built-in routine halting execution to capture user keystrokes from standard input.',
-    'instancia': 'Concrete manifested object allocated in RAM instantiated from a class blueprint.',
-    'int': 'Numeric data type representing positive, negative, or zero integers without fractions.',
-    'interprete': 'Engine reading, analyzing, and executing source code instruction by instruction in real time.',
-    'iteracion': 'Single execution pass through a loop construct traversing collection elements.',
-    'json': 'JavaScript Object Notation, lightweight, human-readable data interchange format widely used across APIs.',
-    'lector_pantalla': 'Assistive screen reading software like NVDA translating screen information into synthetic speech and braille.',
-    'len': 'Built-in function measuring and returning the cardinal element count of sequences.',
-    'lista': 'Ordered, mutable sequence of items delimited by square brackets [].',
-    'metodo': 'Function scoped inside a class that acts on instance memory receiving self.',
-    'modulo': 'Python source file with reusable routines imported via the import statement.',
-    'mutabilidad': 'Characteristic of collections (like lists and dictionaries) permitting in-place mutation.',
-    'name_error': 'Exception raised when attempting to evaluate an identifier absent from memory scopes.',
-    'none': 'Python singleton object formally denoting the absence of a value.',
-    'not': 'Logical negation operator inverting truth values.',
-    'nvda': 'NonVisual Desktop Access, free and open-source screen reader for Windows operating systems.',
-    'objeto': 'Unified entity in RAM binding state via attributes and behaviors via methods.',
-    'open': 'Built-in function interfacing with the filesystem for buffered reading or writing.',
-    'operador': 'Special symbol (+, ==, and) executing mathematical, logical, or relational actions.',
-    'or': 'Logical operator returning True whenever at least one operand evaluates to true.',
-    'parametrizada': 'SQL statement using ? placeholders to separate query logic from data, eliminating SQL injection.',
-    'parametro': 'Formal variable declared in a function signature receiving incoming caller data.',
-    'pass': 'No-op statement acting as a structural placeholder when syntax requires an indented line.',
-    'pep8': 'Official style guide and software engineering best practices for Python source code.',
-    'persistencia': 'Capability of retaining data across process lifecycles onto secondary non-volatile storage or disk.',
-    'pop': 'List method extracting and deleting an element at an index (defaulting to tail).',
-    'precedencia': 'Hierarchical evaluation precedence ordering arithmetic and logical operators.',
-    'print': 'Foundational routine routing strings to standard output for screen reader speech.',
-    'ram': 'Random Access Memory: high-speed volatile storage holding active process states.',
-    'range': 'Immutable arithmetic progression generator of integers utilized in for loops.',
-    'reasignacion': 'Action of replacing an identifier’s memory reference with a newly computed payload.',
-    'refactorizacion': 'Process of restructuring existing code to improve internal design without changing external behavior.',
-    'relacional': 'Operators comparing values and producing boolean outcomes (==, !=, <, >, <=, >=).',
-    'return': 'Statement concluding routine execution and handing a computed value to the caller.',
-    'salida_estandar': 'The standard output stream (stdout) where processes write diagnostics and text.',
-    'sangria': 'Leading whitespace indentation (PEP 8 4 spaces) defining code block nesting.',
-    'self': 'Conventional explicit reference to the active concrete instance inside methods.',
-    'sentencia': 'Complete executable instruction processed by the Python interpreter.',
-    'serializacion': 'Translating complex objects in RAM into persistent byte streams or text (JSON).',
-    'short_circuit': 'Logical optimization stopping compound evaluation once truth value is determined.',
-    'sintaxis': 'Grammatical rules governing how instructions must be authored.',
-    'sistema_operativo': 'System software managing hardware resources and providing common services for applications.',
-    'snake_case': 'Naming convention formatting identifiers in lowercase separated by underscores.',
-    'software': 'Collection of code routines instructing hardware machinery how to compute.',
-    'sqlite': 'Lightweight, self-contained relational SQL database engine embedded in Python’s standard library.',
-    'sqlite3': 'Embedded relational SQL database engine bundled natively in Python Standard Library.',
-    'ssl': 'Secure Sockets Layer providing encrypted cryptographic network communication.',
-    'str': 'Primitive data type representing immutable character string literals.',
-    'syntax_error': 'Parsing error indicating invalid code grammar preventing compilation.',
-    'tabla_verdad': 'Algebraic matrix cataloging all truth outcomes across logical operations.',
-    'tiflotecnologia': 'Assistive engineering discipline designing accessible systems for blind individuals.',
-    'timeout': 'Maximum time threshold allocated to a computation before aborting execution.',
-    'traceback': 'Call stack diagnostic dump pinpointing the exact line where an exception occurred.',
-    'true_false': 'The two boolean literals representing binary truth.',
-    'try_except': 'Defensive error-handling construct engineered for fault-tolerant applications.',
-    'tupla': 'Ordered, immutable sequence delimited by parentheses ().',
-    'type_error': 'Exception raised when applying operations onto incompatible data types.',
-    'unicode': 'Universal character standard mapping unique integer codes to characters worldwide.',
-    'unittest': 'Standard library unit testing framework certifying software correctness.',
-    'variable': 'Symbolic identifier referencing a memory location containing a mutable payload.',
-    'while': 'Conditional iteration loop repeating statements while its predicate remains true.',
-    'winsound': 'Windows-specific built-in module emitting acoustic frequency tones.',
-    'with': 'Statement wrapping context managers ensuring deterministic resource disposal.',
-    'zen_python': 'Collection of 19 guiding engineering principles defining Python’s philosophy.',
-}
+import json
+import os
+
+_IDIOMA_BASE = "es"
+
+
+def _ruta_catalogos():
+    # addon/globalPlugins/python_tutor -> addon/locale
+    return os.path.normpath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "locale")
+    )
+
+
+def _cargar(idioma):
+    ruta = os.path.join(_ruta_catalogos(), idioma, "glossary.json")
+    try:
+        with open(ruta, "r", encoding="utf-8") as f:
+            datos = json.load(f)
+        if isinstance(datos, dict):
+            return {str(k): str(v) for k, v in datos.items()}
+    except (OSError, ValueError):
+        pass
+    return None
+
+
+def _glosario_base():
+    glosario = {}
+    try:
+        from .curriculum import GLOSARIO
+    except ImportError:
+        try:
+            from curriculum import GLOSARIO
+        except ImportError:
+            GLOSARIO = {}
+    glosario.update(GLOSARIO)
+    extra = _cargar(_IDIOMA_BASE)
+    if extra:
+        glosario.update(extra)
+    return glosario
+
 
 def obtener_glosario(lang=None):
-    """Devuelve el glosario en el idioma correspondiente (español o inglés)."""
+    """Devuelve el glosario en el idioma correspondiente con respaldo al español base."""
     if lang is None:
         try:
             from .i18n import obtener_idioma_actual
+        except ImportError:
+            try:
+                from i18n import obtener_idioma_actual
+            except ImportError:
+                obtener_idioma_actual = None
+        if obtener_idioma_actual is not None:
             lang = obtener_idioma_actual()
-        except Exception:
-            lang = 'es'
-    if lang == 'en':
-        return GLOSARIO_EN
-    try:
-        from .curriculum import GLOSARIO
-        return GLOSARIO
-    except Exception:
-        return GLOSARIO_EN
+        else:
+            lang = _IDIOMA_BASE
+    lang = str(lang).strip().lower().replace("-", "_").split("_")[0] or _IDIOMA_BASE
+    glosario = _glosario_base()
+    if lang != _IDIOMA_BASE:
+        traducciones = _cargar(lang)
+        if traducciones:
+            glosario.update(traducciones)
+    return glosario

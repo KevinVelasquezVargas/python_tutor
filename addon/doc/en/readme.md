@@ -130,6 +130,8 @@ Translated curricula live in JSON catalogs independent of the code (`addon/local
 
 2. Copy `addon/locale/es/lessons.json` to `addon/locale/<language>/lessons.json` (for example, `addon/locale/fr/lessons.json`) and translate the values. Keys remain in Spanish. The translation can be partial (chapter by chapter): anything missing will be shown in Spanish as a fallback.
 
+   The technical glossary follows the same mechanism: copy `addon/locale/es/glossary.json` to `addon/locale/<language>/glossary.json` and translate the definitions; missing terms will be shown in Spanish, and you can also add new terms by editing the JSON.
+
 3. Respect these rules in code challenges (validators live in `curriculum.py` and are never translated):
    * `salida_esperada`: must remain byte-identical to the original.
    * `codigo`: only `#` comments are translated; string literals must match the original exactly.

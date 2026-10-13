@@ -5,6 +5,7 @@ Valida la integridad pedagógica, ejecutor seguro y herramientas tiflotécnicas.
 """
 
 import unittest
+import json
 import os
 import sys
 from unittest.mock import MagicMock
@@ -91,6 +92,24 @@ class TestCurriculumIntegrity(unittest.TestCase):
         for termino, defn in self.glosario.items():
             self.assertTrue(len(termino) > 0)
             self.assertTrue(len(defn) > 10, f"Definición demasiado corta para '{termino}'")
+
+    def test_glossary_catalogs_json(self):
+        """Los catálogos JSON del glosario son válidos y se fusionan con el español base."""
+        for idioma in ("es", "en", "pt"):
+            ruta = os.path.join(
+                BASE_DIR, "addon", "locale", idioma, "glossary.json")
+            with open(ruta, encoding="utf-8") as f:
+                datos = json.load(f)
+            self.assertIsInstance(datos, dict)
+            self.assertGreaterEqual(
+                len(datos), 100, f"Catálogo del glosario '{idioma}' demasiado pequeño")
+            for termino, defn in datos.items():
+                self.assertTrue(len(defn) > 10, f"Definición demasiado corta para '{termino}' ({idioma})")
+        from python_tutor.curriculum_translations import obtener_glosario
+        glosario_pt = obtener_glosario("pt")
+        self.assertGreaterEqual(len(glosario_pt), 120)
+        self.assertNotEqual(glosario_pt["algoritmo"], self.glosario["algoritmo"])
+        self.assertGreaterEqual(len(obtener_glosario("es")), len(self.glosario))
 
 
 class TestSafeExecutor(unittest.TestCase):

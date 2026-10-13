@@ -23,7 +23,7 @@ from .executor import (
     detectar_errores_teclado_comunes,
     comprobar_balanceo_delimitadores
 )
-from .curriculum import CURRICULUM, GLOSARIO, obtener_glosario
+from .curriculum import CURRICULUM, obtener_glosario
 from .lessons_loader import leer_texto, idiomas_disponibles
 from .progress import ProgressManager
 from .repl_dialog import ReplDialog

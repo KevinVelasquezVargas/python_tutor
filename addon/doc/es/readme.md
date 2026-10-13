@@ -1,4 +1,4 @@
-# Aprendizaje de Python con NVDA [![Versión](https://img.shields.io/badge/Versi%C3%B3n-3.0.1-blue.svg)](https://github.com/KevinVelasquezVargas/python_tutor/releases/latest) [![Compatibilidad](https://img.shields.io/badge/NVDA-2022.1%20a%202026.2-brightgreen.svg)](https://www.nvaccess.org/) [![Licencia](https://img.shields.io/badge/Licencia-GPLv3-blue.svg)](LICENSE)
+# Aprendizaje de Python con NVDA [![Versión](https://img.shields.io/badge/Versi%C3%B3n-3.1.0-blue.svg)](https://github.com/KevinVelasquezVargas/python_tutor/releases/latest) [![Compatibilidad](https://img.shields.io/badge/NVDA-2022.1%20a%202026.2-brightgreen.svg)](https://www.nvaccess.org/) [![Licencia](https://img.shields.io/badge/Licencia-GPLv3-blue.svg)](LICENSE)
 
 Entorno accesible de desarrollo y formación para el aprendizaje de Python mediante el lector de pantallas NVDA. Estructurado en un plan formativo de 40 capítulos y una modalidad dual que combina un tutor interactivo con un editor autónomo sin barreras visuales.
 
@@ -9,9 +9,10 @@ Entorno accesible de desarrollo y formación para el aprendizaje de Python media
 3. [Atajos de Teclado](#atajos-de-teclado)
 4. [Plan Formativo](#plan-formativo)
 5. [Configuración](#configuración)
-6. [Pruebas Automatizadas](#pruebas-automatizadas)
-7. [Soporte y Colaboración](#soporte-y-colaboración)
-8. [Licencia](#licencia)
+6. [Añadir un Nuevo Idioma de Lecciones](#añadir-un-nuevo-idioma-de-lecciones)
+7. [Pruebas Automatizadas](#pruebas-automatizadas)
+8. [Soporte y Colaboración](#soporte-y-colaboración)
+9. [Licencia](#licencia)
 
 ---
 
@@ -26,13 +27,13 @@ Entorno accesible de desarrollo y formación para el aprendizaje de Python media
 
 ## Características Principales
 
-* **Plan pedagógico guiado:** 40 capítulos y 160 lecciones distribuidas en 9 módulos secuenciales. Introduce fundamentos conceptuales antes de abordar la sintaxis formal.
+* **Plan pedagógico guiado:** 40 capítulos y 190 lecciones distribuidas en 9 módulos secuenciales. Introduce fundamentos conceptuales antes de abordar la sintaxis formal.
 * **Modalidad dual de trabajo:** Alternancia inmediata (`Control + M`) entre el modo guiado con retroalimentación automática y un editor autónomo despejado para proyectos personales.
 * **Interfaz adaptativa:** Ocultamiento automático del editor y la consola en lecciones teóricas y evaluaciones conceptuales mediante selectores accesibles (`wx.RadioBox`).
 * **Arquitectura nativa:** Uso exclusivo de módulos de la biblioteca estándar de Python (`sqlite3`, `json`, `math`, `random`, `datetime`, `urllib`), eliminando dependencias externas y riesgos de compilación.
 * **Señales acústicas tiflotécnicas:** Sonificación para niveles de indentación PEP 8, diagnóstico de delimitadores y validación de sintaxis.
 * **Asistencia pedagógica:** Explicador de código local sin conexión (`F1`) y soporte opcional para consultas avanzadas con la API de Google Gemini (`Control + Shift + I`).
-* **Soporte bilingüe:** Localización completa en Español e Inglés (*Learning Python with NVDA*).
+* **Soporte multilingüe ampliable:** Español, Inglés y Portugués incluidos de forma oficial. Añadir un idioma nuevo no requiere tocar Python: basta con añadir un catálogo JSON de lecciones (véase [Añadir un Nuevo Idioma de Lecciones](#añadir-un-nuevo-idioma-de-lecciones)).
 
 ---
 
@@ -108,10 +109,52 @@ Entorno accesible de desarrollo y formación para el aprendizaje de Python media
 
 Ruta de acceso: **Menú NVDA > Preferencias > Opciones > Aprendizaje de Python con NVDA**
 
-* **Idioma del entorno:** Automático (según NVDA), Español o Inglés.
 * **Modo de inicio:** Modo Aprendizaje Guiado o Modo Editor Autónomo.
 * **Señales acústicas:** Habilitación de sonificación de sangría PEP 8 y alertas.
+* **Modo de la tecla F1:** Explicación local sin conexión o consulta con la IA.
 * **Clave API de Gemini:** Configuración opcional para consultas de IA.
+
+El idioma del entorno se detecta automáticamente a partir del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible) y puede cambiarse en caliente en cualquier momento desde el menú **Ayuda > Cambiar idioma** de la ventana del tutor.
+
+---
+
+## Añadir un Nuevo Idioma de Lecciones
+
+Los currículos traducidos viven en catálogos JSON independientes del código (`addon/locale/<idioma>/lessons.json`), junto al resto de la localización del complemento. Al recompilar, el idioma nuevo aparece automáticamente en el selector de idioma, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible).
+
+1. Genere el catálogo base en español desde el código fuente:
+
+   ```bash
+   uv run python tools/extract_lessons.py
+   ```
+
+2. Copie `addon/locale/es/lessons.json` a `addon/locale/<idioma>/lessons.json` (por ejemplo, `addon/locale/fr/lessons.json`) y traduzca los valores. Las claves permanecen en español. La traducción puede ser parcial (capítulo a capítulo): todo lo que falte se mostrará en español como respaldo.
+
+   El glosario técnico sigue el mismo mecanismo: copie `addon/locale/es/glossary.json` a `addon/locale/<idioma>/glossary.json` y traduzca las definiciones; los términos que falten se mostrarán en español y también puede añadir términos nuevos editando el JSON.
+
+3. Respete estas reglas en los desafíos de código (los validadores viven en `curriculum.py` y nunca se traducen):
+   * `salida_esperada`: debe permanecer byte-idéntica al original.
+   * `codigo`: solo se traducen los comentarios `#`; los literales de cadena deben coincidir exactamente con el original.
+   * `opciones`: conserve el orden de las opciones (la respuesta correcta se valida por posición) y traduzca cada opción completa.
+
+4. Interfaz del complemento (opcional pero recomendado), mediante gettext oficial:
+   * Genere la plantilla y cree el catálogo del idioma (requiere gettext en el PATH):
+
+     ```bash
+     scons pot
+     msginit -i python_tutor.pot -o addon/locale/<idioma>/LC_MESSAGES/nvda.po
+     ```
+
+     (o copie `addon/locale/es/LC_MESSAGES/nvda.po`, ya alineado con la plantilla).
+   * Rellene los `msgstr` (los `msgid` permanecen en español, el idioma base) y recompile con `scons`: los archivos `.mo`, el manifiesto traducido y la documentación HTML se generan automáticamente.
+   * Traduzca también `addon/doc/<idioma>/readme.md` (la documentación que abre `F12`); `scons` genera el HTML correspondiente de forma automática.
+
+5. Recompile y verifique:
+
+   ```bash
+   scons
+   python -m unittest tests/test_tutor.py
+   ```
 
 ---
 

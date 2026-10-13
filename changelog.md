@@ -1,5 +1,18 @@
 # Registro de cambios de Aprendizaje de Python con NVDA
 
+## Versión 3.1.0 (Soporte Multilingüe Ampliable)
+
+- **Sistema de Catálogos de Lecciones en JSON:**
+  - Los currículos traducidos viven ahora en catálogos `addon/locale/<idioma>/lessons.json` independientes del código, junto al resto de la localización; la lógica pedagógica (validadores, respuestas correctas) permanece en `curriculum.py` sin traducirse.
+  - Añadir un idioma nuevo es tan simple como añadir un catálogo JSON y recompilar: el idioma aparece automáticamente en el selector de preferencias, en el menú *Cambiar idioma* y en la detección automática del idioma de NVDA (normalización de variantes como `pt_BR` o `en_US`).
+  - Respaldo parcial capítulo a capítulo: lo que no esté traducido se muestra en español.
+- **Portugués (PT-PT) Oficial Completo:**
+  - Traducción íntegra de los 40 capítulos (190 lecciones) al portugués europeo con ortografía AO90, incluidos retos de código, pistas y evaluaciones conceptuales.
+  - Interfaz de usuario, menús, mensajes del sistema y localización gettext (`addon/locale/pt`) completos.
+- **Detección de Idioma Generalizada:**
+  - Selector de idioma dinámico en el panel de preferencias basado en los catálogos disponibles.
+  - Títulos del complemento localizados en todos los puntos de integración con NVDA (panel, categoría de scripts y menú Herramientas).
+
 ## Versión 3.0.0 (Lanzamiento Insignia)
 
 - **Plan Formativo Integral de 40 Capítulos (160 Lecciones Progresivas):**

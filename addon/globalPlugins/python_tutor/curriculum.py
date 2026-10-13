@@ -2125,18 +2125,21 @@ GLOSARIO = {
     'zen_python': 'Colección de 19 principios de diseño e ingeniería que definen la filosofía del lenguaje Python.',
 }
 
-# Integración de traducciones pedagógicas en inglés
+# Integración de catálogos de lecciones por idioma (locale/*/lessons.json)
+# y reexportación del glosario bilingüe.
 try:
-    from .curriculum_translations import APLICAR_TRADUCCIONES, GLOSARIO_EN, obtener_glosario
-    APLICAR_TRADUCCIONES(CURRICULUM)
+    from .curriculum_translations import obtener_glosario  # noqa: F401
+    from .lessons_loader import aplicar_traducciones
+    aplicar_traducciones(CURRICULUM)
 except (ImportError, ValueError):
     try:
         import os, sys
         _cur_dir = os.path.dirname(__file__)
         if _cur_dir and _cur_dir not in sys.path:
             sys.path.insert(0, _cur_dir)
-        from curriculum_translations import APLICAR_TRADUCCIONES, GLOSARIO_EN, obtener_glosario
-        APLICAR_TRADUCCIONES(CURRICULUM)
+        from curriculum_translations import obtener_glosario  # noqa: F401
+        from lessons_loader import aplicar_traducciones
+        aplicar_traducciones(CURRICULUM)
     except Exception:
         pass
 except Exception:

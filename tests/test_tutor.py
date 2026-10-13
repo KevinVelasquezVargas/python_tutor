@@ -5,6 +5,7 @@ Valida la integridad pedagógica, ejecutor seguro y herramientas tiflotécnicas.
 """
 
 import unittest
+import json
 import os
 import sys
 from unittest.mock import MagicMock
@@ -92,6 +93,24 @@ class TestCurriculumIntegrity(unittest.TestCase):
             self.assertTrue(len(termino) > 0)
             self.assertTrue(len(defn) > 10, f"Definición demasiado corta para '{termino}'")
 
+    def test_glossary_catalogs_json(self):
+        """Los catálogos JSON del glosario son válidos y se fusionan con el español base."""
+        for idioma in ("es", "en", "pt"):
+            ruta = os.path.join(
+                BASE_DIR, "addon", "locale", idioma, "glossary.json")
+            with open(ruta, encoding="utf-8") as f:
+                datos = json.load(f)
+            self.assertIsInstance(datos, dict)
+            self.assertGreaterEqual(
+                len(datos), 100, f"Catálogo del glosario '{idioma}' demasiado pequeño")
+            for termino, defn in datos.items():
+                self.assertTrue(len(defn) > 10, f"Definición demasiado corta para '{termino}' ({idioma})")
+        from python_tutor.curriculum_translations import obtener_glosario
+        glosario_pt = obtener_glosario("pt")
+        self.assertGreaterEqual(len(glosario_pt), 120)
+        self.assertNotEqual(glosario_pt["algoritmo"], self.glosario["algoritmo"])
+        self.assertGreaterEqual(len(obtener_glosario("es")), len(self.glosario))
+
 
 class TestSafeExecutor(unittest.TestCase):
     """Pruebas del entorno de ejecución aislado y simplificación de errores."""
@@ -170,6 +189,86 @@ class TestIDETools(unittest.TestCase):
         self.assertTrue("función" in doc_def.lower() or "funcion" in doc_def.lower())
 
 
+class TestLessonsCatalogs(unittest.TestCase):
+    """Pruebas del sistema de catálogos de lecciones JSON por idioma."""
+
+    @classmethod
+    def setUpClass(cls):
+        from python_tutor.lessons_loader import (
+            idiomas_disponibles, normalizar_idioma, cargar_catalogo,
+            aplicar_traducciones, leer_texto,
+        )
+        from python_tutor import i18n
+        cls.idiomas_disponibles = staticmethod(idiomas_disponibles)
+        cls.normalizar_idioma = staticmethod(normalizar_idioma)
+        cls.cargar_catalogo = staticmethod(cargar_catalogo)
+        cls.aplicar_traducciones = staticmethod(aplicar_traducciones)
+        cls.leer_texto = staticmethod(leer_texto)
+        cls.i18n = i18n
+        from python_tutor.curriculum import CURRICULUM
+        cls.curriculum = CURRICULUM
+
+    def setUp(self):
+        self._idioma_previo = self.i18n._IDIOMA_ACTUAL
+        self.addCleanup(setattr, self.i18n, "_IDIOMA_ACTUAL", self._idioma_previo)
+
+    def test_idiomas_disponibles(self):
+        """Verifica la detección de catálogos: español base + en + pt."""
+        idiomas = self.idiomas_disponibles()
+        self.assertIn("es", idiomas)
+        self.assertIn("en", idiomas)
+        self.assertIn("pt", idiomas)
+        self.assertEqual(idiomas, sorted(idiomas))
+
+    def test_normalizar_idioma(self):
+        """Verifica el mapeo de variantes de NVDA al catálogo disponible."""
+        self.assertEqual(self.normalizar_idioma("pt_PT"), "pt")
+        self.assertEqual(self.normalizar_idioma("pt-BR"), "pt")
+        self.assertEqual(self.normalizar_idioma("en_US"), "en")
+        self.assertEqual(self.normalizar_idioma("es"), "es")
+        self.assertIsNone(self.normalizar_idioma("fr"))
+        self.assertIsNone(self.normalizar_idioma(None))
+
+    def test_cargar_catalogo(self):
+        """El español base vive en curriculum.py (None); pt es un catálogo real."""
+        self.assertIsNone(self.cargar_catalogo("es"))
+        self.assertIsNone(self.cargar_catalogo("fr"))
+        catalogo_pt = self.cargar_catalogo("pt")
+        self.assertIsInstance(catalogo_pt, dict)
+        self.assertEqual(len(catalogo_pt), 40)
+
+    def test_estructura_catalogo_pt(self):
+        """El catálogo portugués cubre los 40 capítulos con los mismos pasos."""
+        catalogo_pt = self.cargar_catalogo("pt")
+        for cap in self.curriculum:
+            cid = str(cap["id"])
+            self.assertIn(cid, catalogo_pt, f"Falta el capítulo {cid} en pt.json")
+            self.assertEqual(
+                len(catalogo_pt[cid]["pasos"]), len(cap["pasos"]),
+                f"El capítulo {cid} difiere en número de pasos",
+            )
+
+    def test_aplicar_traducciones_idempotente(self):
+        """Inyecta campos con sufijo _pt sin tocar los campos base y es idempotente."""
+        cap = self.curriculum[0]
+        titulo_base = cap["titulo"]
+        self.aplicar_traducciones(self.curriculum)
+        self.assertIn("titulo_pt", cap)
+        self.assertEqual(cap["titulo"], titulo_base)
+        self.assertIn("instruccion_pt", cap["pasos"][0])
+
+    def test_leer_texto_con_respaldo(self):
+        """Lee en el idioma activo y cae al español base si falta el campo."""
+        cap = self.curriculum[0]
+        self.i18n._IDIOMA_ACTUAL = "pt"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo_pt"])
+        self.i18n._IDIOMA_ACTUAL = "en"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo_en"])
+        self.i18n._IDIOMA_ACTUAL = "es"
+        self.assertEqual(self.leer_texto(cap, "titulo"), cap["titulo"])
+        self.assertEqual(self.leer_texto(cap, "campo_inexistente", default="DEF"), "DEF")
+
+
 class TestAddonMetadata(unittest.TestCase):
     """Pruebas de consistencia de metadatos del complemento y empaquetado."""
 
@@ -180,7 +279,7 @@ class TestAddonMetadata(unittest.TestCase):
             content = f.read()
 
         self.assertIn("name = python_tutor", content)
-        self.assertIn("version = 3.0.1", content)
+        self.assertIn("version = 3.1.0", content)
         self.assertIn("minimumNVDAVersion = 2022.1.0", content)
         self.assertIn("lastTestedNVDAVersion = 2026.2.0", content)
         self.assertIn("Kevin Andrés Velasquez Vargas", content)
@@ -215,16 +314,16 @@ class TestAudioAssets(unittest.TestCase):
 class TestAddonFeatures(unittest.TestCase):
     """Pruebas unitarias para las funcionalidades avanzadas y la versión 3.0.0."""
 
-    def test_version_3_0_1(self):
-        """Verifica que los manifiestos y la configuración certifiquen la versión 3.0.1."""
+    def test_version_3_1_0(self):
+        """Verifica que los manifiestos y la configuración certifiquen la versión 3.1.0."""
         import buildVars
-        self.assertEqual(buildVars.addon_info["addon_version"], "3.0.1")
+        self.assertEqual(buildVars.addon_info["addon_version"], "3.1.0")
 
         manifest_path = os.path.join(BASE_DIR, "addon", "manifest.ini")
         if os.path.exists(manifest_path):
             with open(manifest_path, "r", encoding="utf-8") as f:
                 content = f.read()
-            self.assertIn("version = 3.0.1", content)
+            self.assertIn("version = 3.1.0", content)
 
     def test_compatibility_versions(self):
         """Verifica que el rango de compatibilidad de NVDA sea estrictamente 2022.1.0 a 2026.2.0."""
@@ -272,10 +371,8 @@ class TestAddonFeatures(unittest.TestCase):
         self.assertIn("class DonationPromptDialog", src)
         d_part = src[src.find("class DonationPromptDialog"):src.find("class ShortcutsDialog")]
         self.assertNotIn("Kevin", d_part)
-        self.assertIn('btn_donar_lbl = "Donar"', d_part)
-        self.assertIn('btn_continuar_lbl = "Ahora no"', d_part)
-        self.assertIn('btn_donar_lbl = "Donate"', d_part)
-        self.assertIn('btn_continuar_lbl = "Not now"', d_part)
+        self.assertIn('btn_donar_lbl = _t("Donar")', d_part)
+        self.assertIn('btn_continuar_lbl = _t("Ahora no")', d_part)
 
     def test_settings_panel_title_bilingual(self):
         """Verifica que el título del panel de configuración de NVDA se adapte al idioma activo."""
@@ -305,13 +402,13 @@ class TestAddonFeatures(unittest.TestCase):
         )
         establecer_idioma("es")
         self.assertEqual(obtener_idioma_actual(), "es")
-        self.assertEqual(_t("app_title"), "Aprendizaje de Python con NVDA")
-        self.assertIn("print", _t("print_empty").lower())
+        self.assertEqual(_t("Aprendizaje de Python con NVDA"), "Aprendizaje de Python con NVDA")
+        self.assertEqual(_t("Línea vacía."), "Línea vacía.")
 
         establecer_idioma("en")
         self.assertEqual(obtener_idioma_actual(), "en")
-        self.assertEqual(_t("app_title"), "Learning Python with NVDA")
-        self.assertIn("print", _t("print_empty").lower())
+        self.assertEqual(_t("Aprendizaje de Python con NVDA"), "Learning Python with NVDA")
+        self.assertEqual(_t("Línea vacía."), "Empty line.")
 
         # Restaurar español por defecto
         establecer_idioma("es")

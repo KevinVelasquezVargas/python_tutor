@@ -34,6 +34,6 @@ def formatear_linea_para_braille(linea):
     if nivel == 0:
         return linea.strip()
 
-    from .i18n import obtener_idioma_actual
-    lbl = "Level" if obtener_idioma_actual() == "en" else "Nivel"
+    from .i18n import _t
+    lbl = _t("Nivel")
     return f"[{lbl} {nivel}] {linea.strip()}"

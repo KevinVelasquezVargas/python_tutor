@@ -109,10 +109,12 @@ Entorno accesible de desarrollo y formación para el aprendizaje de Python media
 
 Ruta de acceso: **Menú NVDA > Preferencias > Opciones > Aprendizaje de Python con NVDA**
 
-* **Idioma del entorno:** Automático (según el idioma de NVDA), Español, Inglés o Portugués. Los idiomas disponibles se detectan automáticamente a partir de los catálogos `addon/locale/<idioma>/lessons.json`.
 * **Modo de inicio:** Modo Aprendizaje Guiado o Modo Editor Autónomo.
 * **Señales acústicas:** Habilitación de sonificación de sangría PEP 8 y alertas.
+* **Modo de la tecla F1:** Explicación local sin conexión o consulta con la IA.
 * **Clave API de Gemini:** Configuración opcional para consultas de IA.
+
+El idioma del entorno se detecta automáticamente a partir del idioma de NVDA (variaciones como `pt_BR` o `en_US` se normalizan al catálogo disponible) y puede cambiarse en caliente en cualquier momento desde el menú **Ayuda > Cambiar idioma** de la ventana del tutor.
 
 ---
 
@@ -133,9 +135,17 @@ Los currículos traducidos viven en catálogos JSON independientes del código (
    * `codigo`: solo se traducen los comentarios `#`; los literales de cadena deben coincidir exactamente con el original.
    * `opciones`: conserve el orden de las opciones (la respuesta correcta se valida por posición) y traduzca cada opción completa.
 
-4. Interfaz del complemento (opcional pero recomendado):
-   * Añada una sección para el idioma en el diccionario `DICCIONARIO` de `addon/globalPlugins/python_tutor/i18n.py` (copie la sección `"es"`).
-   * Cree `addon/locale/<idioma>/LC_MESSAGES/nvda.po` a partir de `addon/locale/es/LC_MESSAGES/nvda.po` para menús, mensajes y descripción del complemento.
+4. Interfaz del complemento (opcional pero recomendado), mediante gettext oficial:
+   * Genere la plantilla y cree el catálogo del idioma (requiere gettext en el PATH):
+
+     ```bash
+     scons pot
+     msginit -i python_tutor.pot -o addon/locale/<idioma>/LC_MESSAGES/nvda.po
+     ```
+
+     (o copie `addon/locale/es/LC_MESSAGES/nvda.po`, ya alineado con la plantilla).
+   * Rellene los `msgstr` (los `msgid` permanecen en español, el idioma base) y recompile con `scons`: los archivos `.mo`, el manifiesto traducido y la documentación HTML se generan automáticamente.
+   * Traduzca también `addon/doc/<idioma>/readme.md` (la documentación que abre `F12`); `scons` genera el HTML correspondiente de forma automática.
 
 5. Recompile y verifique:
 

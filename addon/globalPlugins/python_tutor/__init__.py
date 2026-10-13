@@ -15,11 +15,6 @@ try:
     import globalPluginHandler
     import scriptHandler
     import ui
-    import addonHandler
-    try:
-        addonHandler.initTranslation()
-    except Exception:
-        pass
 except ImportError:
     globalPluginHandler = None
     scriptHandler = None
@@ -38,8 +33,7 @@ except Exception:
 from .audio_manager import SoundManager
 from .gui_frame import TutorFrame
 from .progress import ProgressManager
-from .i18n import _t, _, detectar_idioma_preferido, establecer_idioma, obtener_idioma_actual
-from .lessons_loader import idiomas_disponibles
+from .i18n import _t
 from .ai_assistant import obtener_config_ia, guardar_config_ia
 
 _BasePlugin = globalPluginHandler.GlobalPlugin if globalPluginHandler else object
@@ -49,7 +43,7 @@ _BaseSettingsPanel = SettingsPanel if SettingsPanel else object
 class _SettingsPanelMeta(type(_BaseSettingsPanel)):
     @property
     def title(cls):
-        return _t("app_title")
+        return _t("Aprendizaje de Python con NVDA")
 
     @title.setter
     def title(cls, value):
@@ -61,89 +55,55 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
 
     @property
     def title(self):
-        return _t("app_title")
+        return _t("Aprendizaje de Python con NVDA")
 
     def makeSettings(self, settingsSizer):
         prog = ProgressManager.load_progress()
         cfg_ia = obtener_config_ia()
-        is_en = (obtener_idioma_actual() == "en")
 
-        # 1. Selector de Idioma (Language)
-        lbl_lang = wx.StaticText(
-            self,
-            label="Interface and curriculum language:" if is_en else "Idioma de la interfaz y lecciones:"
-        )
-        settingsSizer.Add(lbl_lang, flag=wx.LEFT | wx.TOP, border=6)
-
-        # Idiomas dinámicos: uno por catálogo locale/<idioma>/lessons.json disponible
-        codigos = idiomas_disponibles()
-        nombres_idioma = {
-            "es": "Español (Spanish)",
-            "en": "English",
-            "pt": "Português",
-            "fr": "Français",
-            "de": "Deutsch",
-            "it": "Italiano",
-        }
-        lang_choices = [
-            "Automatic (follows NVDA language)" if is_en else "Automático (según el idioma de NVDA)"
-        ] + [nombres_idioma.get(c, c) for c in codigos]
-        self.choice_lang = wx.Choice(self, choices=lang_choices)
-        self._lang_codes = codigos
-        saved_lang = ProgressManager.get_setting("language", "auto")
-        if saved_lang in codigos:
-            self.choice_lang.SetSelection(codigos.index(saved_lang) + 1)
-        else:
-            self.choice_lang.SetSelection(0)
-        settingsSizer.Add(self.choice_lang, flag=wx.ALL, border=6)
-
-        # 2. Modo de inicio
-        lbl_modo = "Start directly in Standalone Editor Mode (hide tutor lessons)" if is_en else "Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)"
+        # 1. Modo de inicio
+        lbl_modo = _t("Iniciar en Modo Editor autónomo (ocultar lecciones del tutor)")
         self.chk_modo_editor = wx.CheckBox(self, label=lbl_modo)
         self.chk_modo_editor.SetValue(ProgressManager.get_editor_mode() == "editor")
         settingsSizer.Add(self.chk_modo_editor, flag=wx.ALL, border=6)
 
-        # 3. Sonidos y Linter
-        lbl_snd = "Sound confirmation effects and events" if is_en else "Efectos sonoros de confirmación y eventos"
+        # 2. Sonidos y Linter
+        lbl_snd = _t("Efectos sonoros de confirmación y eventos")
         self.chk_sonidos = wx.CheckBox(self, label=lbl_snd)
         self.chk_sonidos.SetValue(prog.get("sound_enabled", True))
         settingsSizer.Add(self.chk_sonidos, flag=wx.ALL, border=6)
 
-        lbl_linter = "Auditory indentation and structure cues (PEP 8)" if is_en else "Avisos sonoros de sangría y estructura (PEP 8)"
+        lbl_linter = _t("Avisos sonoros de sangría y estructura (PEP 8)")
         self.chk_linter = wx.CheckBox(self, label=lbl_linter)
         self.chk_linter.SetValue(prog.get("linter_enabled", True))
         settingsSizer.Add(self.chk_linter, flag=wx.ALL, border=6)
 
-        # 4. Modo de la tecla F1 (Local offline vs Asistente de IA)
-        lbl_f1_mode = "F1 Key Explanation Mode:" if is_en else "Modo de explicación para la tecla F1:"
+        # 3. Modo de la tecla F1 (Local offline vs Asistente de IA)
+        lbl_f1_mode = _t("Modo de explicación para la tecla F1:")
         settingsSizer.Add(wx.StaticText(self, label=lbl_f1_mode), flag=wx.LEFT | wx.TOP, border=6)
 
         f1_choices = [
-            "Local offline explanation (100% private, instant, no API required)" if is_en else "Explicación sintáctica local (100% privada, instantánea, sin API)",
-            "Ask AI Assistant (requires Google Gemini API Key)" if is_en else "Consultar al Asistente de IA (requiere clave API de Google Gemini)"
+            _t("Explicación sintáctica local (100% privada, instantánea, sin API)"),
+            _t("Consultar al Asistente de IA (requiere clave API de Google Gemini)")
         ]
         self.choice_f1 = wx.Choice(self, choices=f1_choices)
         current_f1_mode = ProgressManager.get_setting("f1_mode", "local")
         self.choice_f1.SetSelection(1 if current_f1_mode == "ai" else 0)
         settingsSizer.Add(self.choice_f1, flag=wx.ALL, border=6)
 
-        # 5. Clave API de Google Gemini (opcional)
-        lbl_key = "Google Gemini API Key (optional, for AI assistant & Ctrl+Shift+I):" if is_en else "Clave de API de Google Gemini (opcional, para asistente y Ctrl+Shift+I):"
+        # 4. Clave API de Google Gemini (opcional)
+        lbl_key = _t("Clave de API de Google Gemini (opcional, para asistente y Ctrl+Shift+I):")
         settingsSizer.Add(wx.StaticText(self, label=lbl_key), flag=wx.LEFT | wx.TOP, border=6)
         self.txt_api_key = wx.TextCtrl(self, value=cfg_ia.get("api_key", ""), style=wx.TE_PASSWORD)
         settingsSizer.Add(self.txt_api_key, flag=wx.ALL | wx.EXPAND, border=6)
 
-        lbl_nota_ia = (
-            "Note: F1 is local and private by default. You can also press Ctrl+Shift+I anytime for AI."
-            if is_en else
-            "Nota: Por defecto, F1 funciona 100% local y privado. Siempre puedes pulsar Ctrl+Shift+I para consultar a la IA."
-        )
+        lbl_nota_ia = _t("Nota: Por defecto, F1 funciona 100% local y privado. Siempre puedes pulsar Ctrl+Shift+I para consultar a la IA.")
         settingsSizer.Add(wx.StaticText(self, label=lbl_nota_ia), flag=wx.LEFT | wx.BOTTOM, border=6)
 
-        # 6. Botones de soporte y donaciones
+        # 5. Botones de soporte y donaciones
         btn_box = wx.BoxSizer(wx.HORIZONTAL)
-        lbl_soporte = "Send support email" if is_en else "Enviar mensaje de soporte"
-        lbl_donar = "Support project (Donate)" if is_en else "Realizar donación voluntaria"
+        lbl_soporte = _t("Enviar mensaje de soporte")
+        lbl_donar = _t("Realizar donación voluntaria")
         btn_soporte = wx.Button(self, label=lbl_soporte)
         btn_donar = wx.Button(self, label=lbl_donar)
         btn_box.Add(btn_soporte, flag=wx.RIGHT, border=8)
@@ -154,15 +114,6 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
         btn_donar.Bind(wx.EVT_BUTTON, lambda e: webbrowser.open("https://paypal.me/kevinvelasquezvargas"))
 
     def onSave(self):
-        sel_idx = self.choice_lang.GetSelection()
-        if 0 < sel_idx <= len(self._lang_codes):
-            lang = self._lang_codes[sel_idx - 1]
-            establecer_idioma(lang)
-            ProgressManager.set_setting("language", lang)
-        else:
-            ProgressManager.set_setting("language", "auto")
-            detectar_idioma_preferido()
-
         ProgressManager.set_editor_mode("editor" if self.chk_modo_editor.GetValue() else "learning")
         ProgressManager.set_setting("sound_enabled", self.chk_sonidos.GetValue())
         ProgressManager.set_setting("linter_enabled", self.chk_linter.GetValue())
@@ -177,7 +128,7 @@ class PythonTutorSettingsPanel(_BaseSettingsPanel, metaclass=_SettingsPanelMeta)
         guardar_config_ia({"api_key": key, "provider": "gemini", "activa": activa})
 
         # Actualizar títulos de forma reactiva
-        panel_title = _t("app_title")
+        panel_title = _t("Aprendizaje de Python con NVDA")
         PythonTutorSettingsPanel.title = panel_title
         GlobalPlugin.scriptCategory = panel_title
 
@@ -188,7 +139,7 @@ class GlobalPlugin(_BasePlugin):
     Gestiona el registro de gestos de entrada, la integración con el menú de herramientas,
     el panel de preferencias y el ciclo de vida del entorno pedagógico.
     """
-    scriptCategory = "Aprendizaje de Python con NVDA"
+    scriptCategory = _t("Aprendizaje de Python con NVDA")
 
     gestures = {
         "kb:NVDA+control+shift+p": "openPythonTutor",
@@ -226,16 +177,23 @@ class GlobalPlugin(_BasePlugin):
             self._tools_menu = sysTray.toolsMenu
             self._sub_menu = wx.Menu()
 
-            is_en = (obtener_idioma_actual() == "en")
-            sub_label = "Learning Python with NVDA..." if is_en else "Aprendizaje de Python con NVDA..."
-            sub_help = "Opens the interactive Python learning environment" if is_en else "Abre el entorno interactivo de aprendizaje"
-            item_abrir = self._sub_menu.Append(wx.ID_ANY, sub_label, sub_help)
+            item_abrir = self._sub_menu.Append(
+                wx.ID_ANY,
+                _t("Aprendizaje de Python con NVDA..."),
+                _t("Abre el entorno interactivo de aprendizaje")
+            )
 
-            lbl_donar = "Support project (Donate)..." if is_en else "Realizar una donación..."
-            item_donacion = self._sub_menu.Append(wx.ID_ANY, lbl_donar, "Support development" if is_en else "Apoyar el desarrollo libre del complemento")
+            item_donacion = self._sub_menu.Append(
+                wx.ID_ANY,
+                _t("Realizar una donación..."),
+                _t("Apoyar el desarrollo libre del complemento")
+            )
 
-            lbl_soporte = "Support & contact..." if is_en else "Soporte y contacto..."
-            item_soporte = self._sub_menu.Append(wx.ID_ANY, lbl_soporte, "Contact support" if is_en else "Abrir canal de soporte por correo o incidencias")
+            item_soporte = self._sub_menu.Append(
+                wx.ID_ANY,
+                _t("Soporte y contacto..."),
+                _t("Abrir canal de soporte por correo o incidencias")
+            )
 
             # Vincular en sysTray, sub_menu y mainFrame para garantizar captura del evento
             cb_abrir = lambda evt: wx.CallAfter(self._lanzar_interfaz)
@@ -254,7 +212,7 @@ class GlobalPlugin(_BasePlugin):
             gui.mainFrame.Bind(wx.EVT_MENU, cb_donacion, id=item_donacion.GetId())
             gui.mainFrame.Bind(wx.EVT_MENU, cb_soporte, id=item_soporte.GetId())
 
-            menu_title = "&Learning Python with NVDA" if is_en else "&Aprendizaje de Python con NVDA"
+            menu_title = _t("&Aprendizaje de Python con NVDA")
             self._menu_item_sub = self._tools_menu.AppendSubMenu(self._sub_menu, menu_title)
         except Exception:
             pass
@@ -271,7 +229,7 @@ class GlobalPlugin(_BasePlugin):
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo cliente de correo para soporte...")
+                ui.message(_t("Abriendo cliente de correo para soporte..."))
         except Exception:
             try:
                 webbrowser.open("https://github.com/KevinVelasquezVargas/python_tutor/issues")
@@ -283,14 +241,14 @@ class GlobalPlugin(_BasePlugin):
         try:
             webbrowser.open(url)
             if ui:
-                ui.message("Abriendo página de donaciones en el navegador...")
+                ui.message(_t("Abriendo página de donaciones en el navegador..."))
         except Exception:
             pass
 
     if scriptHandler and hasattr(scriptHandler, 'script'):
         @scriptHandler.script(
-            description="Abre el entorno de Aprendizaje de Python con NVDA.",
-            category="Aprendizaje de Python con NVDA",
+            description=_t("Abre el entorno de Aprendizaje de Python con NVDA."),
+            category=_t("Aprendizaje de Python con NVDA"),
             gesture="kb:NVDA+control+shift+p"
         )
         def script_openPythonTutor(self, gesture):
@@ -319,7 +277,7 @@ class GlobalPlugin(_BasePlugin):
         except Exception as e:
             self.gui_frame = None
             if ui:
-                ui.message(f"Error al iniciar Aprendizaje de Python con NVDA: {e}")
+                ui.message(_t("Error al iniciar Aprendizaje de Python con NVDA: {error}", error=e))
 
     def on_frame_destroy(self, event):
         if event.GetEventObject() == self.gui_frame:

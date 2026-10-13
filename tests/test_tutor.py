@@ -352,10 +352,8 @@ class TestAddonFeatures(unittest.TestCase):
         self.assertIn("class DonationPromptDialog", src)
         d_part = src[src.find("class DonationPromptDialog"):src.find("class ShortcutsDialog")]
         self.assertNotIn("Kevin", d_part)
-        self.assertIn('btn_donar_lbl = "Donar"', d_part)
-        self.assertIn('btn_continuar_lbl = "Ahora no"', d_part)
-        self.assertIn('btn_donar_lbl = "Donate"', d_part)
-        self.assertIn('btn_continuar_lbl = "Not now"', d_part)
+        self.assertIn('btn_donar_lbl = _t("Donar")', d_part)
+        self.assertIn('btn_continuar_lbl = _t("Ahora no")', d_part)
 
     def test_settings_panel_title_bilingual(self):
         """Verifica que el título del panel de configuración de NVDA se adapte al idioma activo."""
@@ -385,13 +383,13 @@ class TestAddonFeatures(unittest.TestCase):
         )
         establecer_idioma("es")
         self.assertEqual(obtener_idioma_actual(), "es")
-        self.assertEqual(_t("app_title"), "Aprendizaje de Python con NVDA")
-        self.assertIn("print", _t("print_empty").lower())
+        self.assertEqual(_t("Aprendizaje de Python con NVDA"), "Aprendizaje de Python con NVDA")
+        self.assertEqual(_t("Línea vacía."), "Línea vacía.")
 
         establecer_idioma("en")
         self.assertEqual(obtener_idioma_actual(), "en")
-        self.assertEqual(_t("app_title"), "Learning Python with NVDA")
-        self.assertIn("print", _t("print_empty").lower())
+        self.assertEqual(_t("Aprendizaje de Python con NVDA"), "Learning Python with NVDA")
+        self.assertEqual(_t("Línea vacía."), "Empty line.")
 
         # Restaurar español por defecto
         establecer_idioma("es")
